@@ -156,24 +156,33 @@ To execute the integration tests:
 A brief overview of the repository structure:
 
 ```
-moonshot-integration-testing/         # Integration test cases
-├── cli-integration-testing/                   
+moonshot-integration-testing/         
+├── cli-integration-testing/          # Moonshot CLI Integration test cases       
 │   ├── utils                         # Common Utils Functions to support automation on Data Preparation
 │   ├── test_api.py                   # Tests for the Moonshot APIs
-│   ├── test_benchmark.py             # Tests for the CLI Command - Moonshot Benchmarking CLI Commands Scope
-│   ├── test_common.py                # Tests for the CLI Command - Moonshot Common CLI Commands Scope
-│   ├── test_red_team.py              # Tests for the CLI Command - Moonshot Red Teaming CLI Commands Scope
-│   └── 
-├── ui-integration-testing/           # Moonshot UI Integration test cases
+│   ├── test_benchmark.py             # Tests for the CLI Command - Moonshot v0 Benchmarking CLI Commands Scope
+│   ├── test_common.py                # Tests for the CLI Command - Moonshot v0 Common CLI Commands Scope
+│   ├── test_red_team.py              # Tests for the CLI Command - Moonshot v0 Red Teaming CLI Commands Scope
+│   └──
+├── moonshot-v1-cli-integration/      # Moonshot v1 CLI Integration test cases
 │   ├── tests/
-│   ├── ├── benchmarking.spec.ts      # Tests for the Web UI - Moonshot Benchmarking Scope
-│   ├── ├── endpoint.spec.ts          # Tests for the Web UI - Moonshot Endpoint Scope
-│   ├── ├── homepage.spec.ts          # Tests for the Web UI - Moonshot Homepage Scope
-│   ├── ├── red_teaming.spec.ts       # Tests for the Web UI - Moonshot Red Teaming Scope
-│   └── 
+│   ├── test_benchmark.py             # Tests for the CLI Command - Moonshot v1 Benchmarking CLI Commands Scope
+│   ├── test_red_team.py              # Tests for the CLI Command - Moonshot v1 Red Teaming CLI Commands Scope
+│   ├── test_s3_connection.py         # Tests for S3 Connection for Moonshot v1
+│   └──
+├── ui-integration-testing/           # Moonshot v0 UI Integration test cases
+│   ├── tests/
+│   ├── ├── benchmarking.spec.ts      # Tests for the Web UI - Moonshot v0 Benchmarking Scope
+│   ├── ├── endpoint.spec.ts          # Tests for the Web UI - Moonshot v0 Endpoint Scope
+│   ├── ├── homepage.spec.ts          # Tests for the Web UI - Moonshot v0 Homepage Scope
+│   ├── ├── red_teaming.spec.ts       # Tests for the Web UI - Moonshot v0 Red Teaming Scope
+│   └──
+├── util/                            # Common Utils Functions to support automation on Data Preparation
+│   ├── utils.py
+│   └──
 ├── .gitignore
-├── README.md                # Project documentation
-└── LICENSE                  # License information
+├── README.md                         # Project documentation
+└── LICENSE                           # License information
 ```
 
 ## Contributing
