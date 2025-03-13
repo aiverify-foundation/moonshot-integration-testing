@@ -1,28 +1,12 @@
 import json
-
-import pytest
 from dotenv import load_dotenv
-import os
-from util import parametrize, INPUT_PARAMS
+from util.utils import *
 import boto3
 
 load_dotenv()  # Load environment variables from .env file
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-
-EXPECTED_OUTCOME = [
-    "Success",      # Expected result
-    "Failed",      # Expected result
-    "Failed",      # Expected result
-    "Failed",      # Expected result
-    "Failed",     # Expected result
-    "Failed",     # Expected result
-]
-# @parametrize("input_params, expected", zip(INPUT_PARAMS, EXPECTED_OUTCOME))
-# def test_parametrize(input_params,expected):
-#     print("Parameters : "+str(input_params)+":  "+ str(expected))
-#     assert input_params == expected
 
 @pytest.mark.skip(reason="This test is skipped for now for trial")
 def test_access_s3_bucket():
@@ -113,7 +97,7 @@ def test_add_file_to_s3_bucket():
             #########################################################################
 
 @pytest.mark.skip(reason="This test is skipped for now for trial")
-def test_remove_file_to_s3_bucket():
+def test_remove_file_from_s3_bucket():
     # Specify the bucket name and the key (file name in S3)
     bucket_name = 's3-aiss-moonshot-dev-app-lite'
     s3_client = boto3.client('s3',

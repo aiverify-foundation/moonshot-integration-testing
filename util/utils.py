@@ -1,5 +1,7 @@
 import os
 import shutil
+import pytest
+import yaml
 
 def copy_and_move_file(source_path, destination_path):
     """
@@ -73,3 +75,37 @@ def replace_file_content(file_path, new_content):
         print(f"Error: The file {file_path} does not exist.")
     except IOError as e:
         print(f"Error writing to file {file_path}: {e}")
+
+def parametrize(*args, **kwargs):
+    """A utility wrapper for pytest's parametrize."""
+    return pytest.mark.parametrize(*args, **kwargs)
+
+# Predefined parameter sets for reuse
+INPUT_PARAMS = [
+    1,
+    1.1,
+    -1,
+    0,
+    "@1",
+    "test"
+]
+def check_result_file_exists(filepath):
+    assert os.path.isfile(filepath), f"Error: File '{filepath}' does not exist."
+
+
+def modify_yaml(file_path, updates):
+    """
+    Modify YAML content based on the given updates.
+    :param file_path: Path to the YAML file.
+    :param updates: Dictionary containing the keys to be updated with new values.
+    """
+    with open(file_path, 'r') as file:
+        data = yaml.safe_load(file)
+
+    # Apply updates
+    for key, value in updates.items():
+        if key in data:
+            data[key] = value
+
+    with open(file_path, 'w') as file:
+        yaml.dump(data, file, default_flow_style=False)

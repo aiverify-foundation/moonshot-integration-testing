@@ -1,11 +1,5 @@
-import random
-import time
-
-import pytest
 import subprocess
 from dotenv import load_dotenv
-import os
-import shutil
 import random
 from util.utils import *
 
@@ -15,6 +9,8 @@ AZURE_OPENAI_URI = os.getenv('AZURE_OPENAI_URI')
 AZURE_OPENAI_TOKEN = os.getenv('AZURE_OPENAI_TOKEN')
 # CLI_DIR = '/Users/jacksonboey/PycharmProjects/moonshot'
 CLI_DIR = os.getenv('CLI_DIR')
+
+
 def test_cli_red_teaming():
     command = (
         # 'cd .. &&'
@@ -726,6 +722,7 @@ def test_cli_end_session():
     print('=========================Output Last Line:', last_line)
     assert last_line == "There is no active session. Activate a session to send a prompt with a context strategy."
 
+
 def test_cli_export_bookmarks():
     command = (
         # 'cd .. &&'
@@ -1200,7 +1197,7 @@ def test_cli_view_bookmark():
     output_lines = stdout.splitlines()
 
     print('=========================Output Last Line:', output_lines)
-    for index,line in enumerate(output_lines):
+    for index, line in enumerate(output_lines):
         # Remove spaces and check if it matches 'Bookmark List'
         if line.replace(" ", "") == 'BookmarkList':  # Remove spaces and check if it matches exactly
             found_bookmark_list = True
@@ -1209,6 +1206,7 @@ def test_cli_view_bookmark():
 
         if (index == len(output_lines) - 1) & (line.replace(" ", "") != 'BookmarkList'):
             pytest.fail()
+
 
 def test_cli_clear_context_strategy():
     command = (
@@ -1281,6 +1279,7 @@ def test_cli_clear_context_strategy():
     else:
         print(f"File does not exist: {file_path}")
         pytest.fail()
+
 
 def test_cli_clear_prompt_template():
     command = (
