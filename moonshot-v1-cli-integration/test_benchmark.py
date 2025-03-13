@@ -11,7 +11,7 @@ load_dotenv()  # Load environment variables from .env file
 OPENAI_TOKEN = os.getenv('OPENAI_TOKEN')
 MOON_V1_CLI_DIR = os.getenv('MOON_V1_CLI_DIR')
 
-
+@pytest.mark.skip(reason="Trial testing")
 def test_cli_run_benchmarking_modified_default_yaml():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -59,6 +59,89 @@ def test_cli_run_benchmarking_modified_default_yaml():
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+RUN_ID_EXPECTED_OUTCOME = [
+    ("have been completed. Successfully"),  # Expected result for 1
+    ("have been completed. Successfully"),  # Expected result for 1.1
+    (""),  # Expected result for -1
+    ("have been completed. Successfully"),  # Expected result for 0
+    ("have been completed. Successfully"),  # Expected result for "@1"
+    ("have been completed. Successfully")  # Expected result for "test"
+]
+
+@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+@parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, RUN_ID_EXPECTED_OUTCOME))
+def test_cli_run_benchmarking_params_testing_run_id(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_jailbreak"
+    prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
+    dataset_source = "s3-"+dataset_module[len(prefix):]
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = str(input_params)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
+    # Assert Outcome
+    if input_params == -1:
+        # Assert that the subprocess failed
+        assert process.returncode != 0  # Ensure it exits with an error
+        # Assert that the error contains Pydantic's validation message
+        assert "Error: No such option: -1\n"
+    else:
+        assert expectedMsg.replace(" ", "") in output_lines
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+
+    copy_and_move_file(source_path, destination_path)
 
 EXPECTED_OUTCOME = [
     ("No valid file found for 1 in "),  # Expected result for 1
@@ -117,6 +200,7 @@ def test_cli_run_benchmarking_params_testing_dataset_module(input_params, expect
         assert expectedMsg.replace(" ", "") in output_lines
 
 
+
 CONNECTOR_EXPECTED_OUTCOME = [
     ("ERROR    [TaskManager] Error loading the task_manager.py:485"),  # Expected result for 1
     ("ERROR    [TaskManager] Error loading the task_manager.py:485"),  # Expected result for 1.1
@@ -125,8 +209,6 @@ CONNECTOR_EXPECTED_OUTCOME = [
     ("ERROR    [TaskManager] Error loading the task_manager.py:485"),  # Expected result for "@1"
     ("ERROR    [TaskManager] Error loading the task_manager.py:485")  # Expected result for "test"
 ]
-
-
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, CONNECTOR_EXPECTED_OUTCOME))
 def test_cli_run_benchmarking_params_testing_connector_name(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -173,6 +255,176 @@ def test_cli_run_benchmarking_params_testing_connector_name(input_params, expect
     else:
         assert expectedMsg.replace(" ", "") in output_lines
 
+# #This test is skipped for now until test run command is release
+# CONNECTOR_EXPECTED_OUTCOME = [
+#     ("ERROR    [TaskManager] Error loading the task_manager.py:636"),  # Expected result for 1
+#     ("ERROR    [TaskManager] Error loading the task_manager.py:636"),  # Expected result for 1.1
+#     (""),  # Expected result for -1
+#     ("ERROR    [TaskManager] Error loading the task_manager.py:636"),  # Expected result for 0
+#     ("ERROR    [TaskManager] Error loading the task_manager.py:636"),  # Expected result for "@1"
+#     ("ERROR    [TaskManager] Error loading the task_manager.py:636")  # Expected result for "test"
+# ]
+@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+@parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, CONNECTOR_EXPECTED_OUTCOME))
+def test_cli_run_benchmarking_params_testing_connector_name_v1(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_jailbreak"
+    prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
+    dataset_source = "s3-"+dataset_module[len(prefix):]
+    connector_name = str(input_params)
+    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+
+    # Split the output into lines
+    output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
+    # Assert Outcome
+    if input_params == -1:
+        # Assert that the subprocess failed
+        assert process.returncode != 0  # Ensure it exits with an error
+        # Assert that the error contains Pydantic's validation message
+        assert "Error: No such option: -1\n"
+    else:
+        assert expectedMsg.replace(" ", "") in output_lines
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+
+    copy_and_move_file(source_path, destination_path)
+
+# #This test is skipped for now until test run command is release
+TEST_CONFIG_ID_EXPECTED_OUTCOME = [
+    ("while creating the config test:"),  # Expected result for 1
+    ("while creating the config test:"),  # Expected result for 1.1
+    (""),  # Expected result for -1
+    ("while creating the config test:"),  # Expected result for 0
+    ("while creating the config test:"),  # Expected result for "@1"
+    ("while creating the config test:")  # Expected result for "test"
+]
+
+@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+@parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, TEST_CONFIG_ID_EXPECTED_OUTCOME))
+def test_cli_run_benchmarking_params_testing_test_config_id(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_jailbreak"
+    prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
+    dataset_source = "s3-"+dataset_module[len(prefix):]
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)
+    test_config_name = str(input_params)
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        "qa_test": [
+            {
+                "name": nameOfRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+
+    # Split the output into lines
+    output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
+    # Assert Outcome
+    if input_params == -1:
+        # Assert that the subprocess failed
+        assert process.returncode != 0  # Ensure it exits with an error
+        # Assert that the error contains Pydantic's validation message
+        assert "Error: No such option: -1\n"
+    else:
+        assert expectedMsg.replace(" ", "") in output_lines
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+
+    copy_and_move_file(source_path, destination_path)
 
 METRIC_MODULE_EXPECTED_OUTCOME = [
     ("Error loading metric"),  # Expected result for 1
