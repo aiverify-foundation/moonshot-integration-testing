@@ -109,3 +109,14 @@ def modify_yaml(file_path, updates):
 
     with open(file_path, 'w') as file:
         yaml.dump(data, file, default_flow_style=False)
+
+
+def replace_yaml_content(file_path, new_data):
+    """
+    Replaces the entire content of a YAML file with new data.
+
+    :param file_path: Path to the YAML file
+    :param new_data: New data to replace the entire YAML content
+    """
+    with open(file_path, 'w') as file:
+        yaml.safe_dump(new_data, file, default_flow_style=False)  # Write new content

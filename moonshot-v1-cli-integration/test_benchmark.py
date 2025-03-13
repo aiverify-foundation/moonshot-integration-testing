@@ -1,6 +1,9 @@
 import subprocess
 from dotenv import load_dotenv
 import random
+import sys
+
+sys.path.append("..")
 from util.utils import *
 
 load_dotenv()  # Load environment variables from .env file
@@ -8,8 +11,8 @@ load_dotenv()  # Load environment variables from .env file
 OPENAI_TOKEN = os.getenv('OPENAI_TOKEN')
 MOON_V1_CLI_DIR = os.getenv('MOON_V1_CLI_DIR')
 
-def test_cli_run_benchmarking_modified_default_yaml():
 
+def test_cli_run_benchmarking_modified_default_yaml():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
     dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_payload_splitting"
@@ -17,15 +20,15 @@ def test_cli_run_benchmarking_modified_default_yaml():
     nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
     metric_module = "refusal_adapter"
 
-    yaml_file_path = MOON_V1_CLI_DIR+"/moonshot_config.yaml"
+    yaml_file_path = MOON_V1_CLI_DIR + "/moonshot_config.yaml"
     updates = {
 
     }
     modify_yaml(yaml_file_path, updates)
 
     commands = [
-        "export OPENAI_API_KEY="+OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " "+dataset_module+" "+metric_module+" "+connector_name+""
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
     full_command = "&&".join(commands)
@@ -65,8 +68,10 @@ EXPECTED_OUTCOME = [
     ("No valid file found for @1 in"),  # Expected result for "@1"
     ("No valid file found for test in")  # Expected result for "test"
 ]
+
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, EXPECTED_OUTCOME))
-def test_cli_run_benchmarking_params_testing_dataset_module(input_params,expectedMsg):
+def test_cli_run_benchmarking_params_testing_dataset_module(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
     dataset_module = str(input_params)
@@ -111,6 +116,7 @@ def test_cli_run_benchmarking_params_testing_dataset_module(input_params,expecte
     else:
         assert expectedMsg.replace(" ", "") in output_lines
 
+
 CONNECTOR_EXPECTED_OUTCOME = [
     ("ERROR    [TaskManager] Error loading the task_manager.py:485"),  # Expected result for 1
     ("ERROR    [TaskManager] Error loading the task_manager.py:485"),  # Expected result for 1.1
@@ -119,8 +125,10 @@ CONNECTOR_EXPECTED_OUTCOME = [
     ("ERROR    [TaskManager] Error loading the task_manager.py:485"),  # Expected result for "@1"
     ("ERROR    [TaskManager] Error loading the task_manager.py:485")  # Expected result for "test"
 ]
+
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, CONNECTOR_EXPECTED_OUTCOME))
-def test_cli_run_benchmarking_params_testing_connector_name(input_params,expectedMsg):
+def test_cli_run_benchmarking_params_testing_connector_name(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
     dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_payload_splitting"
@@ -165,6 +173,7 @@ def test_cli_run_benchmarking_params_testing_connector_name(input_params,expecte
     else:
         assert expectedMsg.replace(" ", "") in output_lines
 
+
 METRIC_MODULE_EXPECTED_OUTCOME = [
     ("Error loading metric"),  # Expected result for 1
     ("Error loading metric"),  # Expected result for 1.1
@@ -173,8 +182,10 @@ METRIC_MODULE_EXPECTED_OUTCOME = [
     ("Error loading metric"),  # Expected result for "@1"
     ("Error loading metric")  # Expected result for "test"
 ]
+
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, METRIC_MODULE_EXPECTED_OUTCOME))
-def test_cli_run_benchmarking_params_testing_metric_module(input_params,expectedMsg):
+def test_cli_run_benchmarking_params_testing_metric_module(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
     dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_payload_splitting"
@@ -218,26 +229,32 @@ def test_cli_run_benchmarking_params_testing_metric_module(input_params,expected
         assert "Error: No such option: -1\n"
     else:
         assert expectedMsg.replace(" ", "") in output_lines
+
+
 def assert_run_outcome(output_lines):
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
 
     assert "File written".replace(" ", "") in output_lines
     assert "successfully at:".replace(" ", "") in output_lines
     assert "data/results/my-benchm".replace(" ", "") in output_lines
+    assert "data/results/my-benchm".replace(" ", "") in output_lines
+    # Todo : To remove when test run command is release
     assert "successfully created with".replace(" ", "") in output_lines
+    # Activate when test run command is release
+    # assert "have been completed. Successfully".replace(" ", "") in output_lines
+
 
 def test_cli_run_benchmarking_refusal_adapter_prompt_injection_obfuscation():
-
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
     dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_obfuscation"
     connector_name = "my-gpt4o-mini"
-    nameOfRunnerName = "my-benchmarking-"+connector_name+"-"+dataset_module+"-" + str(random_number)
+    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
     metric_module = "refusal_adapter"
 
     commands = [
-        "export OPENAI_API_KEY="+OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " "+dataset_module+" "+metric_module+" "+connector_name+""
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
     full_command = "&&".join(commands)
@@ -266,10 +283,10 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_obfuscation():
 
     # Assert Results
     assert_run_outcome(output_lines)
-    check_result_file_exists(MOON_V1_CLI_DIR+"/data/results/"+nameOfRunnerName+".json")
+    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
 
 def test_cli_run_benchmarking_refusal_adapter_prompt_injection_payload_splitting():
-
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
     dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_payload_splitting"
@@ -278,8 +295,8 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_payload_splitting
     metric_module = "refusal_adapter"
 
     commands = [
-        "export OPENAI_API_KEY="+OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " "+dataset_module+" "+metric_module+" "+connector_name+""
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
     full_command = "&&".join(commands)
@@ -310,8 +327,8 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_payload_splitting
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-def test_cli_run_benchmarking_refusal_adapter_prompt_injection_role_playing():
 
+def test_cli_run_benchmarking_refusal_adapter_prompt_injection_role_playing():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
     dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_role_playing"
@@ -320,8 +337,8 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_role_playing():
     metric_module = "refusal_adapter"
 
     commands = [
-        "export OPENAI_API_KEY="+OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " "+dataset_module+" "+metric_module+" "+connector_name+""
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
     full_command = "&&".join(commands)
@@ -352,8 +369,8 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_role_playing():
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-def test_cli_run_benchmarking_refusal_adapter_sensitive_data_disclosure_general():
 
+def test_cli_run_benchmarking_refusal_adapter_sensitive_data_disclosure_general():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
     dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/sensitive_data_disclosure_general"
@@ -362,8 +379,8 @@ def test_cli_run_benchmarking_refusal_adapter_sensitive_data_disclosure_general(
     metric_module = "refusal_adapter"
 
     commands = [
-        "export OPENAI_API_KEY="+OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " "+dataset_module+" "+metric_module+" "+connector_name+""
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
     full_command = "&&".join(commands)
@@ -394,8 +411,8 @@ def test_cli_run_benchmarking_refusal_adapter_sensitive_data_disclosure_general(
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-def test_cli_run_benchmarking_refusal_adapter_prompt_injection_jailbreak():
 
+def test_cli_run_benchmarking_refusal_adapter_prompt_injection_jailbreak():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
     dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_jailbreak"
@@ -404,8 +421,8 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_jailbreak():
     metric_module = "refusal_adapter"
 
     commands = [
-        "export OPENAI_API_KEY="+OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " "+dataset_module+" "+metric_module+" "+connector_name+""
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
     full_command = "&&".join(commands)
@@ -435,3 +452,73 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_jailbreak():
     # Assert Results
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_jailbreak"
+    prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
+    dataset_source = "s3-"+dataset_module[len(prefix):]
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Assert Results
+    assert_run_outcome(output_lines)
+    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+
+    copy_and_move_file(source_path, destination_path)
