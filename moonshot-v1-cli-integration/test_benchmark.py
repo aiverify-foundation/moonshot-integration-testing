@@ -1,3 +1,4 @@
+import re
 import subprocess
 from dotenv import load_dotenv
 import random
@@ -18,10 +19,10 @@ def assert_run_outcome(output_lines):
     assert "File written".replace(" ", "") in output_lines
     assert "successfully at:".replace(" ", "") in output_lines
     assert "data/results/my-benchm".replace(" ", "") in output_lines
-    # Todo : To remove when test run command is release
-    assert "successfully created with".replace(" ", "") in output_lines
-    # # Activate when test run command is release
-    # assert "have been completed. Successfully".replace(" ", "") in output_lines
+    # # Todo : To remove when test run command is release
+    # assert "successfully created with".replace(" ", "") in output_lines
+    # Activate when test run command is release
+    assert "have been completed. Successfully".replace(" ", "") in output_lines
 
 
 EXPECTED_OUTCOME = [
@@ -32,8 +33,7 @@ EXPECTED_OUTCOME = [
     ("No valid file found for @1 in"),  # Expected result for "@1"
     ("No valid file found for test in")  # Expected result for "test"
 ]
-
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, EXPECTED_OUTCOME))
 def test_cli_run_benchmarking_params_testing_dataset_module(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -89,8 +89,7 @@ CONNECTOR_EXPECTED_OUTCOME = [
     ("ERROR    [TaskManager] Error loading the task_manager.py:485"),  # Expected result for "@1"
     ("ERROR    [TaskManager] Error loading the task_manager.py:485")  # Expected result for "test"
 ]
-
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, CONNECTOR_EXPECTED_OUTCOME))
 def test_cli_run_benchmarking_params_testing_connector_name(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -146,8 +145,7 @@ METRIC_MODULE_EXPECTED_OUTCOME = [
     ("Error loading metric"),  # Expected result for "@1"
     ("Error loading metric")  # Expected result for "test"
 ]
-
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, METRIC_MODULE_EXPECTED_OUTCOME))
 def test_cli_run_benchmarking_params_testing_metric_module(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -194,7 +192,7 @@ def test_cli_run_benchmarking_params_testing_metric_module(input_params, expecte
     else:
         assert expectedMsg.replace(" ", "") in output_lines
 
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_run_benchmarking_refusal_adapter_prompt_injection_obfuscation():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -236,7 +234,7 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_obfuscation():
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_run_benchmarking_refusal_adapter_prompt_injection_payload_splitting():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -278,7 +276,7 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_payload_splitting
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_run_benchmarking_refusal_adapter_prompt_injection_role_playing():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -320,7 +318,7 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_role_playing():
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_run_benchmarking_refusal_adapter_sensitive_data_disclosure_general():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -362,7 +360,7 @@ def test_cli_run_benchmarking_refusal_adapter_sensitive_data_disclosure_general(
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_run_benchmarking_refusal_adapter_prompt_injection_jailbreak():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -405,7 +403,7 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_jailbreak():
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -475,7 +473,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_sensitive_data_disclosure_general():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -546,7 +544,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_sensitive_data_dis
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_role_playing():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -616,7 +614,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_r
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_payload_splitting():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -686,7 +684,6 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_p
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_obfuscation():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -815,7 +812,7 @@ RUN_ID_EXPECTED_OUTCOME = [
 ]
 
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, RUN_ID_EXPECTED_OUTCOME))
 def test_cli_moonshot_run_params_testing_run_id(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -893,16 +890,16 @@ def test_cli_moonshot_run_params_testing_run_id(input_params, expectedMsg):
 
 
 PARAM_CONNECTOR_EXPECTED_OUTCOME = [
-    ("ERROR    [TaskManager] Error loading the task_manager.py:636"),  # Expected result for 1
-    ("ERROR    [TaskManager] Error loading the task_manager.py:636"),  # Expected result for 1.1
+    ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for 1
+    ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for 1.1
     (""),  # Expected result for -1
-    ("ERROR    [TaskManager] Error loading the task_manager.py:636"),  # Expected result for 0
-    ("ERROR    [TaskManager] Error loading the task_manager.py:636"),  # Expected result for "@1"
-    ("ERROR    [TaskManager] Error loading the task_manager.py:636")  # Expected result for "test"
+    ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for 0
+    ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for "@1"
+    ("ERROR    [TaskManager] Error loading the task_manager.py")  # Expected result for "test"
 ]
 
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_CONNECTOR_EXPECTED_OUTCOME))
 def test_cli_moonshot_run_params_testing_connector_name(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -962,7 +959,7 @@ def test_cli_moonshot_run_params_testing_connector_name(input_params, expectedMs
     print('Output:', stdout)
 
     # Split the output into lines
-    output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
+    output_lines = [re.sub(r":\d+$", "", line.replace(" ", "")) for line in stdout.splitlines() if line.strip()]
     # Test Config rollback
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
     destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
@@ -989,7 +986,7 @@ TEST_CONFIG_ID_EXPECTED_OUTCOME = [
 ]
 
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, TEST_CONFIG_ID_EXPECTED_OUTCOME))
 def test_cli_moonshot_run_params_testing_test_config_id(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1077,7 +1074,7 @@ PARAM_DATASET_FIELD_EXPECTED_OUTCOME = [
 ]
 
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_DATASET_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_benchmarking_via_run_command_parameter_dataset_type_field_in_test_config(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1155,7 +1152,7 @@ PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME = [
 ]
 
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_benchmarking_via_run_command_parameter_metric_name_field_in_test_config(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1224,7 +1221,7 @@ def test_cli_run_benchmarking_via_run_command_parameter_metric_name_field_in_tes
     # Assert Results
     assert expectedMsg.replace(" ", "") in output_lines
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_moonshot_run_red_teaming_and_benchmarking_test():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1314,7 +1311,7 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test():
     assert "data/results/test-run-benchmark".replace(" ", "") in output_lines
     assert "have been completed. Successfully".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_moonshot_run_more_than_one_benchmarking_test():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1403,7 +1400,7 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test():
     assert "have been completed. Successfully".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_moonshot_run_more_than_one_benchmarking_test_mixed_invalid_valid_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)

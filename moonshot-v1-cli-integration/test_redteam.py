@@ -1,3 +1,4 @@
+import re
 import subprocess
 from dotenv import load_dotenv
 import random
@@ -17,11 +18,11 @@ def assert_run_outcome(output_lines):
     assert "File written".replace(" ", "") in output_lines
     assert "successfully at:".replace(" ", "") in output_lines
     assert "data/results/test_run_".replace(" ", "") in output_lines
-    # # Todo : To remove when test run command is release
-    assert "successfully created with".replace(" ", "") in output_lines
-    assert "run_id:".replace(" ", "") in output_lines
-    # # Activate when test run command is release
-    # assert "have been completed. Successfully".replace(" ", "") in output_lines
+    # # # Todo : To remove when test run command is release
+    # assert "successfully created with".replace(" ", "") in output_lines
+    # assert "run_id:".replace(" ", "") in output_lines
+    # Activate when test run command is release
+    assert "have been completed. Successfully".replace(" ", "") in output_lines
 
 
 EXPECTED_OUTCOME = [
@@ -33,7 +34,7 @@ EXPECTED_OUTCOME = [
     ("Error loading attack")  # Expected result for "test"
 ]
 
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, EXPECTED_OUTCOME))
 def test_cli_run_create_scan_test_params_testing_attack_module(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -89,7 +90,7 @@ METRIC_PARAM_EXPECTED_OUTCOME = [
     ("Error loading metric")  # Expected result for "test"
 ]
 
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, METRIC_PARAM_EXPECTED_OUTCOME))
 def test_cli_run_create_scan_test_params_testing_metric_module(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -145,7 +146,7 @@ CONNECTOR_PARAM_EXPECTED_OUTCOME = [
     ("Error loading the connector")  # Expected result for "test"
 ]
 
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, CONNECTOR_PARAM_EXPECTED_OUTCOME))
 def test_cli_run_create_scan_test_params_testing_connector_name(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -191,7 +192,7 @@ def test_cli_run_create_scan_test_params_testing_connector_name(input_params, ex
     else:
         assert expectedMsg.replace(" ", "") in output_lines
 
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_run_redteaming_hallucination_refusal_adapter():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -231,7 +232,7 @@ def test_cli_run_redteaming_hallucination_refusal_adapter():
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_run_redteaming_sensitive_data_disclosure_refusal_adapter():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -271,7 +272,7 @@ def test_cli_run_redteaming_sensitive_data_disclosure_refusal_adapter():
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-
+@pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_run_redteaming_system_prompt_leakage_refusal_adapter():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -313,7 +314,7 @@ def test_cli_run_redteaming_system_prompt_leakage_refusal_adapter():
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_redteaming_via_run_command_missing_params_field_in_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -384,7 +385,7 @@ def test_cli_run_redteaming_via_run_command_missing_params_field_in_test_config(
     assert "'SystemPromptLeakage' object has".replace(" ", "") in output_lines
     assert "no attribute 'seed_topic'".replace(" ", "") in output_lines
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_redteaming_via_run_command_missing_attack_module_field_in_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -451,7 +452,7 @@ def test_cli_run_redteaming_via_run_command_missing_attack_module_field_in_test_
     assert "while creating the config test:".replace(" ", "") in output_lines
     assert "[DatasetLoader] No valid file".replace(" ", "") in output_lines
     assert "found for  in data/datasets".replace(" ", "") in output_lines
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_redteaming_via_run_command_missing_metric_field_in_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -520,7 +521,7 @@ def test_cli_run_redteaming_via_run_command_missing_metric_field_in_test_config(
     assert "while creating the config test:".replace(" ", "") in output_lines
     assert "1 validation error for".replace(" ", "") in output_lines
     assert "TestConfigEntity".replace(" ", "") in output_lines
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_redteaming_via_run_command_missing_type_field_in_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -590,7 +591,7 @@ def test_cli_run_redteaming_via_run_command_missing_type_field_in_test_config():
     assert "while creating the config test:".replace(" ", "") in output_lines
     assert "1 validation error for".replace(" ", "") in output_lines
     assert "TestConfigEntity".replace(" ", "") in output_lines
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_redteaming_via_run_command_parameter_testing_type_field_in_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -670,7 +671,7 @@ PARAM_TEST_NAME_FIELD_EXPECTED_OUTCOME = [
     ("have been completed. Successfully"),  # Expected result for "@1"
     ("have been completed. Successfully")  # Expected result for "test"
 ]
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_TEST_NAME_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_redteaming_via_run_command_parameter_testing_name_field_in_test_config(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -741,14 +742,14 @@ def test_cli_run_redteaming_via_run_command_parameter_testing_name_field_in_test
     assert expectedMsg.replace(" ", "") in output_lines
 
 PARAM_ATTACK_MODULE_NAME_FIELD_EXPECTED_OUTCOME = [
-    ("ERROR    [TaskManager] Error loading the task_manager.py:607"),  # Expected result for 1
-    ("ERROR    [TaskManager] Error loading the task_manager.py:607"),  # Expected result for 1.1
-    ("ERROR    [TaskManager] Error loading the task_manager.py:607"),  # Expected result for -1
-    ("ERROR    [TaskManager] Error loading the task_manager.py:607"),  # Expected result for 0
+    ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for 1
+    ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for 1.1
+    ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for -1
+    ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for 0
     ("Error loading attack"),  # Expected result for "@1"
     ("Error loading attack")  # Expected result for "test"
 ]
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_ATTACK_MODULE_NAME_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_redteaming_via_run_command_parameter_attack_module_name_field_in_test_config(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -808,7 +809,7 @@ def test_cli_run_redteaming_via_run_command_parameter_attack_module_name_field_i
 
     print('Output:', stdout)
     # Split the output into lines
-    output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
+    output_lines = [re.sub(r":\d+$", "", line.replace(" ", "")) for line in stdout.splitlines() if line.strip()]
 
     # Test Config rollback
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
@@ -826,7 +827,7 @@ PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME = [
     ("Failed to load metric:"),  # Expected result for "@1"
     ("Failed to load metric:")  # Expected result for "test"
 ]
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_redteaming_via_run_command_parameter_metric_name_field_in_test_config(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -904,7 +905,7 @@ PARAMS_FIELD_EXPECTED_OUTCOME = [
     ("'str' object has no attribute"),  # Expected result for "@1"
     ("'str' object has no attribute") # Expected result for "test"
 ]
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAMS_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_redteaming_via_run_command_parameter_params_field_in_test_config(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -981,7 +982,7 @@ PARAM_TEST_TYPE_FIELD_EXPECTED_OUTCOME = [
     ("Input should be 'benchmark' or"),  # Expected result for "@1"
     ("Input should be 'benchmark' or")  # Expected result for "test"
 ]
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_TEST_TYPE_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_redteaming_via_run_command_parameter_testing_type_field_in_test_config(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1050,7 +1051,7 @@ def test_cli_run_redteaming_via_run_command_parameter_testing_type_field_in_test
 
     # Assert Results
     assert expectedMsg.replace(" ", "") in output_lines
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1124,7 +1125,7 @@ def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination():
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_redteaming_via_run_command_refusal_adapter_sensitive_data_disclosure():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1201,7 +1202,7 @@ def test_cli_run_redteaming_via_run_command_refusal_adapter_sensitive_data_discl
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_run_redteaming_via_run_command_refusal_adapter_system_prompt_leakage():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1271,7 +1272,7 @@ def test_cli_run_redteaming_via_run_command_refusal_adapter_system_prompt_leakag
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_moonshot_run_more_than_one_red_teaming_test():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1374,7 +1375,7 @@ def test_cli_moonshot_run_more_than_one_red_teaming_test():
     assert "have been completed. Successfully".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-@pytest.mark.skip(reason="This test is skipped for now until test run command is release")
+
 def test_cli_moonshot_run_more_than_one_red_teaming_test_mixed_invalid_valid_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
