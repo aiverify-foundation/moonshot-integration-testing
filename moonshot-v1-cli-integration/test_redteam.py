@@ -18,10 +18,10 @@ def assert_run_outcome(output_lines):
     assert "successfully at:".replace(" ", "") in output_lines
     assert "data/results/test_run_".replace(" ", "") in output_lines
     # # Todo : To remove when test run command is release
-    # assert "successfully created with".replace(" ", "") in output_lines
-    # assert "run_id:".replace(" ", "") in output_lines
-    # Activate when test run command is release
-    assert "have been completed. Successfully".replace(" ", "") in output_lines
+    assert "successfully created with".replace(" ", "") in output_lines
+    assert "run_id:".replace(" ", "") in output_lines
+    # # Activate when test run command is release
+    # assert "have been completed. Successfully".replace(" ", "") in output_lines
 
 
 EXPECTED_OUTCOME = [
