@@ -93,6 +93,15 @@ def check_result_file_exists(filepath):
     assert os.path.isfile(filepath), f"Error: File '{filepath}' does not exist."
 
 
+def check_result_file_not_exists(filepath):
+    """
+    Asserts that the given file does not exist.
+
+    :param filepath: Path to the file to check.
+    :raises AssertionError: If the file exists.
+    """
+    assert not os.path.isfile(filepath), f"Error: File '{filepath}' already exists."
+
 def modify_yaml(file_path, updates):
     """
     Modify YAML content based on the given updates.
