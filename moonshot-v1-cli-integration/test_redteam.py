@@ -382,8 +382,8 @@ def test_cli_run_redteaming_via_run_command_missing_params_field_in_test_config(
     # Assert Results
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
     assert "while creating the config test:".replace(" ", "") in output_lines
-    assert "'SystemPromptLeakage' object has".replace(" ", "") in output_lines
-    assert "no attribute 'seed_topic'".replace(" ", "") in output_lines
+    assert "Parameter 'max_prompts' is".replace(" ", "") in output_lines
+    assert "required.".replace(" ", "") in output_lines
 
 
 def test_cli_run_redteaming_via_run_command_missing_attack_module_field_in_test_config():
@@ -450,8 +450,8 @@ def test_cli_run_redteaming_via_run_command_missing_attack_module_field_in_test_
     # Assert Results
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
     assert "while creating the config test:".replace(" ", "") in output_lines
-    assert "[DatasetLoader] No valid file".replace(" ", "") in output_lines
-    assert "found for  in data/datasets".replace(" ", "") in output_lines
+    assert "'NoneType' object is not".replace(" ", "") in output_lines
+    assert "subscriptable".replace(" ", "") in output_lines
 
 def test_cli_run_redteaming_via_run_command_missing_metric_field_in_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -693,7 +693,7 @@ def test_cli_run_redteaming_via_run_command_parameter_testing_name_field_in_test
                 "type": "scan",
                 "attack_module": {
                     "name": attack_module,
-                    "params": {"max_turns": 3,
+                    "params": {"max_prompts": 3,
                                "seed_topic": "History about Doraemon, the cartoon cat."}},
                 "metric": {
                     "name": metric_module}
@@ -771,7 +771,7 @@ def test_cli_run_redteaming_via_run_command_parameter_attack_module_name_field_i
                 "type": "scan",
                 "attack_module": {
                     "name": input_params,
-                    "params": {"max_turns": 3,
+                    "params": {"max_prompts": 3,
                                "seed_topic": "History about Doraemon, the cartoon cat."}},
                 "metric": {
                     "name": metric_module}
@@ -849,7 +849,7 @@ def test_cli_run_redteaming_via_run_command_parameter_metric_name_field_in_test_
                 "type": "scan",
                 "attack_module": {
                     "name": attack_module,
-                    "params": {"max_turns": 3,
+                    "params": {"max_prompts": 3,
                                "seed_topic": "History about Doraemon, the cartoon cat."}},
                 "metric": {
                     "name": input_params}
@@ -898,12 +898,12 @@ def test_cli_run_redteaming_via_run_command_parameter_metric_name_field_in_test_
     assert expectedMsg.replace(" ", "") in output_lines
 
 PARAMS_FIELD_EXPECTED_OUTCOME = [
-    ("'int' object has no attribute"),  # Expected result for 1
-    ("'float' object has no attribute"),  # Expected result for 1.1
-    ("'int' object has no attribute"),  # Expected result for -1
-    ("no attribute 'seed_topic'"),  # Expected result for 0
-    ("'str' object has no attribute"),  # Expected result for "@1"
-    ("'str' object has no attribute") # Expected result for "test"
+    ("argument of type 'int' is not"),  # Expected result for 1
+    ("argument of type 'float' is not"),  # Expected result for 1.1
+    ("argument of type 'int' is not"),  # Expected result for -1
+    ("argument of type 'int' is not"),  # Expected result for 0
+    ("Parameter 'max_prompts' is"),  # Expected result for "@1"
+    ("Parameter 'max_prompts' is") # Expected result for "test"
 ]
 
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAMS_FIELD_EXPECTED_OUTCOME))
@@ -1004,7 +1004,7 @@ def test_cli_run_redteaming_via_run_command_parameter_testing_type_field_in_test
                 "type": input_params,
                 "attack_module": {
                     "name": attack_module,
-                    "params": {"max_turns": 3,
+                    "params": {"max_prompts": 3,
                                "seed_topic": "History about Doraemon, the cartoon cat."}},
                 "metric": {
                     "name": metric_module}
@@ -1146,7 +1146,7 @@ def test_cli_run_redteaming_via_run_command_refusal_adapter_sensitive_data_discl
                 "type": "scan",
                 "attack_module": {
                     "name": attack_module,
-                    "params": {"no_of_questions": 1,
+                    "params": {"max_prompts": 1,
                                "use_case":
                                    "This is a personalised financial chatbot. Users can ask about their investment,"
                                    "insurance, and financial health through this chatbot. This chatbot is connected "
@@ -1223,7 +1223,7 @@ def test_cli_run_redteaming_via_run_command_refusal_adapter_system_prompt_leakag
                 "type": "scan",
                 "attack_module": {
                     "name": attack_module,
-                    "params": {"max_turns": 3,
+                    "params": {"max_prompts": 3,
                                "seed_topic": "History about Doraemon, the cartoon cat."}},
                 "metric": {
                     "name": metric_module}
@@ -1313,7 +1313,7 @@ def test_cli_moonshot_run_more_than_one_red_teaming_test():
                 "type": "scan",
                 "attack_module": {
                     "name": attack_module_2nd,
-                    "params": {"no_of_questions": 1,
+                    "params": {"max_prompts": 1,
                                "use_case":
                                    "This is a personalised financial chatbot. Users can ask about their investment,"
                                    "insurance, and financial health through this chatbot. This chatbot is connected "
@@ -1411,7 +1411,7 @@ def test_cli_moonshot_run_more_than_one_red_teaming_test_mixed_invalid_valid_con
                 "type": "scan",
                 "attack_module": {
                     "name": attack_module_2nd,
-                    "params": {"no_of_questions": 1,
+                    "params": {"max_prompts": 1,
                                "use_case":
                                    "This is a personalised financial chatbot. Users can ask about their investment,"
                                    "insurance, and financial health through this chatbot. This chatbot is connected "
