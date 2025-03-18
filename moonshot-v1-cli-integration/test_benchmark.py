@@ -402,8 +402,6 @@ def test_cli_run_benchmarking_refusal_adapter_prompt_injection_jailbreak():
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-
-
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -810,9 +808,6 @@ RUN_ID_EXPECTED_OUTCOME = [
     ("have been completed. Successfully"),  # Expected result for "@1"
     ("have been completed. Successfully")  # Expected result for "test"
 ]
-
-
-
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, RUN_ID_EXPECTED_OUTCOME))
 def test_cli_moonshot_run_params_testing_run_id(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -897,9 +892,6 @@ PARAM_CONNECTOR_EXPECTED_OUTCOME = [
     ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for "@1"
     ("ERROR    [TaskManager] Error loading the task_manager.py")  # Expected result for "test"
 ]
-
-
-
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_CONNECTOR_EXPECTED_OUTCOME))
 def test_cli_moonshot_run_params_testing_connector_name(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -984,9 +976,6 @@ TEST_CONFIG_ID_EXPECTED_OUTCOME = [
     ("while creating the config test:"),  # Expected result for "@1"
     ("while creating the config test:")  # Expected result for "test"
 ]
-
-
-
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, TEST_CONFIG_ID_EXPECTED_OUTCOME))
 def test_cli_moonshot_run_params_testing_test_config_id(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1072,9 +1061,6 @@ PARAM_DATASET_FIELD_EXPECTED_OUTCOME = [
     ("[DatasetLoader] No valid file"),  # Expected result for "@1"
     ("[DatasetLoader] No valid file")  # Expected result for "test"
 ]
-
-
-
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_DATASET_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_benchmarking_via_run_command_parameter_dataset_type_field_in_test_config(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1141,7 +1127,6 @@ def test_cli_run_benchmarking_via_run_command_parameter_dataset_type_field_in_te
     # Assert Results
     assert expectedMsg.replace(" ", "") in output_lines
 
-
 PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME = [
     ("Error loading metric"),  # Expected result for 1
     ("Error loading metric"),  # Expected result for 1.1
@@ -1150,9 +1135,6 @@ PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME = [
     ("Error loading metric"),  # Expected result for "@1"
     ("Error loading metric")  # Expected result for "test"
 ]
-
-
-
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_benchmarking_via_run_command_parameter_metric_name_field_in_test_config(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)

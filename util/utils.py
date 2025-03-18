@@ -129,3 +129,12 @@ def replace_yaml_content(file_path, new_data):
     """
     with open(file_path, 'w') as file:
         yaml.safe_dump(new_data, file, default_flow_style=False)  # Write new content
+
+def clear_yaml_file(file_path):
+    """
+    Clears the content of a YAML file by writing nothing to it.
+
+    :param file_path: Path to the YAML file to be cleared
+    """
+    with open(file_path, 'w') as file:
+        pass  # Simply open the file in write mode to clear its content
