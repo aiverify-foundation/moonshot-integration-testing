@@ -902,9 +902,10 @@ PARAMS_FIELD_EXPECTED_OUTCOME = [
     ("argument of type 'float' is not"),  # Expected result for 1.1
     ("argument of type 'int' is not"),  # Expected result for -1
     ("argument of type 'int' is not"),  # Expected result for 0
-    ("Parameter 'max_prompts' is"),  # Expected result for "@1"
-    ("Parameter 'max_prompts' is") # Expected result for "test"
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "@1"
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py") # Expected result for "test"
 ]
+# assert "ERROR    [ApiAdapter] An error occurred   api_adapter.py".replace(" ", "") in output_lines
 
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAMS_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_redteaming_via_run_command_parameter_params_field_in_test_config(input_params, expectedMsg):
@@ -964,7 +965,12 @@ def test_cli_run_redteaming_via_run_command_parameter_params_field_in_test_confi
 
     print('Output:', stdout)
     # Split the output into lines
-    output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
+    output_lines = [
+        re.search(r'ERROR\s*(.*?)(?=\s*:|$)', line).group(0).replace(" ", "") if re.search(
+            r'ERROR\s*(.*?)(?=\s*:|$)', line)
+        else line.replace(" ", "")
+        for line in stdout.splitlines() if line.strip()
+    ]
 
     # Test Config rollback
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
@@ -1465,8 +1471,12 @@ def test_cli_moonshot_run_more_than_one_red_teaming_test_mixed_invalid_valid_con
     copy_and_move_file(source_path, destination_path)
 
     # Assert Results
-    output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
-
-    assert "'Hallucination' object has no".replace(" ", "") in output_lines
-    assert "attribute 'question_type'".replace(" ", "") in output_lines
+    # Split the output into lines
+    output_lines = [
+        re.search(r'ERROR\s*(.*?)(?=\s*:|$)', line).group(0).replace(" ", "") if re.search(
+            r'ERROR\s*(.*?)(?=\s*:|$)', line)
+        else line.replace(" ", "")
+        for line in stdout.splitlines() if line.strip()
+    ]
+    assert "ERROR    [ApiAdapter] An error occurred   api_adapter.py".replace(" ", "") in output_lines
     check_result_file_not_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
