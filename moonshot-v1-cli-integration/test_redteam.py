@@ -34,6 +34,7 @@ EXPECTED_OUTCOME = [
     ("Error loading attack")  # Expected result for "test"
 ]
 
+
 @pytest.mark.skip(reason="This test is skipped for as command is removed")
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, EXPECTED_OUTCOME))
 def test_cli_run_create_scan_test_params_testing_attack_module(input_params, expectedMsg):
@@ -89,6 +90,7 @@ METRIC_PARAM_EXPECTED_OUTCOME = [
     ("Error loading metric"),  # Expected result for "@1"
     ("Error loading metric")  # Expected result for "test"
 ]
+
 
 @pytest.mark.skip(reason="This test is skipped for as command is removed")
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, METRIC_PARAM_EXPECTED_OUTCOME))
@@ -146,6 +148,7 @@ CONNECTOR_PARAM_EXPECTED_OUTCOME = [
     ("Error loading the connector")  # Expected result for "test"
 ]
 
+
 @pytest.mark.skip(reason="This test is skipped for as command is removed")
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, CONNECTOR_PARAM_EXPECTED_OUTCOME))
 def test_cli_run_create_scan_test_params_testing_connector_name(input_params, expectedMsg):
@@ -192,6 +195,7 @@ def test_cli_run_create_scan_test_params_testing_connector_name(input_params, ex
     else:
         assert expectedMsg.replace(" ", "") in output_lines
 
+
 @pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_run_redteaming_hallucination_refusal_adapter():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -231,6 +235,7 @@ def test_cli_run_redteaming_hallucination_refusal_adapter():
     # Assert Outcome
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
 
 @pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_run_redteaming_sensitive_data_disclosure_refusal_adapter():
@@ -272,6 +277,7 @@ def test_cli_run_redteaming_sensitive_data_disclosure_refusal_adapter():
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 @pytest.mark.skip(reason="This test is skipped for as command is removed")
 def test_cli_run_redteaming_system_prompt_leakage_refusal_adapter():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -312,7 +318,6 @@ def test_cli_run_redteaming_system_prompt_leakage_refusal_adapter():
     # Assert Outcome
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
-
 
 
 def test_cli_run_redteaming_via_run_command_missing_params_field_in_test_config():
@@ -385,6 +390,7 @@ def test_cli_run_redteaming_via_run_command_missing_params_field_in_test_config(
     assert "Parameter 'max_prompts' is".replace(" ", "") in output_lines
     assert "required.".replace(" ", "") in output_lines
 
+
 def test_cli_run_redteaming_via_run_command_missing_attack_module_field_in_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -451,6 +457,7 @@ def test_cli_run_redteaming_via_run_command_missing_attack_module_field_in_test_
     assert "while creating the config test:".replace(" ", "") in output_lines
     assert "'NoneType' object is not".replace(" ", "") in output_lines
     assert "subscriptable".replace(" ", "") in output_lines
+
 
 def test_cli_run_redteaming_via_run_command_missing_metric_field_in_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -521,6 +528,7 @@ def test_cli_run_redteaming_via_run_command_missing_metric_field_in_test_config(
     assert "1 validation error for".replace(" ", "") in output_lines
     assert "TestConfigEntity".replace(" ", "") in output_lines
 
+
 def test_cli_run_redteaming_via_run_command_missing_type_field_in_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -590,6 +598,7 @@ def test_cli_run_redteaming_via_run_command_missing_type_field_in_test_config():
     assert "while creating the config test:".replace(" ", "") in output_lines
     assert "1 validation error for".replace(" ", "") in output_lines
     assert "TestConfigEntity".replace(" ", "") in output_lines
+
 
 def test_cli_run_redteaming_via_run_command_parameter_testing_type_field_in_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -662,6 +671,7 @@ def test_cli_run_redteaming_via_run_command_parameter_testing_type_field_in_test
     assert "[DatasetLoader] No valid file".replace(" ", "") in output_lines
     assert "found for  in data/datasets".replace(" ", "") in output_lines
 
+
 PARAM_TEST_NAME_FIELD_EXPECTED_OUTCOME = [
     ("1 validation error for"),  # Expected result for 1
     ("1 validation error for"),  # Expected result for 1.1
@@ -670,6 +680,7 @@ PARAM_TEST_NAME_FIELD_EXPECTED_OUTCOME = [
     ("have been completed. Successfully"),  # Expected result for "@1"
     ("have been completed. Successfully")  # Expected result for "test"
 ]
+
 
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_TEST_NAME_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_redteaming_via_run_command_parameter_testing_name_field_in_test_config(input_params, expectedMsg):
@@ -740,6 +751,7 @@ def test_cli_run_redteaming_via_run_command_parameter_testing_name_field_in_test
     # Assert Results
     assert expectedMsg.replace(" ", "") in output_lines
 
+
 PARAM_ATTACK_MODULE_NAME_FIELD_EXPECTED_OUTCOME = [
     ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for 1
     ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for 1.1
@@ -749,8 +761,10 @@ PARAM_ATTACK_MODULE_NAME_FIELD_EXPECTED_OUTCOME = [
     ("Error loading attack")  # Expected result for "test"
 ]
 
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_ATTACK_MODULE_NAME_FIELD_EXPECTED_OUTCOME))
-def test_cli_run_redteaming_via_run_command_parameter_attack_module_name_field_in_test_config(input_params, expectedMsg):
+def test_cli_run_redteaming_via_run_command_parameter_attack_module_name_field_in_test_config(input_params,
+                                                                                              expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
     attack_module = "system_prompt_leakage"
@@ -818,6 +832,7 @@ def test_cli_run_redteaming_via_run_command_parameter_attack_module_name_field_i
     # Assert Results
     assert expectedMsg.replace(" ", "") in output_lines
 
+
 PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME = [
     ("Failed to load metric:"),  # Expected result for 1
     ("Failed to load metric:"),  # Expected result for 1.1
@@ -826,6 +841,7 @@ PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME = [
     ("Failed to load metric:"),  # Expected result for "@1"
     ("Failed to load metric:")  # Expected result for "test"
 ]
+
 
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_redteaming_via_run_command_parameter_metric_name_field_in_test_config(input_params, expectedMsg):
@@ -896,14 +912,17 @@ def test_cli_run_redteaming_via_run_command_parameter_metric_name_field_in_test_
     # Assert Results
     assert expectedMsg.replace(" ", "") in output_lines
 
+
 PARAMS_FIELD_EXPECTED_OUTCOME = [
     ("argument of type 'int' is not"),  # Expected result for 1
     ("argument of type 'float' is not"),  # Expected result for 1.1
     ("argument of type 'int' is not"),  # Expected result for -1
     ("argument of type 'int' is not"),  # Expected result for 0
     ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "@1"
-    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py") # Expected result for "test"
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py")  # Expected result for "test"
 ]
+
+
 # assert "ERROR    [ApiAdapter] An error occurred   api_adapter.py".replace(" ", "") in output_lines
 
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAMS_FIELD_EXPECTED_OUTCOME))
@@ -979,6 +998,7 @@ def test_cli_run_redteaming_via_run_command_parameter_params_field_in_test_confi
     # Assert Results
     assert expectedMsg.replace(" ", "") in output_lines
 
+
 PARAM_TEST_TYPE_FIELD_EXPECTED_OUTCOME = [
     ("Input should be 'benchmark' or"),  # Expected result for 1
     ("Input should be 'benchmark' or"),  # Expected result for 1.1
@@ -987,6 +1007,7 @@ PARAM_TEST_TYPE_FIELD_EXPECTED_OUTCOME = [
     ("Input should be 'benchmark' or"),  # Expected result for "@1"
     ("Input should be 'benchmark' or")  # Expected result for "test"
 ]
+
 
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_TEST_TYPE_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_redteaming_via_run_command_parameter_testing_type_field_in_test_config(input_params, expectedMsg):
@@ -1057,6 +1078,7 @@ def test_cli_run_redteaming_via_run_command_parameter_testing_type_field_in_test
     # Assert Results
     assert expectedMsg.replace(" ", "") in output_lines
 
+
 def test_cli_run_redteaming_via_run_command_empty_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1119,6 +1141,8 @@ def test_cli_run_redteaming_via_run_command_empty_test_config():
     assert "ERROR    [ApiAdapter] An error occurred   api_adapter.py".replace(" ", "") in output_lines
     assert "[TestConfigLoader] No valid file".replace(" ", "") in output_lines
     check_result_file_not_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+
 def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination_read_ms_config_s3():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1193,6 +1217,7 @@ def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination_read_m
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1265,6 +1290,272 @@ def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination():
     # Assert Results
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+
+HALLUCINATION_INPUT_PARAMS = INPUT_PARAMS + ["OPEN"]
+HALLUCINATION_PARAM_TEST_MAX_PROMPTS_FIELD_EXPECTED_OUTCOME = [
+    ("have been completed. Successfully"),  # Expected result for 1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1.1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for -1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 0
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "@1"
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "test"
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py")  # Expected result for "Open"
+]
+
+@parametrize("input_params, expectedMsg",
+             zip(HALLUCINATION_INPUT_PARAMS, HALLUCINATION_PARAM_TEST_MAX_PROMPTS_FIELD_EXPECTED_OUTCOME))
+def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination_params_max_prompts(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    attack_module = "hallucination"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": input_params,
+                               "use_case":
+                                   "This is a gaming chatbot. It will answer the top-selling games in US and Asia. It "
+                                   "will give advice on what is the best"
+                                   "game to play based on the user preference.",
+                               "qns_type": "MCQ"}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = [
+        re.search(r'ERROR\s*(.*?)(?=\s*:|$)', line).group(0).replace(" ", "") if re.search(
+            r'ERROR\s*(.*?)(?=\s*:|$)', line)
+        else line.replace(" ", "")
+        for line in stdout.splitlines() if line.strip()
+    ]
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert expectedMsg.replace(" ", "") in output_lines
+
+
+HALLUCINATION_PARAM_TEST_USE_CASE_FIELD_EXPECTED_OUTCOME = [
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1.1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for -1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 0
+    ("have been completed. Successfully"),  # Expected result for "@1"
+    ("have been completed. Successfully"),  # Expected result for "test"
+    ("have been completed. Successfully")  # Expected result for "Open"
+]
+@parametrize("input_params, expectedMsg",
+             zip(HALLUCINATION_INPUT_PARAMS, HALLUCINATION_PARAM_TEST_USE_CASE_FIELD_EXPECTED_OUTCOME))
+def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination_params_use_case(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    attack_module = "hallucination"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": 1,
+                               "use_case": input_params,
+                               "qns_type": "MCQ"}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = [
+        re.search(r'ERROR\s*(.*?)(?=\s*:|$)', line).group(0).replace(" ", "") if re.search(
+            r'ERROR\s*(.*?)(?=\s*:|$)', line)
+        else line.replace(" ", "")
+        for line in stdout.splitlines() if line.strip()
+    ]
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert expectedMsg.replace(" ", "") in output_lines
+
+
+HALLUCINATION_PARAM_TEST_QNS_TYPE_FIELD_EXPECTED_OUTCOME = [
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1.1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for -1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 0
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "@1"
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "test"
+    ("have been completed. Successfully")  # Expected result for "Open"
+]
+
+
+@parametrize("input_params, expectedMsg",
+             zip(HALLUCINATION_INPUT_PARAMS, HALLUCINATION_PARAM_TEST_QNS_TYPE_FIELD_EXPECTED_OUTCOME))
+def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination_params_qns_type(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    attack_module = "hallucination"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": 1,
+                               "use_case":
+                                   "This is a gaming chatbot. It will answer the top-selling games in US and Asia. It "
+                                   "will give advice on what is the best"
+                                   "game to play based on the user preference.",
+                               "qns_type": input_params}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = [
+        re.search(r'ERROR\s*(.*?)(?=\s*:|$)', line).group(0).replace(" ", "") if re.search(
+            r'ERROR\s*(.*?)(?=\s*:|$)', line)
+        else line.replace(" ", "")
+        for line in stdout.splitlines() if line.strip()
+    ]
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert expectedMsg.replace(" ", "") in output_lines
+
 
 def test_cli_run_redteaming_via_run_command_refusal_adapter_sensitive_data_disclosure():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1343,6 +1634,273 @@ def test_cli_run_redteaming_via_run_command_refusal_adapter_sensitive_data_discl
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
+SENSITIVE_DATA_DISCLOSURE_PARAM_TEST_MAX_PROMPTS_FIELD_EXPECTED_OUTCOME = [
+    ("have been completed. Successfully"),  # Expected result for 1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1.1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for -1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 0
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "@1"
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "test"
+]
+@parametrize("input_params, expectedMsg",
+             zip(INPUT_PARAMS, SENSITIVE_DATA_DISCLOSURE_PARAM_TEST_MAX_PROMPTS_FIELD_EXPECTED_OUTCOME))
+def test_cli_run_redteaming_via_run_command_refusal_adapter_sensitive_data_disclosure_params_max_prompts(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    attack_module = "sensitive_data_disclosure"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": input_params,
+                               "use_case":
+                                   "This is a personalised financial chatbot. Users can ask about their investment,"
+                                   "insurance, and financial health through this chatbot. This chatbot is connected "
+                                   "to a few databases that contain records of our users. Our application will make "
+                                   "use of this information to reply to our users.",
+                               "sensitive_list":
+                                   "email, home address, salary, investment products,insurance products, bankruptcy "
+                                   "status"}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = [
+        re.search(r'ERROR\s*(.*?)(?=\s*:|$)', line).group(0).replace(" ", "") if re.search(
+            r'ERROR\s*(.*?)(?=\s*:|$)', line)
+        else line.replace(" ", "")
+        for line in stdout.splitlines() if line.strip()
+    ]
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert expectedMsg.replace(" ", "") in output_lines
+
+SENSITIVE_DATA_DISCLOSURE_PARAM_TEST_USE_CASE_FIELD_EXPECTED_OUTCOME = [
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1.1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for -1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 0
+    ("have been completed. Successfully"),  # Expected result for "@1"
+    ("have been completed. Successfully"),  # Expected result for "test"
+    ("have been completed. Successfully")  # Expected result for "Open"
+]
+@parametrize("input_params, expectedMsg",
+             zip(INPUT_PARAMS, SENSITIVE_DATA_DISCLOSURE_PARAM_TEST_USE_CASE_FIELD_EXPECTED_OUTCOME))
+def test_cli_run_redteaming_via_run_command_refusal_adapter_sensitive_data_disclosure_params_use_case(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    attack_module = "sensitive_data_disclosure"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": 1,
+                               "use_case":input_params,
+                               "sensitive_list":
+                                   "email, home address, salary, investment products,insurance products, bankruptcy "
+                                   "status"}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = [
+        re.search(r'ERROR\s*(.*?)(?=\s*:|$)', line).group(0).replace(" ", "") if re.search(
+            r'ERROR\s*(.*?)(?=\s*:|$)', line)
+        else line.replace(" ", "")
+        for line in stdout.splitlines() if line.strip()
+    ]
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert expectedMsg.replace(" ", "") in output_lines
+
+SENSITIVE_DATA_DISCLOSURE_PARAM_TEST_SENSITIVE_LIST_FIELD_EXPECTED_OUTCOME = [
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1.1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for -1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 0
+    ("have been completed. Successfully"),  # Expected result for "@1"
+    ("have been completed. Successfully"),  # Expected result for "test"
+    ("have been completed. Successfully")  # Expected result for "Open"
+]
+@parametrize("input_params, expectedMsg",
+             zip(INPUT_PARAMS, SENSITIVE_DATA_DISCLOSURE_PARAM_TEST_SENSITIVE_LIST_FIELD_EXPECTED_OUTCOME))
+def test_cli_run_redteaming_via_run_command_refusal_adapter_sensitive_data_disclosure_params_sensitive_list(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    attack_module = "sensitive_data_disclosure"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": 1,
+                               "use_case":
+                                   "This is a personalised financial chatbot. Users can ask about their investment,"
+                                   "insurance, and financial health through this chatbot. This chatbot is connected "
+                                   "to a few databases that contain records of our users. Our application will make "
+                                   "use of this information to reply to our users.",
+                               "sensitive_list":input_params}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = [
+        re.search(r'ERROR\s*(.*?)(?=\s*:|$)', line).group(0).replace(" ", "") if re.search(
+            r'ERROR\s*(.*?)(?=\s*:|$)', line)
+        else line.replace(" ", "")
+        for line in stdout.splitlines() if line.strip()
+    ]
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert expectedMsg.replace(" ", "") in output_lines
+
+
 def test_cli_run_redteaming_via_run_command_refusal_adapter_system_prompt_leakage():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1412,6 +1970,171 @@ def test_cli_run_redteaming_via_run_command_refusal_adapter_system_prompt_leakag
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+SYSTEM_PROMPT_LEAKAGE_PARAM_TEST_MAX_PROMPTS_FIELD_EXPECTED_OUTCOME = [
+    ("have been completed. Successfully"),  # Expected result for 1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1.1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for -1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 0
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "@1"
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "test"
+]
+@parametrize("input_params, expectedMsg",
+             zip(INPUT_PARAMS, SYSTEM_PROMPT_LEAKAGE_PARAM_TEST_MAX_PROMPTS_FIELD_EXPECTED_OUTCOME))
+def test_cli_run_redteaming_via_run_command_refusal_adapter_system_prompt_leakage_params_max_prompts(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    attack_module = "system_prompt_leakage"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": input_params,
+                               "seed_topic": "History about Doraemon, the cartoon cat."}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = [
+        re.search(r'ERROR\s*(.*?)(?=\s*:|$)', line).group(0).replace(" ", "") if re.search(
+            r'ERROR\s*(.*?)(?=\s*:|$)', line)
+        else line.replace(" ", "")
+        for line in stdout.splitlines() if line.strip()
+    ]
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert expectedMsg.replace(" ", "") in output_lines
+
+SYSTEM_PROMPT_LEAKAGE_PARAM_TEST_SEED_TOPIC_FIELD_EXPECTED_OUTCOME = [
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 1.1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for -1
+    ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for 0
+    ("have been completed. Successfully"),  # Expected result for "@1"
+    ("have been completed. Successfully"),  # Expected result for "test"
+]
+@parametrize("input_params, expectedMsg",
+             zip(INPUT_PARAMS, SYSTEM_PROMPT_LEAKAGE_PARAM_TEST_SEED_TOPIC_FIELD_EXPECTED_OUTCOME))
+def test_cli_run_redteaming_via_run_command_refusal_adapter_system_prompt_leakage_params_seed_topic(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    attack_module = "system_prompt_leakage"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": 3,
+                               "seed_topic": input_params}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = [
+        re.search(r'ERROR\s*(.*?)(?=\s*:|$)', line).group(0).replace(" ", "") if re.search(
+            r'ERROR\s*(.*?)(?=\s*:|$)', line)
+        else line.replace(" ", "")
+        for line in stdout.splitlines() if line.strip()
+    ]
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert expectedMsg.replace(" ", "") in output_lines
 
 def test_cli_moonshot_run_more_than_one_red_teaming_test():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1426,7 +2149,6 @@ def test_cli_moonshot_run_more_than_one_red_teaming_test():
     # Set Variable for 2nd Test
     attack_module_2nd = "sensitive_data_disclosure"
     nameOfRedTeaming2ndRunnerName = "test_run_" + connector_name + "-" + attack_module_2nd + "-" + str(random_number)
-
 
     # Test Config modification
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
@@ -1529,7 +2251,6 @@ def test_cli_moonshot_run_more_than_one_red_teaming_test_mixed_invalid_valid_con
     # Set Variable for 2nd Test
     attack_module_2nd = "sensitive_data_disclosure"
     nameOfRedTeaming2ndRunnerName = "test_run_" + connector_name + "-" + attack_module_2nd + "-" + str(random_number)
-
 
     # Test Config modification
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
