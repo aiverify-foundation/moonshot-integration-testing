@@ -150,6 +150,68 @@ To execute the integration tests:
    ```bash
    npx playwright test tests/test_module.spec.ts
    ```
+## Running Moonshot V1 CLI Integration Tests
+__*Make sure Moonshot v1 is already Setup__
+
+To execute the integration tests:
+
+1. **Navigate to the Test Directory**:
+
+   ```bash
+   cd moonshot-v1-cli-integration
+   ```
+2. **Set Up the Virtual Environment**:
+
+   It's recommended to use a virtual environment to manage dependencies:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
+
+3. **Install Python Dependencies**:
+
+   Install the required Python packages:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Setup Env File**:
+
+   Create a .env file:
+
+   ```bash
+   touch .env
+   ```
+
+   Open the .env file in a text editor and define your environment variables:
+   ```bash
+   # .env
+   AWS_ACCESS_KEY_ID = ''
+   AWS_SECRET_ACCESS_KEY=''
+   OPENAI_TOKEN = ''
+   MOON_V1_CLI_DIR = ''# Path of Moonshot v1 repo
+   ```
+
+4. **Run Tests**:
+
+   Use the following command to run all tests:
+
+   ```bash
+   pytest
+   ```
+
+   For more detailed output:
+
+   ```bash
+   pytest -v
+   ```
+
+   To run a specific test module:
+
+   ```bash
+   pytest test_module.py
+   ```
    
 ## Directory Structure
 
