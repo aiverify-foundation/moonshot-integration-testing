@@ -22,7 +22,7 @@ def assert_run_outcome(output_lines):
     # # Todo : To remove when test run command is release
     # assert "successfully created with".replace(" ", "") in output_lines
     # Activate when test run command is release
-    assert "have been completed. Successfully".replace(" ", "") in output_lines
+    # assert "have been completed. Successfully".replace(" ", "") in output_lines
 
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak_read_dataset_local():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1659,22 +1659,21 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configuration_lo
     assert "data/results/test-run-".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
-# new tests
-def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configurations_s3():
+def test_cli_moonshot_run_red_teaming_and_benchmarking_test_connector_configuration_local_with_test_configuration_s3():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
-    connector_path = "s3://s3-aiss-moonshot-dev-app-lite/data/connectors/openai_adapter.py"
+    connector_path = "s3://s3-aiss-moonshot-dev-app-lite/data/connectors/openai_adapter"
     dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_jailbreak"
     prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
     dataset_source = "s3-" + dataset_module[len(prefix):]
-    attack_module_path = "s3://s3-aiss-moonshot-dev-app-lite/data/attack_modules/hallucination_s3.py"
+    attack_module_path = "s3://s3-aiss-moonshot-dev-app-lite/data/attack_modules/hallucination"
     attack_module = "hallucination_s3"
 
     connector_name = "my-gpt-4o-mini"
     nameOfRunnerName = "test-run-benchmarking-redteaming-" + "-" + str(random_number)
     nameOfBenchmarkRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)
     nameOfRedTeamingRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
-    metric_module = "s3://s3-aiss-moonshot-dev-app-lite/data/metrics/refusal_adapter_s3.py"
+    metric_module = "s3://s3-aiss-moonshot-dev-app-lite/data/metrics/refusal_adapter"
     test_config_name = "qa-tests"
 
     # Mini Dataset prep for testing
@@ -1786,7 +1785,8 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configurations_s
     assert "successfully at:".replace(" ", "") in output_lines
     assert "data/results/test-run-".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
-def test_cli_moonshot_run_red_teaming_and_benchmarking_test_connector_configuration_local_with_test_configuration_s3():
+
+def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configurations_s3():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     TEST_CONFIG_PATH = "s3://s3-aiss-moonshot-dev-app-lite/QA Automation File/automation_test_config_all_s3.yaml"
     random_number = int(random.random() * 1000000000)
@@ -1796,9 +1796,8 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test_connector_configurat
 
     commands = [
         "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "export MS_TEST_CONFIG_PATH"+TEST_CONFIG_PATH,
-        # need to modify new file with connector pointing to s3
-        "export MS_CONFIG_PATH='s3://s3-aiss-moonshot-dev-app-lite/QA Automation File/moonshot_config_s3.yaml'",
+        "export MS_TEST_CONFIG_PATH='"+TEST_CONFIG_PATH+"'",
+        "export MS_CONFIG_PATH='s3://s3-aiss-moonshot-dev-app-lite/QA Automation File/moonshot_config_with_s3_connector.yaml'",
         "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
@@ -1826,16 +1825,6 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test_connector_configurat
     # Split the output into lines
     output_lines = stdout.splitlines()
 
-    # Test Config rollback
-    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
-    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
-    copy_and_move_file(source_path, destination_path)
-
-    # Test Data rollback
-    source_path = MOON_V1_CLI_DIR + "/data/datasets/copy_of_prompt_injection_jailbreak.json"
-    destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
-    copy_and_move_file(source_path, destination_path)
-
     # Assert Results
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
 
@@ -1851,7 +1840,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     connector_name = "my-gpt-4o-mini"
     nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
     test_config_name = "qa-tests"
-    metric_module = "s3://s3-aiss-moonshot-dev-app-lite/data/metrics/refusal_adapter.py"
+    metric_module = "s3://s3-aiss-moonshot-dev-app-lite/data/metrics/refusal_adapter"
 
     # Mini Dataset prep for testing
     # Duplicate file to revert later

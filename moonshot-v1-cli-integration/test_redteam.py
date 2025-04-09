@@ -2378,7 +2378,7 @@ def test_cli_moonshot_run_more_than_one_red_teaming_test_mixed_invalid_valid_con
 def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination_test_config_param_attack_module_s3():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
-    attack_module = "s3://s3-aiss-moonshot-dev-app-lite/data/attack_modules/hallucination_s3.py"
+    attack_module = "s3://s3-aiss-moonshot-dev-app-lite/data/attack_modules/hallucination"
     connector_name = "my-gpt-4o-mini"
     nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
     test_config_name = "qa-tests"
@@ -2455,7 +2455,7 @@ def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination_test_c
     connector_name = "my-gpt-4o-mini"
     nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
     test_config_name = "qa-tests"
-    metric_module = "s3://s3-aiss-moonshot-dev-app-lite/data/metrics/refusal_adapter.py"
+    metric_module = "s3://s3-aiss-moonshot-dev-app-lite/data/metrics/refusal_adapter"
 
     # Test Config modification
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
