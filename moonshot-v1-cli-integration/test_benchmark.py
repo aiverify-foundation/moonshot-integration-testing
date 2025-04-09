@@ -24,384 +24,6 @@ def assert_run_outcome(output_lines):
     # Activate when test run command is release
     assert "have been completed. Successfully".replace(" ", "") in output_lines
 
-
-EXPECTED_OUTCOME = [
-    ("No valid file found for 1 in "),  # Expected result for 1
-    ("No valid file found for 1.1 in"),  # Expected result for 1.1
-    (""),  # Expected result for -1
-    ("No valid file found for 0 in"),  # Expected result for 0
-    ("No valid file found for @1 in"),  # Expected result for "@1"
-    ("No valid file found for test in")  # Expected result for "test"
-]
-@pytest.mark.skip(reason="This test is skipped for as command is removed")
-@parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, EXPECTED_OUTCOME))
-def test_cli_run_benchmarking_params_testing_dataset_module(input_params, expectedMsg):
-    # Generate a random number between 0 and 999,999,999 (inclusive)
-    random_number = int(random.random() * 1000000000)
-    dataset_module = str(input_params)
-    connector_name = "my-gpt4o-mini"
-    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
-    metric_module = "refusal_adapter"
-
-    commands = [
-        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
-    ]
-    # Join commands with '&&' to ensure the next runs only if the previous succeeds
-    full_command = "&&".join(commands)
-    print(f"Running combined command: {full_command}")
-
-    process = subprocess.Popen(
-        full_command,
-        shell=True,  # Allows for complex shell commands
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        stdin=subprocess.PIPE,
-        text=True,
-        cwd=str(MOON_V1_CLI_DIR),
-    )
-    print('Path:', str(MOON_V1_CLI_DIR))
-    # Ensure process.stdin is not None
-    if process.stdin is None:
-        raise RuntimeError("Failed to create stdin for the subprocess")
-
-    # Capture the output and errors
-    stdout, stderr = process.communicate()
-
-    print('Output:', stdout)
-    # Split the output into lines
-    output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
-    # Assert Outcome
-    if input_params == -1:
-        # Assert that the subprocess failed
-        assert process.returncode != 0  # Ensure it exits with an error
-        # Assert that the error contains Pydantic's validation message
-        assert "Error: No such option: -1\n"
-    else:
-        assert expectedMsg.replace(" ", "") in output_lines
-
-
-CONNECTOR_EXPECTED_OUTCOME = [
-    ("ERROR    [TaskManager] Error loading the task_manager.py:485"),  # Expected result for 1
-    ("ERROR    [TaskManager] Error loading the task_manager.py:485"),  # Expected result for 1.1
-    (""),  # Expected result for -1
-    ("ERROR    [TaskManager] Error loading the task_manager.py:485"),  # Expected result for 0
-    ("ERROR    [TaskManager] Error loading the task_manager.py:485"),  # Expected result for "@1"
-    ("ERROR    [TaskManager] Error loading the task_manager.py:485")  # Expected result for "test"
-]
-@pytest.mark.skip(reason="This test is skipped for as command is removed")
-@parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, CONNECTOR_EXPECTED_OUTCOME))
-def test_cli_run_benchmarking_params_testing_connector_name(input_params, expectedMsg):
-    # Generate a random number between 0 and 999,999,999 (inclusive)
-    random_number = int(random.random() * 1000000000)
-    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_payload_splitting"
-    connector_name = str(input_params)
-    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
-    metric_module = "refusal_adapter"
-
-    commands = [
-        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
-    ]
-    # Join commands with '&&' to ensure the next runs only if the previous succeeds
-    full_command = "&&".join(commands)
-    print(f"Running combined command: {full_command}")
-
-    process = subprocess.Popen(
-        full_command,
-        shell=True,  # Allows for complex shell commands
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        stdin=subprocess.PIPE,
-        text=True,
-        cwd=str(MOON_V1_CLI_DIR),
-    )
-    print('Path:', str(MOON_V1_CLI_DIR))
-    # Ensure process.stdin is not None
-    if process.stdin is None:
-        raise RuntimeError("Failed to create stdin for the subprocess")
-
-    # Capture the output and errors
-    stdout, stderr = process.communicate()
-
-    print('Output:', stdout)
-    # Split the output into lines
-    output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
-    # Assert Outcome
-    if input_params == -1:
-        # Assert that the subprocess failed
-        assert process.returncode != 0  # Ensure it exits with an error
-        # Assert that the error contains Pydantic's validation message
-        assert "Error: No such option: -1\n"
-    else:
-        assert expectedMsg.replace(" ", "") in output_lines
-
-
-METRIC_MODULE_EXPECTED_OUTCOME = [
-    ("Error loading metric"),  # Expected result for 1
-    ("Error loading metric"),  # Expected result for 1.1
-    (""),  # Expected result for -1
-    ("Error loading metric"),  # Expected result for 0
-    ("Error loading metric"),  # Expected result for "@1"
-    ("Error loading metric")  # Expected result for "test"
-]
-@pytest.mark.skip(reason="This test is skipped for as command is removed")
-@parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, METRIC_MODULE_EXPECTED_OUTCOME))
-def test_cli_run_benchmarking_params_testing_metric_module(input_params, expectedMsg):
-    # Generate a random number between 0 and 999,999,999 (inclusive)
-    random_number = int(random.random() * 1000000000)
-    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_payload_splitting"
-    connector_name = "my-gpt4o-mini"
-    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
-    metric_module = str(input_params)
-
-    commands = [
-        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
-    ]
-    # Join commands with '&&' to ensure the next runs only if the previous succeeds
-    full_command = "&&".join(commands)
-    print(f"Running combined command: {full_command}")
-
-    process = subprocess.Popen(
-        full_command,
-        shell=True,  # Allows for complex shell commands
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        stdin=subprocess.PIPE,
-        text=True,
-        cwd=str(MOON_V1_CLI_DIR),
-    )
-    print('Path:', str(MOON_V1_CLI_DIR))
-    # Ensure process.stdin is not None
-    if process.stdin is None:
-        raise RuntimeError("Failed to create stdin for the subprocess")
-
-    # Capture the output and errors
-    stdout, stderr = process.communicate()
-
-    print('Output:', stdout)
-    # Split the output into lines
-    output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
-    # Assert Outcome
-    if input_params == -1:
-        # Assert that the subprocess failed
-        assert process.returncode != 0  # Ensure it exits with an error
-        # Assert that the error contains Pydantic's validation message
-        assert "Error: No such option: -1\n"
-    else:
-        assert expectedMsg.replace(" ", "") in output_lines
-
-@pytest.mark.skip(reason="This test is skipped for as command is removed")
-def test_cli_run_benchmarking_refusal_adapter_prompt_injection_obfuscation():
-    # Generate a random number between 0 and 999,999,999 (inclusive)
-    random_number = int(random.random() * 1000000000)
-    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_obfuscation"
-    connector_name = "my-gpt4o-mini"
-    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
-    metric_module = "refusal_adapter"
-
-    commands = [
-        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
-    ]
-    # Join commands with '&&' to ensure the next runs only if the previous succeeds
-    full_command = "&&".join(commands)
-    print(f"Running combined command: {full_command}")
-
-    process = subprocess.Popen(
-        full_command,
-        shell=True,  # Allows for complex shell commands
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        stdin=subprocess.PIPE,
-        text=True,
-        cwd=str(MOON_V1_CLI_DIR),
-    )
-    print('Path:', str(MOON_V1_CLI_DIR))
-    # Ensure process.stdin is not None
-    if process.stdin is None:
-        raise RuntimeError("Failed to create stdin for the subprocess")
-
-    # Capture the output and errors
-    stdout, stderr = process.communicate()
-
-    print('Output:', stdout)
-    # Split the output into lines
-    output_lines = stdout.splitlines()
-
-    # Assert Results
-    assert_run_outcome(output_lines)
-    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
-
-@pytest.mark.skip(reason="This test is skipped for as command is removed")
-def test_cli_run_benchmarking_refusal_adapter_prompt_injection_payload_splitting():
-    # Generate a random number between 0 and 999,999,999 (inclusive)
-    random_number = int(random.random() * 1000000000)
-    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_payload_splitting"
-    connector_name = "my-gpt4o-mini"
-    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
-    metric_module = "refusal_adapter"
-
-    commands = [
-        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
-    ]
-    # Join commands with '&&' to ensure the next runs only if the previous succeeds
-    full_command = "&&".join(commands)
-    print(f"Running combined command: {full_command}")
-
-    process = subprocess.Popen(
-        full_command,
-        shell=True,  # Allows for complex shell commands
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        stdin=subprocess.PIPE,
-        text=True,
-        cwd=str(MOON_V1_CLI_DIR),
-    )
-    print('Path:', str(MOON_V1_CLI_DIR))
-    # Ensure process.stdin is not None
-    if process.stdin is None:
-        raise RuntimeError("Failed to create stdin for the subprocess")
-
-    # Capture the output and errors
-    stdout, stderr = process.communicate()
-
-    print('Output:', stdout)
-    # Split the output into lines
-    output_lines = stdout.splitlines()
-
-    # Assert Results
-    assert_run_outcome(output_lines)
-    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
-
-@pytest.mark.skip(reason="This test is skipped for as command is removed")
-def test_cli_run_benchmarking_refusal_adapter_prompt_injection_role_playing():
-    # Generate a random number between 0 and 999,999,999 (inclusive)
-    random_number = int(random.random() * 1000000000)
-    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_role_playing"
-    connector_name = "my-gpt4o-mini"
-    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
-    metric_module = "refusal_adapter"
-
-    commands = [
-        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
-    ]
-    # Join commands with '&&' to ensure the next runs only if the previous succeeds
-    full_command = "&&".join(commands)
-    print(f"Running combined command: {full_command}")
-
-    process = subprocess.Popen(
-        full_command,
-        shell=True,  # Allows for complex shell commands
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        stdin=subprocess.PIPE,
-        text=True,
-        cwd=str(MOON_V1_CLI_DIR),
-    )
-    print('Path:', str(MOON_V1_CLI_DIR))
-    # Ensure process.stdin is not None
-    if process.stdin is None:
-        raise RuntimeError("Failed to create stdin for the subprocess")
-
-    # Capture the output and errors
-    stdout, stderr = process.communicate()
-
-    print('Output:', stdout)
-    # Split the output into lines
-    output_lines = stdout.splitlines()
-
-    # Assert Results
-    assert_run_outcome(output_lines)
-    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
-
-@pytest.mark.skip(reason="This test is skipped for as command is removed")
-def test_cli_run_benchmarking_refusal_adapter_sensitive_data_disclosure_general():
-    # Generate a random number between 0 and 999,999,999 (inclusive)
-    random_number = int(random.random() * 1000000000)
-    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/sensitive_data_disclosure_general"
-    connector_name = "my-gpt4o-mini"
-    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
-    metric_module = "refusal_adapter"
-
-    commands = [
-        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
-    ]
-    # Join commands with '&&' to ensure the next runs only if the previous succeeds
-    full_command = "&&".join(commands)
-    print(f"Running combined command: {full_command}")
-
-    process = subprocess.Popen(
-        full_command,
-        shell=True,  # Allows for complex shell commands
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        stdin=subprocess.PIPE,
-        text=True,
-        cwd=str(MOON_V1_CLI_DIR),
-    )
-    print('Path:', str(MOON_V1_CLI_DIR))
-    # Ensure process.stdin is not None
-    if process.stdin is None:
-        raise RuntimeError("Failed to create stdin for the subprocess")
-
-    # Capture the output and errors
-    stdout, stderr = process.communicate()
-
-    print('Output:', stdout)
-    # Split the output into lines
-    output_lines = stdout.splitlines()
-
-    # Assert Results
-    assert_run_outcome(output_lines)
-    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
-
-@pytest.mark.skip(reason="This test is skipped for as command is removed")
-def test_cli_run_benchmarking_refusal_adapter_prompt_injection_jailbreak():
-    # Generate a random number between 0 and 999,999,999 (inclusive)
-    random_number = int(random.random() * 1000000000)
-    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_jailbreak"
-    connector_name = "my-gpt4o-mini"
-    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
-    metric_module = "refusal_adapter"
-
-    commands = [
-        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "poetry run moonshot benchmark " + nameOfRunnerName + " " + dataset_module + " " + metric_module + " " + connector_name + ""
-    ]
-    # Join commands with '&&' to ensure the next runs only if the previous succeeds
-    full_command = "&&".join(commands)
-    print(f"Running combined command: {full_command}")
-
-    process = subprocess.Popen(
-        full_command,
-        shell=True,  # Allows for complex shell commands
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        stdin=subprocess.PIPE,
-        text=True,
-        cwd=str(MOON_V1_CLI_DIR),
-    )
-    print('Path:', str(MOON_V1_CLI_DIR))
-    # Ensure process.stdin is not None
-    if process.stdin is None:
-        raise RuntimeError("Failed to create stdin for the subprocess")
-
-    # Capture the output and errors
-    stdout, stderr = process.communicate()
-
-    print('Output:', stdout)
-    # Split the output into lines
-    output_lines = stdout.splitlines()
-
-    # Assert Results
-    assert_run_outcome(output_lines)
-    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
-
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak_read_dataset_local():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -478,6 +100,94 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak_read_invalid_dataset_local():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "prompt_injection_jailbreak"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Mini Dataset prep for testing
+    # Duplicate file to revert later
+    source_path = "./test_data/prompt_injection_jailbreak.json"
+    copy_file(source_path)
+    source_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_file(source_path)
+
+    source_path = "./test_data/copy_of_prompt_injection_jailbreak.json"
+    destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_and_move_file(source_path, destination_path)
+
+    # Rename File name for testing
+    old_name = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    new_name = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreaks.json"
+    # Rename the file
+    os.rename(old_name, new_name)
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+    output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
+
+    # Revert Rename File name for testing
+    new_name = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    old_name = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreaks.json"
+    # Rename the file
+    os.rename(old_name, new_name)
+
+    # Test Data rollback
+    source_path = MOON_V1_CLI_DIR + "/data/datasets/copy_of_prompt_injection_jailbreak.json"
+    destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert "[DatasetLoader] No valid file".replace(" ", "") in output_lines
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak_read_ms_config_s3():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -510,7 +220,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
 
     commands = [
         "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "export MS_CONFIG_PATH='s3://s3-aiss-moonshot-dev-app-lite/moonshot_config_s3.yaml'",
+        "export MS_CONFIG_PATH='s3://s3-aiss-moonshot-dev-app-lite/QA Automation File/moonshot_config_s3.yaml'",
         "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
@@ -546,6 +256,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     # Assert Results
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -682,8 +393,6 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_sensitive_data_dis
     # Assert Results
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
-
-
 
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_role_playing():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1846,4 +1555,166 @@ def test_cli_run_benchmarking_via_run_command_with_same_test_config_id():
 
     # Assert Results
     assert_run_outcome(output_lines)
+    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configuration_local():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "prompt_injection_jailbreak"
+    attack_module = "hallucination"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test-run-benchmarking-redteaming-" + "-" + str(random_number)
+    nameOfBenchmarkRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
+    nameOfRedTeamingRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    metric_module = "refusal_adapter"
+    test_config_name = "qa-tests"
+
+    # Mini Dataset prep for testing
+    # Duplicate file to revert later
+    source_path = "./test_data/prompt_injection_jailbreak.json"
+    copy_file(source_path)
+    source_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_file(source_path)
+
+    source_path = "./test_data/copy_of_prompt_injection_jailbreak.json"
+    destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_and_move_file(source_path, destination_path)
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfBenchmarkRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            },
+            {
+                "name": nameOfRedTeamingRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": 1,
+                               "use_case":
+                                   "This is a gaming chatbot. It will answer the top-selling games in US and Asia. It "
+                                   "will give advice on what is the best"
+                                   "game to play based on the user preference.",
+                               "qns_type": "MCQ"}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Test Data rollback
+    source_path = MOON_V1_CLI_DIR + "/data/datasets/copy_of_prompt_injection_jailbreak.json"
+    destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
+
+    assert "File written".replace(" ", "") in output_lines
+    assert "successfully at:".replace(" ", "") in output_lines
+    assert "data/results/test-run-".replace(" ", "") in output_lines
+    assert "have been completed.".replace(" ", "") in output_lines
+    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configuration_s3():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    TEST_CONFIG_PATH = "s3://s3-aiss-moonshot-dev-app-lite/QA Automation File/automation_test_config_all_s3.yaml"
+    random_number = int(random.random() * 1000000000)
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test-run-benchmarking-redteaming-" + "-" + str(random_number)
+    test_config_name = "qa-tests"
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "export MS_TEST_CONFIG_PATH"+TEST_CONFIG_PATH,
+        # need to modify new file with connector pointing to s3
+        "export MS_CONFIG_PATH='s3://s3-aiss-moonshot-dev-app-lite/QA Automation File/moonshot_config_s3.yaml'",
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Test Data rollback
+    source_path = MOON_V1_CLI_DIR + "/data/datasets/copy_of_prompt_injection_jailbreak.json"
+    destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
+
+    assert "File written".replace(" ", "") in output_lines
+    assert "successfully at:".replace(" ", "") in output_lines
+    assert "data/results/test-run-".replace(" ", "") in output_lines
+    assert "have been completed.".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
