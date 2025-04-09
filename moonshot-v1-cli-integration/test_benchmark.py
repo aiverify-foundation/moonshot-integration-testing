@@ -22,7 +22,7 @@ def assert_run_outcome(output_lines):
     # # Todo : To remove when test run command is release
     # assert "successfully created with".replace(" ", "") in output_lines
     # Activate when test run command is release
-    # assert "have been completed. Successfully".replace(" ", "") in output_lines
+    # assert "have been completed.".replace(" ", "") in output_lines
 
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak_read_dataset_local():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -652,12 +652,12 @@ def test_cli_run_benchmarking_modified_default_yaml():
 
 
 RUN_ID_EXPECTED_OUTCOME = [
-    ("have been completed. Successfully"),  # Expected result for 1
-    ("have been completed. Successfully"),  # Expected result for 1.1
+    ("have been completed."),  # Expected result for 1
+    ("have been completed."),  # Expected result for 1.1
     (""),  # Expected result for -1
-    ("have been completed. Successfully"),  # Expected result for 0
-    ("have been completed. Successfully"),  # Expected result for "@1"
-    ("have been completed. Successfully")  # Expected result for "test"
+    ("have been completed."),  # Expected result for 0
+    ("have been completed."),  # Expected result for "@1"
+    ("have been completed.")  # Expected result for "test"
 ]
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, RUN_ID_EXPECTED_OUTCOME))
 def test_cli_moonshot_run_params_testing_run_id(input_params, expectedMsg):
@@ -1142,7 +1142,7 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test():
     assert "File written".replace(" ", "") in output_lines
     assert "successfully at:".replace(" ", "") in output_lines
     assert "data/results/test-run-benchmark".replace(" ", "") in output_lines
-    assert "have been completed. Successfully".replace(" ", "") in output_lines
+    assert "have been completed.".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 def test_cli_moonshot_run_more_than_one_benchmarking_test():
@@ -1230,7 +1230,7 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test():
     assert "File written".replace(" ", "") in output_lines
     assert "successfully at:".replace(" ", "") in output_lines
     assert "data/results/test-run-more-than".replace(" ", "") in output_lines
-    assert "have been completed. Successfully".replace(" ", "") in output_lines
+    assert "have been completed.".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
