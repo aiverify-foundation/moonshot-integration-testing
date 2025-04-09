@@ -22,7 +22,7 @@ Before running the integration tests, ensure you have the following installed:
    cd moonshot-integration-testing
    ```
 
-## Running the CLI Integration Tests
+## Running Moonshot v0.6 CLI Integration Tests
 __*Make sure Moonshot is already Setup__
 
 To execute the integration tests:
@@ -91,7 +91,7 @@ To execute the integration tests:
    ```bash
    pytest test_module.py
    ```
-## Running the UI Integration Tests
+## Running Moonshot v0.6 UI Integration Tests
 
 To execute the integration tests:
 
@@ -212,6 +212,43 @@ To execute the integration tests:
    ```bash
    pytest test_module.py
    ```
+## Running Moonshot V1 Process Check Integration Tests
+
+To execute the integration tests:
+
+1. **Navigate to the Test Directory**:
+
+   ```bash
+   cd ui-integration-testing
+   ```
+2. **Set Up the Virtual Environment**:
+
+   It's recommended to use a virtual environment to manage dependencies:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
+
+3. **Install Node Dependencies**:
+
+   Install the required Node packages:
+
+   ```bash
+   npm install
+   ```
+5. **Run Tests**:
+
+   Use the following command to run all tests:
+
+   ```bash
+   npx playwright test tests
+   ```
+   To run a specific test module:
+
+   ```bash
+   npx playwright test tests/test_module.spec.ts
+   ```
    
 ## Directory Structure
 
@@ -219,7 +256,7 @@ A brief overview of the repository structure:
 
 ```
 moonshot-integration-testing/         
-├── cli-integration-testing/          # Moonshot CLI Integration test cases       
+├── cli-integration-testing/          # Moonshot v0 CLI Integration test cases       
 │   ├── utils                         # Common Utils Functions to support automation on Data Preparation
 │   ├── test_api.py                   # Tests for the Moonshot APIs
 │   ├── test_benchmark.py             # Tests for the CLI Command - Moonshot v0 Benchmarking CLI Commands Scope
@@ -231,6 +268,10 @@ moonshot-integration-testing/
 │   ├── test_benchmark.py             # Tests for the CLI Command - Moonshot v1 Benchmarking CLI Commands Scope
 │   ├── test_red_team.py              # Tests for the CLI Command - Moonshot v1 Red Teaming CLI Commands Scope
 │   ├── test_s3_connection.py         # Tests for S3 Connection for Moonshot v1
+│   └──
+├── moonshot-v1-process-checks-integration-testing/      # Moonshot v1 Process Check Integration test cases
+│   ├── tests/
+│   ├── entrypoints.spec.ts           # Tests for the Web UI - Moonshot v1 Process Check Scope
 │   └──
 ├── ui-integration-testing/           # Moonshot v0 UI Integration test cases
 │   ├── tests/

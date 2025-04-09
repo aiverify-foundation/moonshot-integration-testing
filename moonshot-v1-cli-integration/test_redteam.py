@@ -2276,8 +2276,6 @@ def test_cli_moonshot_run_more_than_one_red_teaming_test():
     assert "data/results/test-run-more-than".replace(" ", "") in output_lines
     assert "have been completed. Successfully".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
-
-
 def test_cli_moonshot_run_more_than_one_red_teaming_test_mixed_invalid_valid_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -2375,3 +2373,150 @@ def test_cli_moonshot_run_more_than_one_red_teaming_test_mixed_invalid_valid_con
     ]
     assert "ERROR    [ApiAdapter] An error occurred   api_adapter.py".replace(" ", "") in output_lines
     check_result_file_not_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+# new tests added
+def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination_test_config_param_attack_module_s3():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    attack_module = "s3://s3-aiss-moonshot-dev-app-lite/data/attack_modules/hallucination_s3.py"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": 1,
+                               "use_case":
+                                   "This is a gaming chatbot. It will answer the top-selling games in US and Asia. It "
+                                   "will give advice on what is the best"
+                                   "game to play based on the user preference.",
+                               "qns_type": "MCQ"}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert_run_outcome(output_lines)
+    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+def test_cli_run_redteaming_via_run_command_refusal_adapter_hallucination_test_config_param_metric_s3():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    attack_module = "hallucination"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "s3://s3-aiss-moonshot-dev-app-lite/data/metrics/refusal_adapter.py"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": 1,
+                               "use_case":
+                                   "This is a gaming chatbot. It will answer the top-selling games in US and Asia. It "
+                                   "will give advice on what is the best"
+                                   "game to play based on the user preference.",
+                               "qns_type": "MCQ"}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert_run_outcome(output_lines)
+    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
