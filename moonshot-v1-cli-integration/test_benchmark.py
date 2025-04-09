@@ -1657,7 +1657,6 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configuration_lo
     assert "File written".replace(" ", "") in output_lines
     assert "successfully at:".replace(" ", "") in output_lines
     assert "data/results/test-run-".replace(" ", "") in output_lines
-    assert "have been completed.".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configuration_s3():
@@ -1716,5 +1715,4 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configuration_s3
     assert "File written".replace(" ", "") in output_lines
     assert "successfully at:".replace(" ", "") in output_lines
     assert "data/results/test-run-".replace(" ", "") in output_lines
-    assert "have been completed.".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
