@@ -3,6 +3,8 @@ import random
 from dotenv import load_dotenv
 import http.client
 import json
+import sys
+sys.path.append("..")
 from util.utils import *
 
 load_dotenv()  # Load environment variables from .env file

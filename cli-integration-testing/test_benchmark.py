@@ -2,6 +2,8 @@ import subprocess
 from dotenv import load_dotenv
 import time
 import random
+import sys
+sys.path.append("..")
 from util.utils import *
 
 load_dotenv()  # Load environment variables from .env file
