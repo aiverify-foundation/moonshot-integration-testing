@@ -347,7 +347,65 @@ def test_cli_add_recipe():
     print('=========================Output Last Line:', last_line)
     assert last_line.replace(" ", "") == "[add_recipe]:Recipe(my-new-recipe-" + timestamp_int + ")created."
 
+def test_cli_delete_cookbook():
+    command = (
+        # 'cd .. &&'
+        # 'source venv/bin/activate &&'
+        # 'cd moonshot &&'
+        'python3 -m moonshot cli interactive'
+    )
 
+    process = subprocess.Popen(
+        command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(CLI_DIR),
+        # cwd="/Users/jacksonboey/PycharmProjects/moonshot",
+        # /home/runner/work/moonshot-data/moonshot-data for moonshot data repo
+        # /home/runner/work/moonshot/moonshot-data for moonshot repo
+    )
+    print('Path:', str(CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    timestamp = time.time()  # Get the current timestamp in seconds
+    timestamp_int = str(int(timestamp))  # Remove the decimal part by converting to an integer
+    command = (
+            'add_cookbook \'My new cookbook ' + timestamp_int + '\' \'I am cookbook description\' "[\'analogical-similarity\','
+                                                                '\'auto-categorisation\']"\n')
+    print('Command:', command)
+    # Example command to send to the process
+    process.stdin.write(command)
+    process.stdin.flush()
+
+    command = (
+            'delete_cookbook \'my-new-cookbook-' + timestamp_int + '\' \n')
+    print('Command:', command)
+    # Example command to send to the process
+    process.stdin.write(command)
+    process.stdin.flush()
+
+    command = ('y\n')
+    print('Command:', command)
+    # Example command to send to the process
+    process.stdin.write(command)
+    process.stdin.flush()
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Get the last line of the output
+    last_line = output_lines[-2]
+    print('=========================Output Last Line:', last_line)
+    assert last_line == "Are you sure you want to delete the cookbook (y/N)? [delete_cookbook]: Cookbook deleted."
 def test_cli_delete_recipe():
     command = (
         # 'cd .. &&'
@@ -1047,8 +1105,65 @@ def test_cli_list_runs():
     last_line = output_lines[27]
     print('=========================Output Last Line:', last_line)
     assert last_line.replace(" ", "") == "ListofRuns"
+def test_cli_list_runners():
+    command = (
+        # 'cd .. &&'
+        # 'source venv/bin/activate &&'
+        # 'cd moonshot &&'
+        'python3 -m moonshot cli interactive'
+    )
 
+    process = subprocess.Popen(
+        command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(CLI_DIR),
+        # cwd="/Users/jacksonboey/PycharmProjects/moonshot",
+        # /home/runner/work/moonshot-data/moonshot-data for moonshot data repo
+        # /home/runner/work/moonshot/moonshot-data for moonshot repo
+    )
+    print('Path:', str(CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
 
+    # Update Endpoints
+    command = 'update_endpoint azure-openai-gpt4o "[(\'name\', \'Azure OpenAI GPT4o\'), (\'uri\', \'' + str(
+        AZURE_OPENAI_URI) + '\'), (\'token\', \'' + str(
+        AZURE_OPENAI_TOKEN) + '\'), (\'model\': \'gpt-4o\'), (\'params\', {\'timeout\': 300,\'max_attempts\': 3, \'temperature\': 0.5})]"\n'
+    print('Command:', command)
+    # Example command to send to the process
+    process.stdin.write(command)
+    process.stdin.flush()
+
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    nameOfRunnerFileName = "my-benchmarking-runner-" + str(random_number)
+    nameOfRunnerName = "my benchmarking runner " + str(random_number)
+    command = 'run_cookbook "' + nameOfRunnerName + '" "[\'chinese-safety-cookbook\']" "[\'azure-openai-gpt4o\']" -n 1 -r 1 -s "You are an intelligent AI"\n'
+    # Example command to send to the process
+    process.stdin.write(command)
+    process.stdin.flush()
+
+    command = 'list_runners\n'
+    # Example command to send to the process
+    process.stdin.write(command)
+    process.stdin.flush()
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Get the last line of the output
+    last_line = output_lines[27]
+    print('=========================Output Last Line:', last_line)
+    assert last_line.replace(" ", "") == "ListofRunners"
 def test_cli_update_cookbook():
     command = (
         # 'cd .. &&'
@@ -1304,49 +1419,6 @@ def test_cli_view_dataset():
     last_line = output_lines[12]
     print('=========================Output Last Line:', last_line)
     assert last_line.replace(" ", "") == "ListofDatasets"
-
-def test_cli_view_metric():
-    command = (
-        # 'cd .. &&'
-        # 'source venv/bin/activate &&'
-        # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
-    )
-
-    process = subprocess.Popen(
-        command,
-        shell=True,  # Allows for complex shell commands
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        stdin=subprocess.PIPE,
-        text=True,
-        cwd=str(CLI_DIR),
-        # cwd="/Users/jacksonboey/PycharmProjects/moonshot",
-        # /home/runner/work/moonshot-data/moonshot-data for moonshot data repo
-        # /home/runner/work/moonshot/moonshot-data for moonshot repo
-    )
-    print('Path:', str(CLI_DIR))
-    # Ensure process.stdin is not None
-    if process.stdin is None:
-        raise RuntimeError("Failed to create stdin for the subprocess")
-
-    command = ('view_metric advglue\n')
-    print('Command:', command)
-    # Example command to send to the process
-    process.stdin.write(command)
-    process.stdin.flush()
-
-    # Capture the output and errors
-    stdout, stderr = process.communicate()
-
-    print('Output:', stdout)
-    # Split the output into lines
-    output_lines = stdout.splitlines()
-
-    # Get the last line of the output
-    last_line = output_lines[12]
-    print('=========================Output Last Line:', last_line)
-    assert last_line.replace(" ", "") == "ListofMetrics"
 
 def test_cli_view_metric():
     command = (

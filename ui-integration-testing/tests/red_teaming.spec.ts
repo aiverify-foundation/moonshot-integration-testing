@@ -429,7 +429,97 @@ test('test_red_teaming_run_two_endpoint', async ({browserName, page}) => {
 //     // Close the SQLite connection after each test
 //     db.close();
 // });
-test('test_red_teaming_bookmark_click', async ({browserName, page}) => {
+test.only('test_red_teaming_add_n_view_bookmark', async ({browserName, page}) => {
+    console.log(path.resolve(__dirname, '.env'))
+    test.setTimeout(1200000); //set test timeout to 1 hour
+    const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
+    // Check if the browser is WebKit
+    test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
+    // Check if the browser is FireFox
+    test.skip(browserName === 'firefox', 'This test is skipped on WebKit');
+    const RND_4_ENDPOINT = Math.floor(Math.random() * 1000000000)
+    const RED_TEAMING_ENDPOINT_NAME: string = "azure-openai-" + RND_4_ENDPOINT;
+    // if (browserName == 'webkit')
+    //     await page.waitForTimeout(60000)
+    // else if (browserName == 'firefox')
+    //     await page.waitForTimeout(30000)
+    const ENDPOINT_NAME: string = "Azure OpenAI " + RND_4_ENDPOINT;
+    const RND_4_RUNNER = Math.floor(Math.random() * 1000000000)
+    const RUNNER_NAME: string = "Test " + RND_4_RUNNER;
+    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    // Red Teaming
+    console.log('Red Teaming')
+    await page.getByRole('listitem').nth(2).click();
+    await page.getByRole('button', {name: 'Start New Session'}).click();
+    await page.getByText(ENDPOINT_NAME!).click();
+    await page.getByLabel('Next View').click();
+    await page.getByRole('heading', {name: 'Toxic Sentence Generator'}).click();
+    await page.getByLabel('Next View').click();
+    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await page.getByRole('button', {name: 'Run'}).click();
+    await page.getByRole('button', {name: 'Prompt Template'}).click();
+    await page.locator('div').filter({hasText: /^mmlu$/}).click();
+    await page.getByRole('button', {name: 'Use'}).click();
+    await page.getByRole('button', {name: 'Context Strategy'}).click();
+    await page.locator('div').filter({hasText: /^Add Previous Prompt$/}).first().click();
+    await page.getByRole('button', {name: 'Use'}).click();
+    await page.getByPlaceholder('Write a prompt...').click();
+    await page.getByPlaceholder('Write a prompt...').fill('Generate Something');
+    await page.getByRole('button', {name: /send/i}).click();
+
+    // Create the locator for the element
+    const elementLocator = page.getByRole('status').locator('div').nth(1);
+
+    // Wait for the element to appear with a custom timeout
+    await elementLocator.waitFor({state: 'visible'}); // 60 seconds
+
+    // Optionally, perform any actions or wait for the element to disappear
+    await elementLocator.waitFor({state: 'hidden'}); // 60 seconds
+
+
+    // Assert that the element is no longer visible
+    const isVisible = await elementLocator.isVisible();
+    expect(isVisible).toBeFalsy();
+
+
+    await expect(page.locator('div > li').nth(2)).toBeVisible();
+    await expect(page.locator('div > li').nth(4)).toBeVisible();
+    await expect(page.locator('div > li').nth(7)).toBeVisible();
+    // Locate the <h1> element with class "text-right" and text "You"
+    const h1Element = page.locator('h1.text-right').nth(0);
+
+    // Assert that the <h1> element with class "text-right" contains the text "You"
+    await expect(h1Element).toBeVisible();
+    await expect(h1Element).toHaveText('Automated red teaming agent');
+    // Locate the <h1> element with class "text-right" and text "You"
+    const h2Element = page.locator('h1.text-left').nth(0);
+
+    await expect(h2Element).toBeVisible()
+    await expect(h2Element).toHaveText('Response');
+
+    await expect(page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
+    await page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
+    await page.getByPlaceholder('Give this bookmark a unique').click();
+    await page.getByPlaceholder('Give this bookmark a unique').fill('bookmark_mark' + RND_4_ENDPOINT);
+    await page.getByRole('button', {name: 'Save'}).click();
+    await expect(page.getByRole('main')).toContainText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was successfully saved.');
+    await page.getByRole('button', {name: 'View Bookmarks'}).click();
+    await page.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
+    await expect(page.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
+
+
+    // Click back to red teaming tab and click on View Bookmark btn
+    await page.getByRole('banner').filter({hasText: 'Bookmarks'}).locator('line').nth(1).click();
+    await page.getByRole('banner').filter({hasText: /^$/}).getByRole('img').click();
+    await page.getByRole('button', {name: 'Exit'}).click();
+    await page.getByRole('listitem').nth(2).click();
+    await page.getByRole('button', {name: 'View Bookmarks'}).click();
+    await page.locator('body').scrollIntoViewIfNeeded(); // Ensure the body is scrolled into view
+    await expect(page.locator('body')).toContainText('bookmark_mark' + RND_4_ENDPOINT + 'Generate Something');
+
+});
+
+test('test_red_teaming_export_bookmark', async ({browserName, page}) => {
     console.log(path.resolve(__dirname, '.env'))
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -506,6 +596,127 @@ test('test_red_teaming_bookmark_click', async ({browserName, page}) => {
     await page.getByRole('button', {name: 'View Bookmarks'}).click();
     await page.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
     await expect(page.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
+
+    // Click back to red teaming tab and click on View Bookmark btn
+    await page.getByRole('listitem').nth(2).click();
+    await page.getByRole('button', {name: 'View Bookmarks'}).click();
+    await expect(page.locator('body')).toContainText('bookmark_mark' + RND_4_ENDPOINT);
+    await page.getByRole('button', {name: 'Export Bookmarks'}).click();
+
+
+});
+
+test('test_red_teaming_use_bookmark', async ({browserName, page}) => {
+    console.log(path.resolve(__dirname, '.env'))
+    test.setTimeout(1200000); //set test timeout to 1 hour
+    const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
+    // Check if the browser is WebKit
+    test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
+    // Check if the browser is FireFox
+    test.skip(browserName === 'firefox', 'This test is skipped on WebKit');
+    const RND_4_ENDPOINT = Math.floor(Math.random() * 1000000000)
+    const RED_TEAMING_ENDPOINT_NAME: string = "azure-openai-" + RND_4_ENDPOINT;
+    // if (browserName == 'webkit')
+    //     await page.waitForTimeout(60000)
+    // else if (browserName == 'firefox')
+    //     await page.waitForTimeout(30000)
+    const ENDPOINT_NAME: string = "Azure OpenAI " + RND_4_ENDPOINT;
+    const RND_4_RUNNER = Math.floor(Math.random() * 1000000000)
+    const RUNNER_NAME: string = "Test " + RND_4_RUNNER;
+    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    // Red Teaming
+    console.log('Red Teaming')
+    await page.getByRole('listitem').nth(2).click();
+    await page.getByRole('button', {name: 'Start New Session'}).click();
+    await page.getByText(ENDPOINT_NAME!).click();
+    await page.getByLabel('Next View').click();
+    await page.getByRole('heading', {name: 'Toxic Sentence Generator'}).click();
+    await page.getByLabel('Next View').click();
+    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await page.getByRole('button', {name: 'Run'}).click();
+    await page.getByRole('button', {name: 'Prompt Template'}).click();
+    await page.locator('div').filter({hasText: /^mmlu$/}).click();
+    await page.getByRole('button', {name: 'Use'}).click();
+    await page.getByRole('button', {name: 'Context Strategy'}).click();
+    await page.locator('div').filter({hasText: /^Add Previous Prompt$/}).first().click();
+    await page.getByRole('button', {name: 'Use'}).click();
+    await page.getByPlaceholder('Write a prompt...').click();
+    await page.getByPlaceholder('Write a prompt...').fill('Generate Something');
+    await page.getByRole('button', {name: /send/i}).click();
+
+    // Create the locator for the element
+    let elementLocator = page.getByRole('status').locator('div').nth(1);
+
+    // Wait for the element to appear with a custom timeout
+    await elementLocator.waitFor({state: 'visible'}); // 60 seconds
+
+    // Optionally, perform any actions or wait for the element to disappear
+    await elementLocator.waitFor({state: 'hidden'}); // 60 seconds
+
+
+    // Assert that the element is no longer visible
+    let isVisible = await elementLocator.isVisible();
+    expect(isVisible).toBeFalsy();
+
+
+    await expect(page.locator('div > li').nth(2)).toBeVisible();
+    await expect(page.locator('div > li').nth(4)).toBeVisible();
+    await expect(page.locator('div > li').nth(7)).toBeVisible();
+    // Locate the <h1> element with class "text-right" and text "You"
+    let h1Element = page.locator('h1.text-right').nth(0);
+
+    // Assert that the <h1> element with class "text-right" contains the text "You"
+    await expect(h1Element).toBeVisible();
+    await expect(h1Element).toHaveText('Automated red teaming agent');
+    // Locate the <h1> element with class "text-right" and text "You"
+    let h2Element = page.locator('h1.text-left').nth(0);
+
+    await expect(h2Element).toBeVisible()
+    await expect(h2Element).toHaveText('Response');
+
+    await expect(page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
+    await page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
+    await page.getByPlaceholder('Give this bookmark a unique').click();
+    await page.getByPlaceholder('Give this bookmark a unique').fill('bookmark_mark' + RND_4_ENDPOINT);
+    await page.getByRole('button', {name: 'Save'}).click();
+    await expect(page.getByText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was')).toBeVisible();
+    await page.getByRole('button', {name: 'View Bookmarks'}).click();
+    await page.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
+    await expect(page.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
+
+    //Use bookmark and verify red teaming session will rerun again
+    await page.getByRole('button', {name: 'Use'}).click();
+    // Create the locator for the element
+    elementLocator = page.getByRole('status').locator('div').nth(1);
+
+    // Wait for the element to appear with a custom timeout
+    await elementLocator.waitFor({state: 'visible'}); // 60 seconds
+
+    // Optionally, perform any actions or wait for the element to disappear
+    await elementLocator.waitFor({state: 'hidden'}); // 60 seconds
+
+
+    // Assert that the element is no longer visible
+    isVisible = await elementLocator.isVisible();
+    expect(isVisible).toBeFalsy();
+
+
+    await expect(page.locator('div > li').nth(2)).toBeVisible();
+    await expect(page.locator('div > li').nth(4)).toBeVisible();
+    await expect(page.locator('div > li').nth(7)).toBeVisible();
+    // Locate the <h1> element with class "text-right" and text "You"
+    h1Element = page.locator('h1.text-right').nth(0);
+
+    // Assert that the <h1> element with class "text-right" contains the text "You"
+    await expect(h1Element).toBeVisible();
+    await expect(h1Element).toHaveText('Automated red teaming agent');
+    // Locate the <h1> element with class "text-right" and text "You"
+    h2Element = page.locator('h1.text-left').nth(0);
+
+    await expect(h2Element).toBeVisible()
+    await expect(h2Element).toHaveText('Response');
+
+
 });
 
 test('test_red_teaming_with_attack_module_charswap_attack', async ({browserName, page}) => {
@@ -1878,7 +2089,7 @@ test('test_red_teaming_view_past_new_session_btn_start_resume_session_btn', asyn
         await page.waitForTimeout(60000)
     else if (browserName == 'firefox')
         await page.waitForTimeout(30000)
-    const RND_NO :string=   String(Math.floor(Math.random() * 1000000000));
+    const RND_NO: string = String(Math.floor(Math.random() * 1000000000));
     const ENDPOINT_NAME: string = "Azure OpenAI " + RND_NO;
     const RUNNER_NAME: string = "Test " + RND_NO;
     await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
@@ -1892,13 +2103,13 @@ test('test_red_teaming_view_past_new_session_btn_start_resume_session_btn', asyn
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
-    await page.getByRole('banner').filter({ hasText: /^$/ }).getByRole('img').click();
-    await page.getByRole('button', { name: 'Exit' }).click();
+    await page.getByRole('banner').filter({hasText: /^$/}).getByRole('img').click();
+    await page.getByRole('button', {name: 'Exit'}).click();
 
     //Click on Red Teaming tab and to resume session btn
     await page.getByRole('listitem').nth(2).click();
     await page.getByRole('button', {name: 'View Past Sessions'}).click();
-    await page.getByRole('listitem').filter({hasText: 'test-'+RND_NO}).click();
+    await page.getByRole('listitem').filter({hasText: 'test-' + RND_NO}).click();
     await page.getByRole('button', {name: 'Resume Session'}).click();
 
     // Start Red teaming Session
@@ -1942,12 +2153,12 @@ test('test_red_teaming_view_past_new_session_btn_start_resume_session_btn', asyn
 
 });
 
-test.only('test_red_teaming_view_attack_modules_btn', async ({browserName, page}) => {
+test('test_red_teaming_view_attack_modules_btn', async ({browserName, page}) => {
     test.setTimeout(1200000); //set test timeout to 1 hour
     await page.goto('http://localhost:3000');
     console.log('Red Teaming')
     await page.getByRole('listitem').nth(2).click();
-    await page.getByRole('button', { name: 'View Attack Modules' }).click();
+    await page.getByRole('button', {name: 'View Attack Modules'}).click();
     await expect(page.locator('h1')).toContainText('Attack Modules');
 
 });
