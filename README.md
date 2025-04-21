@@ -279,6 +279,8 @@ moonshot-integration-testing/
 │   ├── ├── endpoint.spec.ts          # Tests for the Web UI - Moonshot v0 Endpoint Scope
 │   ├── ├── homepage.spec.ts          # Tests for the Web UI - Moonshot v0 Homepage Scope
 │   ├── ├── red_teaming.spec.ts       # Tests for the Web UI - Moonshot v0 Red Teaming Scope
+│   ├── ├── history.spec.ts           # Tests for the Web UI - Moonshot v0 History Tab Scope
+│   ├── ├── utils.spec.ts             # Tests for the Web UI - Moonshot v0 Utils Tav Scope
 │   └──
 ├── util/                            # Common Utils Functions to support automation on Data Preparation
 │   ├── utils.py
