@@ -140,7 +140,7 @@ test('test_history_tab_view_past_runs_btn_view_past_run_btn', async ({browserNam
     await expect(page.getByRole('heading', {name: 'Benchmark Report'})).toBeVisible();
 });
 
-test.only('test_history_tab_view_past_session_btn_start_new_session_btn', async ({browserName, page}) => {
+test('test_history_tab_view_past_session_btn_start_new_session_btn', async ({browserName, page}) => {
     test.setTimeout(1200000);
     await page.goto('http://localhost:3000');
     await page.getByRole('listitem').nth(3).click();
