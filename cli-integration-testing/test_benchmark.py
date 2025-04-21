@@ -53,7 +53,8 @@ def test_cli_run_cookbook():
     random_number = int(random.random() * 1000000000)
     nameOfRunnerFileName = "my-benchmarking-runner-" + str(random_number)
     nameOfRunnerName = "my benchmarking runner " + str(random_number)
-    command = 'run_cookbooks "' + nameOfRunnerName + '" "[\'singapore-context\']" "[\'azure-openai-gpt4o\']" -n 1 -r 1 -s "You are an intelligent AI"\n'
+    command = 'run_cookbook "' + nameOfRunnerName + '" "[\'singapore-context\']" "[\'azure-openai-gpt4o\']" -n 1 -r 1 -s "You are an intelligent AI"\n'
+    print('Command:', command)
     # Example command to send to the process
     process.stdin.write(command)
     process.stdin.flush()

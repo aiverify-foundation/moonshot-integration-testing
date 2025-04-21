@@ -1061,7 +1061,7 @@ test('test_benchmarking_run_with_view_cookbook_btn', async ({browserName, page})
     await expect(footer).toBeHidden();
 });
 
-test.only('test_benchmarking_run_with_view_cookbook_btn_select_more_than_one', async ({browserName, page}) => {
+test('test_benchmarking_run_with_view_cookbook_btn_select_more_than_one', async ({browserName, page}) => {
     test.setTimeout(1200000);
     await page.goto('http://localhost:3000/');
     await page.getByRole('listitem').nth(1).click();

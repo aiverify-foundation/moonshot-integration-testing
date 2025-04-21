@@ -14,15 +14,21 @@ export async function create_endpoint_steps(page, name, uri, token, model, conne
     await page.getByPlaceholder('Model of the model endpoint').click();
     await page.getByPlaceholder('Model of the model endpoint').fill(model);
     await page.getByText('More Configs').click();
-    if (maxCallPerSec != '' && maxCallPerSec != '1') {
+
+    if (maxCallPerSec == ''){
+        await page.locator('.aiv__input-container').first().click();
+    }
+    else if (maxCallPerSec != '' && maxCallPerSec != '1') {
         await page.locator('.aiv__input-container').first().click();
         await page.getByRole('option', {name: maxCallPerSec}).click();
-    } else {
+    }else {
         await page.locator('.aiv__input-container').first().click();
         await page.getByRole('option', {name: '1', exact: true}).click();
     }
-
-    if (maxConcurr != '' && maxConcurr != '1') {
+    if (maxConcurr == ''){
+        await page.locator('.aiv__input-container').first().click();
+    }
+    else if (maxConcurr != '' && maxConcurr != '1') {
         await page.locator('div:nth-child(2) > label > .css-fyq6mk-container > .aiv__control > .aiv__value-container > .aiv__input-container').click();
         await page.getByRole('option', {name: maxConcurr}).click();
     } else {
@@ -174,7 +180,7 @@ test('test_create_endpoint_with_token_empty', async ({page}) => {
 
 });
 
-test('test_create_endpoint_check_default_maxCallPerSec&maxConcurr', async ({page}) => {
+test.only('test_create_endpoint_check_default_maxCallPerSec&maxConcurr', async ({page}) => {
     await create_endpoint_steps(page, 'name_azure-openai-connector', 'uri', 'token123', 'gpt-4o', 'azure-openai-connector', '', '', '{\n      "timeout": 300,\n      "max_attempts": 3,\n      "temperature": 0.5\n        }')
 
 });

@@ -429,7 +429,7 @@ test('test_red_teaming_run_two_endpoint', async ({browserName, page}) => {
 //     // Close the SQLite connection after each test
 //     db.close();
 // });
-test.only('test_red_teaming_add_n_view_bookmark', async ({browserName, page}) => {
+test('test_red_teaming_add_n_view_bookmark', async ({browserName, page}) => {
     console.log(path.resolve(__dirname, '.env'))
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
