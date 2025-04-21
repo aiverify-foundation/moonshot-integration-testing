@@ -463,6 +463,277 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_r
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
+def test_cli_run_benchmarking_via_run_command_refusal_adapter_brand_reputation_jailbreakbench():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/brand_reputation_jailbreakbench"
+    prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
+    dataset_source = "s3-" + dataset_module[len(prefix):]
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert_run_outcome(output_lines)
+    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+def test_cli_run_benchmarking_via_run_command_refusal_adapter_brand_reputation_harmbench():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/brand_reputation_harmbench"
+    prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
+    dataset_source = "s3-" + dataset_module[len(prefix):]
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert_run_outcome(output_lines)
+    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+def test_cli_run_benchmarking_via_run_command_accuracy_adapter_brand_reputation_winobias_variation1():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/brand_reputation_winobias_variation1"
+    prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
+    dataset_source = "s3-" + dataset_module[len(prefix):]
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "accuracy_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert_run_outcome(output_lines)
+    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+def test_cli_run_benchmarking_via_run_command_accuracy_adapter_brand_reputation_bbq():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/brand_reputation_bbq"
+    prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
+    dataset_source = "s3-" + dataset_module[len(prefix):]
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "accuracy_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    assert_run_outcome(output_lines)
+    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_payload_splitting():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -733,6 +1004,79 @@ def test_cli_moonshot_run_params_testing_run_id(input_params, expectedMsg):
         assert "Error: No such option: -1\n"
     else:
         assert expectedMsg.replace(" ", "") in output_lines
+
+def test_cli_run_benchmarking_run_id_duplicate_id():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_jailbreak"
+    prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
+    dataset_source = "s3-" + dataset_module[len(prefix):]
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)
+    test_config_name = "qa-tests"
+    metric_module = "refusal_adapter"
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + "",
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
+    assert "File written".replace(" ", "") in output_lines
+    assert "successfully at:".replace(" ", "") in output_lines
+    assert "data/results/my-benchm".replace(" ", "") in output_lines
+    assert any("alreadyexistsinthe" in line for line in output_lines)
+    check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
 PARAM_CONNECTOR_EXPECTED_OUTCOME = [
@@ -1262,6 +1606,92 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_mixed_invalid_valid_co
                 "name": nameOfBenchmark1stRunnerName,
                 "type": "benchmark",
                 "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            },
+            {
+                "name": nameOfBenchmark2ndRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_2nd_module+"_fail",
+                "metric": {
+                    "name": metric_module}
+            }
+
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Assert Results
+    output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
+
+    assert "[DatasetLoader] No valid file".replace(" ", "") in output_lines
+    assert "found for".replace(" ", "") in output_lines
+    check_result_file_not_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+def test_cli_moonshot_run_more_than_one_benchmarking_test_all_invalid_valid_config():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    connector_name = "my-gpt-4o-mini"
+    metric_module = "refusal_adapter"
+    test_config_name = "qa-tests"
+    nameOfRunnerName = "test-run-more-than-one-benchmarking-test-mixed-invalid-valid-config-" + str(random_number)
+    # Set Variable for 1st Test
+    dataset_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_obfuscation"
+    prefix = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/"
+    dataset_source = "s3-" + dataset_module[len(prefix):]
+    nameOfBenchmark1stRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + str(random_number)
+    # Set Variable for 2nd Test
+    dataset_2nd_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_role_playing"
+    dataset_2nd_source = "s3-" + dataset_2nd_module[len(prefix):]
+    nameOfBenchmark2ndRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_2nd_source + "-" + str(random_number)
+
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfBenchmark1stRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module+"_fail",
                 "metric": {
                     "name": metric_module}
             },

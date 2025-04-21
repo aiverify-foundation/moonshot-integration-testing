@@ -14,13 +14,20 @@ export async function create_endpoint_steps(page, name, uri, token, model, conne
     await page.getByPlaceholder('Model of the model endpoint').click();
     await page.getByPlaceholder('Model of the model endpoint').fill(model);
     await page.getByText('More Configs').click();
-    if (maxCallPerSec != '') {
+    if (maxCallPerSec != '' && maxCallPerSec != '1') {
         await page.locator('.aiv__input-container').first().click();
         await page.getByRole('option', {name: maxCallPerSec}).click();
+    } else {
+        await page.locator('.aiv__input-container').first().click();
+        await page.getByRole('option', {name: '1', exact: true}).click();
     }
-    if (maxConcurr != '') {
+
+    if (maxConcurr != '' && maxConcurr != '1') {
         await page.locator('div:nth-child(2) > label > .css-fyq6mk-container > .aiv__control > .aiv__value-container > .aiv__input-container').click();
         await page.getByRole('option', {name: maxConcurr}).click();
+    } else {
+        await page.locator('div:nth-child(2) > label > .css-fyq6mk-container > .aiv__control > .aiv__value-container > .aiv__input-container').click();
+        await page.getByRole('option', {name: '1', exact: true}).click();
     }
     await page.getByPlaceholder('Additional parameters').click();
     await page.getByPlaceholder('Additional parameters').fill(otherParams);
@@ -99,6 +106,12 @@ test('test_create_endpoint_with_connectorType_together_connector', async ({page}
     //Create new endpoints
     await create_endpoint_steps(page, 'name_together-connector', 'uri', 'token123', 'gpt-4o', 'together-connector', '3', '2', '{\n      "timeout": 300,\n      "max_attempts": 3,\n      "temperature": 0.5\n        }')
 });
+
+test('test_create_endpoint_with_connectorType_openai_connector', async ({page}) => {
+    //Create new endpoints
+    await create_endpoint_steps(page, 'name_openai-connector', 'uri', 'token123', 'gpt-4o', 'openai-connector', '3', '2', '{\n      "timeout": 300,\n      "max_attempts": 3,\n      "temperature": 0.5\n        }')
+});
+
 test('test_create_endpoint_with_connectorType_anthropic_connector', async ({page}) => {
     //Create new endpoints
     await create_endpoint_steps(page, 'name_anthropic-connector', 'uri', 'token123', 'gpt-4o', 'anthropic-connector', '3', '2', '{\n      "timeout": 300,\n      "max_attempts": 3,\n      "temperature": 0.5\n        }')
@@ -166,6 +179,10 @@ test('test_create_endpoint_check_default_maxCallPerSec&maxConcurr', async ({page
 
 });
 
+test('test_create_endpoint_check_maxCallPerSec_1&maxConcurr_input_10', async ({page}) => {
+    await create_endpoint_steps(page, 'name_azure-openai-connector', 'uri', 'token123', 'gpt-4o', 'azure-openai-connector', '1', '10', '{\n      "timeout": 300,\n      "max_attempts": 3,\n      "temperature": 0.5\n        }')
+
+});
 test('test_create_endpoint_more_config_other_params_empty_json', async ({page}) => {
     await page.goto('http://localhost:3000/endpoints/new');
     await page.getByPlaceholder('Name of the model').click();
@@ -479,8 +496,8 @@ test('test_create_endpoint_more_config_max_attempts_params_special_char', async 
     const expectedErrorMsg1 = page.getByText('Unexpected token \'@\', ..."ttempts": @3, "... is not valid JSON\n')
     const expectedErrorMsg2 = page.getByText('JSON.parse: unexpected character at line 4 column 25 of the JSON data\n')
     const expectedErrorMsg3 = page.getByText('JSON Parse error: Unrecognized token \'@\'\n')
-  // await expect(page.getByText('Unexpected token \'@\', ..."')).toBeVisible();
-  // await expect(page.getByRole('main')).toContainText('Unexpected token \'@\', ..."ttempts": @3, "... is not valid JSON');
+    // await expect(page.getByText('Unexpected token \'@\', ..."')).toBeVisible();
+    // await expect(page.getByRole('main')).toContainText('Unexpected token \'@\', ..."ttempts": @3, "... is not valid JSON');
 
     if (await expectedErrorMsg1.count() > 0) {
         // Error message is found
@@ -545,7 +562,7 @@ test('test_create_endpoint_more_config_temperature_params_string', async ({page}
     await page.getByPlaceholder('Access token for the remote').click();
     await page.getByPlaceholder('Access token for the remote').fill('token');
     await page.getByPlaceholder('Model of the model endpoint').click();
-await page.getByPlaceholder('Model of the model endpoint').fill('gpt-4o');
+    await page.getByPlaceholder('Model of the model endpoint').fill('gpt-4o');
     await page.getByText('More Configs').click();
     await page.locator('.aiv__input-container').first().click();
     await page.getByRole('option', {name: '3'}).click();
@@ -572,7 +589,7 @@ test('test_create_endpoint_more_config_temperature_params_decimal', async ({page
     await page.getByPlaceholder('Access token for the remote').click();
     await page.getByPlaceholder('Access token for the remote').fill('token');
     await page.getByPlaceholder('Model of the model endpoint').click();
-await page.getByPlaceholder('Model of the model endpoint').fill('gpt-4o');
+    await page.getByPlaceholder('Model of the model endpoint').fill('gpt-4o');
     await page.getByText('More Configs').click();
     await page.locator('.aiv__input-container').first().click();
     await page.getByRole('option', {name: '3'}).click();
@@ -598,7 +615,7 @@ test('test_create_endpoint_more_config_temperature_params_special_char', async (
     await page.getByPlaceholder('Access token for the remote').click();
     await page.getByPlaceholder('Access token for the remote').fill('token');
     await page.getByPlaceholder('Model of the model endpoint').click();
-await page.getByPlaceholder('Model of the model endpoint').fill('gpt-4o');
+    await page.getByPlaceholder('Model of the model endpoint').fill('gpt-4o');
     await page.getByText('More Configs').click();
     await page.locator('.aiv__input-container').first().click();
     await page.getByRole('option', {name: '3'}).click();
@@ -624,7 +641,7 @@ test('test_create_endpoint_more_config_temperature_params_empty', async ({page})
     await page.getByPlaceholder('Access token for the remote').click();
     await page.getByPlaceholder('Access token for the remote').fill('token');
     await page.getByPlaceholder('Model of the model endpoint').click();
-await page.getByPlaceholder('Model of the model endpoint').fill('gpt-4o');
+    await page.getByPlaceholder('Model of the model endpoint').fill('gpt-4o');
     await page.getByText('More Configs').click();
     await page.locator('.aiv__input-container').first().click();
     await page.getByRole('option', {name: '3'}).click();
@@ -637,4 +654,44 @@ await page.getByPlaceholder('Model of the model endpoint').fill('gpt-4o');
     //Verify Expected redirection
     await expect.soft(page).toHaveURL(new RegExp('^http://localhost:3000/endpoints'));
 
+});
+
+test('test_edit_endpoint', async ({page}) => {
+    //Set the viewport size
+    await page.setViewportSize({"width": 1024, "height": 768})
+    //Create new endpoints
+    await create_endpoint_steps(page, 'name_azure-openai-connector', 'uri', 'token123', 'gpt-4o', 'azure-openai-connector', '3', '2', '{\n      "timeout": 300,\n      "max_attempts": 3,\n      "temperature": 0.5\n        }')
+    await page.getByRole('link', {name: 'model endpoints'}).click();
+    // Update created endpoints
+    await page.getByRole('link', {name: 'name_azure-openai-connector Type'}).click();
+    await page.getByRole('button', {name: 'Edit Endpoint'}).click();
+    await page.getByRole('textbox', {name: 'Name*'}).click();
+    await page.getByRole('textbox', {name: 'Name*'}).fill('name_together-connector');
+    await page.locator('.aiv__input-container').click();
+    await page.getByRole('option', {name: 'together-connector', exact: true}).click();
+    await page.getByRole('textbox', {name: 'Model'}).click();
+    await page.getByRole('textbox', {name: 'Model'}).fill('gpt-4os');
+    await page.getByRole('textbox', {name: 'URI'}).click();
+    await page.getByRole('textbox', {name: 'URI'}).fill('uris');
+    await page.getByRole('textbox', {name: 'Token*'}).click();
+    await page.getByRole('textbox', {name: 'Token*'}).fill('token_test');
+    await page.getByText('More Configs').click();
+    await page.locator('.aiv__indicator').first().click();
+    await page.getByRole('option', {name: '1', exact: true}).click();
+    await page.locator('label').filter({hasText: 'Max Concurrency2'}).locator('svg').click();
+    await page.getByRole('option', {name: '4'}).click();
+    await page.getByRole('textbox', {name: 'Other Parameters*'}).click();
+    await page.getByRole('textbox', {name: 'Other Parameters*'}).press('ArrowLeft');
+    await page.getByRole('textbox', {name: 'Other Parameters*'}).press('ArrowLeft');
+    await page.getByRole('textbox', {name: 'Other Parameters*'}).fill('{\n  "timeout": 300,\n  "max_attempts": 3,\n  "temperature": 0.6\n}');
+    await page.getByRole('button', {name: 'OK'}).click();
+    await page.getByRole('button', {name: 'Save'}).click();
+
+    // Assert the updated endpoint results
+    await expect(page.locator('body')).toContainText('together-connector');
+    await expect(page.locator('body')).toContainText('uris');
+    await expect(page.locator('body')).toContainText('gpt-4os');
+    await expect(page.locator('body')).toContainText('1');
+    await expect(page.locator('body')).toContainText('4');
+    await expect(page.locator('pre')).toContainText('{ "timeout": 300, "max_attempts": 3, "temperature": 0.6 }');
 });
