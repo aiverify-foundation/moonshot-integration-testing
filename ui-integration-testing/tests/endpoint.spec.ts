@@ -180,7 +180,7 @@ test('test_create_endpoint_with_token_empty', async ({page}) => {
 
 });
 
-test.only('test_create_endpoint_check_default_maxCallPerSec&maxConcurr', async ({page}) => {
+test('test_create_endpoint_check_default_maxCallPerSec&maxConcurr', async ({page}) => {
     await create_endpoint_steps(page, 'name_azure-openai-connector', 'uri', 'token123', 'gpt-4o', 'azure-openai-connector', '', '', '{\n      "timeout": 300,\n      "max_attempts": 3,\n      "temperature": 0.5\n        }')
 
 });
