@@ -459,25 +459,11 @@ test('test_red_teaming_run_two_endpoint', async ({browserName, page}) => {
 //     db.close();
 // });
 
-test('test_red_teaming_view_bookmark', async ({browserName, page}) => {
-    console.log(path.resolve(__dirname, '.env'));
-    // Clear all connection to the SQLite book database
-    const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
-    console.log(`Attempting to kill connections for ${dbFile}`);
-    killSQLiteConnections(dbFile)
-    await page.goto('http://localhost:3000');
-    await page.getByRole('listitem').nth(2).click();
-    await page.getByRole('button', {name: 'View Bookmarks'}).click();
-    await expect(page.locator('h1')).toContainText('Bookmarks');
-    await expect(page.getByRole('button', { name: 'Export Bookmarks' })).toBeVisible();
 
-});
-test('test_red_teaming_add_bookmark', async ({browserName, page}) => {
+test('test_red_teaming_add_bookmark', async ({ browserName,page, browser }) => {
     console.log(path.resolve(__dirname, '.env'))
-    // Clear all connection to the SQLite book database
-    const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
-    console.log(`Attempting to kill connections for ${dbFile}`);
-    killSQLiteConnections(dbFile)
+    const context = await browser.newContext();  // Creates an isolated browser context
+    const newPage = await context.newPage();    // Create a new page within the isolated context
 
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -494,29 +480,29 @@ test('test_red_teaming_add_bookmark', async ({browserName, page}) => {
     const ENDPOINT_NAME: string = "Azure OpenAI " + RND_4_ENDPOINT;
     const RND_4_RUNNER = Math.floor(Math.random() * 1000000000)
     const RUNNER_NAME: string = "Test " + RND_4_RUNNER;
-    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    await create_endpoint_steps(newPage, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
     // Red Teaming
     console.log('Red Teaming')
-    await page.getByRole('listitem').nth(2).click();
-    await page.getByRole('button', {name: 'Start New Session'}).click();
-    await page.getByText(ENDPOINT_NAME!).click();
-    await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Toxic Sentence Generator'}).click();
-    await page.getByLabel('Next View').click();
-    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
-    await page.getByRole('button', {name: 'Run'}).click();
-    await page.getByRole('button', {name: 'Prompt Template'}).click();
-    await page.locator('div').filter({hasText: /^mmlu$/}).click();
-    await page.getByRole('button', {name: 'Use'}).click();
-    await page.getByRole('button', {name: 'Context Strategy'}).click();
-    await page.locator('div').filter({hasText: /^Add Previous Prompt$/}).first().click();
-    await page.getByRole('button', {name: 'Use'}).click();
-    await page.getByPlaceholder('Write a prompt...').click();
-    await page.getByPlaceholder('Write a prompt...').fill('Generate Something');
-    await page.getByRole('button', {name: /send/i}).click();
+    await newPage.getByRole('listitem').nth(2).click();
+    await newPage.getByRole('button', {name: 'Start New Session'}).click();
+    await newPage.getByText(ENDPOINT_NAME!).click();
+    await newPage.getByLabel('Next View').click();
+    await newPage.getByRole('heading', {name: 'Toxic Sentence Generator'}).click();
+    await newPage.getByLabel('Next View').click();
+    await newPage.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await newPage.getByRole('button', {name: 'Run'}).click();
+    await newPage.getByRole('button', {name: 'Prompt Template'}).click();
+    await newPage.locator('div').filter({hasText: /^mmlu$/}).click();
+    await newPage.getByRole('button', {name: 'Use'}).click();
+    await newPage.getByRole('button', {name: 'Context Strategy'}).click();
+    await newPage.locator('div').filter({hasText: /^Add Previous Prompt$/}).first().click();
+    await newPage.getByRole('button', {name: 'Use'}).click();
+    await newPage.getByPlaceholder('Write a prompt...').click();
+    await newPage.getByPlaceholder('Write a prompt...').fill('Generate Something');
+    await newPage.getByRole('button', {name: /send/i}).click();
 
     // Create the locator for the element
-    const elementLocator = page.getByRole('status').locator('div').nth(1);
+    const elementLocator = newPage.getByRole('status').locator('div').nth(1);
 
     // Wait for the element to appear with a custom timeout
     await elementLocator.waitFor({state: 'visible'}); // 60 seconds
@@ -530,39 +516,129 @@ test('test_red_teaming_add_bookmark', async ({browserName, page}) => {
     expect(isVisible).toBeFalsy();
 
 
-    await expect(page.locator('div > li').nth(2)).toBeVisible();
-    await expect(page.locator('div > li').nth(4)).toBeVisible();
-    await expect(page.locator('div > li').nth(7)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(2)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(4)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(7)).toBeVisible();
     // Locate the <h1> element with class "text-right" and text "You"
-    const h1Element = page.locator('h1.text-right').nth(0);
+    const h1Element = newPage.locator('h1.text-right').nth(0);
 
     // Assert that the <h1> element with class "text-right" contains the text "You"
     await expect(h1Element).toBeVisible();
     await expect(h1Element).toHaveText('Automated red teaming agent');
     // Locate the <h1> element with class "text-right" and text "You"
-    const h2Element = page.locator('h1.text-left').nth(0);
+    const h2Element = newPage.locator('h1.text-left').nth(0);
 
     await expect(h2Element).toBeVisible()
     await expect(h2Element).toHaveText('Response');
 
-    await expect(page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
-    await page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
-    await page.getByPlaceholder('Give this bookmark a unique').click();
-    await page.getByPlaceholder('Give this bookmark a unique').fill('bookmark_mark' + RND_4_ENDPOINT);
-    await page.getByRole('button', {name: 'Save'}).click();
-    await expect(page.getByRole('main')).toContainText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was successfully saved.');
-    await page.getByRole('button', {name: 'View Bookmarks'}).click();
-    await page.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
-    await expect(page.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
+    await expect(newPage.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
+    await newPage.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
+    await newPage.getByPlaceholder('Give this bookmark a unique').click();
+    await newPage.getByPlaceholder('Give this bookmark a unique').fill('bookmark_mark' + RND_4_ENDPOINT);
+    await newPage.getByRole('button', {name: 'Save'}).click();
+    await expect(newPage.getByRole('main')).toContainText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was successfully saved.');
+    await newPage.getByRole('button', {name: 'View Bookmarks'}).click();
+    await newPage.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
+    await expect(newPage.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
+    // Clean up by closing the context after the test
+    await context.close();
 
 });
 
-test('test_red_teaming_export_bookmark', async ({browserName, page}) => {
+test('test_red_teaming_view_bookmark', async ({ page, browser }) => {
+    // This ensures a clean state for each test by creating a new context
+    const context = await browser.newContext();  // Creates an isolated browser context
+    const newPage = await context.newPage();    // Create a new page within the isolated context
+    test.setTimeout(1200000); //set test timeout to 1 hour
+    const RND_4_ENDPOINT = Math.floor(Math.random() * 1000000000)
+    const RED_TEAMING_ENDPOINT_NAME: string = "azure-openai-" + RND_4_ENDPOINT;
+    // if (browserName == 'webkit')
+    //     await page.waitForTimeout(60000)
+    // else if (browserName == 'firefox')
+    //     await page.waitForTimeout(30000)
+    const ENDPOINT_NAME: string = "Azure OpenAI " + RND_4_ENDPOINT;
+    const RND_4_RUNNER = Math.floor(Math.random() * 1000000000)
+    const RUNNER_NAME: string = "Test " + RND_4_RUNNER;
+    await create_endpoint_steps(newPage, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    // Red Teaming
+    console.log('Red Teaming')
+    await newPage.getByRole('listitem').nth(2).click();
+    await newPage.getByRole('button', {name: 'Start New Session'}).click();
+    await newPage.getByText(ENDPOINT_NAME!).click();
+    await newPage.getByLabel('Next View').click();
+    await newPage.getByRole('heading', {name: 'Toxic Sentence Generator'}).click();
+    await newPage.getByLabel('Next View').click();
+    await newPage.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await newPage.getByRole('button', {name: 'Run'}).click();
+    await newPage.getByRole('button', {name: 'Prompt Template'}).click();
+    await newPage.locator('div').filter({hasText: /^mmlu$/}).click();
+    await newPage.getByRole('button', {name: 'Use'}).click();
+    await newPage.getByRole('button', {name: 'Context Strategy'}).click();
+    await newPage.locator('div').filter({hasText: /^Add Previous Prompt$/}).first().click();
+    await newPage.getByRole('button', {name: 'Use'}).click();
+    await newPage.getByPlaceholder('Write a prompt...').click();
+    await newPage.getByPlaceholder('Write a prompt...').fill('Generate Something');
+    await newPage.getByRole('button', {name: /send/i}).click();
 
-    // Clear all connection to the SQLite book database
-    const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
-    console.log(`Attempting to kill connections for ${dbFile}`);
-    killSQLiteConnections(dbFile)
+    // Create the locator for the element
+    const elementLocator = newPage.getByRole('status').locator('div').nth(1);
+
+    // Wait for the element to appear with a custom timeout
+    await elementLocator.waitFor({state: 'visible'}); // 60 seconds
+
+    // Optionally, perform any actions or wait for the element to disappear
+    await elementLocator.waitFor({state: 'hidden', timeout: 240000});
+
+
+    // Assert that the element is no longer visible
+    const isVisible = await elementLocator.isVisible();
+    expect(isVisible).toBeFalsy();
+
+
+    await expect(newPage.locator('div > li').nth(2)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(4)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(7)).toBeVisible();
+    // Locate the <h1> element with class "text-right" and text "You"
+    const h1Element = newPage.locator('h1.text-right').nth(0);
+
+    // Assert that the <h1> element with class "text-right" contains the text "You"
+    await expect(h1Element).toBeVisible();
+    await expect(h1Element).toHaveText('Automated red teaming agent');
+    // Locate the <h1> element with class "text-right" and text "You"
+    const h2Element = newPage.locator('h1.text-left').nth(0);
+
+    await expect(h2Element).toBeVisible()
+    await expect(h2Element).toHaveText('Response');
+
+    await expect(newPage.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
+    await newPage.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
+    await newPage.getByPlaceholder('Give this bookmark a unique').click();
+    await newPage.getByPlaceholder('Give this bookmark a unique').fill('bookmark_mark' + RND_4_ENDPOINT);
+    await newPage.getByRole('button', {name: 'Save'}).click();
+    await expect(newPage.getByRole('main')).toContainText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was successfully saved.');
+    await newPage.getByRole('button', {name: 'View Bookmarks'}).click();
+    await newPage.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
+    await expect(newPage.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
+    // Navigate to the desired page
+    console.log(path.resolve(__dirname, '.env'));
+    await newPage.goto('http://localhost:3000/endpoints/new');
+
+    // Perform the actions you want to test
+    await newPage.getByRole('listitem').nth(2).click();
+    await newPage.getByRole('button', { name: 'View Bookmarks' }).click();
+
+    // Assertions
+    await expect(newPage.locator('h1')).toContainText('Bookmarks');
+    await expect(newPage.getByRole('button', { name: 'Export Bookmarks' })).toBeVisible();
+
+    // Clean up by closing the context after the test
+    await context.close();
+});
+
+test('test_red_teaming_export_bookmark', async ({browserName, page,browser}) => {
+
+    const context = await browser.newContext();  // Creates an isolated browser context
+    const newPage = await context.newPage();    // Create a new page within the isolated context
 
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -579,29 +655,29 @@ test('test_red_teaming_export_bookmark', async ({browserName, page}) => {
     const ENDPOINT_NAME: string = "Azure OpenAI " + RND_4_ENDPOINT;
     const RND_4_RUNNER = Math.floor(Math.random() * 1000000000)
     const RUNNER_NAME: string = "Test " + RND_4_RUNNER;
-    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    await create_endpoint_steps(newPage, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
     // Red Teaming
     console.log('Red Teaming')
-    await page.getByRole('listitem').nth(2).click();
-    await page.getByRole('button', {name: 'Start New Session'}).click();
-    await page.getByText(ENDPOINT_NAME!).click();
-    await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Toxic Sentence Generator'}).click();
-    await page.getByLabel('Next View').click();
-    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
-    await page.getByRole('button', {name: 'Run'}).click();
-    await page.getByRole('button', {name: 'Prompt Template'}).click();
-    await page.locator('div').filter({hasText: /^mmlu$/}).click();
-    await page.getByRole('button', {name: 'Use'}).click();
-    await page.getByRole('button', {name: 'Context Strategy'}).click();
-    await page.locator('div').filter({hasText: /^Add Previous Prompt$/}).first().click();
-    await page.getByRole('button', {name: 'Use'}).click();
-    await page.getByPlaceholder('Write a prompt...').click();
-    await page.getByPlaceholder('Write a prompt...').fill('Generate Something');
-    await page.getByRole('button', {name: /send/i}).click();
+    await newPage.getByRole('listitem').nth(2).click();
+    await newPage.getByRole('button', {name: 'Start New Session'}).click();
+    await newPage.getByText(ENDPOINT_NAME!).click();
+    await newPage.getByLabel('Next View').click();
+    await newPage.getByRole('heading', {name: 'Toxic Sentence Generator'}).click();
+    await newPage.getByLabel('Next View').click();
+    await newPage.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await newPage.getByRole('button', {name: 'Run'}).click();
+    await newPage.getByRole('button', {name: 'Prompt Template'}).click();
+    await newPage.locator('div').filter({hasText: /^mmlu$/}).click();
+    await newPage.getByRole('button', {name: 'Use'}).click();
+    await newPage.getByRole('button', {name: 'Context Strategy'}).click();
+    await newPage.locator('div').filter({hasText: /^Add Previous Prompt$/}).first().click();
+    await newPage.getByRole('button', {name: 'Use'}).click();
+    await newPage.getByPlaceholder('Write a prompt...').click();
+    await newPage.getByPlaceholder('Write a prompt...').fill('Generate Something');
+    await newPage.getByRole('button', {name: /send/i}).click();
 
     // Create the locator for the element
-    const elementLocator = page.getByRole('status').locator('div').nth(1);
+    const elementLocator = newPage.getByRole('status').locator('div').nth(1);
 
     // Wait for the element to appear with a custom timeout
     await elementLocator.waitFor({state: 'visible'}); // 60 seconds
@@ -615,40 +691,39 @@ test('test_red_teaming_export_bookmark', async ({browserName, page}) => {
     expect(isVisible).toBeFalsy();
 
 
-    await expect(page.locator('div > li').nth(2)).toBeVisible();
-    await expect(page.locator('div > li').nth(4)).toBeVisible();
-    await expect(page.locator('div > li').nth(7)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(2)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(4)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(7)).toBeVisible();
     // Locate the <h1> element with class "text-right" and text "You"
-    const h1Element = page.locator('h1.text-right').nth(0);
+    const h1Element = newPage.locator('h1.text-right').nth(0);
 
     // Assert that the <h1> element with class "text-right" contains the text "You"
     await expect(h1Element).toBeVisible();
     await expect(h1Element).toHaveText('Automated red teaming agent');
     // Locate the <h1> element with class "text-right" and text "You"
-    const h2Element = page.locator('h1.text-left').nth(0);
+    const h2Element = newPage.locator('h1.text-left').nth(0);
 
     await expect(h2Element).toBeVisible()
     await expect(h2Element).toHaveText('Response');
 
-    await expect(page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
-    await page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
-    await page.getByPlaceholder('Give this bookmark a unique').click();
-    await page.getByPlaceholder('Give this bookmark a unique').fill('bookmark_mark' + RND_4_ENDPOINT);
-    await page.getByRole('button', {name: 'Save'}).click();
-    await expect(page.getByText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was')).toBeVisible();
-    await page.getByRole('button', {name: 'View Bookmarks'}).click();
-    await expect(page.getByRole('list')).toContainText('bookmark_mark' + RND_4_ENDPOINT);
-    await page.getByRole('button', {name: 'Export Bookmarks'}).click();
+    await expect(newPage.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
+    await newPage.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
+    await newPage.getByPlaceholder('Give this bookmark a unique').click();
+    await newPage.getByPlaceholder('Give this bookmark a unique').fill('bookmark_mark' + RND_4_ENDPOINT);
+    await newPage.getByRole('button', {name: 'Save'}).click();
+    await expect(newPage.getByText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was')).toBeVisible();
+    await newPage.getByRole('button', {name: 'View Bookmarks'}).click();
+    await expect(newPage.getByRole('list')).toContainText('bookmark_mark' + RND_4_ENDPOINT);
+    await newPage.getByRole('button', {name: 'Export Bookmarks'}).click();
 
-
+    await context.close();
 });
 
-test('test_red_teaming_use_bookmark', async ({browserName, page}) => {
+test('test_red_teaming_use_bookmark', async ({browserName, page,browser}) => {
+
+    const context = await browser.newContext();  // Creates an isolated browser context
+    const newPage = await context.newPage();    // Create a new page within the isolated context
     console.log(path.resolve(__dirname, '.env'))
-    // Clear all connection to the SQLite book database
-    const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
-    console.log(`Attempting to kill connections for ${dbFile}`);
-    killSQLiteConnections(dbFile)
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
     // Check if the browser is WebKit
@@ -664,29 +739,29 @@ test('test_red_teaming_use_bookmark', async ({browserName, page}) => {
     const ENDPOINT_NAME: string = "Azure OpenAI " + RND_4_ENDPOINT;
     const RND_4_RUNNER = Math.floor(Math.random() * 1000000000)
     const RUNNER_NAME: string = "Test " + RND_4_RUNNER;
-    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    await create_endpoint_steps(newPage, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
     // Red Teaming
     console.log('Red Teaming')
-    await page.getByRole('listitem').nth(2).click();
-    await page.getByRole('button', {name: 'Start New Session'}).click();
-    await page.getByText(ENDPOINT_NAME!).click();
-    await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Toxic Sentence Generator'}).click();
-    await page.getByLabel('Next View').click();
-    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
-    await page.getByRole('button', {name: 'Run'}).click();
-    await page.getByRole('button', {name: 'Prompt Template'}).click();
-    await page.locator('div').filter({hasText: /^mmlu$/}).click();
-    await page.getByRole('button', {name: 'Use'}).click();
-    await page.getByRole('button', {name: 'Context Strategy'}).click();
-    await page.locator('div').filter({hasText: /^Add Previous Prompt$/}).first().click();
-    await page.getByRole('button', {name: 'Use'}).click();
-    await page.getByPlaceholder('Write a prompt...').click();
-    await page.getByPlaceholder('Write a prompt...').fill('Generate Something');
-    await page.getByRole('button', {name: /send/i}).click();
+    await newPage.getByRole('listitem').nth(2).click();
+    await newPage.getByRole('button', {name: 'Start New Session'}).click();
+    await newPage.getByText(ENDPOINT_NAME!).click();
+    await newPage.getByLabel('Next View').click();
+    await newPage.getByRole('heading', {name: 'Toxic Sentence Generator'}).click();
+    await newPage.getByLabel('Next View').click();
+    await newPage.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await newPage.getByRole('button', {name: 'Run'}).click();
+    await newPage.getByRole('button', {name: 'Prompt Template'}).click();
+    await newPage.locator('div').filter({hasText: /^mmlu$/}).click();
+    await newPage.getByRole('button', {name: 'Use'}).click();
+    await newPage.getByRole('button', {name: 'Context Strategy'}).click();
+    await newPage.locator('div').filter({hasText: /^Add Previous Prompt$/}).first().click();
+    await newPage.getByRole('button', {name: 'Use'}).click();
+    await newPage.getByPlaceholder('Write a prompt...').click();
+    await newPage.getByPlaceholder('Write a prompt...').fill('Generate Something');
+    await newPage.getByRole('button', {name: /send/i}).click();
 
     // Create the locator for the element
-    let elementLocator = page.getByRole('status').locator('div').nth(1);
+    let elementLocator = newPage.getByRole('status').locator('div').nth(1);
 
     // Wait for the element to appear with a custom timeout
     await elementLocator.waitFor({state: 'visible'}); // 60 seconds
@@ -700,35 +775,35 @@ test('test_red_teaming_use_bookmark', async ({browserName, page}) => {
     expect(isVisible).toBeFalsy();
 
 
-    await expect(page.locator('div > li').nth(2)).toBeVisible();
-    await expect(page.locator('div > li').nth(4)).toBeVisible();
-    await expect(page.locator('div > li').nth(7)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(2)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(4)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(7)).toBeVisible();
     // Locate the <h1> element with class "text-right" and text "You"
-    let h1Element = page.locator('h1.text-right').nth(0);
+    let h1Element = newPage.locator('h1.text-right').nth(0);
 
     // Assert that the <h1> element with class "text-right" contains the text "You"
     await expect(h1Element).toBeVisible();
     await expect(h1Element).toHaveText('Automated red teaming agent');
     // Locate the <h1> element with class "text-right" and text "You"
-    let h2Element = page.locator('h1.text-left').nth(0);
+    let h2Element = newPage.locator('h1.text-left').nth(0);
 
     await expect(h2Element).toBeVisible()
     await expect(h2Element).toHaveText('Response');
 
-    await expect(page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
-    await page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
-    await page.getByPlaceholder('Give this bookmark a unique').click();
-    await page.getByPlaceholder('Give this bookmark a unique').fill('bookmark_mark' + RND_4_ENDPOINT);
-    await page.getByRole('button', {name: 'Save'}).click();
-    await expect(page.getByText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was')).toBeVisible();
-    await page.getByRole('button', {name: 'View Bookmarks'}).click();
-    await page.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
-    await expect(page.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
+    await expect(newPage.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
+    await newPage.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
+    await newPage.getByPlaceholder('Give this bookmark a unique').click();
+    await newPage.getByPlaceholder('Give this bookmark a unique').fill('bookmark_mark' + RND_4_ENDPOINT);
+    await newPage.getByRole('button', {name: 'Save'}).click();
+    await expect(newPage.getByText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was')).toBeVisible();
+    await newPage.getByRole('button', {name: 'View Bookmarks'}).click();
+    await newPage.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
+    await expect(newPage.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
 
     //Use bookmark and verify red teaming session will rerun again
-    await page.getByRole('button', {name: 'Use'}).click();
+    await newPage.getByRole('button', {name: 'Use'}).click();
     // Create the locator for the element
-    elementLocator = page.getByRole('status').locator('div').nth(1);
+    elementLocator = newPage.getByRole('status').locator('div').nth(1);
 
     // Wait for the element to appear with a custom timeout
     await elementLocator.waitFor({state: 'visible'}); // 60 seconds
@@ -742,21 +817,21 @@ test('test_red_teaming_use_bookmark', async ({browserName, page}) => {
     expect(isVisible).toBeFalsy();
 
 
-    await expect(page.locator('div > li').nth(2)).toBeVisible();
-    await expect(page.locator('div > li').nth(4)).toBeVisible();
-    await expect(page.locator('div > li').nth(7)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(2)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(4)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(7)).toBeVisible();
     // Locate the <h1> element with class "text-right" and text "You"
-    h1Element = page.locator('h1.text-right').nth(0);
+    h1Element = newPage.locator('h1.text-right').nth(0);
 
     // Assert that the <h1> element with class "text-right" contains the text "You"
     await expect(h1Element).toBeVisible();
     await expect(h1Element).toHaveText('Automated red teaming agent');
     // Locate the <h1> element with class "text-right" and text "You"
-    h2Element = page.locator('h1.text-left').nth(0);
+    h2Element = newPage.locator('h1.text-left').nth(0);
 
     await expect(h2Element).toBeVisible()
     await expect(h2Element).toHaveText('Response');
-
+    await context.close();
 
 });
 
