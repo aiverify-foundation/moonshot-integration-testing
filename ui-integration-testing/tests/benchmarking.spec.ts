@@ -416,10 +416,8 @@ test('test_benchmarking_one_endpoint_cookbook_legal-summarisation', async ({brow
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_mlc-ai-safety', async ({browserName, page, browser}) => {
+test('test_benchmarking_one_endpoint_cookbook_mlc-ai-safety', async ({browserName, page}) => {
     test.setTimeout(5000000);
-    const context = await browser.newContext();  // Creates an isolated browser context
-    const newPage = await context.newPage();    // Create a new page within the isolated context
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
@@ -427,40 +425,38 @@ test('test_benchmarking_one_endpoint_cookbook_mlc-ai-safety', async ({browserNam
     ////////////////////////////////////////////////////////////////////////////
     // Benchmarking
     console.log('Benchmarking')
-    await create_endpoint_steps(newPage, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
-    await newPage.getByRole('listitem').nth(1).click();
-    await newPage.getByRole('button', {name: 'Start New Run'}).click();
-    await newPage.getByLabel('Select ' + ENDPOINT_NAME).check();
-    await newPage.getByLabel('Next View').click();
-    await newPage.getByRole('button', {name: 'Trust & Safety'}).click();
-    await newPage.getByLabel('Select mlc-ai-safety').check();
-    await newPage.getByLabel('Next View').click();
+    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    await page.getByRole('listitem').nth(1).click();
+    await page.getByRole('button', {name: 'Start New Run'}).click();
+    await page.getByLabel('Select ' + ENDPOINT_NAME).check();
+    await page.getByLabel('Next View').click();
+    await page.getByRole('button', {name: 'Trust & Safety'}).click();
+    await page.getByLabel('Select mlc-ai-safety').check();
+    await page.getByLabel('Next View').click();
 
     //Edit Endpoint
     // const TOGETHER_ENDPOINT_NAME: string = "Together Llama Guard 7B Assistant";
     // await page.locator('li').filter({hasText: TOGETHER_ENDPOINT_NAME + "Added"}).getByRole('button').click();
-    await newPage.getByRole('button', {name: 'Configure'}).click();
-    await newPage.getByPlaceholder('Access token for the remote').fill(process.env.TOGETHER_TOKEN);
-    await newPage.getByRole('button', {name: 'Save'}).click();
+    await page.getByRole('button', {name: 'Configure'}).click();
+    await page.getByPlaceholder('Access token for the remote').fill(process.env.TOGETHER_TOKEN);
+    await page.getByRole('button', {name: 'Save'}).click();
     //////////////////////////////////////////////////
-    await newPage.getByLabel('Next View').click();
-    await newPage.getByPlaceholder('Give this session a unique').click();
-    await newPage.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
-    await newPage.getByRole('button', {name: 'Run'}).click();
+    await page.getByLabel('Next View').click();
+    await page.getByPlaceholder('Give this session a unique').click();
+    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await page.getByRole('button', {name: 'Run'}).click();
     ////////////////////////////////////////////////////////////////////////////
-    await expect(newPage.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 4000000})
+    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 4000000})
     //Check Detailss
-    await newPage.getByRole('button', {name: 'See Details'}).click();
-    await expect(newPage.getByText("Name:" + RUNNER_NAME)).toBeVisible();
-    await expect(newPage.getByText('Description:')).toBeVisible();
-    await expect(newPage.getByText('Number of prompts to run:426')).toBeVisible();
-    await newPage.getByRole('main').getByRole('img').nth(1).click();
+    await page.getByRole('button', {name: 'See Details'}).click();
+    await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
+    await expect(page.getByText('Description:')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:426')).toBeVisible();
+    await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
-    await newPage.getByRole('button', {name: 'View Report'}).click();
-    await newPage.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
-    await newPage.getByText(/back to home/i).click()
-    // Clean up by closing the context after the test
-    await context.close();
+    await page.getByRole('button', {name: 'View Report'}).click();
+    await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
+    await page.getByText(/back to home/i).click()
 
 });
 
@@ -917,9 +913,7 @@ test('test_benchmarking_run_with_two_cookbook_standard', async ({browserName, pa
     await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 });
-test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', async ({browserName, page, browser}) => {
-    const context = await browser.newContext();  // Creates an isolated browser context
-    const newPage = await context.newPage();    // Create a new page within the isolated context
+test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', async ({browserName, page}) => {
     test.setTimeout(5000000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -927,49 +921,47 @@ test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', async ({b
     test.skip(browserName === 'firefox', 'This test is skipped on WebKit');
     const TOGETHER_ENDPOINT_NAME: string = "Together Llama Guard 7B Assistant";
     const RUNNER_NAME: string = "Test " + Math.floor(Math.random() * 1000000000);
-    await newPage.goto('http://localhost:3000/');
-    await newPage.getByRole('listitem').nth(1).click();
-    await newPage.getByRole('button', {name: 'Start New Run'}).click();
+    await page.goto('http://localhost:3000/');
+    await page.getByRole('listitem').nth(1).click();
+    await page.getByRole('button', {name: 'Start New Run'}).click();
     /////////////////////////////////////////////////////////////////////////////////////
     const ENDPOINT_NAME: string = 'Azure OpenAI GPT4o';
     //Edit Endpoint
-    await newPage.locator('li').filter({hasText: ENDPOINT_NAME + "Added"}).getByRole('button').click();
-    await newPage.getByPlaceholder('URI of the remote model').fill(process.env.URI);
-    await newPage.getByPlaceholder('Access token for the remote').fill(process.env.TOKEN);
-    await newPage.getByRole('button', {name: 'Save'}).click();
+    await page.locator('li').filter({hasText: ENDPOINT_NAME + "Added"}).getByRole('button').click();
+    await page.getByPlaceholder('URI of the remote model').fill(process.env.URI);
+    await page.getByPlaceholder('Access token for the remote').fill(process.env.TOKEN);
+    await page.getByRole('button', {name: 'Save'}).click();
     /////////////////////////////////////////////////////////////////////////////////////
-    await newPage.getByLabel('Select ' + ENDPOINT_NAME, {exact: true}).check();
-    await newPage.getByLabel('Next View').click();
-    await newPage.getByLabel('Select singapore-context').check();
-    await newPage.getByRole('button', {name: 'Trust & Safety'}).click();
-    await newPage.getByLabel('Select mlc-ai-safety').check();
+    await page.getByLabel('Select ' + ENDPOINT_NAME, {exact: true}).check();
+    await page.getByLabel('Next View').click();
+    await page.getByLabel('Select singapore-context').check();
+    await page.getByRole('button', {name: 'Trust & Safety'}).click();
+    await page.getByLabel('Select mlc-ai-safety').check();
 
-    await newPage.getByLabel('Next View').click();
+    await page.getByLabel('Next View').click();
 
     //Edit Endpoint
     // await page.locator('li').filter({hasText: TOGETHER_ENDPOINT_NAME + "Added"}).getByRole('button').click();
-    await newPage.getByRole('button', {name: 'Configure'}).click();
-    await newPage.getByPlaceholder('Access token for the remote').fill(process.env.TOGETHER_TOKEN);
-    await newPage.getByRole('button', {name: 'Save'}).click();
+    await page.getByRole('button', {name: 'Configure'}).click();
+    await page.getByPlaceholder('Access token for the remote').fill(process.env.TOGETHER_TOKEN);
+    await page.getByRole('button', {name: 'Save'}).click();
     // //////////////////////////////////////////////////
 
-    await newPage.getByLabel('Next View').click();
-    await newPage.getByPlaceholder('Give this session a unique').click();
-    await newPage.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
-    await newPage.getByRole('button', {name: 'Run'}).click();
-    await expect(newPage.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 4000000})
+    await page.getByLabel('Next View').click();
+    await page.getByPlaceholder('Give this session a unique').click();
+    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await page.getByRole('button', {name: 'Run'}).click();
+    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 4000000})
     //Check Details
-    await newPage.getByRole('button', {name: 'See Details'}).click();
-    await expect(newPage.getByText("Name:" + RUNNER_NAME)).toBeVisible();
-    await expect(newPage.getByText('Description:')).toBeVisible();
+    await page.getByRole('button', {name: 'See Details'}).click();
+    await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
+    await expect(page.getByText('Description:')).toBeVisible();
     // await expect(page.getByText('Number of prompts to run:427')).toBeVisible();
-    await newPage.getByRole('main').getByRole('img').nth(1).click();
+    await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
-    await newPage.getByRole('button', {name: 'View Report'}).click();
-    await newPage.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
-    await newPage.getByText(/back to home/i).click()
-     // Clean up by closing the context after the test
-    await context.close();
+    await page.getByRole('button', {name: 'View Report'}).click();
+    await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
+    await page.getByText(/back to home/i).click()
 });
 
 test('test_benchmarking_run_with_zero_cookbook_step', async ({browserName, page}) => {
