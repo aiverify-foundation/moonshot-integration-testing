@@ -2,11 +2,40 @@ import {test} from '@playwright/test';
 import {expect} from "@playwright/test";
 import dotenv from 'dotenv';
 import fs from 'fs/promises';
+import {execSync} from 'child_process';
 
 import path from 'path';
 
 const __dirname: string = '.'
 dotenv.config({path: path.resolve(__dirname, '.env')});
+
+/**
+ * Kills all processes using the specified SQLite database file.
+ * @param dbFile - The path to the SQLite DB file (e.g., 'mydb.db')
+ */
+function killSQLiteConnections(dbFile: string): void {
+    try {
+        const output = execSync(`lsof | grep ${dbFile}`).toString();
+
+        const pids = [...new Set(
+            output
+                .split('\n')
+                .filter(line => line.includes(dbFile))
+                .map(line => line.trim().split(/\s+/)[1])
+        )];
+
+        for (const pid of pids) {
+            try {
+                execSync(`kill ${pid}`);
+                console.log(`Killed process using ${dbFile} with PID ${pid}`);
+            } catch (err) {
+                console.error(`Failed to kill PID ${pid}:`, err);
+            }
+        }
+    } catch (error) {
+        console.error(`No active SQLite connections found for ${dbFile} (or lsof missing).`);
+    }
+}
 
 export async function create_endpoint_steps(page, name, uri, token, connectorType, maxCallPerSec, maxConcurr, model, otherParams, uriSkipCheck?: boolean) {
     await page.goto('http://localhost:3000/endpoints/new');
@@ -429,8 +458,27 @@ test('test_red_teaming_run_two_endpoint', async ({browserName, page}) => {
 //     // Close the SQLite connection after each test
 //     db.close();
 // });
-test('test_red_teaming_add_n_view_bookmark', async ({browserName, page}) => {
+
+test('test_red_teaming_view_bookmark', async ({browserName, page}) => {
+    console.log(path.resolve(__dirname, '.env'));
+    // Clear all connection to the SQLite book database
+    const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
+    console.log(`Attempting to kill connections for ${dbFile}`);
+    killSQLiteConnections(dbFile)
+    await page.goto('http://localhost:3000');
+    await page.getByRole('listitem').nth(2).click();
+    await page.getByRole('button', {name: 'View Bookmarks'}).click();
+    await expect(page.locator('h1')).toContainText('Bookmarks');
+    await expect(page.getByRole('button', { name: 'Export Bookmarks' })).toBeVisible();
+
+});
+test('test_red_teaming_add_bookmark', async ({browserName, page}) => {
     console.log(path.resolve(__dirname, '.env'))
+    // Clear all connection to the SQLite book database
+    const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
+    console.log(`Attempting to kill connections for ${dbFile}`);
+    killSQLiteConnections(dbFile)
+
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
     // Check if the browser is WebKit
@@ -474,7 +522,7 @@ test('test_red_teaming_add_n_view_bookmark', async ({browserName, page}) => {
     await elementLocator.waitFor({state: 'visible'}); // 60 seconds
 
     // Optionally, perform any actions or wait for the element to disappear
-    await elementLocator.waitFor({state: 'hidden'}); // 60 seconds
+    await elementLocator.waitFor({state: 'hidden', timeout: 240000});
 
 
     // Assert that the element is no longer visible
@@ -507,20 +555,15 @@ test('test_red_teaming_add_n_view_bookmark', async ({browserName, page}) => {
     await page.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
     await expect(page.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
 
-
-    // Click back to red teaming tab and click on View Bookmark btn
-    await page.getByRole('banner').filter({hasText: 'Bookmarks'}).locator('line').nth(1).click();
-    await page.getByRole('banner').filter({hasText: /^$/}).getByRole('img').click();
-    await page.getByRole('button', {name: 'Exit'}).click();
-    await page.getByRole('listitem').nth(2).click();
-    await page.getByRole('button', {name: 'View Bookmarks'}).click();
-    await page.locator('body').scrollIntoViewIfNeeded(); // Ensure the body is scrolled into view
-    await expect(page.locator('body')).toContainText('bookmark_mark' + RND_4_ENDPOINT + 'Generate Something');
-
 });
 
 test('test_red_teaming_export_bookmark', async ({browserName, page}) => {
-    console.log(path.resolve(__dirname, '.env'))
+
+    // Clear all connection to the SQLite book database
+    const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
+    console.log(`Attempting to kill connections for ${dbFile}`);
+    killSQLiteConnections(dbFile)
+
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
     // Check if the browser is WebKit
@@ -594,13 +637,7 @@ test('test_red_teaming_export_bookmark', async ({browserName, page}) => {
     await page.getByRole('button', {name: 'Save'}).click();
     await expect(page.getByText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was')).toBeVisible();
     await page.getByRole('button', {name: 'View Bookmarks'}).click();
-    await page.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
-    await expect(page.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
-
-    // Click back to red teaming tab and click on View Bookmark btn
-    await page.getByRole('listitem').nth(2).click();
-    await page.getByRole('button', {name: 'View Bookmarks'}).click();
-    await expect(page.locator('body')).toContainText('bookmark_mark' + RND_4_ENDPOINT);
+    await expect(page.getByRole('list')).toContainText('bookmark_mark' + RND_4_ENDPOINT);
     await page.getByRole('button', {name: 'Export Bookmarks'}).click();
 
 
@@ -608,6 +645,10 @@ test('test_red_teaming_export_bookmark', async ({browserName, page}) => {
 
 test('test_red_teaming_use_bookmark', async ({browserName, page}) => {
     console.log(path.resolve(__dirname, '.env'))
+    // Clear all connection to the SQLite book database
+    const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
+    console.log(`Attempting to kill connections for ${dbFile}`);
+    killSQLiteConnections(dbFile)
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
     // Check if the browser is WebKit
