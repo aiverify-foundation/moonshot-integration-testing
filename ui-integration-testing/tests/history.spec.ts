@@ -134,7 +134,7 @@ test('test_history_tab_view_past_runs_btn_view_past_run_btn', async ({browserNam
     await page.goto('http://localhost:3000');
     await page.getByRole('listitem').nth(3).click();
     await page.getByRole('button', {name: 'View Past Runs'}).click();
-    await page.getByRole('heading', { name: 'Test ' + ENDPOINT_NAME_RAND }).waitFor({ state: 'visible' });
+    await page.getByRole('heading', { name: 'Test ' + ENDPOINT_NAME_RAND }).scrollIntoViewIfNeeded();
     await page.getByRole('heading', {name: 'Test ' + ENDPOINT_NAME_RAND}).click();
     await page.getByRole('button', {name: 'View Results'}).click();
     await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
@@ -161,7 +161,7 @@ test('test_history_tab_view_past_session_btn_view_past_session_btn', async ({bro
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('listitem').filter({hasText: 'Sample Attack ModuleThis is a'}).nth(1).click();
+    await page.getByRole('heading', { name: 'Sample Attack Module' }).nth(1).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();

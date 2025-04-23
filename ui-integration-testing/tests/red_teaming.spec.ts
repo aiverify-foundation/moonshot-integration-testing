@@ -823,7 +823,7 @@ test('test_red_teaming_with_attack_module_malicious_question_generator', async (
     await expect(h2Element).toHaveText('Response');
 
 });
-test('test_red_teaming_with_attack_module_sample_attack_module', async ({browserName, page}) => {
+test.only('test_red_teaming_with_attack_module_sample_attack_module', async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -844,7 +844,7 @@ test('test_red_teaming_with_attack_module_sample_attack_module', async ({browser
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('listitem').filter({hasText: 'Sample Attack ModuleThis is a'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
@@ -1331,7 +1331,7 @@ test('test_red_teaming_with_attack_module_description_not_empty', async ({browse
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('listitem').filter({hasText: 'Sample Attack ModuleThis is a'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('textbox', {name: 'Description (optional)'}).click();
@@ -1398,7 +1398,7 @@ test('test_red_teaming_with_attack_module_runner_name_empty', async ({browserNam
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('listitem').filter({hasText: 'Sample Attack ModuleThis is a'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
     await page.getByLabel('Next View').click();
     // await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     // await page.getByRole('button', {name: 'Run'}).click();
@@ -1428,7 +1428,7 @@ test('test_red_teaming_with_attack_module_runner_name_integer', async ({browserN
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('listitem').filter({hasText: 'Sample Attack ModuleThis is a'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     const runButton = await page.getByRole('button', {name: 'Run'});
@@ -1457,7 +1457,7 @@ test('test_red_teaming_with_attack_module_runner_name_decimal', async ({browserN
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('listitem').filter({hasText: 'Sample Attack ModuleThis is a'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     const runButton = await page.getByRole('button', {name: 'Run'});
@@ -1486,7 +1486,7 @@ test('test_red_teaming_with_attack_module_runner_name_special_char', async ({bro
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('listitem').filter({hasText: 'Sample Attack ModuleThis is a'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     const runButton = await page.getByRole('button', {name: 'Run'});
@@ -1654,7 +1654,7 @@ test('test_red_teaming_start_new_session_test_a_new_endpoint_btn', async ({brows
 
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('listitem').filter({hasText: 'Sample Attack ModuleThis is a'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
@@ -1719,7 +1719,7 @@ test('test_red_teaming_start_new_session_create_new_endpoint_btn', async ({brows
 
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('listitem').filter({hasText: 'Sample Attack ModuleThis is a'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
@@ -1775,7 +1775,7 @@ test('test_red_teaming_view_past_new_session_btn_start_new_session_btn', async (
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('listitem').filter({hasText: 'Sample Attack ModuleThis is a'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
@@ -1838,7 +1838,7 @@ test('test_red_teaming_view_past_new_session_btn_start_resume_session_btn', asyn
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('listitem').filter({hasText: 'Sample Attack ModuleThis is a'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
@@ -1902,7 +1902,7 @@ test('test_red_teaming_view_attack_modules_btn', async ({browserName, page}) => 
 
 });
 
-test('test_red_teaming_add_bookmark', async ({ browserName,page, browser }) => {
+test('test_red_teaming_add_bookmark', async ({browserName, page, browser}) => {
     console.log(path.resolve(__dirname, '.env'))
     const context = await browser.newContext();  // Creates an isolated browser context
     const newPage = await context.newPage();    // Create a new page within the isolated context
@@ -1944,7 +1944,7 @@ test('test_red_teaming_add_bookmark', async ({ browserName,page, browser }) => {
     await newPage.getByRole('button', {name: /send/i}).click();
 
     // Create the locator for the element
-    const elementLocator = newPage.getByRole('status').locator('div').nth(1);
+    let elementLocator = newPage.getByRole('status').locator('div').nth(1);
 
     // Wait for the element to appear with a custom timeout
     await elementLocator.waitFor({state: 'visible'}); // 60 seconds
@@ -1982,6 +1982,46 @@ test('test_red_teaming_add_bookmark', async ({ browserName,page, browser }) => {
     await newPage.getByRole('button', {name: 'View Bookmarks'}).click();
     await newPage.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
     await expect(newPage.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
+    await newPage.goto('http://localhost:3000/endpoints/new');
+
+    // Perform the actions you want to test
+    await newPage.getByRole('listitem').nth(2).click();
+    await newPage.getByRole('button', {name: 'View Bookmarks'}).click();
+
+    await newPage.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
+    await expect(newPage.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
+
+    //Use bookmark and verify red teaming session will rerun again
+    await newPage.getByRole('button', {name: 'Use'}).click();
+    // Create the locator for the element
+    elementLocator = newPage.getByRole('status').locator('div').nth(1);
+
+    // Wait for the element to appear with a custom timeout
+    await elementLocator.waitFor({state: 'visible'}); // 60 seconds
+
+    // Optionally, perform any actions or wait for the element to disappear
+    await elementLocator.waitFor({state: 'hidden'}); // 60 seconds
+
+
+    // Assert that the element is no longer visible
+    isVisible = await elementLocator.isVisible();
+    expect(isVisible).toBeFalsy();
+
+
+    await expect(newPage.locator('div > li').nth(2)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(4)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(7)).toBeVisible();
+    // Locate the <h1> element with class "text-right" and text "You"
+    h1Element = newPage.locator('h1.text-right').nth(0);
+
+    // Assert that the <h1> element with class "text-right" contains the text "You"
+    await expect(h1Element).toBeVisible();
+    await expect(h1Element).toHaveText('Automated red teaming agent');
+    // Locate the <h1> element with class "text-right" and text "You"
+    h2Element = newPage.locator('h1.text-left').nth(0);
+
+    await expect(h2Element).toBeVisible()
+    await expect(h2Element).toHaveText('Response');
     // Clean up by closing the context after the test
     await context.close();
 
