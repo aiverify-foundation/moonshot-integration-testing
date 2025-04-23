@@ -1216,7 +1216,7 @@ test('test_benchmarking_one_endpoint_cookbook_amazon_bedrock', async ({browserNa
     console.log('AWS_ACCESS_KEY_ID:', apiKey);
 
     // test.setTimeout(3600000); //set test timeout to 1 hour
-    test.setTimeout(1200000); //set test timeout to 1 hour
+    test.setTimeout(2100000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
     // // Check if the browser is WebKit
     // test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -1261,7 +1261,7 @@ test('test_benchmarking_one_endpoint_cookbook_amazon_bedrock', async ({browserNa
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
     ////////////////////////////////////////////////////////////////////////////
-    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
+    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 1800000})
     //Check Details
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
