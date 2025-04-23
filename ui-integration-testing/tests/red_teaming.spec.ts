@@ -1905,7 +1905,7 @@ test('test_red_teaming_view_attack_modules_btn', async ({browserName, page}) => 
 
 });
 
-test.only('test_red_teaming_add_bookmark', async ({browserName, page}) => {
+test('test_red_teaming_add_bookmark', async ({browserName, page}) => {
     console.log(path.resolve(__dirname, '.env'))
     const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
     console.log(`Attempting to kill connections for ${dbFile}`);
