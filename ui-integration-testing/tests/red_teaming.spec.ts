@@ -823,7 +823,7 @@ test('test_red_teaming_with_attack_module_malicious_question_generator', async (
     await expect(h2Element).toHaveText('Response');
 
 });
-test.only('test_red_teaming_with_attack_module_sample_attack_module', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_sample_attack_module', async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -844,7 +844,7 @@ test.only('test_red_teaming_with_attack_module_sample_attack_module', async ({br
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
@@ -1331,7 +1331,7 @@ test('test_red_teaming_with_attack_module_description_not_empty', async ({browse
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('textbox', {name: 'Description (optional)'}).click();
@@ -1398,7 +1398,7 @@ test('test_red_teaming_with_attack_module_runner_name_empty', async ({browserNam
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).click();
     await page.getByLabel('Next View').click();
     // await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     // await page.getByRole('button', {name: 'Run'}).click();
@@ -1428,7 +1428,7 @@ test('test_red_teaming_with_attack_module_runner_name_integer', async ({browserN
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     const runButton = await page.getByRole('button', {name: 'Run'});
@@ -1457,7 +1457,7 @@ test('test_red_teaming_with_attack_module_runner_name_decimal', async ({browserN
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     const runButton = await page.getByRole('button', {name: 'Run'});
@@ -1486,7 +1486,7 @@ test('test_red_teaming_with_attack_module_runner_name_special_char', async ({bro
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     const runButton = await page.getByRole('button', {name: 'Run'});
@@ -1654,7 +1654,7 @@ test('test_red_teaming_start_new_session_test_a_new_endpoint_btn', async ({brows
 
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
@@ -1719,7 +1719,7 @@ test('test_red_teaming_start_new_session_create_new_endpoint_btn', async ({brows
 
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
@@ -1775,7 +1775,7 @@ test('test_red_teaming_view_past_new_session_btn_start_new_session_btn', async (
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
@@ -1838,7 +1838,7 @@ test('test_red_teaming_view_past_new_session_btn_start_resume_session_btn', asyn
     await page.getByRole('button', {name: 'Start New Session'}).click();
     await page.getByText(ENDPOINT_NAME!).click();
     await page.getByLabel('Next View').click();
-    await page.getByRole('heading', {name: 'Sample Attack Module'}).nth(1).click();
+    await page.getByRole('heading', {name: 'Sample Attack Module'}).click();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
