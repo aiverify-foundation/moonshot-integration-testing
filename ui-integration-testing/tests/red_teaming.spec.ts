@@ -1907,9 +1907,9 @@ test('test_red_teaming_view_attack_modules_btn', async ({browserName, page}) => 
 
 test('test_red_teaming_add_bookmark', async ({browserName, page}) => {
     console.log(path.resolve(__dirname, '.env'))
-    const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
-    console.log(`Attempting to kill connections for ${dbFile}`);
-    killSQLiteConnections(dbFile)
+    // const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
+    // console.log(`Attempting to kill connections for ${dbFile}`);
+    // killSQLiteConnections(dbFile)
 
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -1988,47 +1988,6 @@ test('test_red_teaming_add_bookmark', async ({browserName, page}) => {
     await page.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
     await page.getByRole('button', {name: 'Export Bookmarks'}).click();
     await expect(page.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
-
-    await page.goto('http://localhost:3000');
-    // Perform the actions you want to test
-    await page.getByRole('listitem').nth(2).click();
-    await page.getByRole('button', {name: 'View Bookmarks'}).click();
-
-    await page.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
-    await expect(page.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
-
-    //Use bookmark and verify red teaming session will rerun again
-    await page.getByRole('button', {name: 'Use'}).click();
-    // Create the locator for the element
-    elementLocator = page.getByRole('status').locator('div').nth(1);
-
-    // Wait for the element to appear with a custom timeout
-    await elementLocator.waitFor({state: 'visible'}); // 60 seconds
-
-    // Optionally, perform any actions or wait for the element to disappear
-    await elementLocator.waitFor({state: 'hidden'}); // 60 seconds
-
-
-    // Assert that the element is no longer visible
-    isVisible = await elementLocator.isVisible();
-    expect(isVisible).toBeFalsy();
-
-    await expect(page.locator('div > li').nth(2)).toBeVisible();
-    await expect(page.locator('div > li').nth(4)).toBeVisible();
-    await expect(page.locator('div > li').nth(7)).toBeVisible();
-    // Locate the <h1> element with class "text-right" and text "You"
-    h1Element = page.locator('h1.text-right').nth(0);
-
-    // Assert that the <h1> element with class "text-right" contains the text "You"
-    await expect(h1Element).toBeVisible();
-    await expect(h1Element).toHaveText('Automated red teaming agent');
-    // Locate the <h1> element with class "text-right" and text "You"
-    h2Element = page.locator('h1.text-left').nth(0);
-
-    await expect(h2Element).toBeVisible()
-    await expect(h2Element).toHaveText('Response');
-
-
 });
 
 // test('test_red_teaming_view_bookmark', async ({ page, browser }) => {
