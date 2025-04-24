@@ -1561,7 +1561,7 @@ test.skip('test_benchmarking_one_endpoint_cookbook_h2ogpte', async ({browserName
     await page.getByRole('button', {name: 'Edit h2ogpte-danube3'}).click();
     await page.getByRole('textbox', {name: 'URI'}).fill('https://h2ogpte.genai.h2o.ai');
     await page.getByRole('textbox', {name: 'Token*'}).click();
-    await page.getByRole('textbox', {name: 'Token*'}).fill('sk-yj2PY3kwgGzk7DUF7HT4kMVzLNUrHEumbz9azCEwSxliI4Wi');
+    await page.getByRole('textbox', {name: 'Token*'}).fill(process.env.H2OGPT_TOKEN);
     await page.getByRole('button', {name: 'Save'}).click();
     //////////////////////////////////////////////////
     await page.getByRole('checkbox', { name: 'Select h2ogpte-danube3' }).check();
