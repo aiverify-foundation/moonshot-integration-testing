@@ -1905,7 +1905,7 @@ test('test_red_teaming_view_attack_modules_btn', async ({browserName, page}) => 
 
 });
 
-test.only('test_red_teaming_add_bookmark', async ({browserName, page}) => {
+test('test_red_teaming_add_bookmark', async ({browserName, page}) => {
     console.log(path.resolve(__dirname, '.env'))
     // const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
     // console.log(`Attempting to kill connections for ${dbFile}`);
@@ -1986,7 +1986,7 @@ test.only('test_red_teaming_add_bookmark', async ({browserName, page}) => {
     await expect(page.getByRole('main')).toContainText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was successfully saved.');
 });
 
-test.only('test_red_teaming_view_bookmark', async ({page, browser}) => {
+test('test_red_teaming_view_bookmark', async ({page, browser}) => {
     // This ensures a clean state for each test by creating a new context
     const context = await browser.newContext();  // Creates an isolated browser context
     const newPage = await context.newPage();    // Create a new page within the isolated context
