@@ -1586,3 +1586,100 @@ test.skip('test_benchmarking_one_endpoint_cookbook_h2ogpte', async ({browserName
     await page.getByText(/back to home/i).click()
 
 });
+
+test.skip('test_benchmarking_one_endpoint_cookbook_huggingface', async ({browserName, page}) => {
+    // test.setTimeout(3600000); //set test timeout to 1 hour
+    test.setTimeout(2100000); //set test timeout to 1 hour
+    const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
+    // // Check if the browser is WebKit
+    // test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
+    // // Check if the browser is FireFox
+    // test.skip(browserName === 'firefox', 'This test is skipped on WebKit');
+    if (browserName == 'webkit')
+        await page.waitForTimeout(60000)
+    else if (browserName == 'firefox')
+        await page.waitForTimeout(30000)
+    await page.goto('http://localhost:3000');
+    const RUNNER_NAME: string = "Test huggingface " + Math.floor(Math.random() * 1000000000);
+    // Benchmarking
+    console.log('Benchmarking')
+    await page.getByRole('listitem').nth(1).click();
+    //Edit Dependency Endpoint
+    await page.getByRole('button', {name: 'Start New Run'}).click();
+
+    //Edit Dependency Endpoints
+    await page.getByRole('button', { name: 'Edit HuggingFace GPT-' }).click();
+    await page.getByRole('textbox', {name: 'URI'}).fill('https://h2ogpte.genai.h2o.ai');
+    await page.getByRole('textbox', {name: 'Token*'}).click();
+    await page.getByRole('textbox', {name: 'Token*'}).fill(process.env.HUGGINGFACE_TOKEN);
+    await page.getByRole('button', {name: 'Save'}).click();
+    //////////////////////////////////////////////////
+    await page.getByRole('checkbox', { name: 'Select HuggingFace GPT-' }).check();
+    await page.getByLabel('Next View').click();
+
+    await page.getByLabel('Select singapore-context').check();
+    await page.getByLabel('Next View').click();
+    await page.getByPlaceholder('Give this session a unique').click();
+    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await page.getByRole('button', {name: 'Run'}).click();
+    ////////////////////////////////////////////////////////////////////////////
+    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 1800000})
+    //Check Details
+    await page.getByRole('button', {name: 'See Details'}).click();
+    await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
+    await expect(page.getByText('Description:')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:1')).toBeVisible();
+    await page.getByRole('main').getByRole('img').nth(1).click();
+    // await download_validation_steps (page)
+    await page.getByRole('button', {name: 'View Report'}).click();
+    await page.getByText(/back to home/i).click()
+
+});
+
+test.skip('test_benchmarking_one_endpoint_cookbook_anthropic', async ({browserName, page}) => {
+    // test.setTimeout(3600000); //set test timeout to 1 hour
+    test.setTimeout(2100000); //set test timeout to 1 hour
+    const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
+    // // Check if the browser is WebKit
+    // test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
+    // // Check if the browser is FireFox
+    // test.skip(browserName === 'firefox', 'This test is skipped on WebKit');
+    if (browserName == 'webkit')
+        await page.waitForTimeout(60000)
+    else if (browserName == 'firefox')
+        await page.waitForTimeout(30000)
+    await page.goto('http://localhost:3000');
+    const RUNNER_NAME: string = "Test anthropic " + Math.floor(Math.random() * 1000000000);
+    // Benchmarking
+    console.log('Benchmarking')
+    await page.getByRole('listitem').nth(1).click();
+    //Edit Dependency Endpoint
+    await page.getByRole('button', {name: 'Start New Run'}).click();
+
+    //Edit Dependency Endpoints
+    await page.getByRole('button', {name: 'Edit Anthropic-Claude2'}).click();
+    await page.getByRole('textbox', {name: 'Token*'}).click();
+    await page.getByRole('textbox', {name: 'Token*'}).fill(process.env.ANTHROPIC_TOKEN);
+    await page.getByRole('button', {name: 'Save'}).click();
+    //////////////////////////////////////////////////
+    await page.getByRole('checkbox', { name: 'Select Anthropic-Claude2' }).check()
+    await page.getByLabel('Next View').click();
+
+    await page.getByLabel('Select singapore-context').check();
+    await page.getByLabel('Next View').click();
+    await page.getByPlaceholder('Give this session a unique').click();
+    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await page.getByRole('button', {name: 'Run'}).click();
+    ////////////////////////////////////////////////////////////////////////////
+    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 1800000})
+    //Check Details
+    await page.getByRole('button', {name: 'See Details'}).click();
+    await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
+    await expect(page.getByText('Description:')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:1')).toBeVisible();
+    await page.getByRole('main').getByRole('img').nth(1).click();
+    // await download_validation_steps (page)
+    await page.getByRole('button', {name: 'View Report'}).click();
+    await page.getByText(/back to home/i).click()
+
+});
