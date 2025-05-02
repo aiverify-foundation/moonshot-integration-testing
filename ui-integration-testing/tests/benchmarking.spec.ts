@@ -1536,7 +1536,7 @@ test('test_benchmarking_one_endpoint_cookbook_jailbreak_prompts', async ({browse
 
 });
 
-test.skip('test_benchmarking_one_endpoint_cookbook_h2ogpte', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_h2ogpte', async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(2100000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
