@@ -289,6 +289,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
     await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_description')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText(workspace_name)).toBeVisible();
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
+    await page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByRole('button', {name: 'edit'}).click();
 
     await page.getByRole('textbox', {name: 'Application Name'}).click();
     await page.getByRole('textbox', {name: 'Application Name'}).fill('application_name_1');
@@ -301,7 +302,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
 
 });
 
-test.only('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
