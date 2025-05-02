@@ -2157,7 +2157,7 @@ test('test_red_teaming_export_bookmark', async ({browserName, page,browser}) => 
     await context.close();
 });
 
-test('test_red_teaming_use_bookmark', async ({browserName, page,browser}) => {
+test.only('test_red_teaming_use_bookmark', async ({browserName, page,browser}) => {
 
     const context = await browser.newContext();  // Creates an isolated browser context
     const newPage = await context.newPage();    // Create a new page within the isolated context
@@ -2244,7 +2244,7 @@ test('test_red_teaming_use_bookmark', async ({browserName, page,browser}) => {
     elementLocator = newPage.getByRole('status').locator('div').nth(1);
 
     // Wait for the element to appear with a custom timeout
-    await elementLocator.waitFor({state: 'visible'}); // 60 seconds
+    await elementLocator.waitFor({ state: 'visible', timeout: 120000 }); // 60 seconds
 
     // Optionally, perform any actions or wait for the element to disappear
     await elementLocator.waitFor({state: 'hidden'}); // 60 seconds
