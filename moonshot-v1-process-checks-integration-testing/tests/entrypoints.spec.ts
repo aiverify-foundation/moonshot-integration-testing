@@ -302,9 +302,10 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
 
 });
 
-test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', async ({page}) => {
+test.only('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
+    console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
     await expect(page.getByRole('heading', {name: 'Welcome to Process Check for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
@@ -323,7 +324,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await expect(boxStep2).toHaveClass(/active/);
     await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
 
-    const boxStep3 = page.getByText('3', {exact: true});
+    let boxStep3 = page.getByText('3', {exact: true});
     // Check Steps UI contains 'inactive'
     await expect(boxStep3).toHaveClass(/inactive/);
     await page.getByRole('button', {name: 'Next →'}).click();
@@ -340,7 +341,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
     await page.getByTestId('stBaseButton-primary').click();
 
-    const boxStep4 = page.getByText('4', {exact: true});
+    let boxStep4 = page.getByText('4', {exact: true});
     // Check Steps UI contains 'inactive'
     await expect(boxStep4).toHaveClass(/inactive/);
 
@@ -553,5 +554,204 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
     await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+
+    //Robustness Fill Answer
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
+    await expect(page.locator('#transparency')).toContainText('Robustness');
+
+    await page.getByLabel('Implementation Status for 6.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 6.1.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 6.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 6.2.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 6.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 6.3.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 6.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 6.4.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 6.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 6.5.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 6.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 6.6.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 6.6.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 6.6.2'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 6.6.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 6.6.3'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 6.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 6.7.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 6.7.2'}).fill('test elaboration');
+
+
+    // Assert Completed Filling
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
+    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+
+    //Fairness Fill Answer
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await expect(page.locator('#transparency')).toContainText('Fairness');
+
+
+    await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 7.2.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 7.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 7.4.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 7.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 7.8.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 7.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 7.9.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 7.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 7.10.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 7.11.1'}).fill('test elaboration');
+
+
+    // Assert Completed Filling
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-6').getByText('✓')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-6')).toContainText('6 of 6 checks');
+    await expect(page.getByText('Overall Progress: 71 of 104')).toBeVisible();
+
+
+    //Data Governance Fill Answer
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Data Governance 0 of 6 checks').click();
+    await expect(page.getByRole('heading', { name: 'Data Governance' })).toBeVisible();
+
+
+    await page.getByLabel('Implementation Status for 8.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 8.1.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 8.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 8.2.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 8.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 8.3.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 8.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 8.3.2'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 8.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 8.4.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 8.5.1'}).fill('test elaboration');
+
+
+    // Assert Completed Filling
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
+    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+
+
+    //Accountability Fill Answer
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Accountability 0 of 16 checks').click();
+    await expect(page.getByRole('heading', { name: 'Accountability' })).toBeVisible();
+
+
+    await page.getByLabel('Implementation Status for 9.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.1.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.10.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.2.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 9.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.3.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 9.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.4.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 9.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.5.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.5.2'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.5.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.5.3'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.5.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.5.4'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.6.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.7.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.8.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.9.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.9.2'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.11.1'}).fill('test elaboration');
+
+    await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.12.1'}).fill('test elaboration');
+
+    // Assert Completed Filling
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
+    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+
+
+    //Human Agency & Oversight Fill Answer
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('10 Human Agency & Oversight 0').click();
+      await expect(page.getByRole('heading', { name: 'Human Agency & Oversight' })).toBeVisible();
+
+
+    await page.getByLabel('Implementation Status for 10.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 10.1.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 10.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 10.2.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 10.2.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 10.2.2'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 10.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 10.3.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 10.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 10.3.2'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 10.3.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 10.3.3'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 10.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 10.4.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 10.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 10.5.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 10.6.1'}).fill('test elaboration');
+
+    // Assert Completed Filling
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
+    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+
+    await expect(page.getByRole('button', { name: 'Next →' })).toBeDisabled();
+
+
+    //Inclusive Growth, Societal And Environmental Well-Being Fill Answer
+  await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Inclusive Growth, Societal And Environmental Well-Being 0 of 2 checks').click();
+        await expect(page.getByRole('heading', { name: 'Inclusive Growth, Societal' })).toBeVisible();
+
+
+    await page.getByLabel('Implementation Status for 11.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 11.1.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 11.2.1'}).fill('test elaboration');
+
+    // Assert Completed Filling
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10')).toContainText('2 of 2 checks');
+    await expect(page.getByText('Overall Progress: 104 of 104')).toBeVisible();
+
+    await expect(page.getByRole('button', { name: 'Next →' })).toBeEnabled();
+
+    await page.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    boxStep4 = page.getByText('4', {exact: true});
+    await expect(boxStep4).toHaveClass(/active/);
 
 });
