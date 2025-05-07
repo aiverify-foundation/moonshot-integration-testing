@@ -1635,7 +1635,7 @@ test.skip('test_benchmarking_one_endpoint_cookbook_huggingface', async ({browser
     await page.getByText(/back to home/i).click()
 
 });
-
+// This test case is ran manually whenever we release but keeping it as test.skip to disable due to limited tokens
 test.skip('test_benchmarking_one_endpoint_cookbook_anthropic', async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(2100000); //set test timeout to 1 hour
@@ -1680,6 +1680,6 @@ test.skip('test_benchmarking_one_endpoint_cookbook_anthropic', async ({browserNa
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
+    await page.locator('main').filter({hasText: 'Showing results foranthropic-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
-
 });

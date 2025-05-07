@@ -3527,7 +3527,8 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await expect(page.getByTestId('stDialog').getByTestId('stBaseButton-primary')).toBeDisabled();
     //Select Dropdownlist for Session
     await page.getByTestId('stSelectbox').locator('path').click();
-    await page.getByText(workspace_name).click();
+    await page.getByRole('img', {name: 'open'}).click();
+    await page.getByRole('option', {name: workspace_name}).click();
     //Attempt to Click Cancel btn to resume Session
     await page.getByTestId('stDialog').getByTestId('stBaseButton-secondary').click();
     // Verify we are still in home page after clicking cancel
@@ -3540,7 +3541,8 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await expect(page.getByTestId('stDialog').getByTestId('stBaseButton-primary')).toBeDisabled();
     //Select Dropdownlist for Session
     await page.getByTestId('stSelectbox').locator('path').click();
-    await page.getByText(workspace_name).click();
+    await page.getByRole('img', {name: 'open'k}).click();
+    await page.getByRole('option', {name: workspace_name}).click();
     //Assert Resume button is Enabled and Click
     await expect(page.getByTestId('stDialog').getByTestId('stBaseButton-primary')).toBeEnabled();
     page.getByTestId('stDialog').getByTestId('stBaseButton-primary').click();
