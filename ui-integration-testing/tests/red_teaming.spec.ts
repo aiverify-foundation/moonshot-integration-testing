@@ -2157,7 +2157,7 @@ test('test_red_teaming_export_bookmark', async ({browserName, page,browser}) => 
     await context.close();
 });
 
-test.only('test_red_teaming_use_bookmark', async ({browserName, page,browser}) => {
+test('test_red_teaming_use_bookmark', async ({browserName, page,browser}) => {
 
     const context = await browser.newContext();  // Creates an isolated browser context
     const newPage = await context.newPage();    // Create a new page within the isolated context
