@@ -68,7 +68,6 @@ To execute the integration tests:
    OPENAI_TOKEN = 
    AWS_ACCESS_KEY_ID=""
    AWS_SECRET_ACCESS_KEY=""
-   GOOGLE_TOKEN = ""
    CLI_DIR = ''# Path of Moonshot Library
    ```
 
@@ -137,6 +136,9 @@ To execute the integration tests:
    AWS_ACCESS_KEY_ID=""
    AWS_SECRET_ACCESS_KEY=""
    GOOGLE_TOKEN = 
+   H2OGPT_TOKEN = ""
+   ANTHROPIC_TOKEN = ""
+   HUGGINGFACE_TOKEN = ""
    ```
 5. **Run Tests**:
 
