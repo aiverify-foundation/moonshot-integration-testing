@@ -1609,13 +1609,12 @@ test.skip('test_benchmarking_one_endpoint_cookbook_huggingface', async ({browser
     await page.getByRole('button', {name: 'Start New Run'}).click();
 
     //Edit Dependency Endpoints
-    await page.getByRole('button', { name: 'Edit HuggingFace GPT-' }).click();
-    await page.getByRole('textbox', {name: 'URI'}).fill('https://h2ogpte.genai.h2o.ai');
+    await page.getByRole('button', { name: 'Edit HuggingFace Deepseek R1' }).click();
     await page.getByRole('textbox', {name: 'Token*'}).click();
     await page.getByRole('textbox', {name: 'Token*'}).fill(process.env.HUGGINGFACE_TOKEN);
     await page.getByRole('button', {name: 'Save'}).click();
     //////////////////////////////////////////////////
-    await page.getByRole('checkbox', { name: 'Select HuggingFace GPT-' }).check();
+    await page.getByRole('checkbox', { name: 'Select HuggingFace Deepseek R1' }).check();
     await page.getByLabel('Next View').click();
 
     await page.getByLabel('Select singapore-context').check();
@@ -1633,6 +1632,7 @@ test.skip('test_benchmarking_one_endpoint_cookbook_huggingface', async ({browser
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
+    await page.locator('main').filter({hasText: 'Showing results forhuggingface-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 
 });
