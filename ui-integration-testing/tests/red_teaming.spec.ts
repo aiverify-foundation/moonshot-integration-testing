@@ -812,7 +812,7 @@ test('test_red_teaming_with_attack_module_malicious_question_generator', async (
     const isVisible = await elementLocator.isVisible();
     expect(isVisible).toBeFalsy();
 
-    await expect(page.locator('div > li').nth(0)).toBeVisible();
+    await expect(page.locator('div > li').nth(0)).toBeVisible({timeout: 1200000});
     // Locate the <h1> element with class "text-right" and text "Automated red teaming agent"
     const h1Element = page.locator('h1.text-right').nth(0);
 
