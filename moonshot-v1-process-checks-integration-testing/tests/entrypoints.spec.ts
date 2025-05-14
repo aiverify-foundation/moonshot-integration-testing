@@ -5,7 +5,7 @@ import * as path from 'path';
 
 test('test_welcome_page', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
     await expect(page.getByRole('heading', {name: 'How can the Testing Framework'})).toBeVisible();
@@ -14,20 +14,20 @@ test('test_welcome_page', async ({page}) => {
 
 test('test_welcome_page_click_start_over_btn', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
     await expect(page.getByRole('heading', {name: 'How can the Testing Framework'})).toBeVisible();
 
     await page.getByRole('button', {name: '↺ Start Over'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 
 });
 
 test('test_getting_started_page_pdf_download', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -67,7 +67,7 @@ test('test_getting_started_page_pdf_download', async ({page}) => {
     //     "https://www.cpf.gov.sg/content/dam/web/member/faq/general-information---useful-tips/documents/Guide_to_view_and_save_CPF_statements.pdf"
     // );
 
-        // Checkpoint - check download link feature on Getting Started Page for Excel
+    // Checkpoint - check download link feature on Getting Started Page for Excel
     // Try download and popup listeners together
     const [popupOrDownload] = await Promise.all([
         Promise.race([
@@ -99,7 +99,7 @@ test('test_getting_started_page_pdf_download', async ({page}) => {
 
 test('test_getting_started_page_excel_download', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -153,7 +153,7 @@ test('test_getting_started_page_excel_download', async ({page}) => {
 
 test('test_getting_started_page_click_start_over_btn', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -175,12 +175,12 @@ test('test_getting_started_page_click_start_over_btn', async ({page}) => {
     await expect(boxStep3).toHaveClass(/inactive/);
     await page.getByRole('button', {name: '↺ Start Over'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 });
 
 test('test_getting_started_page_click_back_btn', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -208,7 +208,7 @@ test('test_getting_started_page_click_back_btn', async ({page}) => {
 test('test_complete_process_checks_page', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -231,7 +231,7 @@ test('test_complete_process_checks_page', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -258,7 +258,7 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -281,7 +281,7 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     // Attempt to fill workspace session details
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByText('Please enter a workspace name')).toBeVisible();
@@ -317,7 +317,7 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
 test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -340,7 +340,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -364,7 +364,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
 
     //Attempt to restart and create session 2
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -387,7 +387,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -404,7 +404,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
 test('test_complete_process_checks_page_click_start_over_btn', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -427,7 +427,7 @@ test('test_complete_process_checks_page_click_start_over_btn', async ({page}) =>
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -448,12 +448,12 @@ test('test_complete_process_checks_page_click_start_over_btn', async ({page}) =>
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
     await page.getByRole('button', {name: '↺ Start Over'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 });
 test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -476,7 +476,7 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -504,7 +504,7 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
 test('test_complete_process_checks_page_edit_app_information', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -527,7 +527,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -562,7 +562,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
 test('test_complete_process_checks_page_edit_app_information_leave_blank', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -585,7 +585,7 @@ test('test_complete_process_checks_page_edit_app_information_leave_blank', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -622,7 +622,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -645,7 +645,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -707,10 +707,12 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('textbox', {name: 'Elaboration for 1.6.1'}).fill('test elaboration');
 
     await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 1.7.1'}).fill('test elaboration');
+    await page.getByRole('textbox', {name: 'Elaboration for 1.7.1'}).fill("test elaboration");
 
     await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 1.7.2'}).fill('test elaboration');
+    await page.getByRole('textbox', {name: 'Elaboration for 1.7.2'}).fill("test elaboration");
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -722,6 +724,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await expect(page.locator('#transparency')).toContainText('Explainability');
     await page.locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -761,7 +764,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 3.12.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
-
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
@@ -819,6 +822,8 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.2'}).fill('test elaboration');
 
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
@@ -864,6 +869,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.14.1'}).fill('test elaboration');
 
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
@@ -899,6 +905,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.2'}).fill('test elaboration');
 
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
@@ -925,6 +932,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.11.1'}).fill('test elaboration');
 
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-6').getByText('✓')).toBeVisible();
@@ -952,6 +960,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.5.1'}).fill('test elaboration');
 
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
@@ -1009,6 +1018,8 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.12.1'}).fill('test elaboration');
 
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
@@ -1039,6 +1050,8 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.6.1'}).fill('test elaboration');
 
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
@@ -1056,6 +1069,8 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('textbox', {name: 'Elaboration for 11.1.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.2.1'}).fill('test elaboration');
+
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
@@ -1076,7 +1091,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -1099,7 +1114,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -1165,6 +1180,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
 
     await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.2'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -1176,6 +1192,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await expect(page.locator('#transparency')).toContainText('Explainability');
     await page.locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -1215,6 +1232,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 3.12.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1272,6 +1290,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.2'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
@@ -1317,6 +1336,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
 
     await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.14.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1352,6 +1372,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
 
     await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.2'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1378,6 +1399,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 7.10.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.11.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1405,6 +1427,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 8.4.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.5.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1462,6 +1485,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
 
     await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.12.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
@@ -1492,6 +1516,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 10.5.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.6.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
@@ -1510,6 +1535,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 11.1.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.2.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
@@ -1530,7 +1556,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -1553,7 +1579,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -1619,6 +1645,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
 
     await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.2'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -1630,6 +1657,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await expect(page.locator('#transparency')).toContainText('Explainability');
     await page.locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -1669,6 +1697,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 3.12.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1726,6 +1755,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.2'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
@@ -1771,6 +1801,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
 
     await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.14.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1806,6 +1837,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
 
     await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.2'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1832,6 +1864,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 7.10.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.11.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1859,6 +1892,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 8.4.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.5.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1916,6 +1950,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
 
     await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.12.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
@@ -1946,6 +1981,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 10.5.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.6.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
@@ -1964,6 +2000,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.getByRole('textbox', {name: 'Elaboration for 11.1.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.2.1'}).fill('test elaboration');
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
@@ -1984,7 +2021,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -2007,7 +2044,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -2341,7 +2378,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -2364,7 +2401,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -2698,7 +2735,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -2721,7 +2758,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -3055,7 +3092,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -3078,7 +3115,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -3501,7 +3538,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -3524,7 +3561,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -3593,7 +3630,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.getByRole('button', {name: '↺ Start Over'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     // Back to Home Page Attempt to Resume Session
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
     //Attempt to Click Continue where you left off btn
     await page.getByTestId('stBaseButton-secondary').click();
     //Assert Resume button is disabled
@@ -3604,7 +3641,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     //Attempt to Click Cancel btn to resume Session
     await page.getByTestId('stDialog').getByTestId('stBaseButton-secondary').click();
     // Verify we are still in home page after clicking cancel
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 
     //Attempt to Resume Session
     //Attempt to Click Continue where you left off btn
@@ -3993,7 +4030,7 @@ test('test_upload_technical_results_page', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4017,7 +4054,7 @@ test('test_upload_technical_results_page', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4408,7 +4445,7 @@ test('test_upload_generate_report_page', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4432,7 +4469,7 @@ test('test_upload_generate_report_page', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4822,7 +4859,7 @@ test('test_upload_generate_report_page_start_over_btn', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4846,7 +4883,7 @@ test('test_upload_generate_report_page_start_over_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5233,14 +5270,14 @@ test('test_upload_generate_report_page_start_over_btn', async ({page}) => {
 
     await page.getByRole('button', {name: '↺ Start Over'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 });
 test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -5264,7 +5301,7 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5657,7 +5694,7 @@ test('test_upload_technical_results_page_start_over_btn', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -5681,7 +5718,7 @@ test('test_upload_technical_results_page_start_over_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -6027,14 +6064,14 @@ test('test_upload_technical_results_page_start_over_btn', async ({page}) => {
 
     await page.getByRole('button', {name: '↺ Start Over'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 });
 test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to AI Verify Testing'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -6058,7 +6095,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Name Your Workspace')).toBeVisible();
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
