@@ -175,7 +175,7 @@ test('test_red_teaming_invalid_endpoint', async ({browserName, page}) => {
     await page.getByRole('button', {name: 'Ok', exact: true}).click();
 });
 
-test('test_red_teaming_invalid_endpoint_auto', async ({browserName, page}) => {
+test.only('test_red_teaming_invalid_endpoint_auto', async ({browserName, page}) => {
     test.setTimeout(1200000); //set test timeout to 1 hour
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
