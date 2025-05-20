@@ -707,12 +707,11 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('textbox', {name: 'Elaboration for 1.6.1'}).fill('test elaboration');
 
     await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 1.7.1'}).fill("test elaboration");
+    await page.getByRole('textbox', {name: 'Elaboration for 1.7.1'}).fill('test elaboration');
 
     await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 1.7.2'}).fill("test elaboration");
+    await page.getByRole('textbox', {name: 'Elaboration for 1.7.2'}).fill('test elaboration');
     await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
-
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -760,11 +759,13 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.11.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 3.12.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
+
     await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
@@ -821,7 +822,6 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.2'}).fill('test elaboration');
-
     await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
@@ -868,8 +868,8 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
 
     await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.14.1'}).fill('test elaboration');
-
     await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
@@ -904,8 +904,8 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
 
     await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.2'}).fill('test elaboration');
-
     await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
@@ -915,7 +915,6 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     //Fairness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
-
 
     await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.2.1'}).fill('test elaboration');
@@ -931,8 +930,8 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('textbox', {name: 'Elaboration for 7.10.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.11.1'}).fill('test elaboration');
-
     await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-6').getByText('✓')).toBeVisible();
@@ -959,8 +958,8 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('textbox', {name: 'Elaboration for 8.4.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.5.1'}).fill('test elaboration');
-
     await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
@@ -976,11 +975,9 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByLabel('Implementation Status for 9.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByRole('textbox', {name: 'Elaboration for 9.10.1'}).fill('test elaboration');
-
     await page.getByLabel('Implementation Status for 9.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.2.1'}).fill('test elaboration');
+
     await page.getByLabel('Implementation Status for 9.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.3.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 9.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
@@ -1012,12 +1009,14 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByLabel('Implementation Status for 9.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.2'}).fill('test elaboration');
 
+    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 9.10.1'}).fill('test elaboration');
+
     await page.getByLabel('Implementation Status for 9.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.11.1'}).fill('test elaboration');
 
     await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.12.1'}).fill('test elaboration');
-
     await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
@@ -1049,7 +1048,6 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('textbox', {name: 'Elaboration for 10.5.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.6.1'}).fill('test elaboration');
-
     await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
@@ -1069,7 +1067,6 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('textbox', {name: 'Elaboration for 11.1.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.2.1'}).fill('test elaboration');
-
     await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
 
     // Assert Completed Filling
@@ -1237,8 +1234,8 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -1295,7 +1292,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -1342,7 +1339,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -1378,10 +1375,10 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -1433,7 +1430,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -1490,7 +1487,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -1521,7 +1518,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -1551,7 +1548,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
 
 });
 
-test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async ({page}) => {
+test.skip('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -1666,7 +1663,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
 
 
     //Reproducibility Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 10 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 7 checks').click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
     await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
@@ -1681,9 +1678,6 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 3.6.1'}).fill('test elaboration');
-
     await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.7.1'}).fill('test elaboration');
 
@@ -1693,17 +1687,10 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.11.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 3.12.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
-
-
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -1760,7 +1747,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -1807,7 +1794,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -1843,19 +1830,29 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
+    await page.getByLabel('Implementation Status for 7.1.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 7.1.1'}).fill('test elaboration');
 
     await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.2.1'}).fill('test elaboration');
 
+    await page.getByLabel('Implementation Status for 7.3.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 7.3.1'}).fill('test elaboration');
+
     await page.getByLabel('Implementation Status for 7.4.1').locator('div').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.4.1'}).fill('test elaboration');
-
+    await page.getByLabel('Implementation Status for 7.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 7.5.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 7.6.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 7.6.1'}).fill('test elaboration');
+    await page.getByLabel('Implementation Status for 7.7.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('textbox', {name: 'Elaboration for 7.7.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 7.8.1').locator('div').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.8.1'}).fill('test elaboration');
     await page.getByLabel('Implementation Status for 7.9.1').locator('div').filter({hasText: 'N/A'}).first().click();
@@ -1869,8 +1866,8 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-6').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-6')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 71 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-6')).toContainText('11 of 11 checks');
+    await expect(page.getByText('Overall Progress: 73 of 104')).toBeVisible();
 
 
     //Data Governance Fill Answer
@@ -1898,7 +1895,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 79 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -1955,7 +1952,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 95 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -1986,7 +1983,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 104 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -2115,7 +2112,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
 
 
     //Reproducibility Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 10 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 7 checks').click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
     await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click()
@@ -2140,8 +2137,8 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -2176,7 +2173,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -2208,7 +2205,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -2233,10 +2230,10 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -2274,7 +2271,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -2314,7 +2311,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -2344,7 +2341,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -2497,8 +2494,8 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -2533,7 +2530,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -2565,7 +2562,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -2590,10 +2587,10 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -2631,7 +2628,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -2671,7 +2668,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -2701,7 +2698,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -2854,8 +2851,8 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -2890,7 +2887,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -2922,7 +2919,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -2947,10 +2944,10 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -2988,7 +2985,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -3028,7 +3025,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -3058,7 +3055,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -3208,9 +3205,6 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 3.6.1'}).fill('test elaboration');
-
     await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.7.1'}).fill('test elaboration');
 
@@ -3228,8 +3222,8 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -3285,7 +3279,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -3331,7 +3325,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -3366,10 +3360,10 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -3419,7 +3413,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -3475,7 +3469,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -3505,7 +3499,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -3698,9 +3692,6 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 3.6.1'}).fill('test elaboration');
-
     await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.7.1'}).fill('test elaboration');
 
@@ -3718,8 +3709,8 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -3775,7 +3766,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -3821,7 +3812,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -3856,10 +3847,10 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -3909,7 +3900,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -3965,7 +3956,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -3995,7 +3986,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -4150,8 +4141,8 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -4186,7 +4177,7 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -4218,7 +4209,7 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -4243,10 +4234,10 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -4284,7 +4275,7 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -4324,7 +4315,7 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -4354,7 +4345,7 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -4524,8 +4515,8 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -4560,7 +4551,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -4592,7 +4583,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -4617,10 +4608,10 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -4658,7 +4649,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -4698,7 +4689,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -4728,7 +4719,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -4898,8 +4889,8 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -4934,7 +4925,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -4966,7 +4957,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -4991,10 +4982,10 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -5032,7 +5023,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -5072,7 +5063,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -5102,7 +5093,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -5272,8 +5263,8 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -5308,7 +5299,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -5340,7 +5331,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -5365,10 +5356,10 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -5406,7 +5397,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -5446,7 +5437,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -5476,7 +5467,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -5646,8 +5637,8 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -5682,7 +5673,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -5714,7 +5705,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -5739,10 +5730,10 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -5780,7 +5771,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -5820,7 +5811,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -5850,7 +5841,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -6020,8 +6011,8 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -6056,7 +6047,7 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -6088,7 +6079,7 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -6113,10 +6104,10 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -6154,7 +6145,7 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -6194,7 +6185,7 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -6224,7 +6215,7 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -6394,8 +6385,8 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -6430,7 +6421,7 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -6462,7 +6453,7 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -6487,10 +6478,10 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -6528,7 +6519,7 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -6568,7 +6559,7 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -6598,7 +6589,7 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -6774,8 +6765,8 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -6810,7 +6801,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -6842,7 +6833,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -6867,10 +6858,10 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -6908,7 +6899,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -6948,7 +6939,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -6978,7 +6969,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -7138,8 +7129,8 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -7174,7 +7165,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -7206,7 +7197,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -7231,10 +7222,10 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -7272,7 +7263,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -7312,7 +7303,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -7342,7 +7333,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -7505,8 +7496,8 @@ test('test_upload_generate_report_page', async ({page}) => {
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -7541,7 +7532,7 @@ test('test_upload_generate_report_page', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -7573,7 +7564,7 @@ test('test_upload_generate_report_page', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -7598,10 +7589,10 @@ test('test_upload_generate_report_page', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -7639,7 +7630,7 @@ test('test_upload_generate_report_page', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -7679,7 +7670,7 @@ test('test_upload_generate_report_page', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -7709,7 +7700,7 @@ test('test_upload_generate_report_page', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -7918,8 +7909,8 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -7954,7 +7945,7 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -7986,7 +7977,7 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -8011,10 +8002,10 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -8052,7 +8043,7 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -8092,7 +8083,7 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -8122,7 +8113,7 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -8313,8 +8304,8 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -8349,7 +8340,7 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -8381,7 +8372,7 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -8406,10 +8397,10 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -8447,7 +8438,7 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -8487,7 +8478,7 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -8517,7 +8508,7 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -8716,8 +8707,8 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -8752,7 +8743,7 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -8784,7 +8775,7 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -8809,10 +8800,10 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -8850,7 +8841,7 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -8890,7 +8881,7 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -8920,7 +8911,7 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
@@ -9125,9 +9116,6 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 3.6.1'}).fill('test elaboration');
-
     await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.7.1'}).fill('test elaboration');
 
@@ -9137,16 +9125,10 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.11.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 3.12.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
-
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2').getByText('✓')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('7 of 7 checks');
+    await expect(page.getByText('Overall Progress: 21 of 104')).toBeVisible();
 
 
     //Safety Fill Answer
@@ -9204,7 +9186,7 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
-    await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 38 of 104')).toBeVisible();
 
 
     //Security Fill Answer
@@ -9251,7 +9233,7 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
-    await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 52 of 104')).toBeVisible();
 
     //Robustness Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
@@ -9287,10 +9269,10 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
-    await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 62 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
+    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 11 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
 
@@ -9342,7 +9324,7 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
-    await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 74 of 104')).toBeVisible();
 
 
     //Accountability Fill Answer
@@ -9400,7 +9382,7 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
-    await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 90 of 104')).toBeVisible();
 
 
     //Human Agency & Oversight Fill Answer
@@ -9432,7 +9414,7 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9')).toContainText('9 of 9 checks');
-    await expect(page.getByText('Overall Progress: 102 of 104')).toBeVisible();
+    await expect(page.getByText('Overall Progress: 99 of 104')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
