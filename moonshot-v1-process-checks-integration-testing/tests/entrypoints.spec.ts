@@ -5624,7 +5624,7 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
 
 });
 
-test.only('test_complete_process_checks_page_import_empty_checklist', async ({page}) => {
+test('test_complete_process_checks_page_import_empty_checklist', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -5695,7 +5695,7 @@ test.only('test_complete_process_checks_page_import_empty_checklist', async ({pa
 
 });
 
-test.only('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
+test('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
