@@ -5623,3 +5623,144 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     await expect(page.getByRole('button', {name: 'Next →'})).toBeEnabled();
 
 });
+
+test.only('test_complete_process_checks_page_import_empty_checklist', async ({page}) => {
+    test.setTimeout(1200000);
+    let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
+    console.log(workspace_name)
+    await page.goto('http://127.0.0.1:8501');
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await page.getByTestId('stBaseButton-primary').click();
+    await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
+
+    const boxStep1 = page.getByText('1', {exact: true});
+    await expect(boxStep1).toHaveClass(/active/);
+    let boxStep2 = page.getByText('2');
+
+    //Checkpoint - Click Next button reach to Getting Started Page
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep2).toHaveClass(/inactive/);
+    await page.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    boxStep2 = page.getByText('2', {exact: true});
+    await expect(boxStep2).toHaveClass(/active/);
+    await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
+
+    let boxStep3 = page.getByText('3', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep3).toHaveClass(/inactive/);
+    await page.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    await expect(boxStep3).toHaveClass(/active/);
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
+    await page.getByRole('textbox', {name: 'Company Name'}).click();
+    await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
+    await page.getByRole('textbox', {name: 'Application Name'}).click();
+    await page.getByRole('textbox', {name: 'Application Name'}).fill('application_name');
+    await page.getByRole('textbox', {name: 'Application Description'}).click();
+    await page.getByRole('textbox', {name: 'Application Description'}).fill('application_description');
+    await page.getByRole('textbox', {name: 'Workspace Name'}).click();
+    await page.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
+    await page.getByTestId('stBaseButton-primary').click();
+
+    let boxStep4 = page.getByText('4', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep4).toHaveClass(/inactive/);
+
+    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_name')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_description')).toBeVisible();
+    await page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText(workspace_name).click();
+    await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
+
+    await expect(page.getByText('Overall Progress: 0 of 104')).toBeVisible();
+    // Try to upload process checklist Excel file
+
+    // Path: one level up from current directory, then into test-data
+    const test_result_json_path = path.resolve(__dirname, '..', 'test-data', 'empty.xlsx');
+    // Locate the file input element.
+    const fileInput = await page.locator('input[type="file"]');
+    // Ensure the file input exists and then perform the file upload.
+    await page.getByRole('button', {name: 'file_upload Import from Excel'}).click();
+    await expect(fileInput).toHaveCount(1);
+    await page.getByTestId('stFileUploaderDropzone').getByTestId('stBaseButton-secondary').click();
+    await fileInput.setInputFiles(test_result_json_path);
+
+    await page.getByTestId('stDialog').getByRole('button', {name: 'Import'}).click();
+
+
+    //Assert Populated for the checklist
+    await expect(page.getByTestId('stExceptionMessage')).toBeVisible();
+    await expect(page.getByTestId('stExceptionMessage')).toContainText('ValueError: Excel file format cannot be determined, you must specify an engine manually.');
+
+
+});
+
+test.only('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
+    test.setTimeout(1200000);
+    let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
+    console.log(workspace_name)
+    await page.goto('http://127.0.0.1:8501');
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await page.getByTestId('stBaseButton-primary').click();
+    await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
+
+    const boxStep1 = page.getByText('1', {exact: true});
+    await expect(boxStep1).toHaveClass(/active/);
+    let boxStep2 = page.getByText('2');
+
+    //Checkpoint - Click Next button reach to Getting Started Page
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep2).toHaveClass(/inactive/);
+    await page.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    boxStep2 = page.getByText('2', {exact: true});
+    await expect(boxStep2).toHaveClass(/active/);
+    await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
+
+    let boxStep3 = page.getByText('3', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep3).toHaveClass(/inactive/);
+    await page.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    await expect(boxStep3).toHaveClass(/active/);
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
+    await page.getByRole('textbox', {name: 'Company Name'}).click();
+    await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
+    await page.getByRole('textbox', {name: 'Application Name'}).click();
+    await page.getByRole('textbox', {name: 'Application Name'}).fill('application_name');
+    await page.getByRole('textbox', {name: 'Application Description'}).click();
+    await page.getByRole('textbox', {name: 'Application Description'}).fill('application_description');
+    await page.getByRole('textbox', {name: 'Workspace Name'}).click();
+    await page.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
+    await page.getByTestId('stBaseButton-primary').click();
+
+    let boxStep4 = page.getByText('4', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep4).toHaveClass(/inactive/);
+
+    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_name')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_description')).toBeVisible();
+    await page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText(workspace_name).click();
+    await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
+
+    await expect(page.getByText('Overall Progress: 0 of 104')).toBeVisible();
+    // Try to upload process checklist Excel file
+
+    // Path: one level up from current directory, then into test-data
+    const test_result_json_path = path.resolve(__dirname, '..', 'test-data', 'process_checks_invalid_format.xlsx');
+    // Locate the file input element.
+    const fileInput = await page.locator('input[type="file"]');
+    // Ensure the file input exists and then perform the file upload.
+    await page.getByRole('button', {name: 'file_upload Import from Excel'}).click();
+    await expect(fileInput).toHaveCount(1);
+    await page.getByTestId('stFileUploaderDropzone').getByTestId('stBaseButton-secondary').click();
+    await fileInput.setInputFiles(test_result_json_path);
+
+    await page.getByTestId('stDialog').getByRole('button', {name: 'Import'}).click();
+
+
+    //Assert Populated for the checklist
+    await expect(page.getByText('Overall Progress: 91 of 104')).toBeVisible();
+    await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
+});
+
