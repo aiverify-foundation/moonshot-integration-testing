@@ -74,6 +74,7 @@ export async function create_single_endpoint_benchmark_steps(page, ENDPOINT_NAME
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -148,6 +149,7 @@ test('test_benchmarking_one_endpoint_slider_percentage', async ({browserName, pa
     // await page.getByRole('button', {name: 'Trust & Safety'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -260,6 +262,7 @@ test('test_benchmarking_one_endpoint_cookbook_singapore-context', async ({browse
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -294,6 +297,7 @@ test('test_benchmarking_one_endpoint_cookbook_medical-llm-leaderboard', async ({
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select medical-llm-leaderboard').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -328,6 +332,7 @@ test('test_benchmarking_one_endpoint_cookbook_leaderboard-cookbook', async ({bro
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select leaderboard-cookbook').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -362,6 +367,7 @@ test('test_benchmarking_one_endpoint_cookbook_tamil-language-cookbook', async ({
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select tamil-language-cookbook').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -396,6 +402,7 @@ test('test_benchmarking_one_endpoint_cookbook_legal-summarisation', async ({brow
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select legal-summarisation').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -541,6 +548,7 @@ test('test_benchmarking_with_invalid_endpoint', async ({browserName, page}) => {
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -612,6 +620,7 @@ test('test_benchmarking_runner_name_input_empty', async ({browserName, page}) =>
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -635,6 +644,7 @@ test('test_benchmarking_runner_description_input_!empty', async ({browserName, p
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -663,6 +673,7 @@ test('test_benchmarking_two_endpoint', async ({browserName, page}) => {
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Select ' + ENDPOINT_NAME_2).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -689,6 +700,7 @@ test('test_benchmarking_two_endpoint_invalid', async ({browserName, page}) => {
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Select ' + ENDPOINT_NAME_2).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -718,6 +730,7 @@ test('test_benchmarking_two_endpoint_mixed_valid&invalid', async ({browserName, 
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Select ' + ENDPOINT_NAME_2).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -763,6 +776,7 @@ test('test_benchmarking_edit_endpoint_step', async ({browserName, page}) => {
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
     //////////////////////////////////////////////////
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -812,6 +826,7 @@ test('test_benchmarking_create_new_endpoint_step', async ({browserName, page}) =
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
     //////////////////////////////////////////////////
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -860,6 +875,7 @@ test('test_benchmarking_create_endpoint_entry_point_2', async ({browserName, pag
     //////////////////////////////////////////////////
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
 
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
@@ -894,6 +910,7 @@ test('test_benchmarking_run_with_two_cookbook_standard', async ({browserName, pa
     //////////////////////////////////////////////////
     await page.getByLabel('Select ' + ENDPOINT_NAME, {exact: true}).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByRole('button', {name: 'Trust & Safety'}).click();
     await page.getByLabel('Select common-risk-easy').check();
@@ -934,6 +951,7 @@ test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', async ({b
     /////////////////////////////////////////////////////////////////////////////////////
     await page.getByLabel('Select ' + ENDPOINT_NAME, {exact: true}).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByRole('button', {name: 'Trust & Safety'}).click();
     await page.getByLabel('Select mlc-ai-safety').check();
@@ -978,6 +996,7 @@ test('test_benchmarking_run_with_zero_cookbook_step', async ({browserName, page}
     //////////////////////////////////////////////////
     await page.getByLabel('Select ' + ENDPOINT_NAME, {exact: true}).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Select singapore-context').uncheck();
     await expect(page.getByLabel('Next View')).toBeDisabled();
@@ -1036,6 +1055,7 @@ test('test_benchmarking_run_with_view_past_run_btn_start_new_run_btn', async ({b
     const NEW_RUNNER_NAME: string = "Test 2" + Math.floor(Math.random() * 1000000000);
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
@@ -1254,6 +1274,7 @@ test('test_benchmarking_one_endpoint_cookbook_amazon_bedrock', async ({browserNa
     //////////////////////////////////////////////////
     await page.getByLabel('Select Amazon Bedrock - Anthropic Claude 3 Sonnet').check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
 
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
@@ -1369,6 +1390,7 @@ test('test_benchmarking_one_endpoint_cookbook_google', async ({browserName, page
     //////////////////////////////////////////////////
     await page.getByLabel('Select google-gemini-flash-15').check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
 
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
@@ -1566,6 +1588,7 @@ test('test_benchmarking_one_endpoint_cookbook_h2ogpte', async ({browserName, pag
     //////////////////////////////////////////////////
     await page.getByRole('checkbox', { name: 'Select h2ogpte-danube3' }).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
 
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
@@ -1616,6 +1639,7 @@ test.skip('test_benchmarking_one_endpoint_cookbook_huggingface', async ({browser
     //////////////////////////////////////////////////
     await page.getByRole('checkbox', { name: 'Select HuggingFace Deepseek R1' }).check();
     await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'Capability' }).click();
 
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
@@ -1665,7 +1689,8 @@ test.skip('test_benchmarking_one_endpoint_cookbook_anthropic', async ({browserNa
     //////////////////////////////////////////////////
     await page.getByRole('checkbox', { name: 'Select Anthropic-Claude2' }).check()
     await page.getByLabel('Next View').click();
-
+    await page.getByRole('button', { name: 'Capability' }).click();
+    
     await page.getByLabel('Select singapore-context').check();
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
