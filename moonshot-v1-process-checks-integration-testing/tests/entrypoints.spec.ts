@@ -5624,7 +5624,7 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
 
 });
 
-test('test_complete_process_checks_page_import_empty_checklist', async ({page}) => {
+test.only('test_complete_process_checks_page_import_empty_checklist', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -5689,8 +5689,8 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({page}) 
 
 
     //Assert Populated for the checklist
-    await expect(page.getByTestId('stExceptionMessage')).toBeVisible();
-    await expect(page.getByTestId('stExceptionMessage')).toContainText('ValueError: Excel file format cannot be determined, you must specify an engine manually.');
+    await expect(page.getByTestId('stAlertContentError').getByRole('paragraph')).toContainText('We were unable to load the principles data from your file. Please ensure you have selected a valid Excel file in the correct format and try again.');
+
 
 
 });
