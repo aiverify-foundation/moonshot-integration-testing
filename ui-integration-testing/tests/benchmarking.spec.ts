@@ -91,6 +91,26 @@ export async function download_validation_steps(page) {
     const download = await downloadPromise;
 }
 
+export async function configure_chatgpt4o(page,token) {
+    // Benchmarking
+    console.log('configure_chatgpt4o')
+    await page.locator('div').filter({ hasText: /^My OpenAI GPT4oConfigure$/ }).getByRole('button').click();
+    await page.getByRole('textbox', { name: 'Token*' }).click();
+    await page.getByRole('textbox', { name: 'Token*' }).fill(token);
+    await page.getByRole('button', { name: 'Save' }).click();
+}
+
+
+export async function configure_llamaguard(page,token) {
+    // Benchmarking
+    console.log('configure_llamaguard')
+    await page.locator('div').filter({ hasText: /^Together Llama Guard 8B AssistantConfigure$/ }).getByRole('button').click();
+    await page.getByRole('textbox', { name: 'Token*' }).click();
+    await page.getByRole('textbox', { name: 'Token*' }).fill(token);
+    await page.getByRole('button', { name: 'Save' }).click();
+}
+
+
 
 test('test_benchmarking_one_endpoint_run_with_percentage_check', async ({browserName, page}) => {
     test.setTimeout(1200000);
@@ -1708,4 +1728,161 @@ test.skip('test_benchmarking_one_endpoint_cookbook_anthropic', async ({browserNa
     await page.getByRole('button', {name: 'View Report'}).click();
     await page.locator('main').filter({hasText: 'Showing results foranthropic-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
+});
+
+//undesirable content
+// Currently commented out due to the test being both too long and using too many tokens. 1% is 1990 prompts.
+/*
+test('test_benchmarking_one_endpoint_cookbook_undesirable-content', async ({browserName, page}) => {
+    test.setTimeout(1200000);
+    // Check if the browser is WebKit
+    test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
+    const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
+    const RUNNER_NAME: string = "Test Undesirable Content " + Math.floor(Math.random() * 1000000000);
+    ////////////////////////////////////////////////////////////////////////////
+    // Benchmarking
+    console.log('Benchmarking')
+    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    await page.getByRole('listitem').nth(1).click();
+    await page.getByRole('button', {name: 'Start New Run'}).click();
+    await page.getByLabel('Select ' + ENDPOINT_NAME).check();
+    await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
+    await page.getByRole('checkbox', { name: 'Select undesirable-content' }).check();
+    await page.getByLabel('Next View').click();
+    await configure_chatgpt4o(page,process.env.OPENAI_TOKEN);
+    await configure_llamaguard(page,process.env.OPENAI_TOKEN);
+    await page.getByRole('button', { name: 'Next View' }).click();
+    await page.getByPlaceholder('Give this session a unique').click();
+    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await page.getByRole('button', {name: 'Run'}).click();
+    ////////////////////////////////////////////////////////////////////////////
+    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
+    //Check Detailss
+    await page.getByRole('button', {name: 'See Details'}).click();
+    await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
+    await expect(page.getByText('Description:')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:')).toBeVisible();
+    await page.getByRole('main').getByRole('img').nth(1).click();
+    // await download_validation_steps (page)
+    await page.getByRole('button', {name: 'View Report'}).click();
+    await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
+    await page.getByText(/back to home/i).click()
+
+});
+*/
+
+
+//adversarial prompts
+test('test_benchmarking_one_endpoint_cookbook_adversarial-prompts', async ({browserName, page}) => {
+    test.setTimeout(1200000);
+    // Check if the browser is WebKit
+    test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
+    const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
+    const RUNNER_NAME: string = "Test Adversarial Prompts " + Math.floor(Math.random() * 1000000000);
+    ////////////////////////////////////////////////////////////////////////////
+    // Benchmarking
+    console.log('Benchmarking')
+    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    await page.getByRole('listitem').nth(1).click();
+    await page.getByRole('button', {name: 'Start New Run'}).click();
+    await page.getByLabel('Select ' + ENDPOINT_NAME).check();
+    await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
+    await page.getByRole('checkbox', { name: 'Select adversarial-attacks' }).check();
+    await page.getByLabel('Next View').click();
+    await configure_chatgpt4o(page,process.env.OPENAI_TOKEN);
+    await page.getByRole('button', { name: 'Next View' }).click();
+    await page.getByPlaceholder('Give this session a unique').click();
+    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await page.getByRole('button', {name: 'Run'}).click();
+    ////////////////////////////////////////////////////////////////////////////
+    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
+    //Check Detailss
+    await page.getByRole('button', {name: 'See Details'}).click();
+    await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
+    await expect(page.getByText('Description:')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:')).toBeVisible();
+    await page.getByRole('main').getByRole('img').nth(1).click();
+    // await download_validation_steps (page)
+    await page.getByRole('button', {name: 'View Report'}).click();
+    await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
+    await page.getByText(/back to home/i).click()
+});
+
+
+
+
+//data disclosure
+test('test_benchmarking_one_endpoint_cookbook_data-disclosure', async ({browserName, page}) => {
+    test.setTimeout(1200000);
+    // Check if the browser is WebKit
+    test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
+    const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
+    const RUNNER_NAME: string = "Test Data Disclosure " + Math.floor(Math.random() * 1000000000);
+    ////////////////////////////////////////////////////////////////////////////
+    // Benchmarking
+    console.log('Benchmarking')
+    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    await page.getByRole('listitem').nth(1).click();
+    await page.getByRole('button', {name: 'Start New Run'}).click();
+    await page.getByLabel('Select ' + ENDPOINT_NAME).check();
+    await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
+    await page.getByRole('checkbox', { name: 'Select data-disclosure' }).check();
+    await page.getByLabel('Next View').click();
+    await configure_chatgpt4o(page,process.env.OPENAI_TOKEN);
+    await page.getByRole('button', { name: 'Next View' }).click();
+    await page.getByPlaceholder('Give this session a unique').click();
+    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await page.getByRole('button', {name: 'Run'}).click();
+    ////////////////////////////////////////////////////////////////////////////
+    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
+    //Check Detailss
+    await page.getByRole('button', {name: 'See Details'}).click();
+    await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
+    await expect(page.getByText('Description:')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:')).toBeVisible();
+    await page.getByRole('main').getByRole('img').nth(1).click();
+    // await download_validation_steps (page)
+    await page.getByRole('button', {name: 'View Report'}).click();
+    await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
+    await page.getByText(/back to home/i).click()
+
+});
+
+//hallucination
+test('test_benchmarking_one_endpoint_cookbook_hallucination', async ({browserName, page}) => {
+    test.setTimeout(1200000);
+    // Check if the browser is WebKit
+    test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
+    const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
+    const RUNNER_NAME: string = "Test Hallucination " + Math.floor(Math.random() * 1000000000);
+    ////////////////////////////////////////////////////////////////////////////
+    // Benchmarking
+    console.log('Benchmarking')
+    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    await page.getByRole('listitem').nth(1).click();
+    await page.getByRole('button', {name: 'Start New Run'}).click();
+    await page.getByLabel('Select ' + ENDPOINT_NAME).check();
+    await page.getByLabel('Next View').click();
+    await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
+    await page.getByRole('checkbox', { name: 'Select hallucination' }).check();
+    await page.getByLabel('Next View').click();
+    await page.getByPlaceholder('Give this session a unique').click();
+    await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
+    await page.getByRole('button', {name: 'Run'}).click();
+    ////////////////////////////////////////////////////////////////////////////
+    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
+    //Check Detailss
+    await page.getByRole('button', {name: 'See Details'}).click();
+    await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
+    await expect(page.getByText('Description:')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:')).toBeVisible();
+    await page.getByRole('main').getByRole('img').nth(1).click();
+    // await download_validation_steps (page)
+    await page.getByRole('button', {name: 'View Report'}).click();
+    await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
+    await page.getByText(/back to home/i).click()
+
 });
