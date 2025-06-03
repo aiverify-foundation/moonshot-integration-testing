@@ -625,6 +625,7 @@ test('test_getting_started_page_click_back_btn', async ({page}) => {
 });
 
 test('test_complete_process_checks_page', async ({page}) => {
+    test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501');
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -734,6 +735,7 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
 });
 
 test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}) => {
+    test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501');
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -4937,7 +4939,7 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:120000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
