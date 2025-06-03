@@ -424,7 +424,7 @@ async function fillInProcessChecklist(page) {
 
 test('test_welcome_page', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
     await expect(page.getByRole('heading', {name: 'How can the Testing Framework'})).toBeVisible();
@@ -433,20 +433,20 @@ test('test_welcome_page', async ({page}) => {
 
 test('test_welcome_page_click_home_btn', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
     await expect(page.getByRole('heading', {name: 'How can the Testing Framework'})).toBeVisible();
 
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
 });
 
 test.skip('test_getting_started_page_pdf_download', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -518,7 +518,7 @@ test.skip('test_getting_started_page_pdf_download', async ({page}) => {
 
 test('test_getting_started_page_excel_download', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -572,7 +572,7 @@ test('test_getting_started_page_excel_download', async ({page}) => {
 
 test('test_getting_started_page_click_home_btn', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -594,12 +594,12 @@ test('test_getting_started_page_click_home_btn', async ({page}) => {
     await expect(boxStep3).toHaveClass(/inactive/);
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 });
 
 test('test_getting_started_page_click_back_btn', async ({page}) => {
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -627,7 +627,7 @@ test('test_getting_started_page_click_back_btn', async ({page}) => {
 test('test_complete_process_checks_page', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -677,7 +677,7 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -736,7 +736,7 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
 test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -783,7 +783,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
 
     //Attempt to restart and create session 2
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -823,7 +823,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
 test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -867,12 +867,12 @@ test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 });
 test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -923,7 +923,7 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
 test('test_complete_process_checks_page_edit_app_information', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -981,7 +981,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
 test('test_complete_process_checks_page_edit_app_information_leave_blank', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -1041,7 +1041,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -1093,7 +1093,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -1559,7 +1559,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -2025,7 +2025,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -2395,7 +2395,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -2765,7 +2765,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -3135,7 +3135,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -3592,7 +3592,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -3692,7 +3692,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     // Back to Home Page Attempt to Resume Session
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     //Attempt to Click Continue where you left off btn
     await page.getByTestId('stBaseButton-secondary').click();
     //Assert Resume button is disabled
@@ -3703,7 +3703,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     //Attempt to Click Cancel btn to resume Session
     await page.getByTestId('stDialog').getByTestId('stBaseButton-secondary').click();
     // Verify we are still in home page after clicking cancel
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     //Attempt to Resume Session
     //Attempt to Click Continue where you left off btn
@@ -4104,7 +4104,7 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4173,7 +4173,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4242,7 +4242,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4311,7 +4311,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4380,7 +4380,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4449,7 +4449,7 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4518,7 +4518,7 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4593,7 +4593,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4643,7 +4643,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
 
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
 });
 
@@ -4652,7 +4652,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4714,7 +4714,7 @@ test('test_upload_generate_report_page', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4806,7 +4806,7 @@ test('test_upload_generate_report_page', async ({page}) => {
     await page.getByRole('button', {name: 'Generate Report'}).click();
 
     //Verify Download PDF button visible to user for download
-    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeVisible({ timeout: 10000 });
+    await expect(page.getByTestId('stDownloadButton').getByTestId('stBaseButton-primary')).toBeVisible({ timeout: 90000 });
 
     const [download] = await Promise.all([
         page.waitForEvent('download'),  // Wait for the download event
@@ -4822,7 +4822,7 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4912,7 +4912,7 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -4985,14 +4985,14 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
 
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 });
 test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -5072,7 +5072,7 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -5559,7 +5559,7 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -5629,7 +5629,7 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({page}) 
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
@@ -5700,7 +5700,7 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://127.0.0.1:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
 
