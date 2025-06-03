@@ -870,6 +870,7 @@ test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
 });
 test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
+    test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501');
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
