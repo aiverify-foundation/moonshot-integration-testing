@@ -3694,7 +3694,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     // Back to Home Page Attempt to Resume Session
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     //Attempt to Click Continue where you left off btn
-    await page.getByTestId('stBaseButton-secondary').click({timeout: 180000});
+    await page.getByTestId('stMainBlockContainer').getByTestId('stBaseButton-secondary').click();
     //Assert Resume button is disabled
     await expect(page.getByTestId('stDialog').getByTestId('stBaseButton-primary')).toBeDisabled();
     //Select Dropdownlist for Session
@@ -3707,7 +3707,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
 
     //Attempt to Resume Session
     //Attempt to Click Continue where you left off btn
-    await page.getByTestId('stBaseButton-secondary').click({timeout: 180000});
+    await page.getByTestId('stMainBlockContainer').getByTestId('stBaseButton-secondary').click();
     //Assert Resume button is disabled
     await expect(page.getByTestId('stDialog').getByTestId('stBaseButton-primary')).toBeDisabled();
     //Select Dropdownlist for Session
