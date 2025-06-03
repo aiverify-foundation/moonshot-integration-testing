@@ -656,7 +656,7 @@ test('test_complete_process_checks_page', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -707,7 +707,7 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     // Attempt to fill workspace session details
     await page.getByTestId('stBaseButton-primary').click();
@@ -768,7 +768,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -816,7 +816,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -858,7 +858,7 @@ test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -909,7 +909,7 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -962,7 +962,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -1022,7 +1022,7 @@ test('test_complete_process_checks_page_edit_app_information_leave_blank', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -1083,7 +1083,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -1136,7 +1136,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -1603,7 +1603,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -2070,7 +2070,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -2441,7 +2441,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -2812,7 +2812,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -3183,7 +3183,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -3641,7 +3641,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4155,7 +4155,7 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4225,7 +4225,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4295,7 +4295,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4365,7 +4365,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4435,7 +4435,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4505,7 +4505,7 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4575,7 +4575,7 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4651,7 +4651,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4711,7 +4711,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4774,7 +4774,7 @@ test('test_upload_generate_report_page', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4883,7 +4883,7 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -5054,7 +5054,7 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -5134,7 +5134,7 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -5622,7 +5622,7 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -5693,7 +5693,7 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({page}) 
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -5765,7 +5765,7 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('load');
     await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout:60000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
