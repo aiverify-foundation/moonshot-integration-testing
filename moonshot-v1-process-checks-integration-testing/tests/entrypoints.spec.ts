@@ -4237,7 +4237,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
 
 });
 
-test.only('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page}) => {
+test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
