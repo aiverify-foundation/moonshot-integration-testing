@@ -692,7 +692,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
-    let dialog = page.locator('div[role="dialog"][aria-modal="true"]', { hasText: 'Provide Workspace Details' });
+    dialog = page.locator('div[role="dialog"][aria-modal="true"]', { hasText: 'Provide Workspace Details' });
     await expect(dialog).toBeVisible({ timeout: 180000 });
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
