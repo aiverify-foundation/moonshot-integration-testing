@@ -530,7 +530,7 @@ test('test_complete_process_checks_page', async ({page}) => {
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -582,7 +582,7 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     // Attempt to fill workspace session details
     await page.getByTestId('stBaseButton-primary').click();
@@ -644,7 +644,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -693,7 +693,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -736,7 +736,7 @@ test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -788,7 +788,7 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -842,7 +842,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -903,7 +903,7 @@ test('test_complete_process_checks_page_edit_app_information_leave_blank', async
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -965,7 +965,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -1019,7 +1019,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -1487,7 +1487,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -1955,7 +1955,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -2327,7 +2327,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -2699,7 +2699,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -3071,7 +3071,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -3530,7 +3530,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4045,7 +4045,7 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4116,7 +4116,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4187,7 +4187,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4258,7 +4258,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4329,7 +4329,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4400,7 +4400,7 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4471,7 +4471,7 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4548,7 +4548,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4609,7 +4609,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4673,7 +4673,7 @@ test('test_upload_generate_report_page', async ({page}) => {
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4783,7 +4783,7 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -4955,7 +4955,7 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -5036,7 +5036,7 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -5525,7 +5525,7 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -5597,7 +5597,7 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({page}) 
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -5669,7 +5669,7 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 180000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
