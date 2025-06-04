@@ -446,133 +446,6 @@ test('test_welcome_page_click_home_btn', async ({page}) => {
 
 });
 
-test.skip('test_getting_started_page_pdf_download', async ({page}) => {
-    await page.goto('http://localhost:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    await page.getByTestId('stBaseButton-primary').click();
-    await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
-
-    const boxStep1 = page.getByText('1', {exact: true});
-    await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
-
-    //Checkpoint - Click Next button reach to Getting Started Page for PDF
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep2).toHaveClass(/inactive/);
-    await page.getByRole('button', {name: 'Next →'}).click();
-    // Check Steps UI contains 'active'
-    boxStep2 = page.getByText('2', {exact: true});
-    await expect(boxStep2).toHaveClass(/active/);
-    await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
-
-    const boxStep3 = page.getByText('3', {exact: true});
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep3).toHaveClass(/inactive/);
-
-    // // Checkpoint - check download link feature on Getting Started Page for PDF
-    // // ✅ Handle the PDF link as a download
-    // const downloadPromise = page.waitForEvent('download');
-    //
-    // // Click the link (triggers the download)
-    // await page.getByRole('link', {name: 'Download Testing Framework - PDF'}).click();
-    //
-    // // Wait for the download to complete
-    // const download = await downloadPromise;
-    //
-    // // Confirm the download URL
-    // const downloadUrl = download.url();
-    // console.log('PDF Download URL:', downloadUrl);
-    //
-    // // Assert the expected download URL
-    // expect(downloadUrl).toBe(
-    //     "https://www.cpf.gov.sg/content/dam/web/member/faq/general-information---useful-tips/documents/Guide_to_view_and_save_CPF_statements.pdf"
-    // );
-
-    // Checkpoint - check download link feature on Getting Started Page for Excel
-    // Try download and popup listeners together
-    const [popupOrDownload] = await Promise.all([
-        Promise.race([
-            page.waitForEvent('popup'),
-            page.waitForEvent('download'),
-        ]),
-        page.getByRole('link', {name: 'Download Testing Framework - PDF'}).click(),
-    ]);
-
-    if (popupOrDownload.url) {
-        // It's a download
-        const download = popupOrDownload;
-        console.log('Excel download URL:', download.url());
-        expect(download.url()).toBe(
-            "https://www.cpf.gov.sg/content/dam/web/member/faq/general-information---useful-tips/documents/Guide_to_view_and_save_CPF_statements.pdf"
-        );
-    } else {
-        // It's a popup
-        const popup = popupOrDownload;
-        await popup.waitForLoadState('load');
-        const popupUrl = popup.url();
-        console.log('Excel opened in new tab:', popupUrl);
-        expect(popupUrl).toBe(
-            "https://www.cpf.gov.sg/content/dam/web/member/faq/general-information---useful-tips/documents/Guide_to_view_and_save_CPF_statements.pdf"
-        );
-    }
-
-});
-
-test('test_getting_started_page_excel_download', async ({page}) => {
-    test.setTimeout(1200000);
-    await page.goto('http://localhost:8501');
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    await page.getByTestId('stBaseButton-primary').click();
-    await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
-
-    const boxStep1 = page.getByText('1', {exact: true});
-    await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
-
-    //Checkpoint - Click Next button reach to Getting Started Page for PDF
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep2).toHaveClass(/inactive/);
-    await page.getByRole('button', {name: 'Next →'}).click();
-    // Check Steps UI contains 'active'
-    boxStep2 = page.getByText('2', {exact: true});
-    await expect(boxStep2).toHaveClass(/active/);
-    await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
-
-    const boxStep3 = page.getByText('3', {exact: true});
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep3).toHaveClass(/inactive/);
-
-    // Checkpoint - check download link feature on Getting Started Page for Excel
-    // Try download and popup listeners together
-    const [popupOrDownload] = await Promise.all([
-        Promise.race([
-            page.waitForEvent('popup'),
-            page.waitForEvent('download'),
-        ]),
-        page.getByRole('link', {name: 'Download Testing Framework - Excel'}).click(),
-    ]);
-
-    if (popupOrDownload.url) {
-        // It's a download
-        const download = popupOrDownload;
-        console.log('Excel download URL:', download.url());
-        expect(download.url()).toBe(
-            "https://go.gov.sg/aivtf-excel"
-        );
-    } else {
-        // It's a popup
-        const popup = popupOrDownload;
-        await popup.waitForLoadState('load');
-        const popupUrl = popup.url();
-        console.log('Excel opened in new tab:', popupUrl);
-        expect(popupUrl).toBe(
-            "https://go.gov.sg/aivtf-excel"
-        );
-    }
-
-
-});
-
 test('test_getting_started_page_click_home_btn', async ({page}) => {
     test.setTimeout(1200000);
     await page.goto('http://localhost:8501');
@@ -656,6 +529,9 @@ test('test_complete_process_checks_page', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -705,6 +581,9 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     // Attempt to fill workspace session details
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByText('Please enter a workspace name')).toBeVisible();
@@ -764,6 +643,9 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -810,6 +692,9 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -850,6 +735,9 @@ test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -899,6 +787,9 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -950,6 +841,9 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -1008,6 +902,9 @@ test('test_complete_process_checks_page_edit_app_information_leave_blank', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -1067,6 +964,9 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -1586,6 +1486,9 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -2051,6 +1954,9 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -2420,6 +2326,9 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -2789,6 +2698,9 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -3158,6 +3070,9 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -3614,6 +3529,9 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4126,6 +4044,9 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4194,6 +4115,9 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4262,6 +4186,9 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4330,6 +4257,9 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4398,6 +4328,9 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4466,6 +4399,9 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4534,6 +4470,9 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4608,6 +4547,9 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4666,6 +4608,9 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4727,6 +4672,9 @@ test('test_upload_generate_report_page', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4834,6 +4782,9 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5003,6 +4954,9 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5081,6 +5035,9 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5567,6 +5524,9 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5636,6 +5596,9 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({page}) 
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5705,6 +5668,9 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
     await page.getByRole('button', {name: 'Next →'}).click();
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5745,3 +5711,129 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 });
 
+test.skip('test_getting_started_page_pdf_download', async ({page}) => {
+    await page.goto('http://localhost:8501');
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
+    await page.getByTestId('stBaseButton-primary').click();
+    await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
+
+    const boxStep1 = page.getByText('1', {exact: true});
+    await expect(boxStep1).toHaveClass(/active/);
+    let boxStep2 = page.getByText('2');
+
+    //Checkpoint - Click Next button reach to Getting Started Page for PDF
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep2).toHaveClass(/inactive/);
+    await page.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    boxStep2 = page.getByText('2', {exact: true});
+    await expect(boxStep2).toHaveClass(/active/);
+    await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
+
+    const boxStep3 = page.getByText('3', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep3).toHaveClass(/inactive/);
+
+    // // Checkpoint - check download link feature on Getting Started Page for PDF
+    // // ✅ Handle the PDF link as a download
+    // const downloadPromise = page.waitForEvent('download');
+    //
+    // // Click the link (triggers the download)
+    // await page.getByRole('link', {name: 'Download Testing Framework - PDF'}).click();
+    //
+    // // Wait for the download to complete
+    // const download = await downloadPromise;
+    //
+    // // Confirm the download URL
+    // const downloadUrl = download.url();
+    // console.log('PDF Download URL:', downloadUrl);
+    //
+    // // Assert the expected download URL
+    // expect(downloadUrl).toBe(
+    //     "https://www.cpf.gov.sg/content/dam/web/member/faq/general-information---useful-tips/documents/Guide_to_view_and_save_CPF_statements.pdf"
+    // );
+
+    // Checkpoint - check download link feature on Getting Started Page for Excel
+    // Try download and popup listeners together
+    const [popupOrDownload] = await Promise.all([
+        Promise.race([
+            page.waitForEvent('popup'),
+            page.waitForEvent('download'),
+        ]),
+        page.getByRole('link', {name: 'Download Testing Framework - PDF'}).click(),
+    ]);
+
+    if (popupOrDownload.url) {
+        // It's a download
+        const download = popupOrDownload;
+        console.log('Excel download URL:', download.url());
+        expect(download.url()).toBe(
+            "https://www.cpf.gov.sg/content/dam/web/member/faq/general-information---useful-tips/documents/Guide_to_view_and_save_CPF_statements.pdf"
+        );
+    } else {
+        // It's a popup
+        const popup = popupOrDownload;
+        await popup.waitForLoadState('load');
+        const popupUrl = popup.url();
+        console.log('Excel opened in new tab:', popupUrl);
+        expect(popupUrl).toBe(
+            "https://www.cpf.gov.sg/content/dam/web/member/faq/general-information---useful-tips/documents/Guide_to_view_and_save_CPF_statements.pdf"
+        );
+    }
+
+});
+
+test('test_getting_started_page_excel_download', async ({page}) => {
+    test.setTimeout(1200000);
+    await page.goto('http://localhost:8501');
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
+    await page.getByTestId('stBaseButton-primary').click();
+    await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
+
+    const boxStep1 = page.getByText('1', {exact: true});
+    await expect(boxStep1).toHaveClass(/active/);
+    let boxStep2 = page.getByText('2');
+
+    //Checkpoint - Click Next button reach to Getting Started Page for PDF
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep2).toHaveClass(/inactive/);
+    await page.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    boxStep2 = page.getByText('2', {exact: true});
+    await expect(boxStep2).toHaveClass(/active/);
+    await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
+
+    const boxStep3 = page.getByText('3', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep3).toHaveClass(/inactive/);
+
+    // Checkpoint - check download link feature on Getting Started Page for Excel
+    // Try download and popup listeners together
+    const [popupOrDownload] = await Promise.all([
+        Promise.race([
+            page.waitForEvent('popup'),
+            page.waitForEvent('download'),
+        ]),
+        page.getByRole('link', {name: 'Download Testing Framework - Excel'}).click(),
+    ]);
+
+    if (popupOrDownload.url) {
+        // It's a download
+        const download = popupOrDownload;
+        console.log('Excel download URL:', download.url());
+        expect(download.url()).toBe(
+            "https://go.gov.sg/aivtf-excel"
+        );
+    } else {
+        // It's a popup
+        const popup = popupOrDownload;
+        await popup.waitForLoadState('load');
+        const popupUrl = popup.url();
+        console.log('Excel opened in new tab:', popupUrl);
+        expect(popupUrl).toBe(
+            "https://go.gov.sg/aivtf-excel"
+        );
+    }
+
+
+});
