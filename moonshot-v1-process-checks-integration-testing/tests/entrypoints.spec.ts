@@ -426,7 +426,7 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
-    await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
+    await page.goto('http://localhost:8501/test=' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -454,7 +454,6 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
     await page.waitForTimeout(1000); // buffer for UI stability
     const dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
     await expect(dialog).toBeVisible({ timeout: 240_000 });
-
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
