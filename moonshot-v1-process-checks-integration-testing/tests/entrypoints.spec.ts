@@ -7,51 +7,51 @@ async function fillInProcessChecklist(page) {
     let boxStep4 = page.getByText('4', {exact: true});
     // Fill Transparency
     await expect(page.getByRole('heading', {name: 'Transparency'})).toBeVisible();
-    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.3.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -61,9 +61,9 @@ async function fillInProcessChecklist(page) {
     //Explainability Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Explainability 0 of 1 checks').click();
     await expect(page.locator('#transparency')).toContainText('Explainability');
-    await page.locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -75,36 +75,36 @@ async function fillInProcessChecklist(page) {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 10 checks').click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
-    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -117,52 +117,52 @@ async function fillInProcessChecklist(page) {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Safety 0 of 17 checks').click();
     await expect(page.locator('#transparency')).toContainText('Safety');
 
-    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.2').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.3').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.6.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.4').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.7').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.7').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.8').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.8').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
@@ -174,41 +174,41 @@ async function fillInProcessChecklist(page) {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Security 0 of 14 checks').click();
     await expect(page.locator('#transparency')).toContainText('Security');
 
-    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.5').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.5').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.6').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.6').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.6.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.7').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.7').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.7.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.8').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.8').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.12.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.12.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.13.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.13.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.13.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.14.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.14.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -220,31 +220,31 @@ async function fillInProcessChecklist(page) {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
     await expect(page.locator('#transparency')).toContainText('Robustness');
 
-    await page.getByLabel('Implementation Status for 6.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -256,21 +256,21 @@ async function fillInProcessChecklist(page) {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
-    await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.8.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.8.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.9.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.11.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -284,21 +284,21 @@ async function fillInProcessChecklist(page) {
     await expect(page.getByRole('heading', {name: 'Data Governance'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 8.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.5.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -312,52 +312,52 @@ async function fillInProcessChecklist(page) {
     await expect(page.getByRole('heading', {name: 'Accountability'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 9.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.7.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.8.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.12.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.12.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
@@ -370,25 +370,25 @@ async function fillInProcessChecklist(page) {
     await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 10.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.6.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
@@ -402,12 +402,12 @@ async function fillInProcessChecklist(page) {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Inclusive Growth, Societal And Environmental Well-Being 0 of 2 checks').click();
     await expect(page.getByRole('heading', {name: 'Inclusive Growth, Societal'})).toBeVisible();
 
-
-    await page.getByLabel('Implementation Status for 11.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    
+    await page.getByLabel('Implementation Status for 11.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 11.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.2.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
@@ -1164,51 +1164,51 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
 
     // Fill Transparency
     await expect(page.getByRole('heading', {name: 'Transparency'})).toBeVisible();
-    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.3.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -1218,9 +1218,9 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     //Explainability Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Explainability 0 of 1 checks').click();
     await expect(page.locator('#transparency')).toContainText('Explainability');
-    await page.locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -1232,36 +1232,36 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 10 checks').click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
-    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1274,52 +1274,52 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Safety 0 of 17 checks').click();
     await expect(page.locator('#transparency')).toContainText('Safety');
 
-    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.4').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.4').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.1').locator('label').filter({hasText: 'No'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.2').locator('label').filter({hasText: 'No'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.3').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.3').locator('label').filter({hasText: 'No'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.6.4').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.4').locator('label').filter({hasText: 'No'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.7').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.7').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.8').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.8').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
@@ -1331,41 +1331,41 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Security 0 of 14 checks').click();
     await expect(page.locator('#transparency')).toContainText('Security');
 
-    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.3').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.3').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.4').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.4').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.5').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.5').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.6').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.6').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.6.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.7').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.7').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.7.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.8').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.8').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.9.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.9.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.10.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.10.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.11.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.11.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.12.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.12.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.12.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.13.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.13.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.13.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.14.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.14.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1377,31 +1377,31 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
     await expect(page.locator('#transparency')).toContainText('Robustness');
 
-    await page.getByLabel('Implementation Status for 6.1.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.1.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.2.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.2.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.3.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.3.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.4.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.4.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.5.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.5.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.6.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.3').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.3').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1413,21 +1413,21 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
-    await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 7.2.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.4.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 7.4.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.8.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 7.8.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.8.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.9.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 7.9.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.9.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.10.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 7.10.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 7.11.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.11.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1441,21 +1441,21 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await expect(page.getByRole('heading', {name: 'Data Governance'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 8.1.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 8.1.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.2.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 8.2.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.3.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.3.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.4.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 8.4.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 8.5.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.5.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1469,52 +1469,52 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await expect(page.getByRole('heading', {name: 'Accountability'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 9.1.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.1.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.2.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.2.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.3.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.3.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.4.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.4.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.5.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.3').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.3').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.4').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.4').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.6.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.6.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.7.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.7.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.8.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.8.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.10.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.11.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.11.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.12.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.12.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
@@ -1527,25 +1527,25 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 10.1.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.1.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.2').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.3').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.3').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.4.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.4.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.5.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.5.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.6.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.6.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
@@ -1560,11 +1560,11 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await expect(page.getByRole('heading', {name: 'Inclusive Growth, Societal'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 11.1.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 11.1.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 11.2.1').locator('label').filter({hasText: 'No'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.2.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
@@ -1636,51 +1636,51 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
 
     // Fill Transparency
     await expect(page.getByRole('heading', {name: 'Transparency'})).toBeVisible();
-    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.3.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -1690,9 +1690,9 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     //Explainability Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Explainability 0 of 1 checks').click();
     await expect(page.locator('#transparency')).toContainText('Explainability');
-    await page.locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -1704,36 +1704,36 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 10 checks').click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
-    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1746,52 +1746,52 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Safety 0 of 17 checks').click();
     await expect(page.locator('#transparency')).toContainText('Safety');
 
-    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.4').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.4').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.2').locator('label').filter({hasText: 'N/A'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.3').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.3').locator('label').filter({hasText: 'N/A'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.6.4').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.4').locator('label').filter({hasText: 'N/A'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.7').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.7').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.8').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.8').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
@@ -1803,41 +1803,41 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Security 0 of 14 checks').click();
     await expect(page.locator('#transparency')).toContainText('Security');
 
-    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.3').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.3').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.4').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.4').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.5').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.5').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.6').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.6').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.6.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.7').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.7').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.7.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.8').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.8').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.9.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.9.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.10.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.10.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.11.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.11.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.12.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.12.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.12.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.13.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.13.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.13.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.14.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.14.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1849,31 +1849,31 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
     await expect(page.locator('#transparency')).toContainText('Robustness');
 
-    await page.getByLabel('Implementation Status for 6.1.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.1.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.3.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.3.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.4.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.4.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.5.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.6.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.3').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.3').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1885,21 +1885,21 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
-    await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 7.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.4.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 7.4.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.8.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 7.8.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.8.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.9.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 7.9.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.9.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.10.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 7.10.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 7.11.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.11.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1913,21 +1913,21 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await expect(page.getByRole('heading', {name: 'Data Governance'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 8.1.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 8.1.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 8.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.3.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.3.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.4.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 8.4.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 8.5.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.5.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -1941,52 +1941,52 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await expect(page.getByRole('heading', {name: 'Accountability'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 9.1.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.1.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.3.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.3.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.4.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.4.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.3').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.3').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.4').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.4').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.6.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.6.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.7.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.7.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.8.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.8.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.10.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.11.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.11.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.12.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.12.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
@@ -1999,25 +1999,25 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 10.1.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.1.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.2').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.3').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.3').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.4.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.4.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.5.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.6.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.6.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
@@ -2032,11 +2032,11 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await expect(page.getByRole('heading', {name: 'Inclusive Growth, Societal'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 11.1.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 11.1.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 11.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.2.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
@@ -2108,39 +2108,39 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
 
     // Fill Transparency
     await expect(page.getByRole('heading', {name: 'Transparency'})).toBeVisible();
-    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).click();
 
-    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -2150,8 +2150,8 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     //Explainability Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Explainability 0 of 1 checks').click();
     await expect(page.locator('#transparency')).toContainText('Explainability');
-    await page.locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -2163,26 +2163,26 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 10 checks').click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
-    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
-    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -2195,36 +2195,36 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Safety 0 of 17 checks').click();
     await expect(page.locator('#transparency')).toContainText('Safety');
 
-    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
-    await page.getByLabel('Implementation Status for 4.2').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 4.3.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 4.3.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.2').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.2').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.4').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.4').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.5.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.2').locator('label').filter({hasText: 'N/A'}).first().click();
 
 
-    await page.getByLabel('Implementation Status for 4.6.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.6.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.2').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.6.3').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.3').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.6.4').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.4').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.7').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.7').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.8').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.8').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.9.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.9.2').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 4.10.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.9.2').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.2').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
@@ -2236,33 +2236,33 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Security 0 of 14 checks').click();
     await expect(page.locator('#transparency')).toContainText('Security');
 
-    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 5.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.2').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.3').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.3').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.4').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.4').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.5').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.5').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.6').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.6').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.7').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.7').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.8').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.8').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.9.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.9.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.10.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.10.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.11.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.11.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.12.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.12.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.13.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.13.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 5.14.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -2274,21 +2274,21 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
     await expect(page.locator('#transparency')).toContainText('Robustness');
 
-    await page.getByLabel('Implementation Status for 6.1.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 6.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 6.3.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 6.4.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 6.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 6.6.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.1.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.3.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.4.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.5.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.6.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.2').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.6.3').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.3').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.7.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 6.7.2').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -2300,15 +2300,15 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
-    await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 7.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 7.4.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 7.4.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 7.8.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 7.9.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 7.10.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 7.8.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 7.9.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 7.10.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 7.11.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -2322,15 +2322,15 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await expect(page.getByRole('heading', {name: 'Data Governance'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 8.1.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 8.1.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 8.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 8.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 8.3.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 8.3.2').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 8.4.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 8.3.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.2').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 8.4.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 8.5.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -2344,36 +2344,36 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await expect(page.getByRole('heading', {name: 'Accountability'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 9.1.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.1.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.3.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 9.4.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 9.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.3.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.4.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.5.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.2').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.5.3').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.3').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.5.4').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.4').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.6.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.6.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.7.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.7.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.8.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.8.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.9.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.9.2').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.2').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.10.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.11.1').locator('div').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 9.11.1').locator('label').filter({hasText: 'N/A'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 9.12.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
@@ -2386,16 +2386,16 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 10.1.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 10.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 10.2.2').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 10.3.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 10.3.2').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 10.3.3').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 10.4.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 10.5.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 10.1.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.2').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.2').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.3').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.4.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.5.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 10.6.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
@@ -2410,9 +2410,9 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await expect(page.getByRole('heading', {name: 'Inclusive Growth, Societal'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 11.1.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'N/A'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 11.1.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByLabel('Implementation Status for 11.2.1').locator('label').filter({hasText: 'N/A'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
@@ -2484,39 +2484,39 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
 
     // Fill Transparency
     await expect(page.getByRole('heading', {name: 'Transparency'})).toBeVisible();
-    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).click();
 
-    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -2526,8 +2526,8 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     //Explainability Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Explainability 0 of 1 checks').click();
     await expect(page.locator('#transparency')).toContainText('Explainability');
-    await page.locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -2539,26 +2539,26 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 10 checks').click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
-    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -2571,36 +2571,36 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Safety 0 of 17 checks').click();
     await expect(page.locator('#transparency')).toContainText('Safety');
 
-    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
-    await page.getByLabel('Implementation Status for 4.2').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 4.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 4.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.2').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.4').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.2').locator('label').filter({hasText: 'Yes'}).first().click();
 
 
-    await page.getByLabel('Implementation Status for 4.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.6.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.2').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.6.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.3').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.6.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.4').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.7').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.7').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.8').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.8').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 4.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.9.2').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.2').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
@@ -2612,33 +2612,33 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Security 0 of 14 checks').click();
     await expect(page.locator('#transparency')).toContainText('Security');
 
-    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.2').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.3').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.4').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.5').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.5').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.6').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.6').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.7').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.7').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.8').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.8').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.12.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.13.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.13.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.14.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -2650,21 +2650,21 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
     await expect(page.locator('#transparency')).toContainText('Robustness');
 
-    await page.getByLabel('Implementation Status for 6.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 6.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 6.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 6.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 6.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 6.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.6.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.2').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.6.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.3').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 6.7.2').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -2676,15 +2676,15 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
-    await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 7.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 7.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 7.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 7.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 7.8.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -2698,15 +2698,15 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await expect(page.getByRole('heading', {name: 'Data Governance'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 8.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 8.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 8.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 8.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 8.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 8.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -2720,36 +2720,36 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await expect(page.getByRole('heading', {name: 'Accountability'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 9.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 9.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 9.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.2').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.5.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.3').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.5.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.4').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.7.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.8.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.2').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 9.12.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
@@ -2762,16 +2762,16 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 10.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 10.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 10.2.2').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 10.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 10.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 10.3.3').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 10.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 10.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 10.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.2').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.3').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
@@ -2786,9 +2786,9 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await expect(page.getByRole('heading', {name: 'Inclusive Growth, Societal'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 11.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 11.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 11.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
@@ -2859,39 +2859,39 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
 
     // Fill Transparency
     await expect(page.getByRole('heading', {name: 'Transparency'})).toBeVisible();
-    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).click();
 
-    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).click();
 
-    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -2901,8 +2901,8 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     //Explainability Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Explainability 0 of 1 checks').click();
     await expect(page.locator('#transparency')).toContainText('Explainability');
-    await page.locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -2914,26 +2914,26 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 10 checks').click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
-    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
-    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -2946,36 +2946,36 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Safety 0 of 17 checks').click();
     await expect(page.locator('#transparency')).toContainText('Safety');
 
-    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
-    await page.getByLabel('Implementation Status for 4.2').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 4.3.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 4.3.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.2').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.2').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.4').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.4').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.5.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.5.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.2').locator('label').filter({hasText: 'No'}).first().click();
 
 
-    await page.getByLabel('Implementation Status for 4.6.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.6.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.2').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.6.3').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.3').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.6.4').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.4').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.7').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.7').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.8').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.8').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.9.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 4.9.2').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 4.10.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.9.2').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.2').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
@@ -2987,33 +2987,33 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Security 0 of 14 checks').click();
     await expect(page.locator('#transparency')).toContainText('Security');
 
-    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 5.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.2').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.3').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.3').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.4').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.4').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.5').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.5').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.6').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.6').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.7').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.7').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.8').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.8').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.9.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.9.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.10.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.10.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.11.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.11.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.12.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.12.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 5.13.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.13.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 5.14.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3025,21 +3025,21 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
     await expect(page.locator('#transparency')).toContainText('Robustness');
 
-    await page.getByLabel('Implementation Status for 6.1.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 6.2.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 6.3.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 6.4.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 6.5.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 6.6.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.1.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.2.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.3.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.4.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.5.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.6.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.2').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.6.3').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.3').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.7.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 6.7.2').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3051,15 +3051,15 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
-    await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 7.2.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 7.4.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 7.4.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 7.8.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 7.9.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 7.10.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 7.8.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 7.9.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 7.10.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 7.11.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3073,15 +3073,15 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await expect(page.getByRole('heading', {name: 'Data Governance'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 8.1.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 8.1.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 8.2.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 8.2.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 8.3.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 8.3.2').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 8.4.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 8.3.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.2').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 8.4.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 8.5.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3095,36 +3095,36 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await expect(page.getByRole('heading', {name: 'Accountability'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 9.1.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.1.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.2.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.2.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.3.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 9.4.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 9.5.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.3.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.4.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.5.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.2').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.5.3').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.3').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.5.4').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.4').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.6.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.6.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.7.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.7.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.8.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.8.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.9.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.9.2').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.2').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.10.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.11.1').locator('div').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 9.11.1').locator('label').filter({hasText: 'No'}).first().click();
 
-    await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 9.12.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
@@ -3137,16 +3137,16 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 10.1.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 10.2.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 10.2.2').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 10.3.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 10.3.2').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 10.3.3').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 10.4.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 10.5.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 10.1.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.2').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.2').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.3').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.4.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.5.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 10.6.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
@@ -3161,9 +3161,9 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await expect(page.getByRole('heading', {name: 'Inclusive Growth, Societal'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 11.1.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'No'}).first().click();
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 11.1.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByLabel('Implementation Status for 11.2.1').locator('label').filter({hasText: 'No'}).first().click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
@@ -3235,43 +3235,43 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
 
     // Fill Transparency
     await expect(page.getByRole('heading', {name: 'Transparency'})).toBeVisible();
-    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.3.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'No'}).locator('label').nth(1).click();
 
-    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'N/A'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'N/A'}).locator('label').nth(1).click();
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -3281,9 +3281,9 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     //Explainability Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Explainability 0 of 1 checks').click();
     await expect(page.locator('#transparency')).toContainText('Explainability');
-    await page.locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -3295,36 +3295,36 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 10 checks').click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
-    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3337,52 +3337,52 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Safety 0 of 17 checks').click();
     await expect(page.locator('#transparency')).toContainText('Safety');
 
-    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.2').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.3').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.6.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.4').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.7').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.7').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.8').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.8').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
@@ -3394,41 +3394,41 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Security 0 of 14 checks').click();
     await expect(page.locator('#transparency')).toContainText('Security');
 
-    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.5').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.5').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.6').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.6').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.6.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.7').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.7').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.7.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.8').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.8').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.12.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.12.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.13.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.13.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.13.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.14.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.14.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3440,31 +3440,31 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
     await expect(page.locator('#transparency')).toContainText('Robustness');
 
-    await page.getByLabel('Implementation Status for 6.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3476,21 +3476,21 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
-    await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.8.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.8.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.9.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.11.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3504,21 +3504,21 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await expect(page.getByRole('heading', {name: 'Data Governance'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 8.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.5.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3532,52 +3532,52 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await expect(page.getByRole('heading', {name: 'Accountability'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 9.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.7.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.8.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.12.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.12.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
@@ -3590,25 +3590,25 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 10.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.6.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
@@ -3623,11 +3623,11 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await expect(page.getByRole('heading', {name: 'Inclusive Growth, Societal'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 11.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 11.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 11.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.2.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
@@ -3699,51 +3699,51 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     // Fill Transparency & Fill Halfway
 
     await expect(page.getByRole('heading', {name: 'Transparency'})).toBeVisible();
-    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.3.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -3797,9 +3797,9 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     //Explainability Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Explainability 0 of 1 checks').click();
     await expect(page.locator('#transparency')).toContainText('Explainability');
-    await page.locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -3811,36 +3811,36 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 10 checks').click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
-    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3853,52 +3853,52 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Safety 0 of 17 checks').click();
     await expect(page.locator('#transparency')).toContainText('Safety');
 
-    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.2').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.3').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.6.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.4').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.7').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.7').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.8').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.8').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
@@ -3910,41 +3910,41 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Security 0 of 14 checks').click();
     await expect(page.locator('#transparency')).toContainText('Security');
 
-    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.5').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.5').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.6').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.6').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.6.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.7').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.7').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.7.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.8').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.8').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.12.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.12.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.13.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.13.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.13.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.14.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.14.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3956,31 +3956,31 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
     await expect(page.locator('#transparency')).toContainText('Robustness');
 
-    await page.getByLabel('Implementation Status for 6.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -3992,21 +3992,21 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
-    await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.8.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.8.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.9.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.11.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -4020,21 +4020,21 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await expect(page.getByRole('heading', {name: 'Data Governance'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 8.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.5.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -4048,52 +4048,52 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await expect(page.getByRole('heading', {name: 'Accountability'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 9.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.7.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.8.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.12.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.12.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
@@ -4106,25 +4106,25 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 10.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.6.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
@@ -4139,11 +4139,11 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await expect(page.getByRole('heading', {name: 'Inclusive Growth, Societal'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 11.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 11.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 11.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.2.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
@@ -5262,51 +5262,51 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
 
     // Fill Transparency
     await expect(page.getByRole('heading', {name: 'Transparency'})).toBeVisible();
-    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.3').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.5'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.1.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.1.6'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.3').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.3.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 1.7.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 1.7.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     //Assert Complete Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
@@ -5316,9 +5316,9 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     //Explainability Fill Answer
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Explainability 0 of 1 checks').click();
     await expect(page.locator('#transparency')).toContainText('Explainability');
-    await page.locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-1').getByText('✓')).toBeVisible();
@@ -5330,36 +5330,36 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Reproducibility 0 of 10 checks').click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
-    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.2').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.4').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.5').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.6').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.7').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.8').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.9').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.11').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.11.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 3.12').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 3.12.1'}).fill('test elaboration');
 
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -5372,52 +5372,52 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Safety 0 of 17 checks').click();
     await expect(page.locator('#transparency')).toContainText('Safety');
 
-    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.2').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.6.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.3').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.6.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.6.4').locator('label').filter({hasText: 'Yes'}).first().click();
 
     await page.getByRole('textbox', {name: 'Elaboration for 4.6.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.7').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.7').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.8').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.8').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 4.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.9.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.9.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 4.10.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 4.10.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.10.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3').getByText('✓')).toBeVisible();
@@ -5429,41 +5429,41 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Security 0 of 14 checks').click();
     await expect(page.locator('#transparency')).toContainText('Security');
 
-    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'Yes'}).locator('div').nth(1).click();
+    await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'Yes'}).locator('label').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.5').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.5').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.6').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.6').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.6.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.7').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.7').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.7.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 5.8').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.8').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.12.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.12.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.13.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.13.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.13.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 5.14.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 5.14.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 5.14.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -5475,31 +5475,31 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Robustness 0 of 10 checks').click();
     await expect(page.locator('#transparency')).toContainText('Robustness');
 
-    await page.getByLabel('Implementation Status for 6.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 6.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.6.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.6.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.6.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 6.7.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 6.7.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 6.7.2'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -5511,21 +5511,21 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('Fairness 0 of 6 checks').click();
     await expect(page.locator('#transparency')).toContainText('Fairness');
 
-    await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.4.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 7.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.8.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.8.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.9.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.10.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 7.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 7.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 7.11.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -5539,21 +5539,21 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await expect(page.getByRole('heading', {name: 'Data Governance'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 8.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 8.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 8.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 8.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 8.5.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
 
     // Assert Completed Filling
@@ -5567,52 +5567,52 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await expect(page.getByRole('heading', {name: 'Accountability'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 9.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.1.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.2.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 9.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.3'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.5.4').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.5.4').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.5.4'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.6.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.7.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.7.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.7.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.8.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.8.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.8.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.9.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.9.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.9.2'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.10.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.10.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.10.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.11.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.11.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.11.1'}).fill('test elaboration');
 
-    await page.getByLabel('Implementation Status for 9.12.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 9.12.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 9.12.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8').getByText('✓')).toBeVisible();
@@ -5625,25 +5625,25 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 10.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.2.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.2.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.2.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.2').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.2').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.2'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.3.3').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.3.3').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.3.3'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.4.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.4.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.4.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.5.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.5.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.5.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 10.6.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 10.6.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 10.6.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-9').getByText('✓')).toBeVisible();
@@ -5658,11 +5658,11 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await expect(page.getByRole('heading', {name: 'Inclusive Growth, Societal'})).toBeVisible();
 
 
-    await page.getByLabel('Implementation Status for 11.1.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 11.1.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.1.1'}).fill('test elaboration');
-    await page.getByLabel('Implementation Status for 11.2.1').locator('div').filter({hasText: 'Yes'}).first().click();
+    await page.getByLabel('Implementation Status for 11.2.1').locator('label').filter({hasText: 'Yes'}).first().click();
     await page.getByRole('textbox', {name: 'Elaboration for 11.2.1'}).fill('test elaboration');
-    await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
+    await page.getByRole('progressbar', {name: '% Loaded'}).locator('label').nth(1).click();
 
     // Assert Completed Filling
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
