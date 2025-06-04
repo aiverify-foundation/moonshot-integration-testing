@@ -632,106 +632,6 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
 
 });
 
-test('test_complete_process_checks_page_duplicate_workspace_name', async ({page,browser}) => {
-    test.setTimeout(1200000);
-    let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
-    await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    await page.getByTestId('stBaseButton-primary').click();
-    await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
-
-    let boxStep1 = page.getByText('1', {exact: true});
-    await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
-
-    //Checkpoint - Click Next button reach to Getting Started Page
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep2).toHaveClass(/inactive/);
-    await page.getByRole('button', {name: 'Next →'}).click();
-    // Check Steps UI contains 'active'
-    boxStep2 = page.getByText('2', {exact: true});
-    await expect(boxStep2).toHaveClass(/active/);
-    await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
-
-    let boxStep3 = page.getByText('3', {exact: true});
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep3).toHaveClass(/inactive/);
-    await page.getByRole('button', {name: 'Next →'}).click();
-    // Check Steps UI contains 'active'
-    await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(1000); // buffer for UI stability
-    let dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
-    await expect(dialog).toBeVisible({ timeout: 240_000 });
-
-    await page.getByRole('textbox', {name: 'Company Name'}).click();
-    await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
-    await page.getByRole('textbox', {name: 'Application Name'}).click();
-    await page.getByRole('textbox', {name: 'Application Name'}).fill('application_name');
-    await page.getByRole('textbox', {name: 'Application Description'}).click();
-    await page.getByRole('textbox', {name: 'Application Description'}).fill('application_description');
-    await page.getByRole('textbox', {name: 'Workspace Name'}).click();
-    await page.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
-    await page.getByTestId('stBaseButton-primary').click();
-
-    const boxStep4 = page.getByText('4', {exact: true});
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep4).toHaveClass(/inactive/);
-
-    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_name')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_description')).toBeVisible();
-    await page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText(workspace_name).click();
-    await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
-
-    await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
-     // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
-    // ➕ Create a new browser context and page for second session
-    const context2 = await browser.newContext();
-    const page2 = await context2.newPage();
-    //Attempt to restart and create session 2
-    await page2.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
-    await expect(page2.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    await page2.getByTestId('stBaseButton-primary').click();
-    await expect(page2.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
-
-    boxStep1 = page2.getByText('1', {exact: true});
-    await expect(boxStep1).toHaveClass(/active/);
-    boxStep2 = page2.getByText('2');
-
-    //Checkpoint - Click Next button reach to Getting Started Page
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep2).toHaveClass(/inactive/);
-    await page2.getByRole('button', {name: 'Next →'}).click();
-    // Check Steps UI contains 'active'
-    boxStep2 = page2.getByText('2', {exact: true});
-    await expect(boxStep2).toHaveClass(/active/);
-    await expect(page2.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
-
-    boxStep3 = page2.getByText('3', {exact: true});
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep3).toHaveClass(/inactive/);
-    await page2.getByRole('button', {name: 'Next →'}).click();
-    // Check Steps UI contains 'active'
-    await expect(boxStep3).toHaveClass(/active/);
-    await page2.waitForLoadState('networkidle');
-    await page2.waitForTimeout(1000); // buffer for UI stability
-    dialog = page2.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
-    await expect(dialog).toBeVisible({ timeout: 240_000 });
-    await page2.getByRole('textbox', {name: 'Company Name'}).click();
-    await page2.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
-    await page2.getByRole('textbox', {name: 'Application Name'}).click();
-    await page2.getByRole('textbox', {name: 'Application Name'}).fill('application_name');
-    await page2.getByRole('textbox', {name: 'Application Description'}).click();
-    await page2.getByRole('textbox', {name: 'Application Description'}).fill('application_description');
-    await page2.getByRole('textbox', {name: 'Workspace Name'}).click();
-    await page2.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
-    await page2.getByTestId('stBaseButton-primary').click();
-    await expect(page2.getByTestId('stAlertContentError').getByRole('paragraph')).toContainText('A workspace with this name already exists. Please choose a different name.');
-    // ✅ Clean close the page
-    await page2.close(); // This disconnects the tab
-});
-
 test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -2761,7 +2661,6 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await page.waitForTimeout(1000); // buffer for UI stability
     const dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
     await expect(dialog).toBeVisible({ timeout: 240_000 });
-
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -5777,82 +5676,6 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({page}) 
     await page.close(); // This disconnects the tab
 });
 
-test('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
-    test.setTimeout(1200000);
-    let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
-    console.log(workspace_name)
-    await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
-    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    await page.getByTestId('stBaseButton-primary').click();
-    await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
-
-    const boxStep1 = page.getByText('1', {exact: true});
-    await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
-
-    //Checkpoint - Click Next button reach to Getting Started Page
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep2).toHaveClass(/inactive/);
-    await page.getByRole('button', {name: 'Next →'}).click();
-    // Check Steps UI contains 'active'
-    boxStep2 = page.getByText('2', {exact: true});
-    await expect(boxStep2).toHaveClass(/active/);
-    await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
-
-    let boxStep3 = page.getByText('3', {exact: true});
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep3).toHaveClass(/inactive/);
-    await page.getByRole('button', {name: 'Next →'}).click();
-    // Check Steps UI contains 'active'
-    await expect(boxStep3).toHaveClass(/active/);
-    await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(1000); // buffer for UI stability
-    const dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
-    await expect(dialog).toBeVisible({ timeout: 240_000 });
-
-
-    await page.getByRole('textbox', {name: 'Company Name'}).click();
-    await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
-    await page.getByRole('textbox', {name: 'Application Name'}).click();
-    await page.getByRole('textbox', {name: 'Application Name'}).fill('application_name');
-    await page.getByRole('textbox', {name: 'Application Description'}).click();
-    await page.getByRole('textbox', {name: 'Application Description'}).fill('application_description');
-    await page.getByRole('textbox', {name: 'Workspace Name'}).click();
-    await page.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
-    await page.getByTestId('stBaseButton-primary').click();
-
-    let boxStep4 = page.getByText('4', {exact: true});
-    // Check Steps UI contains 'inactive'
-    await expect(boxStep4).toHaveClass(/inactive/);
-
-    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_name')).toBeVisible();
-    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_description')).toBeVisible();
-    await page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText(workspace_name).click();
-    await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
-
-    await expect(page.getByText('Overall Progress: 0 of 104')).toBeVisible();
-    // Try to upload process checklist Excel file
-
-    // Path: one level up from current directory, then into test-data
-    const test_result_json_path = path.resolve(__dirname, '..', 'test-data', 'process_checks_invalid_format.xlsx');
-    // Locate the file input element.
-    const fileInput = await page.locator('input[type="file"]');
-    // Ensure the file input exists and then perform the file upload.
-    await page.getByRole('button', {name: 'file_upload Import from Excel'}).click();
-    await expect(fileInput).toHaveCount(1);
-    await page.getByTestId('stFileUploaderDropzone').getByTestId('stBaseButton-secondary').click();
-    await fileInput.setInputFiles(test_result_json_path);
-
-    await page.getByTestId('stDialog').getByRole('button', {name: 'Import'}).click();
-
-
-    //Assert Populated for the checklist
-    await expect(page.getByText('Overall Progress: 91 of 104')).toBeVisible();
-    await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
-});
-
 test.skip('test_getting_started_page_pdf_download', async ({page}) => {
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -5980,4 +5803,179 @@ test('test_getting_started_page_excel_download', async ({page}) => {
     // ✅ Clean close the page
     await page.close(); // This disconnects the tab
 
+});
+test.only('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
+    test.setTimeout(1200000);
+    let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
+    console.log(workspace_name)
+    await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
+    await page.getByTestId('stBaseButton-primary').click();
+    await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
+
+    const boxStep1 = page.getByText('1', {exact: true});
+    await expect(boxStep1).toHaveClass(/active/);
+    let boxStep2 = page.getByText('2');
+
+    //Checkpoint - Click Next button reach to Getting Started Page
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep2).toHaveClass(/inactive/);
+    await page.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    boxStep2 = page.getByText('2', {exact: true});
+    await expect(boxStep2).toHaveClass(/active/);
+    await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
+
+    let boxStep3 = page.getByText('3', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep3).toHaveClass(/inactive/);
+    await page.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000); // buffer for UI stability
+    const dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
+    await expect(dialog).toBeVisible({ timeout: 240_000 });
+
+
+    await page.getByRole('textbox', {name: 'Company Name'}).click();
+    await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
+    await page.getByRole('textbox', {name: 'Application Name'}).click();
+    await page.getByRole('textbox', {name: 'Application Name'}).fill('application_name');
+    await page.getByRole('textbox', {name: 'Application Description'}).click();
+    await page.getByRole('textbox', {name: 'Application Description'}).fill('application_description');
+    await page.getByRole('textbox', {name: 'Workspace Name'}).click();
+    await page.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
+    await page.getByTestId('stBaseButton-primary').click();
+
+    let boxStep4 = page.getByText('4', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep4).toHaveClass(/inactive/);
+
+    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_name')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_description')).toBeVisible();
+    await page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText(workspace_name).click();
+    await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
+
+    await expect(page.getByText('Overall Progress: 0 of 104')).toBeVisible();
+    // Try to upload process checklist Excel file
+
+    // Path: one level up from current directory, then into test-data
+    const test_result_json_path = path.resolve(__dirname, '..', 'test-data', 'process_checks_invalid_format.xlsx');
+    // Locate the file input element.
+    const fileInput = await page.locator('input[type="file"]');
+    // Ensure the file input exists and then perform the file upload.
+    await page.getByRole('button', {name: 'file_upload Import from Excel'}).click();
+    await expect(fileInput).toHaveCount(1);
+    await page.getByTestId('stFileUploaderDropzone').getByTestId('stBaseButton-secondary').click();
+    await fileInput.setInputFiles(test_result_json_path);
+
+    await page.getByTestId('stDialog').getByRole('button', {name: 'Import'}).click();
+
+
+    //Assert Populated for the checklist
+    await expect(page.getByText('Overall Progress: 91 of 104')).toBeVisible();
+    await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
+    // ✅ Clean close the page
+    await page.close(); // This disconnects the tab
+});
+
+test.only('test_complete_process_checks_page_duplicate_workspace_name', async ({page,browser}) => {
+    test.setTimeout(1200000);
+    let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
+    await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
+    await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
+    await page.getByTestId('stBaseButton-primary').click();
+    await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
+
+    let boxStep1 = page.getByText('1', {exact: true});
+    await expect(boxStep1).toHaveClass(/active/);
+    let boxStep2 = page.getByText('2');
+
+    //Checkpoint - Click Next button reach to Getting Started Page
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep2).toHaveClass(/inactive/);
+    await page.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    boxStep2 = page.getByText('2', {exact: true});
+    await expect(boxStep2).toHaveClass(/active/);
+    await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
+
+    let boxStep3 = page.getByText('3', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep3).toHaveClass(/inactive/);
+    await page.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    await expect(boxStep3).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000); // buffer for UI stability
+    let dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
+    await expect(dialog).toBeVisible({ timeout: 240_000 });
+
+    await page.getByRole('textbox', {name: 'Company Name'}).click();
+    await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
+    await page.getByRole('textbox', {name: 'Application Name'}).click();
+    await page.getByRole('textbox', {name: 'Application Name'}).fill('application_name');
+    await page.getByRole('textbox', {name: 'Application Description'}).click();
+    await page.getByRole('textbox', {name: 'Application Description'}).fill('application_description');
+    await page.getByRole('textbox', {name: 'Workspace Name'}).click();
+    await page.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
+    await page.getByTestId('stBaseButton-primary').click();
+
+    const boxStep4 = page.getByText('4', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep4).toHaveClass(/inactive/);
+
+    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_name')).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_description')).toBeVisible();
+    await page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText(workspace_name).click();
+    await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
+
+    await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
+     // ✅ Clean close the page
+    await page.close(); // This disconnects the tab
+    // ➕ Create a new browser context and page for second session
+    const context2 = await browser.newContext();
+    const page2 = await context2.newPage();
+    //Attempt to restart and create session 2
+    await page2.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
+    await expect(page2.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
+    await page2.getByTestId('stBaseButton-primary').click();
+    await expect(page2.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
+
+    boxStep1 = page2.getByText('1', {exact: true});
+    await expect(boxStep1).toHaveClass(/active/);
+    boxStep2 = page2.getByText('2');
+
+    //Checkpoint - Click Next button reach to Getting Started Page
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep2).toHaveClass(/inactive/);
+    await page2.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    boxStep2 = page2.getByText('2', {exact: true});
+    await expect(boxStep2).toHaveClass(/active/);
+    await expect(page2.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
+
+    boxStep3 = page2.getByText('3', {exact: true});
+    // Check Steps UI contains 'inactive'
+    await expect(boxStep3).toHaveClass(/inactive/);
+    await page2.getByRole('button', {name: 'Next →'}).click();
+    // Check Steps UI contains 'active'
+    await expect(boxStep3).toHaveClass(/active/);
+    await page2.waitForLoadState('networkidle');
+    await page2.waitForTimeout(1000); // buffer for UI stability
+    dialog = page2.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
+    await expect(dialog).toBeVisible({ timeout: 240_000 });
+    await page2.getByRole('textbox', {name: 'Company Name'}).click();
+    await page2.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
+    await page2.getByRole('textbox', {name: 'Application Name'}).click();
+    await page2.getByRole('textbox', {name: 'Application Name'}).fill('application_name');
+    await page2.getByRole('textbox', {name: 'Application Description'}).click();
+    await page2.getByRole('textbox', {name: 'Application Description'}).fill('application_description');
+    await page2.getByRole('textbox', {name: 'Workspace Name'}).click();
+    await page2.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
+    await page2.getByTestId('stBaseButton-primary').click();
+    await expect(page2.getByTestId('stAlertContentError').getByRole('paragraph')).toContainText('A workspace with this name already exists. Please choose a different name.');
+    // ✅ Clean close the page
+    await page2.close(); // This disconnects the tab
 });
