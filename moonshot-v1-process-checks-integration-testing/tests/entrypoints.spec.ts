@@ -535,7 +535,6 @@ test('test_complete_process_checks_page', async ({page}) => {
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -591,7 +590,6 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     // Attempt to fill workspace session details
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByText('Please enter a workspace name')).toBeVisible();
@@ -656,7 +654,6 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     let dialog = page.getByRole('dialog', {name: 'Provide Workspace Details'});
     await expect(dialog).toBeVisible({timeout: 240_000});
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -707,7 +704,6 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     await page.waitForTimeout(1000); // buffer for UI stability
     dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
     await expect(dialog).toBeVisible({ timeout: 240_000 });
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -754,7 +750,6 @@ test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -810,7 +805,6 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -868,7 +862,6 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -931,7 +924,6 @@ test('test_complete_process_checks_page_edit_app_information_leave_blank', async
     await page.waitForTimeout(1000); // buffer for UI stability
     const dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
     await expect(dialog).toBeVisible({ timeout: 240_000 });
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -997,7 +989,6 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -1055,7 +1046,6 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -1527,7 +1517,6 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -1999,7 +1988,6 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -2375,7 +2363,6 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -2751,7 +2738,6 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -3127,7 +3113,6 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -3590,7 +3575,6 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4109,7 +4093,6 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4184,7 +4167,6 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4259,7 +4241,6 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4334,7 +4315,6 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4409,7 +4389,6 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4484,7 +4463,6 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4559,7 +4537,6 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4640,7 +4617,6 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4705,7 +4681,6 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4773,7 +4748,6 @@ test('test_upload_generate_report_page', async ({page}) => {
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -4887,7 +4861,6 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5065,7 +5038,6 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5150,7 +5122,6 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5643,7 +5614,6 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5719,7 +5689,6 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({page}) 
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -5795,7 +5764,6 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
     await expect(dialog).toBeVisible({ timeout: 240_000 });
 
 
-    await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
