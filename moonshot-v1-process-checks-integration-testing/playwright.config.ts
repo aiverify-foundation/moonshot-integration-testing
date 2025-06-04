@@ -48,11 +48,6 @@ export default defineConfig({
     launchOptions: {
       slowMo: 300
     },
-    // Each test gets a fresh context by default
-    contextOptions: {
-      // Optional: disable cache for cleaner sessions
-      bypassCSP: true,
-    },
   },
 
   /* Configure projects for major browsers */
