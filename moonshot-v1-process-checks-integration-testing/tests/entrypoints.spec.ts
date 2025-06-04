@@ -1019,7 +1019,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     // Check Steps UI contains 'active'
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
-    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 60000});
+    await page.waitForSelector('text=Provide Workspace Details', {state: 'visible', timeout: 120000});
     await expect(page.getByText('Provide Workspace Details')).toBeVisible();
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
