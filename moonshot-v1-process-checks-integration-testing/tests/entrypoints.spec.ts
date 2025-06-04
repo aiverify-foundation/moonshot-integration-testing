@@ -900,7 +900,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
 
 });
 
-test.only('test_complete_process_checks_page_edit_app_information_leave_blank', async ({page}) => {
+test('test_complete_process_checks_page_edit_app_information_leave_blank', async ({page}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
