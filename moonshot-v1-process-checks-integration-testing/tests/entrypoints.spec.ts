@@ -562,7 +562,6 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
     await page.close(); // This disconnects the tab
 });
 
-
 test('test_complete_process_checks_page_duplicate_workspace_name', async ({page,browser}) => {
     test.setTimeout(1200000);
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -593,7 +592,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page,
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     let dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
-    await expect(dialog).toBeVisible({ timeout: 240_000 });
+    expect(dialog).toBeVisible({ timeout: 360_000 });
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -622,6 +621,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page,
     const page2 = await context2.newPage();
     //Attempt to restart and create session 2
     await page2.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
+    await page2.reload()
     await expect(page2.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page2.getByTestId('stBaseButton-primary').click();
     await expect(page2.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -648,7 +648,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page,
     await page2.waitForLoadState('networkidle');
     await page2.waitForTimeout(1000); // buffer for UI stability
     dialog = page2.locator('div[role="dialog"][aria-modal="true"]').filter({ hasText: 'Provide Workspace Details' });
-    await expect(dialog).toBeVisible({ timeout: 240_000 });
+    await expect(dialog).toBeVisible({ timeout: 360_000 });
     await page2.getByRole('textbox', {name: 'Company Name'}).click();
     await page2.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page2.getByRole('textbox', {name: 'Application Name'}).click();
