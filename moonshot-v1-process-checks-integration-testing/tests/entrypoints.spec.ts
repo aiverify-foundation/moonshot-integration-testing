@@ -422,7 +422,7 @@ async function fillInProcessChecklist(page) {
     await expect(boxStep4).toHaveClass(/active/);
 }
 
-test('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
+test.only('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
   const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
@@ -437,7 +437,7 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -515,7 +515,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -570,7 +570,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
     await page.close(); // This disconnects the tab
 });
 
-test('test_complete_process_checks_page_duplicate_workspace_name', async ({page, browser}) => {
+test.only('test_complete_process_checks_page_duplicate_workspace_name', async ({page, browser}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
   const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
@@ -584,7 +584,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page,
 
     let boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -640,7 +640,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page,
 
     boxStep1 = page2.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    boxStep2 = page2.getByText('2');
+    boxStep2 = page2.getByText('2', {exact: true});
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -723,7 +723,7 @@ test('test_getting_started_page_click_home_btn', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -757,7 +757,7 @@ test('test_getting_started_page_click_back_btn', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -792,7 +792,7 @@ test('test_complete_process_checks_page', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -854,7 +854,7 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -927,7 +927,7 @@ test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -990,7 +990,7 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -1054,7 +1054,7 @@ test('test_complete_process_checks_page_edit_app_information_leave_blank', async
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -1124,7 +1124,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -1188,7 +1188,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -1666,7 +1666,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -2144,7 +2144,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -2526,7 +2526,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -2908,7 +2908,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -3289,7 +3289,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -3758,7 +3758,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -4283,7 +4283,7 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -4364,7 +4364,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -4445,7 +4445,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -4526,7 +4526,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -4607,7 +4607,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -4688,7 +4688,7 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -4769,7 +4769,7 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -4856,7 +4856,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -4911,7 +4911,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     await page.close(); // This disconnects the tab
 });
 
-test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
+test.only('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
   const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
@@ -4927,7 +4927,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -4976,7 +4976,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     await expect(page.getByRole('heading', {name: 'Upload Technical Test Results'})).toBeVisible();
 
     await page.getByRole('button', {name: '← Back'}).click();
-    await expect(page.getByTestId('stExpander').locator('span')).toContainText('Instructions');
+    await expect(page.locator('summary')).toContainText('Instructions');
     boxStep4 = page.getByText('4', {exact: true});
     // Check Steps UI contains 'inactive'
     await expect(boxStep4).toHaveClass(/inactive/);
@@ -5001,7 +5001,7 @@ test('test_upload_generate_report_page', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -5122,7 +5122,7 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -5224,7 +5224,7 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -5316,7 +5316,7 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -5408,7 +5408,7 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -5892,7 +5892,7 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await page.close(); // This disconnects the tab
 });
 
-test('test_complete_process_checks_page_import_checklist', async ({page}) => {
+test.only('test_complete_process_checks_page_import_checklist', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
   const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
@@ -5907,7 +5907,7 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -5955,7 +5955,7 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     // Try to upload process checklist Excel file
 
     // Path: one level up from current directory, then into test-data
-    const test_result_json_path = path.resolve(__dirname, '..', 'test-data', 'process_checks_2025_05_21_10_45_23.xlsx');
+    const test_result_json_path = path.resolve(__dirname, '..', 'test-data', 'process_checks_2025_06_09_13_01_25.xlsx');
     // Locate the file input element.
     const fileInput = await page.locator('input[type="file"]');
     // Ensure the file input exists and then perform the file upload.
@@ -5989,7 +5989,7 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({page}) 
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page
     // Check Steps UI contains 'inactive'
@@ -6064,7 +6064,7 @@ test.skip('test_getting_started_page_pdf_download', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page for PDF
     // Check Steps UI contains 'inactive'
@@ -6129,7 +6129,7 @@ test.skip('test_getting_started_page_pdf_download', async ({page}) => {
     await page.close(); // This disconnects the tab
 });
 
-test('test_getting_started_page_excel_download', async ({page}) => {
+test.only('test_getting_started_page_excel_download', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
   const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
@@ -6142,7 +6142,7 @@ test('test_getting_started_page_excel_download', async ({page}) => {
 
     const boxStep1 = page.getByText('1', {exact: true});
     await expect(boxStep1).toHaveClass(/active/);
-    let boxStep2 = page.getByText('2');
+    let boxStep2 = page.getByText('2', { exact: true })
 
     //Checkpoint - Click Next button reach to Getting Started Page for PDF
     // Check Steps UI contains 'inactive'
@@ -6164,7 +6164,7 @@ test('test_getting_started_page_excel_download', async ({page}) => {
             page.waitForEvent('popup'),
             page.waitForEvent('download'),
         ]),
-        page.getByRole('link', {name: 'Download Testing Framework - Excel'}).click(),
+        page.getByRole('link', { name: 'Excel version' }).click()
     ]);
 
     if (popupOrDownload.url) {
