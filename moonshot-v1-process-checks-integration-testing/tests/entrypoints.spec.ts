@@ -425,7 +425,7 @@ async function fillInProcessChecklist(page) {
 test('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -504,7 +504,7 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
 test('test_complete_process_checks_page_edit_app_information', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -573,7 +573,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
 test('test_complete_process_checks_page_duplicate_workspace_name', async ({page, browser}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -678,7 +678,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page,
 test('test_welcome_page', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -694,7 +694,7 @@ test('test_welcome_page', async ({page}) => {
 test('test_welcome_page_click_home_btn', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -713,7 +713,7 @@ test('test_welcome_page_click_home_btn', async ({page}) => {
 test('test_getting_started_page_click_home_btn', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -747,7 +747,7 @@ test('test_getting_started_page_click_home_btn', async ({page}) => {
 test('test_getting_started_page_click_back_btn', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -781,7 +781,7 @@ test('test_getting_started_page_click_back_btn', async ({page}) => {
 test('test_complete_process_checks_page', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -812,9 +812,9 @@ test('test_complete_process_checks_page', async ({page}) => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -843,7 +843,7 @@ test('test_complete_process_checks_page', async ({page}) => {
 test('test_complete_process_checks_page_create_session_validation', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -874,9 +874,9 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     // Attempt to fill workspace session details
@@ -916,7 +916,7 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
 test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -947,9 +947,9 @@ test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -979,7 +979,7 @@ test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
 test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -1010,9 +1010,9 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -1043,7 +1043,7 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
 test('test_complete_process_checks_page_edit_app_information_leave_blank', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -1074,9 +1074,9 @@ test('test_complete_process_checks_page_edit_app_information_leave_blank', async
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
     await page.getByRole('textbox', {name: 'Application Name'}).click();
@@ -1112,7 +1112,7 @@ test('test_complete_process_checks_page_edit_app_information_leave_blank', async
 test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -1144,9 +1144,9 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -1176,7 +1176,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
 test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -1208,9 +1208,9 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -1654,7 +1654,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
 test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -1686,9 +1686,9 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -2132,7 +2132,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
 test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -2164,9 +2164,9 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -2514,7 +2514,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
 test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -2546,9 +2546,9 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -2896,7 +2896,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
 test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -2928,9 +2928,9 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -3277,7 +3277,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
 test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -3309,9 +3309,9 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -3747,7 +3747,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
 test('test_complete_process_checks_page_resume_session', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -3778,9 +3778,9 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -4270,7 +4270,7 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
 test('test_upload_technical_results_page_upload_empty_test_result', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -4303,9 +4303,9 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -4351,7 +4351,7 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
 test('test_upload_technical_results_page_upload_invalid_format_test_result', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -4384,9 +4384,9 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -4432,7 +4432,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
 test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -4465,9 +4465,9 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -4513,7 +4513,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
 test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -4546,9 +4546,9 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -4594,7 +4594,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
 test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -4627,9 +4627,9 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -4675,7 +4675,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
 test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -4708,9 +4708,9 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -4756,7 +4756,7 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
 test('test_upload_technical_results_page_download_sample_files', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -4789,9 +4789,9 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -4843,7 +4843,7 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
 test('test_upload_technical_results_page_home_btn', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -4876,9 +4876,9 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -4914,7 +4914,7 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
 test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -4947,9 +4947,9 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -4988,7 +4988,7 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
 test('test_upload_generate_report_page', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -5021,9 +5021,9 @@ test('test_upload_generate_report_page', async ({page}) => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -5109,7 +5109,7 @@ test('test_upload_generate_report_page', async ({page}) => {
 test('test_upload_generate_report_page_edit_workspace_information==empty', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -5142,9 +5142,9 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -5211,7 +5211,7 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
 test('test_upload_generate_report_page_home_btn', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -5244,9 +5244,9 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
@@ -5303,7 +5303,7 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
 test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -5336,9 +5336,9 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -5396,7 +5396,7 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
 test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -5428,9 +5428,9 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -5895,7 +5895,7 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
 test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -5927,9 +5927,9 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -5977,7 +5977,7 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
 test('test_complete_process_checks_page_import_empty_checklist', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
@@ -6009,9 +6009,9 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({page}) 
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
     // Ensure modal/dialog is loaded
-  await page.waitForSelector('div[role="dialog"][aria-modal="true"]', { timeout: 30000 }); 
-  // Check visibility with increased timeout
-  await expect(page.getByText('Provide Workspace Details')).toBeVisible({ timeout: 30000 });
+    await page.waitForSelector('div[role="dialog"][aria-modal="true"]', {timeout: 30000});
+    // Check visibility with increased timeout
+    await expect(page.getByText('Provide Workspace Details')).toBeVisible({timeout: 30000});
 
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
@@ -6132,7 +6132,7 @@ test.skip('test_getting_started_page_pdf_download', async ({page}) => {
 test('test_getting_started_page_excel_download', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-  const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
     await page.waitForTimeout(delay)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
