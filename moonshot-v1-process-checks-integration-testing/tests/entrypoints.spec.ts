@@ -459,8 +459,8 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
     await expect(boxStep3).toHaveClass(/active/);
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000); // buffer for UI stability
-    // const dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({hasText: 'Provide Workspace Details'});
-    // await expect(dialog).toBeVisible({timeout: 360_000});
+    const dialog = page.locator('div[role="dialog"][aria-modal="true"]').filter({hasText: 'Provide Workspace Details'});
+    await expect(dialog).toBeVisible({timeout: 360_000});
 
     await page.getByRole('textbox', {name: 'Company Name'}).click();
     await page.getByRole('textbox', {name: 'Company Name'}).fill('company_name');
