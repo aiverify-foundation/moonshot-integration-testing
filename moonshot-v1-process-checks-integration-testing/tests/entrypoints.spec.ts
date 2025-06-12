@@ -422,18 +422,18 @@ async function fillInProcessChecklist(page) {
     await expect(boxStep4).toHaveClass(/active/);
 }
 
-test('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
+test.only('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
-    const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
-    console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
-    const context = await browser.newContext();  // fresh context
-    const page = await context.newPage();
-    await page.waitForTimeout(delay)
+//     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
+//     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+//     const browser = await chromium.launch({ headless: true, slowMo: 50 });
+//     const context = await browser.newContext();  // fresh context
+//     const page = await context.newPage();
+    // await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
-    await page.goto('http://localhost:8501/test=' + Math.floor(Math.random() * 1000000000));
+    await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
@@ -500,7 +500,7 @@ test('test_complete_process_checks_page_import_invalid_format_checklist', async 
     //Assert Populated for the checklist
     await expect(page.getByText('Overall Progress: 91 of 104')).toBeVisible();
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
-    await browser.close(); // clean up
+    await page.close() // clean up
 });
 
 test('test_complete_process_checks_page_edit_app_information', async ({}) => {
@@ -508,7 +508,7 @@ test('test_complete_process_checks_page_edit_app_information', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -574,12 +574,12 @@ test('test_complete_process_checks_page_edit_app_information', async ({}) => {
     await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_duplicate_workspace_name', async ({page, browser}) => {
+test('test_complete_process_checks_page_duplicate_workspace_name', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -635,7 +635,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page,
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
     await browser.close(); // clean up
     // ➕ Create a new browser context and page for second session
-    const browser2 = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser2 = await chromium.launch({headless: true, slowMo: 50});
     const context2 = await browser2.newContext();  // fresh context
     const page2 = await context2.newPage();
     //Attempt to restart and create session 2
@@ -686,7 +686,7 @@ test('test_welcome_page', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -704,7 +704,7 @@ test('test_welcome_page_click_home_btn', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -725,7 +725,7 @@ test('test_getting_started_page_click_home_btn', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -761,7 +761,7 @@ test('test_getting_started_page_click_back_btn', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -797,7 +797,7 @@ test('test_complete_process_checks_page', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -861,7 +861,7 @@ test('test_complete_process_checks_page_create_session_validation', async ({}) =
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -936,7 +936,7 @@ test('test_complete_process_checks_page_click_home_btn', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -1001,7 +1001,7 @@ test('test_complete_process_checks_page_click_back_btn', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -1067,7 +1067,7 @@ test('test_complete_process_checks_page_edit_app_information_leave_blank', async
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -1138,7 +1138,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -1204,7 +1204,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -1684,7 +1684,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -2164,7 +2164,7 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -2548,7 +2548,7 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -2932,7 +2932,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -3315,7 +3315,7 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -3787,7 +3787,7 @@ test('test_complete_process_checks_page_resume_session', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -4312,7 +4312,7 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({}) =
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -4395,7 +4395,7 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -4478,7 +4478,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({}) =
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -4561,7 +4561,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -4644,7 +4644,7 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -4727,7 +4727,7 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({})
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -4810,7 +4810,7 @@ test('test_upload_technical_results_page_download_sample_files', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -4899,7 +4899,7 @@ test('test_upload_technical_results_page_home_btn', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -4967,12 +4967,12 @@ test('test_upload_technical_results_page_home_btn', async ({}) => {
     await browser.close(); // clean up
 });
 
-test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
+test('test_upload_technical_results_page_click_back_btn', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -5048,7 +5048,7 @@ test('test_upload_generate_report_page', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -5171,7 +5171,7 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -5275,7 +5275,7 @@ test('test_upload_generate_report_page_home_btn', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -5369,7 +5369,7 @@ test('test_upload_generate_report_page_click_back_btn', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -5464,7 +5464,7 @@ test('test_complete_process_checks_page_export_checklist', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -5960,12 +5960,12 @@ test('test_complete_process_checks_page_export_checklist', async ({}) => {
     await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_import_checklist', async ({page}) => {
+test('test_complete_process_checks_page_import_checklist', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -6049,7 +6049,7 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({}) => {
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
@@ -6200,12 +6200,12 @@ test.skip('test_getting_started_page_pdf_download', async ({}) => {
     await browser.close(); // clean up
 });
 
-test('test_getting_started_page_excel_download', async ({page}) => {
+test('test_getting_started_page_excel_download', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
-    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const browser = await chromium.launch({headless: true, slowMo: 50});
     const context = await browser.newContext();  // fresh context
     const page = await context.newPage();
     await page.waitForTimeout(delay)
