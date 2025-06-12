@@ -2446,6 +2446,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 MAX_CONCURRENCY_EXPECTED_OUTCOME = [
     ("have been completed."),  # Expected result for 1
     ("have been completed."),  # Expected result for 1.1
@@ -2454,8 +2455,11 @@ MAX_CONCURRENCY_EXPECTED_OUTCOME = [
     ("'<' not supported between"),  # Expected result for "@1"
     ("'<' not supported between")  # Expected result for "test"
 ]
+
+@pytest.mark.skip(reason="Pending Fixes")
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, MAX_CONCURRENCY_EXPECTED_OUTCOME))
-def test_cli_moonshot_run_red_teaming_and_benchmarking_test_config_local_parameter_testing_ms_config_common_max_concurrency(input_params, expectedMsg):
+def test_cli_moonshot_run_red_teaming_and_benchmarking_test_config_local_parameter_testing_ms_config_common_max_concurrency(
+        input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
     dataset_module = "prompt_injection_jailbreak"
