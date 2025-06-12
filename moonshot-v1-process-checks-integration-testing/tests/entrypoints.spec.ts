@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, chromium} from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -422,11 +422,14 @@ async function fillInProcessChecklist(page) {
     await expect(boxStep4).toHaveClass(/active/);
 }
 
-test.only('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
+test('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -497,15 +500,17 @@ test.only('test_complete_process_checks_page_import_invalid_format_checklist', a
     //Assert Populated for the checklist
     await expect(page.getByText('Overall Progress: 91 of 104')).toBeVisible();
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_edit_app_information', async ({page}) => {
+test('test_complete_process_checks_page_edit_app_information', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -566,15 +571,17 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
     await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().locator('#app-name')).toContainText('application_name_1');
     await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().locator('#app-description')).toContainText('application_description_1');
 
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test.only('test_complete_process_checks_page_duplicate_workspace_name', async ({page, browser}) => {
+test('test_complete_process_checks_page_duplicate_workspace_name', async ({page, browser}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -626,10 +633,10 @@ test.only('test_complete_process_checks_page_duplicate_workspace_name', async ({
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
     // ➕ Create a new browser context and page for second session
-    const context2 = await browser.newContext();
+    const browser2 = await chromium.launch({ headless: true, slowMo: 50 });
+    const context2 = await browser2.newContext();  // fresh context
     const page2 = await context2.newPage();
     //Attempt to restart and create session 2
     await page2.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -671,31 +678,35 @@ test.only('test_complete_process_checks_page_duplicate_workspace_name', async ({
     await page2.getByRole('textbox', {name: 'Workspace Name'}).fill(workspace_name);
     await page2.getByTestId('stBaseButton-primary').click();
     await expect(page2.getByTestId('stAlertContentError').getByRole('paragraph')).toContainText('A workspace with this name already exists. Please choose a different name.');
-    // ✅ Clean close the page
-    await page2.close(); // This disconnects the tab
+    await browser2.close(); // clean up
 });
 
-test('test_welcome_page', async ({page}) => {
+test('test_welcome_page', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
     await expect(page.getByRole('heading', {name: 'How can the Testing Framework'})).toBeVisible();
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 
 });
 
-test('test_welcome_page_click_home_btn', async ({page}) => {
+test('test_welcome_page_click_home_btn', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -706,15 +717,17 @@ test('test_welcome_page_click_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_getting_started_page_click_home_btn', async ({page}) => {
+test('test_getting_started_page_click_home_btn', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -740,15 +753,17 @@ test('test_getting_started_page_click_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_getting_started_page_click_back_btn', async ({page}) => {
+test('test_getting_started_page_click_back_btn', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -774,15 +789,17 @@ test('test_getting_started_page_click_back_btn', async ({page}) => {
     await page.getByRole('button', {name: '← Back'}).click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
     await expect(page.getByRole('heading', {name: 'How can the Testing Framework'})).toBeVisible();
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page', async ({page}) => {
+test('test_complete_process_checks_page', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -837,14 +854,16 @@ test('test_complete_process_checks_page', async ({page}) => {
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
-test('test_complete_process_checks_page_create_session_validation', async ({page}) => {
+test('test_complete_process_checks_page_create_session_validation', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -908,16 +927,18 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 
 });
 
-test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
+test('test_complete_process_checks_page_click_home_btn', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -973,14 +994,16 @@ test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
-test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
+test('test_complete_process_checks_page_click_back_btn', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -1036,15 +1059,17 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
     //Assert Back function is working
     await page.getByRole('button', {name: '← Back'}).click();
     await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_edit_app_information_leave_blank', async ({page}) => {
+test('test_complete_process_checks_page_edit_app_information_leave_blank', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -1105,15 +1130,17 @@ test('test_complete_process_checks_page_edit_app_information_leave_blank', async
     await page.getByRole('textbox', {name: 'Application Description'}).fill(' ');
     await page.getByTestId('stBaseButton-primaryFormSubmit').click();
     await expect(page.getByTestId('stAlertContainer')).toContainText('Please enter both an application name and description to save changes.');
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -1169,15 +1196,17 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
 
     await fillInProcessChecklist(page)
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -1647,15 +1676,17 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -2125,15 +2156,17 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -2507,15 +2540,17 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -2889,15 +2924,17 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -3270,15 +3307,17 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -3740,15 +3779,17 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_resume_session', async ({page}) => {
+test('test_complete_process_checks_page_resume_session', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -4262,16 +4303,18 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 
 });
 
-test('test_upload_technical_results_page_upload_empty_test_result', async ({page}) => {
+test('test_upload_technical_results_page_upload_empty_test_result', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -4343,16 +4386,18 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
 
     // Verify Error Message
     await expect(page.getByTestId('stAlertContainer')).toContainText('The uploaded file is not a valid JSON. Please upload a valid Project Moonshot JSON file.');
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 
 });
 
-test('test_upload_technical_results_page_upload_invalid_format_test_result', async ({page}) => {
+test('test_upload_technical_results_page_upload_invalid_format_test_result', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -4424,16 +4469,18 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
 
     // Verify Error Message
     await expect(page.getByTestId('stAlertContentError').getByRole('paragraph')).toContainText('The file you uploaded isn’t in the correct format. Please upload a valid Project Moonshot JSON file.');
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 
 });
 
-test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page}) => {
+test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -4506,15 +4553,17 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     // Verify the file was uploaded.
     await expect(page.getByText('File uploaded successfully')).toBeVisible();
     await expect(page.getByTestId('stFileUploaderFileName')).toContainText('ms-v1-test-result.json');
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking', async ({page}) => {
+test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -4587,15 +4636,17 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     // Verify the file was uploaded.
     await expect(page.getByText('File uploaded successfully')).toBeVisible();
     await expect(page.getByTestId('stFileUploaderFileName')).toContainText('ms-v1-test-result-benchmark.json');
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', async ({page}) => {
+test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -4668,15 +4719,17 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     // Verify the file was uploaded.
     await expect(page.getByText('File uploaded successfully')).toBeVisible();
     await expect(page.getByTestId('stFileUploaderFileName')).toContainText('ms-v1-test-result-rt.json');
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({page}) => {
+test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -4749,15 +4802,17 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     // Verify the file was uploaded.
     await expect(page.getByText('File uploaded successfully')).toBeVisible();
     await expect(page.getByTestId('stFileUploaderFileName')).toContainText('ms-v0.6-test-result.json');
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_upload_technical_results_page_download_sample_files', async ({page}) => {
+test('test_upload_technical_results_page_download_sample_files', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -4836,15 +4891,17 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     // Get the suggested filename and save the file to the current directory
     const filename2 = download2.suggestedFilename();
     expect(filename2 == "ms_ga_result_template.json")
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_upload_technical_results_page_home_btn', async ({page}) => {
+test('test_upload_technical_results_page_home_btn', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -4907,15 +4964,17 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test.only('test_upload_technical_results_page_click_back_btn', async ({page}) => {
+test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -4980,16 +5039,18 @@ test.only('test_upload_technical_results_page_click_back_btn', async ({page}) =>
     boxStep4 = page.getByText('4', {exact: true});
     // Check Steps UI contains 'inactive'
     await expect(boxStep4).toHaveClass(/inactive/);
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
 
-test('test_upload_generate_report_page', async ({page}) => {
+test('test_upload_generate_report_page', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -5103,14 +5164,16 @@ test('test_upload_generate_report_page', async ({page}) => {
     // Get the suggested filename and save the file to the current directory
     const filename = download.suggestedFilename();
     expect(filename == "summary_report.pdf")
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
-test('test_upload_generate_report_page_edit_workspace_information==empty', async ({page}) => {
+test('test_upload_generate_report_page_edit_workspace_information==empty', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -5205,14 +5268,16 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     // Verify Error Message
     await expect(page.getByTestId('stAlertContentError').getByRole('paragraph')).toContainText('Please provide a valid Company Name, Application Name, Application Description to proceed with saving changes.');
 
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
-test('test_upload_generate_report_page_home_btn', async ({page}) => {
+test('test_upload_generate_report_page_home_btn', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -5297,14 +5362,16 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
-test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
+test('test_upload_generate_report_page_click_back_btn', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -5389,15 +5456,17 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
 
     await page.getByRole('button', {name: '← Back'}).click();
     await expect(page.getByRole('heading', {name: 'Upload Technical Test Results'})).toBeVisible();
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_export_checklist', async ({page}) => {
+test('test_complete_process_checks_page_export_checklist', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -5888,15 +5957,17 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     // Assert the filename matches
     expect(downloadUrl).toMatch(regex);
 
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test.only('test_complete_process_checks_page_import_checklist', async ({page}) => {
+test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -5970,15 +6041,17 @@ test.only('test_complete_process_checks_page_import_checklist', async ({page}) =
     //Assert Populated for the checklist
     await expect(page.getByText('Overall Progress: 104 of 104')).toBeVisible();
     await expect(page.getByRole('button', {name: 'Next →'})).toBeEnabled();
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test('test_complete_process_checks_page_import_empty_checklist', async ({page}) => {
+test('test_complete_process_checks_page_import_empty_checklist', async ({}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
@@ -6052,11 +6125,10 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({page}) 
     //Assert Populated for the checklist
     await expect(page.getByTestId('stAlertContentError').getByRole('paragraph')).toContainText('We were unable to load the principles data from your file. Please ensure you have selected a valid Excel file in the correct format and try again.');
 
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test.skip('test_getting_started_page_pdf_download', async ({page}) => {
+test.skip('test_getting_started_page_pdf_download', async ({}) => {
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
@@ -6125,15 +6197,17 @@ test.skip('test_getting_started_page_pdf_download', async ({page}) => {
             "https://www.cpf.gov.sg/content/dam/web/member/faq/general-information---useful-tips/documents/Guide_to_view_and_save_CPF_statements.pdf"
         );
     }
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 });
 
-test.only('test_getting_started_page_excel_download', async ({page}) => {
+test('test_getting_started_page_excel_download', async ({page}) => {
     test.setTimeout(1200000);
 // Random delay between 60,000ms (1 min) and 120,000ms (2 min)
     const delay = 60000 + Math.floor(Math.random() * (120000 - 60000));
     console.log(`⏳ Waiting for ${Math.floor(delay / 1000)} seconds`);
+    const browser = await chromium.launch({ headless: true, slowMo: 50 });
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.waitForTimeout(delay)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -6184,7 +6258,6 @@ test.only('test_getting_started_page_excel_download', async ({page}) => {
             "https://go.gov.sg/aivtf-excel"
         );
     }
-    // ✅ Clean close the page
-    await page.close(); // This disconnects the tab
+    await browser.close(); // clean up
 
 });
