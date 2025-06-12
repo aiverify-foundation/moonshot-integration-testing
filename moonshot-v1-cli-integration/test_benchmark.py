@@ -26,6 +26,7 @@ def assert_run_outcome(output_lines):
     # Activate when test run command is release
     # assert "have been completed.".replace(" ", "") in output_lines
 
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak_read_dataset_local():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -45,7 +46,6 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     source_path = "./test_data/copy_of_prompt_injection_jailbreak.json"
     destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
     copy_and_move_file(source_path, destination_path)
-
 
     # Test Config modification
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
@@ -101,6 +101,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     # Assert Results
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
 
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak_read_invalid_dataset_local():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -190,6 +191,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     # Assert Results
     assert "[DatasetLoader] No valid file".replace(" ", "") in output_lines
 
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak_read_ms_config_s3():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -259,6 +261,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak_read_ms_config_s3_aws_connector():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -291,9 +294,9 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
 
     commands = [
         "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "export AWS_ACCESS_KEY_ID="+AWS_ACCESS_KEY_ID,
+        "export AWS_ACCESS_KEY_ID=" + AWS_ACCESS_KEY_ID,
         "export AWS_DEFAULT_REGION=us-east-1",
-        "export AWS_SECRET_ACCESS_KEY="+AWS_SECRET_ACCESS_KEY,
+        "export AWS_SECRET_ACCESS_KEY=" + AWS_SECRET_ACCESS_KEY,
         "export MS_CONFIG_PATH='s3://s3-aiss-moonshot-dev-app-lite/QA Automation File/moonshot_config_s3_aws_connnector.yaml'",
 
         "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
@@ -331,6 +334,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     # Assert Results
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
 
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -400,6 +404,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_sensitive_data_disclosure_general():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -468,6 +473,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_sensitive_data_dis
     # Assert Results
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
 
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_role_playing():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -606,6 +612,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_brand_reputation_j
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_brand_reputation_harmbench():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -673,6 +680,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_brand_reputation_h
     # Assert Results
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
 
 def test_cli_run_benchmarking_via_run_command_accuracy_adapter_brand_reputation_winobias_variation1():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -742,6 +750,7 @@ def test_cli_run_benchmarking_via_run_command_accuracy_adapter_brand_reputation_
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 def test_cli_run_benchmarking_via_run_command_accuracy_adapter_brand_reputation_bbq():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -809,6 +818,7 @@ def test_cli_run_benchmarking_via_run_command_accuracy_adapter_brand_reputation_
     # Assert Results
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
 
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_payload_splitting():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1005,6 +1015,8 @@ RUN_ID_EXPECTED_OUTCOME = [
     ("have been completed."),  # Expected result for "@1"
     ("have been completed.")  # Expected result for "test"
 ]
+
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, RUN_ID_EXPECTED_OUTCOME))
 def test_cli_moonshot_run_params_testing_run_id(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1079,6 +1091,7 @@ def test_cli_moonshot_run_params_testing_run_id(input_params, expectedMsg):
         assert "Error: No such option: -1\n"
     else:
         assert expectedMsg.replace(" ", "") in output_lines
+
 
 def test_cli_run_benchmarking_run_id_duplicate_id():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1162,6 +1175,8 @@ PARAM_CONNECTOR_EXPECTED_OUTCOME = [
     ("ERROR    [TaskManager] Error loading the task_manager.py"),  # Expected result for "@1"
     ("ERROR    [TaskManager] Error loading the task_manager.py")  # Expected result for "test"
 ]
+
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_CONNECTOR_EXPECTED_OUTCOME))
 def test_cli_moonshot_run_params_testing_connector_name(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1246,6 +1261,8 @@ TEST_CONFIG_ID_EXPECTED_OUTCOME = [
     ("while creating the config test:"),  # Expected result for "@1"
     ("while creating the config test:")  # Expected result for "test"
 ]
+
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, TEST_CONFIG_ID_EXPECTED_OUTCOME))
 def test_cli_moonshot_run_params_testing_test_config_id(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1331,6 +1348,8 @@ PARAM_DATASET_FIELD_EXPECTED_OUTCOME = [
     ("[DatasetLoader] No valid file"),  # Expected result for "@1"
     ("[DatasetLoader] No valid file")  # Expected result for "test"
 ]
+
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_DATASET_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_benchmarking_via_run_command_parameter_dataset_type_field_in_test_config(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1397,6 +1416,7 @@ def test_cli_run_benchmarking_via_run_command_parameter_dataset_type_field_in_te
     # Assert Results
     assert expectedMsg.replace(" ", "") in output_lines
 
+
 PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME = [
     ("Error loading metric"),  # Expected result for 1
     ("Error loading metric"),  # Expected result for 1.1
@@ -1405,6 +1425,8 @@ PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME = [
     ("Error loading metric"),  # Expected result for "@1"
     ("Error loading metric")  # Expected result for "test"
 ]
+
+
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, PARAM_METRIC_NAME_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_benchmarking_via_run_command_parameter_metric_name_field_in_test_config(input_params, expectedMsg):
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1564,6 +1586,7 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test():
     assert "have been completed.".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 def test_cli_moonshot_run_more_than_one_benchmarking_test():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1579,8 +1602,8 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test():
     # Set Variable for 2nd Test
     dataset_2nd_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_role_playing"
     dataset_2nd_source = "s3-" + dataset_2nd_module[len(prefix):]
-    nameOfBenchmark2ndRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_2nd_source + "-" + str(random_number)
-
+    nameOfBenchmark2ndRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_2nd_source + "-" + str(
+        random_number)
 
     # Test Config modification
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
@@ -1668,8 +1691,8 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_mixed_invalid_valid_co
     # Set Variable for 2nd Test
     dataset_2nd_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_role_playing"
     dataset_2nd_source = "s3-" + dataset_2nd_module[len(prefix):]
-    nameOfBenchmark2ndRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_2nd_source + "-" + str(random_number)
-
+    nameOfBenchmark2ndRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_2nd_source + "-" + str(
+        random_number)
 
     # Test Config modification
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
@@ -1687,7 +1710,7 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_mixed_invalid_valid_co
             {
                 "name": nameOfBenchmark2ndRunnerName,
                 "type": "benchmark",
-                "dataset": dataset_2nd_module+"_fail",
+                "dataset": dataset_2nd_module + "_fail",
                 "metric": {
                     "name": metric_module}
             }
@@ -1738,6 +1761,7 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_mixed_invalid_valid_co
     assert "[DatasetLoader] No valid file".replace(" ", "") in output_lines
     assert "found for".replace(" ", "") in output_lines
     check_result_file_not_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
 
 def test_cli_moonshot_run_more_than_one_benchmarking_test_all_invalid_valid_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -1754,8 +1778,8 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_all_invalid_valid_conf
     # Set Variable for 2nd Test
     dataset_2nd_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_role_playing"
     dataset_2nd_source = "s3-" + dataset_2nd_module[len(prefix):]
-    nameOfBenchmark2ndRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_2nd_source + "-" + str(random_number)
-
+    nameOfBenchmark2ndRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_2nd_source + "-" + str(
+        random_number)
 
     # Test Config modification
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
@@ -1766,14 +1790,14 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_all_invalid_valid_conf
             {
                 "name": nameOfBenchmark1stRunnerName,
                 "type": "benchmark",
-                "dataset": dataset_module+"_fail",
+                "dataset": dataset_module + "_fail",
                 "metric": {
                     "name": metric_module}
             },
             {
                 "name": nameOfBenchmark2ndRunnerName,
                 "type": "benchmark",
-                "dataset": dataset_2nd_module+"_fail",
+                "dataset": dataset_2nd_module + "_fail",
                 "metric": {
                     "name": metric_module}
             }
@@ -1825,6 +1849,7 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_all_invalid_valid_conf
     assert "found for".replace(" ", "") in output_lines
     check_result_file_not_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 def test_cli_moonshot_run_more_than_one_benchmarking_test_with_invalid_token():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1840,8 +1865,8 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_with_invalid_token():
     # Set Variable for 2nd Test
     dataset_2nd_module = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/prompt_injection_role_playing"
     dataset_2nd_source = "s3-" + dataset_2nd_module[len(prefix):]
-    nameOfBenchmark2ndRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_2nd_source + "-" + str(random_number)
-
+    nameOfBenchmark2ndRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_2nd_source + "-" + str(
+        random_number)
 
     # Test Config modification
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
@@ -1908,6 +1933,7 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_with_invalid_token():
     assert "Connection error.".replace(" ", "") in output_lines
     check_result_file_not_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 def test_cli_run_benchmarking_via_run_command_with_same_sub_test_name_in_test_config():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -1917,7 +1943,8 @@ def test_cli_run_benchmarking_via_run_command_with_same_sub_test_name_in_test_co
     dataset_module_2 = "s3://s3-aiss-moonshot-dev-app-lite/data/dataset-mini/sensitive_data_disclosure_general"
     dataset_source_2 = "s3-" + dataset_module_2[len(prefix):]
     connector_name = "my-gpt-4o-mini"
-    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + dataset_source_2 + "-" + str(random_number)
+    nameOfRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_source + "-" + dataset_source_2 + "-" + str(
+        random_number)
     test_config_name = "qa-tests"
     metric_module = "refusal_adapter"
 
@@ -1985,6 +2012,7 @@ def test_cli_run_benchmarking_via_run_command_with_same_sub_test_name_in_test_co
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 def test_cli_run_benchmarking_via_run_command_with_same_test_config_id():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -2012,7 +2040,7 @@ def test_cli_run_benchmarking_via_run_command_with_same_test_config_id():
         ],
         test_config_name: [
             {
-                "name": nameOfRunnerName+"------2",
+                "name": nameOfRunnerName + "------2",
                 "type": "benchmark",
                 "dataset": dataset_module,
                 "metric": {
@@ -2061,6 +2089,8 @@ def test_cli_run_benchmarking_via_run_command_with_same_test_config_id():
     # Assert Results
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
+
 def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configuration_local():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -2163,6 +2193,7 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configuration_lo
     assert "successfully at:".replace(" ", "") in output_lines
     assert "data/results/test-run-".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
+
 
 def test_cli_moonshot_run_red_teaming_and_benchmarking_test_connector_configuration_local_with_test_configuration_s3():
     # Generate a random number between 0 and 999,999,999 (inclusive)
@@ -2291,6 +2322,7 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test_connector_configurat
     assert "data/results/test-run-".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configurations_s3():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     TEST_CONFIG_PATH = "s3://s3-aiss-moonshot-dev-app-lite/QA Automation File/automation_test_config_all_s3.yaml"
@@ -2301,7 +2333,7 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configurations_s
 
     commands = [
         "export OPENAI_API_KEY=" + OPENAI_TOKEN,
-        "export MS_TEST_CONFIG_PATH='"+TEST_CONFIG_PATH+"'",
+        "export MS_TEST_CONFIG_PATH='" + TEST_CONFIG_PATH + "'",
         "export MS_CONFIG_PATH='s3://s3-aiss-moonshot-dev-app-lite/QA Automation File/moonshot_config_with_s3_connector.yaml'",
         "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
     ]
@@ -2338,6 +2370,7 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test_all_configurations_s
     assert "data/results/test-run-".replace(" ", "") in output_lines
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak_read_metric_s3():
     # Generate a random number between 0 and 999,999,999 (inclusive)
     random_number = int(random.random() * 1000000000)
@@ -2357,7 +2390,6 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     source_path = "./test_data/copy_of_prompt_injection_jailbreak.json"
     destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
     copy_and_move_file(source_path, destination_path)
-
 
     # Test Config modification
     source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
@@ -2414,3 +2446,130 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
+MAX_CONCURRENCY_EXPECTED_OUTCOME = [
+    ("have been completed."),  # Expected result for 1
+    ("have been completed."),  # Expected result for 1.1
+    ("Semaphore initial value must be"),  # Expected result for -1
+    ("have been completed."),  # Expected result for 0
+    ("'<' not supported between"),  # Expected result for "@1"
+    ("'<' not supported between")  # Expected result for "test"
+]
+@parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, MAX_CONCURRENCY_EXPECTED_OUTCOME))
+def test_cli_moonshot_run_red_teaming_and_benchmarking_test_config_local_parameter_testing_ms_config_common_max_concurrency(input_params, expectedMsg):
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "prompt_injection_jailbreak"
+    attack_module = "hallucination"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test-run-benchmarking-redteaming-" + "-" + str(random_number)
+    nameOfBenchmarkRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
+    nameOfRedTeamingRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    metric_module = "refusal_adapter"
+    test_config_name = "qa-tests"
+
+    # Mini Dataset prep for testing
+    # Duplicate file to revert later
+    source_path = "./test_data/prompt_injection_jailbreak.json"
+    copy_file(source_path)
+    source_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_file(source_path)
+
+    source_path = "./test_data/copy_of_prompt_injection_jailbreak.json"
+    destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_and_move_file(source_path, destination_path)
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfBenchmarkRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            },
+            {
+                "name": nameOfRedTeamingRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": 1,
+                               "use_case":
+                                   "This is a gaming chatbot. It will answer the top-selling games in US and Asia. It "
+                                   "will give advice on what is the best"
+                                   "game to play based on the user preference.",
+                               "qns_type": "MCQ"}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    # Moonshot config modification
+    source_path = MOON_V1_CLI_DIR + "/moonshot_config.yaml"
+    copy_file(source_path)
+    updates = {
+        "common": {
+            "max_concurrency": input_params,
+            "max_calls_per_minute": "rwe",
+            "max_attempts": 3}
+    }
+
+    # Example usage
+    modify_yaml(source_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Moonshot Config rollback
+    source_path = MOON_V1_CLI_DIR + "/copy_of_moonshot_config.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/moonshot_config.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Test Data rollback
+    source_path = MOON_V1_CLI_DIR + "/data/datasets/copy_of_prompt_injection_jailbreak.json"
+    destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_and_move_file(source_path, destination_path)
+
+    # Split the output into lines
+    output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
+
+    # Assert Outcome
+    assert expectedMsg.replace(" ", "") in output_lines
