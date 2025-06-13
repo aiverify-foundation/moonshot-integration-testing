@@ -624,7 +624,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({}) =>
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
     await browser.close() // clean up
     // ➕ Create a new browser context and page for second session
-    const browser2 = await chromium.launch();
+    const browser2 = await chromium.launch({headless: true, slowMo: 1000});
     const context2 = await browser2.newContext();  // fresh context
     const page2 = await context2.newPage();
     //Attempt to restart and create session 2
