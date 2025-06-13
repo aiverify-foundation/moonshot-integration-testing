@@ -422,9 +422,12 @@ async function fillInProcessChecklist(page) {
     await expect(boxStep4).toHaveClass(/active/);
 }
 
-test.only('test_complete_process_checks_page_import_invalid_format_checklist', async ({page}) => {
+test('test_complete_process_checks_page_import_invalid_format_checklist', async ({}) => {
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -494,11 +497,14 @@ test.only('test_complete_process_checks_page_import_invalid_format_checklist', a
     //Assert Populated for the checklist
     await expect(page.getByText('Overall Progress: 91 of 104')).toBeVisible();
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_edit_app_information', async ({page}) => {
-    test.setTimeout(1200000);
+test('test_complete_process_checks_page_edit_app_information', async ({}) => {
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -558,13 +564,14 @@ test('test_complete_process_checks_page_edit_app_information', async ({page}) =>
     await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().locator('#app-name')).toContainText('application_name_1');
     await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().locator('#app-description')).toContainText('application_description_1');
 
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}) => {
-
-
-    test.setTimeout(1200000);
+test('test_complete_process_checks_page_duplicate_workspace_name', async ({}) => {
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -615,7 +622,7 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
-    await page.close() // clean up
+    await browser.close() // clean up
     // ➕ Create a new browser context and page for second session
     const browser2 = await chromium.launch();
     const context2 = await browser2.newContext();  // fresh context
@@ -663,21 +670,25 @@ test('test_complete_process_checks_page_duplicate_workspace_name', async ({page}
     await browser2.close(); // clean up
 });
 
-test('test_welcome_page', async ({page}) => {
-
-
+test('test_welcome_page', async ({}) => {
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
     await expect(page.getByRole('heading', {name: 'How can the Testing Framework'})).toBeVisible();
-    await page.close() // clean up
+    await browser.close() // clean up
 
 });
 
-test('test_welcome_page_click_home_btn', async ({page}) => {
-
-
+test('test_welcome_page_click_home_btn', async ({}) => {
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
@@ -687,12 +698,14 @@ test('test_welcome_page_click_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_getting_started_page_click_home_btn', async ({page}) => {
-
-
+test('test_getting_started_page_click_home_btn', async ({}) => {
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
@@ -717,12 +730,14 @@ test('test_getting_started_page_click_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_getting_started_page_click_back_btn', async ({page}) => {
-
-
+test('test_getting_started_page_click_back_btn', async ({}) => {
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
@@ -747,13 +762,16 @@ test('test_getting_started_page_click_back_btn', async ({page}) => {
     await page.getByRole('button', {name: '← Back'}).click();
     await expect(page.getByRole('heading', {name: 'AI Verify Testing Framework'})).toBeVisible();
     await expect(page.getByRole('heading', {name: 'How can the Testing Framework'})).toBeVisible();
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page', async ({page}) => {
+test('test_complete_process_checks_page', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -807,12 +825,15 @@ test('test_complete_process_checks_page', async ({page}) => {
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
-    await page.close() // clean up
+    await browser.close() // clean up
 });
-test('test_complete_process_checks_page_create_session_validation', async ({page}) => {
+test('test_complete_process_checks_page_create_session_validation', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -875,14 +896,17 @@ test('test_complete_process_checks_page_create_session_validation', async ({page
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
-    await page.close() // clean up
+    await browser.close() // clean up
 
 });
 
-test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
+test('test_complete_process_checks_page_click_home_btn', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -937,12 +961,15 @@ test('test_complete_process_checks_page_click_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    await page.close() // clean up
+    await browser.close() // clean up
 });
-test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
+test('test_complete_process_checks_page_click_back_btn', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -997,13 +1024,16 @@ test('test_complete_process_checks_page_click_back_btn', async ({page}) => {
     //Assert Back function is working
     await page.getByRole('button', {name: '← Back'}).click();
     await expect(page.getByRole('heading', {name: 'Understand the testing'})).toBeVisible();
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_edit_app_information_leave_blank', async ({page}) => {
+test('test_complete_process_checks_page_edit_app_information_leave_blank', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -1063,13 +1093,16 @@ test('test_complete_process_checks_page_edit_app_information_leave_blank', async
     await page.getByRole('textbox', {name: 'Application Description'}).fill(' ');
     await page.getByTestId('stBaseButton-primaryFormSubmit').click();
     await expect(page.getByTestId('stAlertContainer')).toContainText('Please enter both an application name and description to save changes.');
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -1124,13 +1157,16 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_!=nil', asyn
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
 
     await fillInProcessChecklist(page)
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -1599,13 +1635,16 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil', async
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -2074,13 +2113,16 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_!=nil', async
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -2453,13 +2495,16 @@ test('test_complete_process_checks_page_fill_answer_na_elaboration_==nil', async
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -2832,13 +2877,16 @@ test('test_complete_process_checks_page_fill_answer_yes_elaboration_==nil', asyn
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -3210,13 +3258,16 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_==nil', async
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -3677,13 +3728,16 @@ test('test_complete_process_checks_page_fill_answer_mixed_elaboration_mixed', as
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_resume_session', async ({page}) => {
+test('test_complete_process_checks_page_resume_session', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
@@ -4196,14 +4250,17 @@ test('test_complete_process_checks_page_resume_session', async ({page}) => {
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    await page.close() // clean up
+    await browser.close() // clean up
 
 });
 
-test('test_upload_technical_results_page_upload_empty_test_result', async ({page}) => {
+test('test_upload_technical_results_page_upload_empty_test_result', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -4274,14 +4331,17 @@ test('test_upload_technical_results_page_upload_empty_test_result', async ({page
 
     // Verify Error Message
     await expect(page.getByTestId('stAlertContainer')).toContainText('The uploaded file is not a valid JSON. Please upload a valid Project Moonshot JSON file.');
-    await page.close() // clean up
+    await browser.close() // clean up
 
 });
 
-test('test_upload_technical_results_page_upload_invalid_format_test_result', async ({page}) => {
+test('test_upload_technical_results_page_upload_invalid_format_test_result', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -4352,14 +4412,17 @@ test('test_upload_technical_results_page_upload_invalid_format_test_result', asy
 
     // Verify Error Message
     await expect(page.getByTestId('stAlertContentError').getByRole('paragraph')).toContainText('The file you uploaded isn’t in the correct format. Please upload a valid Project Moonshot JSON file.');
-    await page.close() // clean up
+    await browser.close() // clean up
 
 });
 
-test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page}) => {
+test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -4431,13 +4494,16 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result', async ({page
     // Verify the file was uploaded.
     await expect(page.getByText('File uploaded successfully')).toBeVisible();
     await expect(page.getByTestId('stFileUploaderFileName')).toContainText('ms-v1-test-result.json');
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking', async ({page}) => {
+test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -4509,13 +4575,16 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_benchmarking',
     // Verify the file was uploaded.
     await expect(page.getByText('File uploaded successfully')).toBeVisible();
     await expect(page.getByTestId('stFileUploaderFileName')).toContainText('ms-v1-test-result-benchmark.json');
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', async ({page}) => {
+test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -4587,13 +4656,16 @@ test('test_upload_technical_results_page_upload_ms_v1_test_result_redteaming', a
     // Verify the file was uploaded.
     await expect(page.getByText('File uploaded successfully')).toBeVisible();
     await expect(page.getByTestId('stFileUploaderFileName')).toContainText('ms-v1-test-result-rt.json');
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({page}) => {
+test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -4665,13 +4737,16 @@ test('test_upload_technical_results_page_upload_ms_v0.6_test_result', async ({pa
     // Verify the file was uploaded.
     await expect(page.getByText('File uploaded successfully')).toBeVisible();
     await expect(page.getByTestId('stFileUploaderFileName')).toContainText('ms-v0.6-test-result.json');
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_upload_technical_results_page_download_sample_files', async ({page}) => {
+test('test_upload_technical_results_page_download_sample_files', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -4749,13 +4824,16 @@ test('test_upload_technical_results_page_download_sample_files', async ({page}) 
     // Get the suggested filename and save the file to the current directory
     const filename2 = download2.suggestedFilename();
     expect(filename2 == "ms_ga_result_template.json")
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_upload_technical_results_page_home_btn', async ({page}) => {
+test('test_upload_technical_results_page_home_btn', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -4817,13 +4895,16 @@ test('test_upload_technical_results_page_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
+test('test_upload_technical_results_page_click_back_btn', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -4887,14 +4968,17 @@ test('test_upload_technical_results_page_click_back_btn', async ({page}) => {
     boxStep4 = page.getByText('4', {exact: true});
     // Check Steps UI contains 'inactive'
     await expect(boxStep4).toHaveClass(/inactive/);
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
 
-test('test_upload_generate_report_page', async ({page}) => {
+test('test_upload_generate_report_page', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -5007,12 +5091,15 @@ test('test_upload_generate_report_page', async ({page}) => {
     // Get the suggested filename and save the file to the current directory
     const filename = download.suggestedFilename();
     expect(filename == "summary_report.pdf")
-    await page.close() // clean up
+    await browser.close() // clean up
 });
-test('test_upload_generate_report_page_edit_workspace_information==empty', async ({page}) => {
+test('test_upload_generate_report_page_edit_workspace_information==empty', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -5106,12 +5193,15 @@ test('test_upload_generate_report_page_edit_workspace_information==empty', async
     // Verify Error Message
     await expect(page.getByTestId('stAlertContentError').getByRole('paragraph')).toContainText('Please provide a valid Company Name, Application Name, Application Description to proceed with saving changes.');
 
-    await page.close() // clean up
+    await browser.close() // clean up
 });
-test('test_upload_generate_report_page_home_btn', async ({page}) => {
+test('test_upload_generate_report_page_home_btn', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -5195,12 +5285,15 @@ test('test_upload_generate_report_page_home_btn', async ({page}) => {
     await page.getByRole('button', {name: 'home icon Home'}).click();
     await page.getByRole('button', {name: 'Yes, start over'}).click();
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
-    await page.close() // clean up
+    await browser.close() // clean up
 });
-test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
+test('test_upload_generate_report_page_click_back_btn', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -5284,13 +5377,16 @@ test('test_upload_generate_report_page_click_back_btn', async ({page}) => {
 
     await page.getByRole('button', {name: '← Back'}).click();
     await expect(page.getByRole('heading', {name: 'Upload Technical Test Results'})).toBeVisible();
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_export_checklist', async ({page}) => {
+test('test_complete_process_checks_page_export_checklist', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -5780,13 +5876,16 @@ test('test_complete_process_checks_page_export_checklist', async ({page}) => {
     // Assert the filename matches
     expect(downloadUrl).toMatch(regex);
 
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_import_checklist', async ({page}) => {
+test('test_complete_process_checks_page_import_checklist', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -5844,7 +5943,7 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     // Try to upload process checklist Excel file
 
     // Path: one level up from current directory, then into test-data
-    const test_result_json_path = path.resolve(__dirname, '..', 'test-data', 'process_checks_2025_06_09_13_01_25.xlsx');
+    const test_result_json_path = path.resolve(__dirname, '..', 'test-data', 'process_checks_2025_06_14_00_37_51.xlsx');
     // Locate the file input element.
     const fileInput = await page.locator('input[type="file"]');
     // Ensure the file input exists and then perform the file upload.
@@ -5859,13 +5958,16 @@ test('test_complete_process_checks_page_import_checklist', async ({page}) => {
     //Assert Populated for the checklist
     await expect(page.getByText('Overall Progress: 104 of 104')).toBeVisible();
     await expect(page.getByRole('button', {name: 'Next →'})).toBeEnabled();
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_complete_process_checks_page_import_empty_checklist', async ({page}) => {
+test('test_complete_process_checks_page_import_empty_checklist', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -5938,10 +6040,14 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({page}) 
     //Assert Populated for the checklist
     await expect(page.getByTestId('stAlertContentError').getByRole('paragraph')).toContainText('We were unable to load the principles data from your file. Please ensure you have selected a valid Excel file in the correct format and try again.');
 
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test.skip('test_getting_started_page_pdf_download', async ({page}) => {
+test.skip('test_getting_started_page_pdf_download', async ({}) => {
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
@@ -6010,12 +6116,14 @@ test.skip('test_getting_started_page_pdf_download', async ({page}) => {
             "https://www.cpf.gov.sg/content/dam/web/member/faq/general-information---useful-tips/documents/Guide_to_view_and_save_CPF_statements.pdf"
         );
     }
-    await page.close() // clean up
+    await browser.close() // clean up
 });
 
-test('test_getting_started_page_excel_download', async ({page}) => {
-
-
+test('test_getting_started_page_excel_download', async ({}) => {
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
     await expect(page.getByRole('heading', {name: 'Welcome to Process Checks for'})).toBeVisible({timeout: 90000});
     await page.getByTestId('stBaseButton-primary').click();
@@ -6065,13 +6173,16 @@ test('test_getting_started_page_excel_download', async ({page}) => {
             "https://go.gov.sg/aivtf-excel"
         );
     }
-    await page.close() // clean up
+    await browser.close() // clean up
 
 });
-test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_next_principe_btn', async ({page}) => {
+test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_next_principe_btn', async ({}) => {
 
 
-    test.setTimeout(1200000);
+    test.setTimeout(1200000)
+    const browser = await chromium.launch({headless: true, slowMo: 1000});
+    const context = await browser.newContext();  // fresh context
+    const page = await context.newPage();
     let workspace_name = 'workspace_1' + Math.floor(Math.random() * 1000000000);
     console.log(workspace_name)
     await page.goto('http://localhost:8501/test =' + Math.floor(Math.random() * 1000000000));
@@ -6179,8 +6290,8 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
 
 
     //Explainability Fill Answer
-    await page.getByRole('button', { name: 'Next Principle arrow_forward' }).click();
-    await expect(page.getByRole('heading', { name: 'Explainability' })).toBeVisible();
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
+    await expect(page.getByRole('heading', {name: 'Explainability'})).toBeVisible();
     await page.locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for'}).fill('test elaboration');
     await page.getByRole('progressbar', {name: '% Loaded'}).locator('div').nth(1).click();
@@ -6192,7 +6303,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
 
 
     //Reproducibility Fill Answer
-    await page.getByRole('button', { name: 'Next Principle arrow_forward' }).click();
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
     await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
 
     await page.getByLabel('Implementation Status for 3.1.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
@@ -6234,7 +6345,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
 
 
     //Safety Fill Answer
-    await page.getByRole('button', { name: 'Next Principle arrow_forward' }).click();
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
     await expect(page.getByRole('heading', {name: 'Safety'})).toBeVisible();
     await page.getByLabel('Implementation Status for 4.1.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
     await page.getByRole('textbox', {name: 'Elaboration for 4.1.1'}).fill('test elaboration');
@@ -6290,7 +6401,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
 
 
     //Security Fill Answer
-    await page.getByRole('button', { name: 'Next Principle arrow_forward' }).click();
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
     await expect(page.getByRole('heading', {name: 'Security'})).toBeVisible();
 
     await page.getByLabel('Implementation Status for 5.1.1').locator('label').filter({hasText: 'No'}).locator('div').nth(1).click();
@@ -6336,7 +6447,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
 
     //Robustness Fill Answer
-    await page.getByRole('button', { name: 'Next Principle arrow_forward' }).click();
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
     await expect(page.getByRole('heading', {name: 'Robustness'})).toBeVisible();
 
     await page.getByLabel('Implementation Status for 6.1.1').locator('div').filter({hasText: 'No'}).first().click();
@@ -6372,7 +6483,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
 
     //Fairness Fill Answer
-    await page.getByRole('button', { name: 'Next Principle arrow_forward' }).click();
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
     await expect(page.getByRole('heading', {name: 'Fairness'})).toBeVisible();
 
     await page.getByLabel('Implementation Status for 7.2.1').locator('div').filter({hasText: 'No'}).first().click();
@@ -6399,7 +6510,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
 
 
     //Data Governance Fill Answer
-    await page.getByRole('button', { name: 'Next Principle arrow_forward' }).click();
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
     await expect(page.getByRole('heading', {name: 'Data Governance'})).toBeVisible();
 
     await page.getByLabel('Implementation Status for 8.1.1').locator('div').filter({hasText: 'No'}).first().click();
@@ -6426,7 +6537,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
 
 
     //Accountability Fill Answer
-    await page.getByRole('button', { name: 'Next Principle arrow_forward' }).click();
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
     await expect(page.getByRole('heading', {name: 'Accountability'})).toBeVisible();
 
 
@@ -6517,7 +6628,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
 
 
     //Inclusive Growth, Societal And Environmental Well-Being Fill Answer
-    await page.getByRole('button', { name: 'Next Principle arrow_forward' }).click();
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
     await expect(page.getByRole('heading', {name: 'Inclusive Growth, Societal'})).toBeVisible();
 
 
@@ -6538,5 +6649,5 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     // Check Steps UI contains 'active'
     boxStep4 = page.getByText('4', {exact: true});
     await expect(boxStep4).toHaveClass(/active/);
-    await page.close() // clean up
+    await browser.close() // clean up
 });
