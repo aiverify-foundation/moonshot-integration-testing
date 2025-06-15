@@ -27,7 +27,7 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 2,
+  retries: 0,
   /* Opt out of parallel tests on CI. */
   workers: 1, // optionally run tests serially if Streamlit can't handle parallel
 
