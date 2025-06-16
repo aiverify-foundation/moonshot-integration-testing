@@ -6176,7 +6176,7 @@ test('test_getting_started_page_excel_download', async ({}) => {
     await browser.close() // clean up
 
 });
-test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_next_previous_principle_btn', async ({}) => {
+test('test_complete_process_checks_page_using_next_previous_principle_btn', async ({}) => {
 
 
     test.setTimeout(1200000)
