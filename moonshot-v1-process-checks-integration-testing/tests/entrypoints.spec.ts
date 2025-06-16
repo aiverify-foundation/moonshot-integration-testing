@@ -6176,7 +6176,7 @@ test('test_getting_started_page_excel_download', async ({}) => {
     await browser.close() // clean up
 
 });
-test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_next_principe_btn', async ({}) => {
+test.only('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_next_previous_principle_btn', async ({}) => {
 
 
     test.setTimeout(1200000)
@@ -6235,6 +6235,7 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText('application_description')).toBeVisible();
     await page.locator('iframe[title="backend\\.actions_components\\.actions_component\\.actions_component"]').contentFrame().getByText(workspace_name).click();
     await expect(page.getByTestId('stExpander').getByText('Instructions')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'arrow_back icon Previous' })).toBeDisabled();
 
     // Fill Transparency
     await expect(page.getByRole('heading', {name: 'Transparency'})).toBeVisible();
@@ -6288,6 +6289,12 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0')).toContainText('13 of 13 checks');
 
+
+    // Assert Click Previous Principle Arrow Button
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
+    await page.getByRole('button', { name: 'arrow_back icon Previous' }).click();
+    await expect(page.getByRole('heading', {name: 'Transparency'})).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
 
     //Explainability Fill Answer
     await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
@@ -6343,6 +6350,11 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-2')).toContainText('10 of 10 checks');
     await expect(page.getByText('Overall Progress: 24 of 104')).toBeVisible();
 
+    // Assert Click Previous Principle Arrow Button
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
+    await page.getByRole('button', { name: 'arrow_back icon Previous' }).click();
+    await expect(page.getByRole('heading', {name: 'Reproducibility'})).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
 
     //Safety Fill Answer
     await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
@@ -6399,6 +6411,11 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-3')).toContainText('17 of 17 checks');
     await expect(page.getByText('Overall Progress: 41 of 104')).toBeVisible();
 
+    // Assert Click Previous Principle Arrow Button
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
+    await page.getByRole('button', { name: 'arrow_back icon Previous' }).click();
+    await expect(page.getByRole('heading', {name: 'Safety'})).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
 
     //Security Fill Answer
     await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
@@ -6446,6 +6463,12 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-4')).toContainText('14 of 14 checks');
     await expect(page.getByText('Overall Progress: 55 of 104')).toBeVisible();
 
+    // Assert Click Previous Principle Arrow Button
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
+    await page.getByRole('button', { name: 'arrow_back icon Previous' }).click();
+    await expect(page.getByRole('heading', {name: 'Security'})).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
+
     //Robustness Fill Answer
     await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
     await expect(page.getByRole('heading', {name: 'Robustness'})).toBeVisible();
@@ -6482,6 +6505,12 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-5')).toContainText('10 of 10 checks');
     await expect(page.getByText('Overall Progress: 65 of 104')).toBeVisible();
 
+    // Assert Click Previous Principle Arrow Button
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
+    await page.getByRole('button', { name: 'arrow_back icon Previous' }).click();
+    await expect(page.getByRole('heading', {name: 'Robustness'})).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
+
     //Fairness Fill Answer
     await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
     await expect(page.getByRole('heading', {name: 'Fairness'})).toBeVisible();
@@ -6508,6 +6537,11 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-6')).toContainText('6 of 6 checks');
     await expect(page.getByText('Overall Progress: 71 of 104')).toBeVisible();
 
+    // Assert Click Previous Principle Arrow Button
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
+    await page.getByRole('button', { name: 'arrow_back icon Previous' }).click();
+    await expect(page.getByRole('heading', {name: 'Fairness'})).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
 
     //Data Governance Fill Answer
     await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
@@ -6535,6 +6569,11 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-7')).toContainText('6 of 6 checks');
     await expect(page.getByText('Overall Progress: 77 of 104')).toBeVisible();
 
+    // Assert Click Previous Principle Arrow Button
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
+    await page.getByRole('button', { name: 'arrow_back icon Previous' }).click();
+    await expect(page.getByRole('heading', {name: 'Data Governance'})).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
 
     //Accountability Fill Answer
     await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
@@ -6593,9 +6632,14 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-8')).toContainText('16 of 16 checks');
     await expect(page.getByText('Overall Progress: 93 of 104')).toBeVisible();
 
+    // Assert Click Previous Principle Arrow Button
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
+    await page.getByRole('button', { name: 'arrow_back icon Previous' }).click();
+    await expect(page.getByRole('heading', {name: 'Accountability'})).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
 
     //Human Agency & Oversight Fill Answer
-    await page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().getByText('10 Human Agency & Oversight 0').click();
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
     await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
 
 
@@ -6626,6 +6670,11 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeDisabled();
 
+    // Assert Click Previous Principle Arrow Button
+    await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
+    await page.getByRole('button', { name: 'arrow_back icon Previous' }).click();
+    await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
 
     //Inclusive Growth, Societal And Environmental Well-Being Fill Answer
     await page.getByRole('button', {name: 'Next Principle arrow_forward'}).click();
@@ -6642,6 +6691,14 @@ test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_n
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10').getByText('✓')).toBeVisible();
     await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-10')).toContainText('2 of 2 checks');
     await expect(page.getByText('Overall Progress: 104 of 104')).toBeVisible();
+
+    // Assert Click Previous Principle Arrow Button
+    await expect(page.getByRole('button', {name: 'Next Principle arrow_forward'})).toBeDisabled();
+    await page.getByRole('button', { name: 'arrow_back icon Previous' }).click();
+    await expect(page.getByRole('heading', {name: 'Human Agency & Oversight'})).toBeVisible();
+    await expect(page.locator('iframe[title="backend\\.cards_component\\.cards_component\\.cards_component"]').contentFrame().locator('#card-0').getByText('✓')).toBeVisible();
+    await page.getByRole('button', { name: 'Next Principle arrow_forward' }).click();
+
 
     await expect(page.getByRole('button', {name: 'Next →'})).toBeEnabled();
 
