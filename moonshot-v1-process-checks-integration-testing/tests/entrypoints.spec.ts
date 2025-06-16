@@ -6043,7 +6043,7 @@ test('test_complete_process_checks_page_import_empty_checklist', async ({}) => {
     await browser.close() // clean up
 });
 
-test.skip('test_getting_started_page_pdf_download', async ({}) => {
+test('test_getting_started_page_pdf_download', async ({}) => {
     test.setTimeout(1200000)
     const browser = await chromium.launch({headless: true, slowMo: 1000});
     const context = await browser.newContext();  // fresh context
@@ -6096,24 +6096,24 @@ test.skip('test_getting_started_page_pdf_download', async ({}) => {
             page.waitForEvent('popup'),
             page.waitForEvent('download'),
         ]),
-        page.getByRole('link', {name: 'Download Testing Framework - PDF'}).click(),
+        page.getByRole('link', {name: 'PDF version'}).click(),
     ]);
 
     if (popupOrDownload.url) {
         // It's a download
         const download = popupOrDownload;
-        console.log('Excel download URL:', download.url());
+        console.log('PDF download URL:', download.url());
         expect(download.url()).toBe(
-            "https://www.cpf.gov.sg/content/dam/web/member/faq/general-information---useful-tips/documents/Guide_to_view_and_save_CPF_statements.pdf"
+            "https://go.gov.sg/aivtf-pdf"
         );
     } else {
         // It's a popup
         const popup = popupOrDownload;
         await popup.waitForLoadState('load');
         const popupUrl = popup.url();
-        console.log('Excel opened in new tab:', popupUrl);
+        console.log('PDF opened in new tab:', popupUrl);
         expect(popupUrl).toBe(
-            "https://www.cpf.gov.sg/content/dam/web/member/faq/general-information---useful-tips/documents/Guide_to_view_and_save_CPF_statements.pdf"
+            "https://go.gov.sg/aivtf-pdf"
         );
     }
     await browser.close() // clean up
@@ -6176,7 +6176,7 @@ test('test_getting_started_page_excel_download', async ({}) => {
     await browser.close() // clean up
 
 });
-test.only('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_next_previous_principle_btn', async ({}) => {
+test('test_complete_process_checks_page_fill_answer_no_elaboration_!=nil_using_next_previous_principle_btn', async ({}) => {
 
 
     test.setTimeout(1200000)
