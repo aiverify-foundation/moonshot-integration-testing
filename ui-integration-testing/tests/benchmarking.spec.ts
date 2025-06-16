@@ -91,7 +91,7 @@ export async function download_validation_steps(page) {
     const download = await downloadPromise;
 }
 
-// Use this to configure chatgpt4o endpoint when they are required by the various recipes/cookbooks
+// Use this to configure chatgpt4o endpoint when they are required by the various recipes/cookbooks when they need llm-as-a-judge or embedding model
 // You cannot use this if multiple cookbooks/buttons for configuring the endpoint
 export async function configure_chatgpt4o(page,token) {
     // Benchmarking
@@ -102,7 +102,7 @@ export async function configure_chatgpt4o(page,token) {
     await page.getByRole('button', { name: 'Save' }).click();
 }
 
-// Use this to configure llamaguard endpoint when they are required by the various recipes/cookbooks
+// Use this to configure llamaguard endpoint when they are required by the various recipes/cookbooks when they need llm-as-a-judge or embedding model
 // You cannot use this if multiple cookbooks/buttons for configuring the endpoint
 export async function configure_llamaguard(page,token) {
     // Benchmarking
@@ -122,17 +122,18 @@ export async function create_and_select_azureGPT4o_endpoint(page, endpointName) 
     await page.getByLabel('Next View').click();
 }
 
-export async function fill_runner_name(page, runnerName) {
+//Filling out the runner name as well as running the test with the default percentage of prmpts which is 1%
+export async function fill_runner_name(page, runnerName, promptNumber) {
     await page.getByRole('button', { name: 'Next View' }).click();
     await page.getByPlaceholder('Give this session a unique').click();
     await page.getByPlaceholder('Give this session a unique').fill(runnerName);
+    await expect(page.locator('p:has-text("Number of prompts that will be run:")').getByText(promptNumber.toString())).toBeVisible();
     await page.getByRole('button', {name: 'Run'}).click();
 }
 
 function generateRandomName(prefix: string): string {
     return `${prefix} ${Math.floor(Math.random() * 1000000000)}`;
 }
-
 
 
 test('test_benchmarking_one_endpoint_run_with_percentage_check', async ({browserName, page}) => {
@@ -1766,14 +1767,19 @@ test.skip('test_benchmarking_one_endpoint_cookbook_undesirable-content', async (
     await create_and_select_azureGPT4o_endpoint(page, ENDPOINT_NAME);
     //Select Cookbooks
     await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
+    await expect(
+        page.getByRole('listitem')
+        .filter({ hasText: 'Undesirable Content' })
+        .getByText('199143 prompts')
+    ).toBeVisible();
     await page.getByRole('checkbox', { name: 'Select undesirable-content' }).check();
     await page.getByLabel('Next View').click();
     await configure_chatgpt4o(page,process.env.OPENAI_TOKEN);
     await configure_llamaguard(page,process.env.OPENAI_TOKEN);
-    await fill_runner_name(page, RUNNER_NAME);
+    await fill_runner_name(page, RUNNER_NAME, 1991);
     ////////////////////////////////////////////////////////////////////////////
     await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
-    //Check Detailss
+    //Check Details
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
@@ -1797,13 +1803,18 @@ test('test_benchmarking_one_endpoint_cookbook_adversarial-prompts', async ({brow
     await create_and_select_azureGPT4o_endpoint(page, ENDPOINT_NAME);
     //Select Cookbooks
     await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
+    await expect(
+        page.getByRole('listitem')
+        .filter({ hasText: 'Adversarial Prompts' })
+        .getByText('251 prompts')
+    ).toBeVisible();
     await page.getByRole('checkbox', { name: 'Select adversarial-attacks' }).check();
     await page.getByLabel('Next View').click();
     await configure_chatgpt4o(page,process.env.OPENAI_TOKEN);
-    await fill_runner_name(page, RUNNER_NAME);
+    await fill_runner_name(page, RUNNER_NAME, 2);
     ////////////////////////////////////////////////////////////////////////////
     await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
-    //Check Detailss
+    //Check Details
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
@@ -1828,13 +1839,18 @@ test('test_benchmarking_one_endpoint_cookbook_data-disclosure', async ({browserN
     await create_and_select_azureGPT4o_endpoint(page, ENDPOINT_NAME);
     //Select Cookbooks
     await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
+    await expect(
+        page.getByRole('listitem')
+        .filter({ hasText: 'Data Disclosure' })
+        .getByText('100 prompts')
+    ).toBeVisible();
     await page.getByRole('checkbox', { name: 'Select data-disclosure' }).check();
     await page.getByLabel('Next View').click();
     await configure_chatgpt4o(page,process.env.OPENAI_TOKEN);
-    await fill_runner_name(page, RUNNER_NAME);
+    await fill_runner_name(page, RUNNER_NAME, 1);
     ////////////////////////////////////////////////////////////////////////////
     await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
-    //Check Detailss
+    //Check Details
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
@@ -1857,11 +1873,16 @@ test('test_benchmarking_one_endpoint_cookbook_hallucination', async ({browserNam
     await create_and_select_azureGPT4o_endpoint(page, ENDPOINT_NAME);
     //Select Cookbooks
     await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
+    await expect(
+        page.getByRole('listitem')
+        .filter({ hasText: 'Hallucination' })
+        .getByText('17763 prompts')
+    ).toBeVisible();
     await page.getByRole('checkbox', { name: 'Select hallucination' }).check();
-    await fill_runner_name(page, RUNNER_NAME);
+    await fill_runner_name(page, RUNNER_NAME, 181);
     ////////////////////////////////////////////////////////////////////////////
     await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
-    //Check Detailss
+    //Check Details
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
