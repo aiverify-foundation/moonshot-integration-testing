@@ -135,7 +135,13 @@ function generateRandomName(prefix: string): string {
     return `${prefix} ${Math.floor(Math.random() * 1000000000)}`;
 }
 
+export async function checkCookbookInReport(page: Page, cookbookName: string){
+    await expect(page.getByRole('heading', { name: cookbookName })).toBeVisible();
+    await expect(
+        page.locator('div').filter({ hasText: /^Overall rating:-$/ })
+        ).toHaveCount(0);}
 
+/*
 test('test_benchmarking_one_endpoint_run_with_percentage_check', async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
@@ -1753,15 +1759,15 @@ test.skip('test_benchmarking_one_endpoint_cookbook_anthropic', async ({browserNa
     await page.locator('main').filter({hasText: 'Showing results foranthropic-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 });
-
+*/
 
 //undesirable content
-// Currently commented out due to the test being both too long and using too many tokens. 1% is 1990 prompts.
-
+// Currently skipped due to the test being both too long and using too many tokens. 1% is 1990 prompts.
 test.skip('test_benchmarking_one_endpoint_cookbook_undesirable-content', async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = generateRandomName("Azure OpenAI");
     const RUNNER_NAME: string = generateRandomName("Test Undesirable Content");
+    const COOKBOOK_NAME: string = "Undesirable Content";
     ////////////////////////////////////////////////////////////////////////////
     // Benchmarking
     await create_and_select_azureGPT4o_endpoint(page, ENDPOINT_NAME);
@@ -1769,7 +1775,7 @@ test.skip('test_benchmarking_one_endpoint_cookbook_undesirable-content', async (
     await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
     await expect(
         page.getByRole('listitem')
-        .filter({ hasText: 'Undesirable Content' })
+        .filter({ hasText: COOKBOOK_NAME })
         .getByText('199143 prompts')
     ).toBeVisible();
     await page.getByRole('checkbox', { name: 'Select undesirable-content' }).check();
@@ -1787,6 +1793,7 @@ test.skip('test_benchmarking_one_endpoint_cookbook_undesirable-content', async (
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
+    await checkCookbookInReport(page, COOKBOOK_NAME);
     await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 
@@ -1798,6 +1805,7 @@ test('test_benchmarking_one_endpoint_cookbook_adversarial-prompts', async ({brow
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = generateRandomName("Azure OpenAI");
     const RUNNER_NAME: string = generateRandomName("Test Adversarial Prompts");
+    const COOKBOOK_NAME: string = "Adversarial Prompts";
     ////////////////////////////////////////////////////////////////////////////
     // Benchmarking
     await create_and_select_azureGPT4o_endpoint(page, ENDPOINT_NAME);
@@ -1805,7 +1813,7 @@ test('test_benchmarking_one_endpoint_cookbook_adversarial-prompts', async ({brow
     await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
     await expect(
         page.getByRole('listitem')
-        .filter({ hasText: 'Adversarial Prompts' })
+        .filter({ hasText: COOKBOOK_NAME })
         .getByText('251 prompts')
     ).toBeVisible();
     await page.getByRole('checkbox', { name: 'Select adversarial-attacks' }).check();
@@ -1822,6 +1830,7 @@ test('test_benchmarking_one_endpoint_cookbook_adversarial-prompts', async ({brow
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
+    await checkCookbookInReport(page, COOKBOOK_NAME);
     await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 });
@@ -1834,6 +1843,7 @@ test('test_benchmarking_one_endpoint_cookbook_data-disclosure', async ({browserN
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = generateRandomName("Azure OpenAI");
     const RUNNER_NAME: string = generateRandomName("Test Data Disclosure");
+    const COOKBOOK_NAME: string = "Data Disclosure";
     ////////////////////////////////////////////////////////////////////////////
     // Benchmarking
     await create_and_select_azureGPT4o_endpoint(page, ENDPOINT_NAME);
@@ -1841,7 +1851,7 @@ test('test_benchmarking_one_endpoint_cookbook_data-disclosure', async ({browserN
     await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
     await expect(
         page.getByRole('listitem')
-        .filter({ hasText: 'Data Disclosure' })
+        .filter({ hasText: COOKBOOK_NAME })
         .getByText('100 prompts')
     ).toBeVisible();
     await page.getByRole('checkbox', { name: 'Select data-disclosure' }).check();
@@ -1858,6 +1868,7 @@ test('test_benchmarking_one_endpoint_cookbook_data-disclosure', async ({browserN
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
+    await checkCookbookInReport(page, COOKBOOK_NAME);
     await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 
@@ -1868,6 +1879,7 @@ test('test_benchmarking_one_endpoint_cookbook_hallucination', async ({browserNam
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = generateRandomName("Azure OpenAI");
     const RUNNER_NAME: string = generateRandomName("Test Hallucination");
+    const COOKBOOK_NAME: string = "Hallucination";
     ////////////////////////////////////////////////////////////////////////////
     // Benchmarking
     await create_and_select_azureGPT4o_endpoint(page, ENDPOINT_NAME);
@@ -1875,7 +1887,7 @@ test('test_benchmarking_one_endpoint_cookbook_hallucination', async ({browserNam
     await page.getByRole('button', { name: 'IMDA Starter Kit' }).click();
     await expect(
         page.getByRole('listitem')
-        .filter({ hasText: 'Hallucination' })
+        .filter({ hasText: COOKBOOK_NAME })
         .getByText('17763 prompts')
     ).toBeVisible();
     await page.getByRole('checkbox', { name: 'Select hallucination' }).check();
@@ -1890,6 +1902,7 @@ test('test_benchmarking_one_endpoint_cookbook_hallucination', async ({browserNam
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
+    await checkCookbookInReport(page, COOKBOOK_NAME);
     await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 
