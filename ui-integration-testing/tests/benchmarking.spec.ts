@@ -141,7 +141,6 @@ export async function checkCookbookInReport(page: Page, cookbookName: string){
         page.locator('div').filter({ hasText: /^Overall rating:-$/ })
         ).toHaveCount(0);}
 
-/*
 test('test_benchmarking_one_endpoint_run_with_percentage_check', async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
@@ -1759,7 +1758,7 @@ test.skip('test_benchmarking_one_endpoint_cookbook_anthropic', async ({browserNa
     await page.locator('main').filter({hasText: 'Showing results foranthropic-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 });
-*/
+
 
 //undesirable content
 // Currently skipped due to the test being both too long and using too many tokens. 1% is 1990 prompts.
