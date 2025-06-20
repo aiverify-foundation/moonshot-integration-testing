@@ -188,6 +188,12 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
     copy_and_move_file(source_path, destination_path)
 
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+
+    copy_and_move_file(source_path, destination_path)
+
     # Assert Results
     assert "[DatasetLoader] No valid file".replace(" ", "") in output_lines
 
@@ -2442,6 +2448,11 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
     copy_and_move_file(source_path, destination_path)
 
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
     # Assert Results
     assert_run_outcome(output_lines)
     check_result_file_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
@@ -2449,14 +2460,13 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
 
 MAX_CONCURRENCY_EXPECTED_OUTCOME = [
     ("have been completed."),  # Expected result for 1
-    ("have been completed."),  # Expected result for 1.1
-    ("Semaphore initial value must be"),  # Expected result for -1
-    ("have been completed."),  # Expected result for 0
-    ("'<' not supported between"),  # Expected result for "@1"
-    ("'<' not supported between")  # Expected result for "test"
+    ("max_concurrency must be of type"),  # Expected result for 1.1
+    ("max_concurrency must be at least"),  # Expected result for -1
+    ("max_concurrency must be at least"),  # Expected result for 0
+    ("max_concurrency must be of type"),  # Expected result for "@1"
+    ("max_concurrency must be of type")  # Expected result for "test"
 ]
 
-@pytest.mark.skip(reason="Pending Fixes")
 @parametrize("input_params, expectedMsg", zip(INPUT_PARAMS, MAX_CONCURRENCY_EXPECTED_OUTCOME))
 def test_cli_moonshot_run_red_teaming_and_benchmarking_test_config_local_parameter_testing_ms_config_common_max_concurrency(
         input_params, expectedMsg):
@@ -2575,5 +2585,123 @@ def test_cli_moonshot_run_red_teaming_and_benchmarking_test_config_local_paramet
     # Split the output into lines
     output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
 
+    # Assert Outcome
+    assert expectedMsg.replace(" ", "") in output_lines
+
+def test_cli_moonshot_run_red_teaming_and_benchmarking_test_config_local_parameter_testing_ms_config_common_max_concurrency_empty():
+    # Generate a random number between 0 and 999,999,999 (inclusive)
+    random_number = int(random.random() * 1000000000)
+    dataset_module = "prompt_injection_jailbreak"
+    attack_module = "hallucination"
+    connector_name = "my-gpt-4o-mini"
+    nameOfRunnerName = "test-run-benchmarking-redteaming-" + "-" + str(random_number)
+    nameOfBenchmarkRunnerName = "my-benchmarking-" + connector_name + "-" + dataset_module + "-" + str(random_number)
+    nameOfRedTeamingRunnerName = "test_run_" + connector_name + "-" + attack_module + "-" + str(random_number)
+    metric_module = "refusal_adapter"
+    test_config_name = "qa-tests"
+
+    # Mini Dataset prep for testing
+    # Duplicate file to revert later
+    source_path = "./test_data/prompt_injection_jailbreak.json"
+    copy_file(source_path)
+    source_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_file(source_path)
+
+    source_path = "./test_data/copy_of_prompt_injection_jailbreak.json"
+    destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_and_move_file(source_path, destination_path)
+
+    # Test Config modification
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_file(source_path)
+    yaml_file_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    updates = {
+        test_config_name: [
+            {
+                "name": nameOfBenchmarkRunnerName,
+                "type": "benchmark",
+                "dataset": dataset_module,
+                "metric": {
+                    "name": metric_module}
+            },
+            {
+                "name": nameOfRedTeamingRunnerName,
+                "type": "scan",
+                "attack_module": {
+                    "name": attack_module,
+                    "params": {"max_prompts": 1,
+                               "use_case":
+                                   "This is a gaming chatbot. It will answer the top-selling games in US and Asia. It "
+                                   "will give advice on what is the best"
+                                   "game to play based on the user preference.",
+                               "qns_type": "MCQ"}},
+                "metric": {
+                    "name": metric_module}
+            }
+        ]
+    }
+
+    # Example usage
+    replace_yaml_content(yaml_file_path, updates)
+
+    # Moonshot config modification
+    source_path = MOON_V1_CLI_DIR + "/moonshot_config.yaml"
+    copy_file(source_path)
+    updates = {
+        "common": {
+            "max_calls_per_minute": "rwe",
+            "max_attempts": 3}
+    }
+
+    # Example usage
+    modify_yaml(source_path, updates)
+
+    commands = [
+        "export OPENAI_API_KEY=" + OPENAI_TOKEN,
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+    ]
+    # Join commands with '&&' to ensure the next runs only if the previous succeeds
+    full_command = "&&".join(commands)
+    print(f"Running combined command: {full_command}")
+
+    process = subprocess.Popen(
+        full_command,
+        shell=True,  # Allows for complex shell commands
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE,
+        text=True,
+        cwd=str(MOON_V1_CLI_DIR),
+    )
+    print('Path:', str(MOON_V1_CLI_DIR))
+    # Ensure process.stdin is not None
+    if process.stdin is None:
+        raise RuntimeError("Failed to create stdin for the subprocess")
+
+    # Capture the output and errors
+    stdout, stderr = process.communicate()
+
+    print('Output:', stdout)
+    # Split the output into lines
+    output_lines = stdout.splitlines()
+
+    # Test Config rollback
+    source_path = MOON_V1_CLI_DIR + "/data/test_configs/copy_of_tests.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/data/test_configs/tests.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Moonshot Config rollback
+    source_path = MOON_V1_CLI_DIR + "/copy_of_moonshot_config.yaml"
+    destination_path = MOON_V1_CLI_DIR + "/moonshot_config.yaml"
+    copy_and_move_file(source_path, destination_path)
+
+    # Test Data rollback
+    source_path = MOON_V1_CLI_DIR + "/data/datasets/copy_of_prompt_injection_jailbreak.json"
+    destination_path = MOON_V1_CLI_DIR + "/data/datasets/prompt_injection_jailbreak.json"
+    copy_and_move_file(source_path, destination_path)
+
+    # Split the output into lines
+    output_lines = [line.replace(" ", "") for line in stdout.splitlines() if line.strip()]
+    expectedMsg = "max_concurrency must be of type"
     # Assert Outcome
     assert expectedMsg.replace(" ", "") in output_lines

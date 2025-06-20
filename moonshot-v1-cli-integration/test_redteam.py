@@ -1680,7 +1680,6 @@ SENSITIVE_DATA_DISCLOSURE_PARAM_TEST_MAX_PROMPTS_FIELD_EXPECTED_OUTCOME = [
     ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "@1"
     ("ERROR    [ApiAdapter] An error occurred   api_adapter.py"),  # Expected result for "test"
 ]
-@pytest.mark.skip(reason="This test is skipped until max prompts validation is fixed")
 @parametrize("input_params, expectedMsg",
              zip(INPUT_PARAMS, SENSITIVE_DATA_DISCLOSURE_PARAM_TEST_MAX_PROMPTS_FIELD_EXPECTED_OUTCOME))
 def test_cli_run_redteaming_via_run_command_refusal_adapter_sensitive_data_disclosure_params_max_prompts(input_params, expectedMsg):
