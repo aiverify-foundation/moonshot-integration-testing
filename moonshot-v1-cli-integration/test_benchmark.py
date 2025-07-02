@@ -1902,7 +1902,8 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_with_invalid_token():
     replace_yaml_content(yaml_file_path, updates)
 
     commands = [
-        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + "",
+        "export OPENAI_API_KEY=invalid_token"
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
     full_command = "&&".join(commands)
@@ -1936,7 +1937,7 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_with_invalid_token():
 
     # Assert Results
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
-    assert "[ApiAdapter] An error occurred".replace(" ", "") in output_lines
+    assert "Connection error.".replace(" ", "") in output_lines
     check_result_file_not_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
