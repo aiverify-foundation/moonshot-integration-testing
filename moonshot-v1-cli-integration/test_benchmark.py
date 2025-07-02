@@ -72,15 +72,14 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_with_invalid_token():
     replace_yaml_content(yaml_file_path, updates)
 
     commands = [
-        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + "",
-        "export OPENAI_API_KEY=invalid_token"
+        "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + ""
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
     full_command = "&&".join(commands)
     print(f"Running combined command: {full_command}")
 
     process = subprocess.Popen(
-        full_command,
+        full_command,env={**os.environ, "OPENAI_API_KEY": "invalid_token"},
         shell=True,  # Allows for complex shell commands
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
@@ -157,7 +156,7 @@ def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_j
     print(f"Running combined command: {full_command}")
 
     process = subprocess.Popen(
-        full_command,
+        full_command,env={**os.environ, "OPENAI_API_KEY": OPENAI_TOKEN},
         shell=True,  # Allows for complex shell commands
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
