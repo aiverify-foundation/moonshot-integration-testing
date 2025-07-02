@@ -1936,7 +1936,7 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_with_invalid_token():
 
     # Assert Results
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
-    assert "Connection error.".replace(" ", "") in output_lines
+    assert "401".replace(" ", "") in output_lines
     check_result_file_not_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
