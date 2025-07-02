@@ -73,7 +73,7 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_with_invalid_token():
 
     commands = [
         "poetry run moonshot run " + nameOfRunnerName + " " + test_config_name + " " + connector_name + "",
-        "export OPENAI_TOKEN=invalid_token"
+        "export OPENAI_API_KEY=invalid_token"
     ]
     # Join commands with '&&' to ensure the next runs only if the previous succeeds
     full_command = "&&".join(commands)
