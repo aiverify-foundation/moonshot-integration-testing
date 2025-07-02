@@ -106,7 +106,7 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_with_invalid_token():
 
     # Assert Results
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
-    assert "Connection error.".replace(" ", "") in output_lines
+    assert "'invalid_api_key'}}".replace(" ", "") in output_lines
     check_result_file_not_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 def test_cli_run_benchmarking_via_run_command_refusal_adapter_prompt_injection_jailbreak_read_dataset_local():
