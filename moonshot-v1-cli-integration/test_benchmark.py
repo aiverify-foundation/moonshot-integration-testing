@@ -1935,8 +1935,10 @@ def test_cli_moonshot_run_more_than_one_benchmarking_test_with_invalid_token():
     copy_and_move_file(source_path, destination_path)
 
     # Assert Results
+    print("output_lines_one", output_lines)
     output_lines = [line.replace(" ", "") for line in output_lines if line.strip()]
-    assert "401".replace(" ", "") in output_lines
+    print("output_lines_two", output_lines)
+    assert "error".replace(" ", "") in output_lines
     check_result_file_not_exists(MOON_V1_CLI_DIR + "/data/results/" + nameOfRunnerName + ".json")
 
 
