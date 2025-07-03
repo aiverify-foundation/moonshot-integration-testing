@@ -221,7 +221,7 @@ To execute the integration tests:
 1. **Navigate to the Test Directory**:
 
    ```bash
-   cd ui-integration-testing
+   cd moonshot-v1-process-checks-integration-testing
    ```
 2. **Set Up the Virtual Environment**:
 
