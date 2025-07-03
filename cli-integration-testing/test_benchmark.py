@@ -67,7 +67,7 @@ def test_cli_run_cookbook():
     output_lines = stdout.splitlines()
 
     # Get the last line of the output
-    last_line = output_lines[-14]
+    last_line = output_lines[-16]
     print('=========================Output Last Line:', last_line)
     assert last_line.replace(" ", "") == "CookbookResult"
 
