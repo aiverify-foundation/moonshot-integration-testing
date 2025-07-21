@@ -4809,21 +4809,22 @@ test('test_upload_technical_results_page_download_sample_files', async ({}) => {
     // Try download
     const [download] = await Promise.all([
         page.waitForEvent('download'),  // Wait for the download event
-        await page.getByRole('listitem').filter({hasText: 'If you are using Moonshot version 1.0, you can download the sample result here.'}).getByRole('link').click(),
+        await page.getByRole('listitem').filter({hasText: 'If you are using Moonshot, you can download the sample result here.'}).getByRole('link').click(),
     ]);
 
     // Get the suggested filename and save the file to the current directory
     const filename = download.suggestedFilename();
-    expect(filename == "ms_v0.6_result_template.json")
+    expect(filename == "ms_result_template.json").toBeTruthy();
 
     const [download2] = await Promise.all([
         page.waitForEvent('download'),  // Wait for the download event
-        await page.getByRole('listitem').filter({hasText: 'If you are using Moonshot version 1.0, you can download the sample result here.'}).getByRole('link').click(),
+        await page.getByRole('listitem').filter({hasText: 'If you are using Moonshot CI/CD, you can download the sample result here.'}).getByRole('link').click(),
     ]);
 
     // Get the suggested filename and save the file to the current directory
     const filename2 = download2.suggestedFilename();
-    expect(filename2 == "ms_ga_result_template.json")
+    expect(filename2 == "ms_cicd_result_template.json").toBeTruthy();
+
     await browser.close() // clean up
 });
 
