@@ -8,6 +8,8 @@ import fs from "fs/promises";
 const __dirname: string = '.'
 dotenv.config({path: path.resolve(__dirname, '.env')});
 
+const COOKBOOK_SINGAPORE_CONTEXT_ONE_PCT_PROMPT_TEXT: string = 'Number of prompts to run:7'
+
 export async function create_endpoint_steps(page, name, uri, token, connectorType, maxCallPerSec, maxConcurr, model, otherParams, uriSkipCheck?: boolean) {
     await page.goto('http://localhost:3000/endpoints/new');
     await page.getByPlaceholder('Name of the model').click();
@@ -172,7 +174,7 @@ test('test_benchmarking_one_endpoint_run_with_percentage_check', async ({browser
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:1')).toBeVisible();
+    await expect(page.getByText(COOKBOOK_SINGAPORE_CONTEXT_ONE_PCT_PROMPT_TEXT)).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
 
@@ -195,7 +197,6 @@ test('test_benchmarking_one_endpoint_slider_percentage', async ({browserName, pa
     await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
     await page.getByRole('listitem').nth(1).click();
     await page.getByRole('button', {name: 'Start New Run'}).click();
-    // await page.getByRole('button', {name: 'Trust & Safety'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
     await page.getByLabel('Next View').click();
     await page.getByRole('button', { name: 'Capability' }).click();
@@ -203,29 +204,27 @@ test('test_benchmarking_one_endpoint_slider_percentage', async ({browserName, pa
     await page.getByLabel('Next View').click();
     await page.getByPlaceholder('Give this session a unique').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
-    // Locate the slider handle
-    const sliderHandle = page.locator('.Slider_handle__AaqrC'); // Update with the actual selector of your slider handle
 
-    // Locate the slider track or an end position element if needed
-    const sliderTrack = page.locator('.Slider_slider__3olqj'); // Update with the slider's track selector
 
     // Get the bounding box of the slider track
+    const sliderTrack = page.locator('.Slider_slider__3olqj'); // Update with the slider's track selector
     const sliderBox = await sliderTrack.boundingBox();
     if (!sliderBox) {
         throw new Error('Could not retrieve slider bounding box.');
     }
 
-    // Drag the slider handle by simulating mouse events
-    const targetX = sliderBox.x + sliderBox.width * 0.5; // Move to the middle of the slider
-    const targetY = sliderBox.y + sliderBox.height / 2; // Center vertically
-
+    // Drag the slider handle to the middle of the slider by simulating mouse events
+    const roundingErrorInPixels = 5;  // Trial and error to get from 49% to 50%
+    const slider50PctOffsetWidth = sliderBox.width * 0.5 + roundingErrorInPixels;
+    const sliderHandle = page.locator('.Slider_handle__AaqrC'); // Update with the actual selector of your slider handle
     await sliderHandle.dragTo(sliderHandle, {
         force: true,
         targetPosition: {
-            x: 15,
-            y: targetY,
+            x: slider50PctOffsetWidth, 
+            y: 0,
         },
     });
+    await expect(page.getByText('50%')).toBeVisible();  // Check if 50% of prompts is selected
 
     await page.getByRole('button', {name: 'Run'}).click();
     //////////////////////////////////////////////////////////////
@@ -234,7 +233,8 @@ test('test_benchmarking_one_endpoint_slider_percentage', async ({browserName, pa
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:4')).toBeVisible();
+
+    await expect(page.getByText('Number of prompts to run:137')).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
@@ -242,6 +242,7 @@ test('test_benchmarking_one_endpoint_slider_percentage', async ({browserName, pa
     await page.getByText(/back to home/i).click()
 
 });
+
 test('test_benchmarking_one_endpoint', async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
@@ -250,11 +251,11 @@ test('test_benchmarking_one_endpoint', async ({browserName, page}) => {
     const RUNNER_NAME: string = "Test " + Math.floor(Math.random() * 1000000000);
     await create_single_endpoint_benchmark_steps(page, ENDPOINT_NAME, RUNNER_NAME)
     await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
-    //Check Detailss
+    //Check Details
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:1')).toBeVisible();
+    await expect(page.getByText(COOKBOOK_SINGAPORE_CONTEXT_ONE_PCT_PROMPT_TEXT)).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
@@ -262,6 +263,7 @@ test('test_benchmarking_one_endpoint', async ({browserName, page}) => {
     await page.getByText(/back to home/i).click()
 
 });
+
 test('test_benchmarking_one_endpoint_cookbook_common-risk-easy', async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
@@ -284,11 +286,11 @@ test('test_benchmarking_one_endpoint_cookbook_common-risk-easy', async ({browser
     await page.getByRole('button', {name: 'Run'}).click();
     ////////////////////////////////////////////////////////////////////////////
     await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
-    //Check Detailss
+    //Check Details
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:942')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:944')).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
@@ -323,7 +325,7 @@ test('test_benchmarking_one_endpoint_cookbook_singapore-context', async ({browse
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:1')).toBeVisible();
+    await expect(page.getByText(COOKBOOK_SINGAPORE_CONTEXT_ONE_PCT_PROMPT_TEXT)).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
@@ -542,7 +544,7 @@ test('test_benchmarking_one_endpoint_cookbook_common-risk-hard', async ({browser
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:942')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:944')).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
@@ -831,12 +833,13 @@ test('test_benchmarking_edit_endpoint_step', async ({browserName, page}) => {
     await page.getByPlaceholder('Give this session a unique').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
+    ////////////////////////////////////////////////////////////////////////////
     await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
     //Check Details
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:1')).toBeVisible();
+    await expect(page.getByText(COOKBOOK_SINGAPORE_CONTEXT_ONE_PCT_PROMPT_TEXT)).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
@@ -886,7 +889,7 @@ test('test_benchmarking_create_new_endpoint_step', async ({browserName, page}) =
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:1')).toBeVisible();
+    await expect(page.getByText(COOKBOOK_SINGAPORE_CONTEXT_ONE_PCT_PROMPT_TEXT)).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
