@@ -7,6 +7,7 @@ import re
 sys.path.append("..")
 from util.utils import *
 import time
+import pprint
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -35,24 +36,24 @@ def open_moonshot_process():
     return process
 
 # This is not a fixture because it's not meant to cause multiple runs of the same test
-def endpoint_setup(id, name):
-        start_time = time.perf_counter()
-        process = open_moonshot_process()
-        # Update Endpoints
-        command = 'update_endpoint ' + id + ' "[(\'name\', \'' + name + '\'), (\'uri\', \'' + str(
-            AZURE_OPENAI_URI) + '\'), (\'token\', \'' + str(
-            AZURE_OPENAI_TOKEN) + '\'), (\'model\', \'gpt-4o\'), (\'params\', {\'timeout\': 300,\'max_attempts\': 3, \'temperature\': 0.5})]"\n'
-        print('Command:', command)
-        # Example command to send to the process
-        process.stdin.write(command)
-        process.stdin.flush()        
-        # Capture the output and errors this also waits for the process to finish this is required to ensure the endpoint is updated before termination
-        stdout, stderr = process.communicate()
-        print('Output:', stderr)
-        print('Output:', stdout)
-        end_time = time.perf_counter()
-        print(f"Time taken for endpoint execution: {end_time - start_time:.2f} seconds")
-        process.terminate()
+def endpoint_setup_azure_gpt4o(id, name):
+    start_time = time.perf_counter()
+    process = open_moonshot_process()
+    # Update Endpoints
+    command = 'update_endpoint ' + id + ' "[(\'name\', \'' + name + '\'), (\'uri\', \'' + str(
+        AZURE_OPENAI_URI) + '\'), (\'token\', \'' + str(
+        AZURE_OPENAI_TOKEN) + '\'), (\'model\', \'gpt-4o\'), (\'params\', {\'timeout\': 300,\'max_attempts\': 3, \'temperature\': 0.5})]"\n'
+    print('Command:', command)
+    # Example command to send to the process
+    process.stdin.write(command)
+    process.stdin.flush()        
+    # Capture the output and errors this also waits for the process to finish this is required to ensure the endpoint is updated before termination
+    stdout, stderr = process.communicate()# This is a blocking call, this will wait for the CLI to finish printing out before continuing.
+    print('Output:', stderr)
+    print('Output:', stdout)
+    end_time = time.perf_counter()
+    print(f"Time taken for endpoint execution: {end_time - start_time:.2f} seconds")
+    process.terminate()
 
 def assert_cookbook_result(output_lines, recipes, cookbook_id, number_of_lines=50):
     """
@@ -66,27 +67,29 @@ def assert_cookbook_result(output_lines, recipes, cookbook_id, number_of_lines=5
         raise ValueError("output lines are empty")
     
     start_time = time.perf_counter()
-    COOKBOOK_RESULT = r"Cookbook.*Result"
+    COOKBOOK_RESULT_PATTERN = r"Cookbook.*Result"
     isCookbookResultPresent = False
     isCookbookIdPresent = False
-    recipe_map = {recipe: False for recipe in recipes}
+    recipe_dict = {recipe: False for recipe in recipes}
     end_idx = max(-1, len(output_lines) - number_of_lines-1)
     for line in output_lines[end_idx + 1:][::-1]:
         if re.search(cookbook_id, line):
             isCookbookIdPresent = True
             continue
-        if re.search(COOKBOOK_RESULT, line):
+        if re.search(COOKBOOK_RESULT_PATTERN, line):
             isCookbookResultPresent = True
             break # This assumes that cookbook result is before the recipes
         for recipe in recipes:
             if re.search(recipe, line):
-                recipe_map[recipe] = True
+                recipe_dict[recipe] = True
                 continue
 
     # Check if cookbook ID is present
     assert isCookbookIdPresent, f"Cookbook ID '{cookbook_id}' not found in the output lines."
     # Check if all recipes are present
-    for recipe, present in recipe_map.items():
+    for recipe, present in recipe_dict.items():
+        if not present:
+            pprint.pprint(recipe_dict)
         assert present, f"Recipe '{recipe}' not found in the output lines."
     
     end_time = time.perf_counter()
@@ -134,7 +137,7 @@ def test_cli_run_cookbook():
     process.stdin.flush()
 
     # Capture the output and errors
-    stdout, stderr = process.communicate()
+    stdout, stderr = process.communicate() # This is a blocking call, this will wait for the CLI to finish printing out before continuing.
     print('Output:', stderr)
     print('Output:', stdout)
     # Split the output into lines
@@ -1721,7 +1724,7 @@ def test_cli_view_runner():
 class TestStarterKit:
     @classmethod
     def setup_class(cls):
-        endpoint_setup("azure-openai-gpt4o", "Azure OpenAI GPT4o")
+        endpoint_setup_azure_gpt4o("azure-openai-gpt4o", "Azure OpenAI GPT4o")
         pass
 
     def run_benchmark(self, process, recipes, cookbook_id, endpoint_id="azure-openai-gpt4o"):
@@ -1735,7 +1738,7 @@ class TestStarterKit:
         process.stdin.flush()
 
         # Capture the output and errors
-        stdout, stderr = process.communicate()
+        stdout, stderr = process.communicate()# This is a blocking call, this will wait for the CLI to finish printing out before continuing.
         print('Output:', stderr)
         print('Output:', stdout)
         # Split the output into lines
