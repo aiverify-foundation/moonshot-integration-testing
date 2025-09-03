@@ -18,9 +18,7 @@ CLI_DIR = os.getenv('CLI_DIR')
 # CLI_DIR = '/Users/jacksonboey/PycharmProjects/moonshot'
 
 def open_moonshot_process():
-    command = (
-        'python3 -m moonshot cli interactive'
-    )
+    command = get_moonshot_command()
     process = subprocess.Popen(
         command,
         shell=True,  # Allows for complex shell commands
@@ -97,12 +95,7 @@ def assert_cookbook_result(output_lines, recipes, cookbook_id, number_of_lines=5
     assert isCookbookResultPresent, f"Expected '{COOKBOOK_RESULT}' to be present in the output lines"
 
 def test_cli_run_cookbook():
-    command = (
-        # 'cd .. &&'
-        # 'source venv/bin/activate &&'
-        # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
-    )
+    command = get_moonshot_command()
 
     process = subprocess.Popen(
         command,
@@ -157,7 +150,7 @@ def test_cli_run_cookbook_mlc_ai_safety():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -220,7 +213,7 @@ def test_cli_run_cookbook_mlc_ai_safety():
 #         # 'cd .. &&'
 #         # 'source venv/bin/activate &&'
 #         # 'cd moonshot &&'
-#         'python3 -m moonshot cli interactive'
+#         get_moonshot_command()
 #     )
 #
 #     process = subprocess.Popen(
@@ -284,7 +277,7 @@ def test_cli_run_recipe():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -340,7 +333,7 @@ def test_cli_add_cookbook():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -388,7 +381,7 @@ def test_cli_add_recipe():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -434,7 +427,7 @@ def test_cli_delete_cookbook():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -493,7 +486,7 @@ def test_cli_delete_recipe():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -552,7 +545,7 @@ def test_cli_delete_metric():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -611,7 +604,7 @@ def test_cli_delete_metric():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -670,7 +663,7 @@ def test_cli_delete_result():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -744,7 +737,7 @@ def test_cli_delete_runner():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -818,7 +811,7 @@ def test_cli_delete_runner():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -888,7 +881,7 @@ def test_cli_list_cookbooks():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -934,7 +927,7 @@ def test_cli_list_datasets():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -980,7 +973,7 @@ def test_cli_list_metrics():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1026,7 +1019,7 @@ def test_cli_list_recipes():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1072,7 +1065,7 @@ def test_cli_list_results():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1133,7 +1126,7 @@ def test_cli_list_runs():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1192,7 +1185,7 @@ def test_cli_list_runners():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1251,7 +1244,7 @@ def test_cli_update_cookbook():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1306,7 +1299,7 @@ def test_cli_update_recipe():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1359,7 +1352,7 @@ def test_cli_view_cookbook():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1412,7 +1405,7 @@ def test_cli_view_recipe():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1464,7 +1457,7 @@ def test_cli_view_dataset():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1507,7 +1500,7 @@ def test_cli_view_metric():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1550,7 +1543,7 @@ def test_cli_view_result():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1610,7 +1603,7 @@ def test_cli_view_run():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -1670,7 +1663,7 @@ def test_cli_view_runner():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(

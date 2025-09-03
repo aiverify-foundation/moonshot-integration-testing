@@ -16,7 +16,7 @@ def test_cli_list_endpoints():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -60,7 +60,7 @@ def test_cli_list_prompt_templates():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -104,7 +104,7 @@ def test_cli_list_connector_types():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -148,7 +148,7 @@ def test_cli_view_endpoint():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
         )
 
         process = subprocess.Popen(
@@ -193,7 +193,7 @@ def test_cli_view_endpoint():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -237,7 +237,7 @@ def test_cli_add_endpoints():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -287,7 +287,7 @@ def test_cli_delete_endpoint():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -350,7 +350,7 @@ def test_cli_delete_dataset():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -406,7 +406,7 @@ def test_cli_convert_dataset():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -454,7 +454,7 @@ def test_cli_download_dataset_hf():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -499,7 +499,7 @@ def test_cli_download_dataset_hf():
 #         'cd .. &&'
 #         'source venv/bin/activate &&'
 #         'cd moonshot &&'
-#         'python3 -m moonshot cli interactive'
+#         get_moonshot_command()
 #     )
 #
 #     process = subprocess.Popen(
@@ -549,7 +549,7 @@ def test_cli_delete_prompt_template():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -607,7 +607,7 @@ def test_cli_update_endpoint():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
