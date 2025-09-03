@@ -154,5 +154,5 @@ def get_moonshot_command():
     if conda_env_name is None:
         python_path = 'python3'
     else:
-        python_path = f'/opt/miniconda3/envs/{conda_env_name}/bin/python3'
+        python_path = f'{conda_env_name}/bin/python3'
     return f'{python_path} -m moonshot cli interactive'

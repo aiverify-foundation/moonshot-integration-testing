@@ -39,10 +39,21 @@ def open_moonshot_process():
 def endpoint_setup_azure_gpt4o(id, name):
     start_time = time.perf_counter()
     process = open_moonshot_process()
+    #constants
+    COMMAND_PARAMS = {'timeout': 300, 'max_attempts': 3, 'temperature': 0.5}
+
     # Update Endpoints
     command = 'update_endpoint ' + id + ' "[(\'name\', \'' + name + '\'), (\'uri\', \'' + str(
         AZURE_OPENAI_URI) + '\'), (\'token\', \'' + str(
-        AZURE_OPENAI_TOKEN) + '\'), (\'model\', \'gpt-4o\'), (\'params\', {\'timeout\': 300,\'max_attempts\': 3, \'temperature\': 0.5})]"\n'
+        AZURE_OPENAI_TOKEN) + '\'), (\'model\', \'gpt-4o-mini\'), (\'params\', {\'timeout\': 300,\'max_attempts\': 3, \'temperature\': 0.5})]"\n'
+    command = (
+        f'update_endpoint {id} '
+        f'"[(\'name\', \'{name}\'), '
+        f'(\'uri\', \'{AZURE_OPENAI_URI}\'), '
+        f'(\'token\', \'{AZURE_OPENAI_TOKEN}\'), '
+        f'(\'model\', \'gpt-4o-mini\'), '
+        f'(\'params\', {COMMAND_PARAMS})]"'
+        )
     print('Command:', command)
     # Example command to send to the process
     process.stdin.write(command)
@@ -55,7 +66,7 @@ def endpoint_setup_azure_gpt4o(id, name):
     print(f"Time taken for endpoint execution: {end_time - start_time:.2f} seconds")
     process.terminate()
 
-def assert_cookbook_result(output_lines, recipes, cookbook_id, number_of_lines=50):
+def assert_cookbook_result(output_lines, recipes, cookbook_id):
     """
     Asserts that the cookbook has been run and the following is present in the number of lines specified from the end of the output lines.
     - The cookbook ID
@@ -68,11 +79,12 @@ def assert_cookbook_result(output_lines, recipes, cookbook_id, number_of_lines=5
     
     start_time = time.perf_counter()
     COOKBOOK_RESULT_PATTERN = r"Cookbook.*Result"
+    DATETIME_PATTERN = r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}"
     isCookbookResultPresent = False
     isCookbookIdPresent = False
     recipe_dict = {recipe: False for recipe in recipes}
-    end_idx = max(-1, len(output_lines) - number_of_lines-1)
-    for line in output_lines[end_idx + 1:][::-1]:
+    # the [::-1] slice reverses the list
+    for line in output_lines[::-1]:
         if re.search(cookbook_id, line):
             isCookbookIdPresent = True
             continue
@@ -83,13 +95,16 @@ def assert_cookbook_result(output_lines, recipes, cookbook_id, number_of_lines=5
             if re.search(recipe, line):
                 recipe_dict[recipe] = True
                 continue
+        if re.search(DATETIME_PATTERN, line):
+            break # This assumes that Datetime will only show up after any important result and will terminate early.
 
     # Check if cookbook ID is present
     assert isCookbookIdPresent, f"Cookbook ID '{cookbook_id}' not found in the output lines."
     # Check if all recipes are present
-    for recipe, present in recipe_dict.items():
+    for recipe, present in recipe_dict.items():        
         if not present:
-            pprint.pprint(recipe_dict)
+            print("list of recipes: \n")
+            pprint.pprint(recipe_dict)            
         assert present, f"Recipe '{recipe}' not found in the output lines."
     
     end_time = time.perf_counter()

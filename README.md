@@ -69,7 +69,8 @@ To execute the integration tests:
    AWS_ACCESS_KEY_ID=""
    AWS_SECRET_ACCESS_KEY=""
    CLI_DIR = ''# Path of Moonshot Library
-   CONDA_ENV_NAME='' # Name of the conda environment which you want to use
+   CONDA_ENV_NAME='' # absolute path of the conda environment which you want to use
+   # example /opt/miniconda3/envs/moonshotv0
    ```
 
 4. **Run Tests**:
