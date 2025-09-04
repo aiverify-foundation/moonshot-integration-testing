@@ -3,11 +3,8 @@ from dotenv import load_dotenv
 import time
 import random
 import sys
-import re
 sys.path.append("..")
 from util.utils import *
-import time
-import pprint
 
 load_dotenv()  # Load environment variables from .env file
 
