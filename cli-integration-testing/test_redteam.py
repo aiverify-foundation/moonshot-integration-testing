@@ -18,7 +18,7 @@ def test_cli_red_teaming():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -85,7 +85,7 @@ def test_cli_list_attack_modules():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -129,7 +129,7 @@ def test_cli_list_bookmarks():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -205,7 +205,7 @@ def test_cli_list_context_strategies():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -249,7 +249,7 @@ def test_cli_list_sessions():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -293,7 +293,7 @@ def test_cli_show_prompts():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -358,7 +358,7 @@ def test_cli_add_bookmark():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -422,7 +422,7 @@ def test_cli_delete_bookmark():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -492,7 +492,7 @@ def test_cli_delete_attack_module():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -551,7 +551,7 @@ def test_cli_delete_context_strategy():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
 
     process = subprocess.Popen(
@@ -610,7 +610,7 @@ def test_cli_delete_session():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -670,7 +670,7 @@ def test_cli_end_session():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -730,7 +730,7 @@ def test_cli_export_bookmarks():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -798,7 +798,7 @@ def test_cli_use_bookmark():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -865,7 +865,7 @@ def test_cli_use_bookmark():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -932,7 +932,7 @@ def test_cli_use_context_strategy():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -1002,7 +1002,7 @@ def test_cli_use_prompt_template():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -1072,7 +1072,7 @@ def test_cli_use_session():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -1144,7 +1144,7 @@ def test_cli_view_bookmark():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -1215,7 +1215,7 @@ def test_cli_clear_context_strategy():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,
@@ -1288,7 +1288,7 @@ def test_cli_clear_prompt_template():
         # 'cd .. &&'
         # 'source venv/bin/activate &&'
         # 'cd moonshot &&'
-        'python3 -m moonshot cli interactive'
+        get_moonshot_command()
     )
     process = subprocess.Popen(
         command,

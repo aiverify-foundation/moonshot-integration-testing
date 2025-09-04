@@ -2,6 +2,10 @@ import os
 import shutil
 import pytest
 import yaml
+from dotenv import load_dotenv
+
+# Load environment variables, this is global because I dont want to call this every function.
+load_dotenv()
 
 def copy_and_move_file(source_path, destination_path):
     """
@@ -138,3 +142,17 @@ def clear_yaml_file(file_path):
     """
     with open(file_path, 'w') as file:
         pass  # Simply open the file in write mode to clear its content
+
+def get_moonshot_command():
+    """
+    Returns the proper command to run moonshot CLI with conda environment activation.
+    
+    :return: Command string to run moonshot CLI
+    """
+    conda_env_name = os.getenv('CONDA_ENV_NAME')
+    # Use the full path to the conda environment's Python
+    if conda_env_name is None:
+        python_path = 'python3'
+    else:
+        python_path = f'{conda_env_name}/bin/python3'
+    return f'{python_path} -m moonshot cli interactive'
