@@ -43,9 +43,6 @@ def endpoint_setup_azure_gpt4o(id, name):
     COMMAND_PARAMS = {'timeout': 300, 'max_attempts': 3, 'temperature': 0.5}
 
     # Update Endpoints
-    command = 'update_endpoint ' + id + ' "[(\'name\', \'' + name + '\'), (\'uri\', \'' + str(
-        AZURE_OPENAI_URI) + '\'), (\'token\', \'' + str(
-        AZURE_OPENAI_TOKEN) + '\'), (\'model\', \'gpt-4o-mini\'), (\'params\', {\'timeout\': 300,\'max_attempts\': 3, \'temperature\': 0.5})]"\n'
     command = (
         f'update_endpoint {id} '
         f'"[(\'name\', \'{name}\'), '
