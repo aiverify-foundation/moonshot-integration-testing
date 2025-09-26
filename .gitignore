@@ -131,3 +131,5 @@ dist
 
 # Python Venv
 cli-integration-testing/venv
+*venv/
+*.pyc
