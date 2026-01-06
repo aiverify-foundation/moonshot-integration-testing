@@ -98,7 +98,9 @@ export async function create_endpoint_steps(page, name, uri, token, connectorTyp
 
 }
 
-test('test_red_teaming', async ({browserName, page}) => {
+test('test_red_teaming', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
     // // Check if the browser is WebKit
@@ -213,7 +215,9 @@ test('test_red_teaming_invalid_endpoint_auto', async ({browserName, page}) => {
 
 });
 
-test('test_red_teaming_spinner_check', async ({browserName, page}) => {
+test('test_red_teaming_spinner_check', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -280,7 +284,9 @@ test('test_red_teaming_spinner_check', async ({browserName, page}) => {
 
 });
 
-test('test_red_teaming_with_attack_module_manual_mode', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_manual_mode', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -382,7 +388,9 @@ test('test_red_teaming_with_attack_module_runner_name_exist', async ({browserNam
     await expect(page.locator('body')).toContainText('[ServiceException] UnexpectedError in create_new_session - An unexpected error occurred: [ServiceException] UnexpectedError in create_runner - An unexpected error occurred: [Runner] Unable to create runner because the runner file exists.');
 
 });
-test('test_red_teaming_run_two_endpoint', async ({browserName, page}) => {
+test('test_red_teaming_run_two_endpoint', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -461,7 +469,9 @@ test('test_red_teaming_run_two_endpoint', async ({browserName, page}) => {
 //     // Close the SQLite connection after each test
 //     db.close();
 // });
-test('test_red_teaming_with_attack_module_charswap_attack', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_charswap_attack', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     await page.setViewportSize({width: 1440, height: 900});
     test.setTimeout(1200000); //set test timeout to 1 hour
@@ -522,7 +532,9 @@ test('test_red_teaming_with_attack_module_charswap_attack', async ({browserName,
 
 });
 
-test('test_red_teaming_with_attack_module_colloquial_wordswap_attack', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_colloquial_wordswap_attack', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -582,7 +594,9 @@ test('test_red_teaming_with_attack_module_colloquial_wordswap_attack', async ({b
 
 });
 
-test('test_red_teaming_with_attack_module_homoglyph_attack', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_homoglyph_attack', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -642,7 +656,9 @@ test('test_red_teaming_with_attack_module_homoglyph_attack', async ({browserName
 
 });
 
-test('test_red_teaming_with_attack_module_insert_punctuation_attack', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_insert_punctuation_attack', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -704,7 +720,9 @@ test('test_red_teaming_with_attack_module_insert_punctuation_attack', async ({br
 
 });
 
-test('test_red_teaming_with_attack_module_job_role_generator', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_job_role_generator', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -766,7 +784,9 @@ test('test_red_teaming_with_attack_module_job_role_generator', async ({browserNa
 
 });
 
-test('test_red_teaming_with_attack_module_malicious_question_generator', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_malicious_question_generator', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     test.setTimeout(1200000); //set test timeout to 1 hour
     if (browserName == 'webkit')
         await page.waitForTimeout(60000)
@@ -826,7 +846,9 @@ test('test_red_teaming_with_attack_module_malicious_question_generator', async (
     await expect(h2Element).toHaveText('Response');
 
 });
-test('test_red_teaming_with_attack_module_sample_attack_module', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_sample_attack_module', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -890,7 +912,9 @@ test('test_red_teaming_with_attack_module_sample_attack_module', async ({browser
 
 });
 
-test('test_red_teaming_with_attack_module_sg_sentence_generator', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_sg_sentence_generator', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -951,7 +975,9 @@ test('test_red_teaming_with_attack_module_sg_sentence_generator', async ({browse
 
 });
 
-test('test_red_teaming_with_attack_module_textbugger_attack', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_textbugger_attack', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -1011,7 +1037,9 @@ test('test_red_teaming_with_attack_module_textbugger_attack', async ({browserNam
 
 });
 
-test('test_red_teaming_with_attack_module_textfooler_attack', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_textfooler_attack', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -1072,7 +1100,9 @@ test('test_red_teaming_with_attack_module_textfooler_attack', async ({browserNam
 
 });
 
-test('test_red_teaming_with_attack_module_toxic_sentence_generator', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_toxic_sentence_generator', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -1133,7 +1163,9 @@ test('test_red_teaming_with_attack_module_toxic_sentence_generator', async ({bro
     await expect(h2Element).toHaveText('Response');
 
 });
-test('test_red_teaming_with_attack_module_violent_durian', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_violent_durian', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     test.setTimeout(1200000); //set test timeout to 1 hour
     if (browserName == 'webkit')
         await page.waitForTimeout(60000)
@@ -1194,7 +1226,9 @@ test('test_red_teaming_with_attack_module_violent_durian', async ({browserName, 
 
 });
 
-test.skip('test_red_teaming_with_amazon_bedrock', async ({browserName, page}) => {
+test.skip('test_red_teaming_with_amazon_bedrock', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     const apiKey = process.env.AWS_ACCESS_KEY_ID;
 
     const filePath = '/Users/jacksonboey/PycharmProjects/moonshot/moonshot-data/connectors-endpoints/openai-gpt4.json';
@@ -1313,7 +1347,9 @@ test.skip('test_red_teaming_with_amazon_bedrock', async ({browserName, page}) =>
 
 });
 
-test('test_red_teaming_with_attack_module_description_not_empty', async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_description_not_empty', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -1634,7 +1670,9 @@ test('test_red_teaming_with_attack_module_no_endpoint_selected', async ({browser
 
 });
 
-test('test_red_teaming_start_new_session_test_a_new_endpoint_btn', async ({browserName, page}) => {
+test('test_red_teaming_start_new_session_test_a_new_endpoint_btn', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     await page.goto('http://localhost:3000/redteaming');
@@ -1699,7 +1737,9 @@ test('test_red_teaming_start_new_session_test_a_new_endpoint_btn', async ({brows
     await expect(h2Element).toHaveText('Response');
 });
 
-test('test_red_teaming_start_new_session_create_new_endpoint_btn', async ({browserName, page}) => {
+test('test_red_teaming_start_new_session_create_new_endpoint_btn', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     await page.goto('http://localhost:3000/redteaming');
@@ -1764,7 +1804,9 @@ test('test_red_teaming_start_new_session_create_new_endpoint_btn', async ({brows
     await expect(h2Element).toHaveText('Response');
 });
 
-test('test_red_teaming_view_past_new_session_btn_start_new_session_btn', async ({browserName, page}) => {
+test('test_red_teaming_view_past_new_session_btn_start_new_session_btn', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
@@ -1820,7 +1862,9 @@ test('test_red_teaming_view_past_new_session_btn_start_new_session_btn', async (
     await expect(h2Element).toHaveText('Response');
 });
 
-test('test_red_teaming_view_past_new_session_btn_start_resume_session_btn', async ({browserName, page}) => {
+test('test_red_teaming_view_past_new_session_btn_start_resume_session_btn', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
     // // Check if the browser is WebKit
@@ -1905,7 +1949,9 @@ test('test_red_teaming_view_attack_modules_btn', async ({browserName, page}) => 
 
 });
 
-test('test_red_teaming_add_bookmark', async ({browserName, page}) => {
+test('test_red_teaming_add_bookmark', { 
+    tag: ['@wip']
+}, async ({browserName, page}) => {
     console.log(path.resolve(__dirname, '.env'))
     // const dbFile = process.env.CLI_DIR + '/moonshot-data/generated-outputs/bookmarks/bookmark.db';
     // console.log(`Attempting to kill connections for ${dbFile}`);
@@ -1986,7 +2032,9 @@ test('test_red_teaming_add_bookmark', async ({browserName, page}) => {
     await expect(page.getByRole('main')).toContainText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was successfully saved.');
 });
 
-test('test_red_teaming_view_bookmark', async ({page, browser}) => {
+test('test_red_teaming_view_bookmark', { 
+    tag: ['@wip']
+}, async ({page, browser}) => {
     // This ensures a clean state for each test by creating a new context
     const context = await browser.newContext();  // Creates an isolated browser context
     const newPage = await context.newPage();    // Create a new page within the isolated context
@@ -2073,7 +2121,9 @@ test('test_red_teaming_view_bookmark', async ({page, browser}) => {
     await context.close();
 });
 
-test('test_red_teaming_export_bookmark', async ({browserName, page,browser}) => {
+test('test_red_teaming_export_bookmark', { 
+    tag: ['@wip']
+}, async ({browserName, page,browser}) => {
 
     const context = await browser.newContext();  // Creates an isolated browser context
     const newPage = await context.newPage();    // Create a new page within the isolated context
@@ -2157,7 +2207,9 @@ test('test_red_teaming_export_bookmark', async ({browserName, page,browser}) => 
     await context.close();
 });
 
-test('test_red_teaming_use_bookmark', async ({browserName, page,browser}) => {
+test('test_red_teaming_use_bookmark', { 
+    tag: ['@wip']
+}, async ({browserName, page,browser}) => {
 
     const context = await browser.newContext();  // Creates an isolated browser context
     const newPage = await context.newPage();    // Create a new page within the isolated context
