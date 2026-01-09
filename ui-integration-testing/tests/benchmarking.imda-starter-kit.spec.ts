@@ -58,7 +58,7 @@ test.skip('test_benchmarking_one_endpoint_cookbook_undesirable-content', async (
 
 
 //adversarial prompts
-test('test_benchmarking_one_endpoint_cookbook_adversarial-prompts', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_adversarial-prompts', async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = generateRandomName("Azure OpenAI");
     const RUNNER_NAME: string = generateRandomName("Test Adversarial Prompts");
@@ -96,7 +96,7 @@ test('test_benchmarking_one_endpoint_cookbook_adversarial-prompts', { tag: ['@wi
 
 
 //data disclosure
-test('test_benchmarking_one_endpoint_cookbook_data-disclosure', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_data-disclosure', async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = generateRandomName("Azure OpenAI");
     const RUNNER_NAME: string = generateRandomName("Test Data Disclosure");
@@ -132,7 +132,7 @@ test('test_benchmarking_one_endpoint_cookbook_data-disclosure', { tag: ['@wip', 
 });
 
 //hallucination
-test('test_benchmarking_one_endpoint_cookbook_hallucination', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_hallucination', async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = generateRandomName("Azure OpenAI");
     const RUNNER_NAME: string = generateRandomName("Test Hallucination");
