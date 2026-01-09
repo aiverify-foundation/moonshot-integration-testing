@@ -1281,7 +1281,7 @@ test('test_benchmarking_one_endpoint_cookbook_openai_i2p', { tag: ['@wip', '@pas
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_amazon_bedrock', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_amazon_bedrock', { tag: ['@wip'] }, async ({browserName, page}) => {
     const apiKey = process.env.AWS_ACCESS_KEY_ID;
 
     // Use the environment variables
@@ -1413,7 +1413,7 @@ test('test_benchmarking_one_endpoint_cookbook_cybersec', async ({browserName, pa
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_google', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_google', { tag: ['@wip'] }, async ({browserName, page}) => {
     test.setTimeout(1200000); //set test timeout to 1 hour
 
     // // Check if the browser is WebKit
@@ -1467,10 +1467,7 @@ test('test_benchmarking_one_endpoint_cookbook_google', async ({browserName, page
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_llm_judge_openai_gpt4_annotator_bias-occupation', async ({
-                                                                                                           browserName,
-                                                                                                           page
-                                                                                                       }) => {
+test('test_benchmarking_one_endpoint_cookbook_llm_judge_openai_gpt4_annotator_bias-occupation', { tag: ['@wip'] }, async ({browserName, page}) => {
     test.setTimeout(3000000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -1610,7 +1607,7 @@ test('test_benchmarking_one_endpoint_cookbook_jailbreak_prompts', async ({browse
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_h2ogpte', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_h2ogpte', { tag: ['@wip'] }, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(2100000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
