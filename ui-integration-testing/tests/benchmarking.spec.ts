@@ -143,7 +143,7 @@ export async function checkCookbookInReport(page: Page, cookbookName: string){
         page.locator('div').filter({ hasText: /^Overall rating:-$/ })
         ).toHaveCount(0);}
 
-test('test_benchmarking_one_endpoint_run_with_percentage_check', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_run_with_percentage_check', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -185,7 +185,7 @@ test('test_benchmarking_one_endpoint_run_with_percentage_check', async ({browser
 
 });
 
-test('test_benchmarking_one_endpoint_slider_percentage', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_slider_percentage', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -243,7 +243,7 @@ test('test_benchmarking_one_endpoint_slider_percentage', async ({browserName, pa
 
 });
 
-test('test_benchmarking_one_endpoint', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -299,7 +299,7 @@ test('test_benchmarking_one_endpoint_cookbook_common-risk-easy', { tag: ['@wip']
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_singapore-context', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_singapore-context', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -404,7 +404,7 @@ test('test_benchmarking_one_endpoint_cookbook_leaderboard-cookbook', { tag: ['@w
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_tamil-language-cookbook', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_tamil-language-cookbook', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -474,7 +474,7 @@ test('test_benchmarking_one_endpoint_cookbook_legal-summarisation', { tag: ['@wi
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_mlc-ai-safety', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_mlc-ai-safety', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(5000000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -553,7 +553,7 @@ test('test_benchmarking_one_endpoint_cookbook_common-risk-hard', { tag: ['@wip']
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_chinese-safety-cookbook', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_chinese-safety-cookbook', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1800000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -589,7 +589,7 @@ test('test_benchmarking_one_endpoint_cookbook_chinese-safety-cookbook', async ({
 });
 
 
-test('test_benchmarking_with_invalid_endpoint', async ({browserName, page}) => {
+test('test_benchmarking_with_invalid_endpoint', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     // Benchmarking
@@ -614,7 +614,7 @@ test('test_benchmarking_with_invalid_endpoint', async ({browserName, page}) => {
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_runner_name_exist', async ({browserName, page}) => {
+test('test_benchmarking_runner_name_exist', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
@@ -628,7 +628,7 @@ test('test_benchmarking_runner_name_exist', async ({browserName, page}) => {
     await page.getByRole('button', {name: 'Close'}).click();
 });
 
-test('test_benchmarking_runner_name_input_integer', async ({browserName, page}) => {
+test('test_benchmarking_runner_name_input_integer', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     const RUNNER_NAME: string = "" + Math.floor(Math.random() * 1000000000);
@@ -639,7 +639,7 @@ test('test_benchmarking_runner_name_input_integer', async ({browserName, page}) 
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_runner_name_input_decimal', async ({browserName, page}) => {
+test('test_benchmarking_runner_name_input_decimal', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     const RUNNER_NAME: string = Math.floor(Math.random() * 100000) + "." + Math.floor(Math.random() * 100000);
@@ -650,7 +650,7 @@ test('test_benchmarking_runner_name_input_decimal', async ({browserName, page}) 
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_runner_name_input_special_char', async ({browserName, page}) => {
+test('test_benchmarking_runner_name_input_special_char', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     const RUNNER_NAME: string = "@" + Math.floor(Math.random() * 100000);
@@ -660,7 +660,7 @@ test('test_benchmarking_runner_name_input_special_char', async ({browserName, pa
     await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 });
-test('test_benchmarking_runner_name_input_empty', async ({browserName, page}) => {
+test('test_benchmarking_runner_name_input_empty', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     const RUNNER_NAME: string = ""
@@ -684,7 +684,7 @@ test('test_benchmarking_runner_name_input_empty', async ({browserName, page}) =>
 
 });
 
-test('test_benchmarking_runner_description_input_!empty', async ({browserName, page}) => {
+test('test_benchmarking_runner_description_input_!empty', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     const RUNNER_NAME: string = "Test " + Math.floor(Math.random() * 1000000000);
@@ -709,7 +709,7 @@ test('test_benchmarking_runner_description_input_!empty', async ({browserName, p
     await page.getByText(/back to home/i).click()
 
 });
-test('test_benchmarking_two_endpoint', async ({browserName, page}) => {
+test('test_benchmarking_two_endpoint', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -737,7 +737,7 @@ test('test_benchmarking_two_endpoint', async ({browserName, page}) => {
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_two_endpoint_invalid', async ({browserName, page}) => {
+test('test_benchmarking_two_endpoint_invalid', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     const ENDPOINT_NAME_2: string = "Azure OpenAI 2" + Math.floor(Math.random() * 1000000000);
@@ -767,7 +767,7 @@ test('test_benchmarking_two_endpoint_invalid', async ({browserName, page}) => {
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_two_endpoint_mixed_valid&invalid', async ({browserName, page}) => {
+test('test_benchmarking_two_endpoint_mixed_valid&invalid', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     const ENDPOINT_NAME_2: string = "Azure OpenAI 2" + Math.floor(Math.random() * 1000000000);
@@ -797,7 +797,7 @@ test('test_benchmarking_two_endpoint_mixed_valid&invalid', async ({browserName, 
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_zero_endpoint_selected', async ({browserName, page}) => {
+test('test_benchmarking_zero_endpoint_selected', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     const RUNNER_NAME: string = "Test " + Math.floor(Math.random() * 1000000000);
@@ -811,7 +811,7 @@ test('test_benchmarking_zero_endpoint_selected', async ({browserName, page}) => 
 
 });
 
-test('test_benchmarking_edit_endpoint_step', async ({browserName, page}) => {
+test('test_benchmarking_edit_endpoint_step', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     const RUNNER_NAME: string = "Test " + Math.floor(Math.random() * 1000000000);
@@ -847,7 +847,7 @@ test('test_benchmarking_edit_endpoint_step', async ({browserName, page}) => {
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_create_new_endpoint_step', async ({browserName, page}) => {
+test('test_benchmarking_create_new_endpoint_step', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     const RUNNER_NAME: string = "Test " + Math.floor(Math.random() * 1000000000);
@@ -982,7 +982,7 @@ test('test_benchmarking_run_with_two_cookbook_standard', { tag: ['@wip'] }, asyn
     await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 });
-test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', async ({browserName, page}) => {
+test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(5000000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -1034,7 +1034,7 @@ test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', async ({b
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_run_with_zero_cookbook_step', async ({browserName, page}) => {
+test('test_benchmarking_run_with_zero_cookbook_step', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI GPT4o";
     await page.goto('http://localhost:3000/');
@@ -1117,7 +1117,7 @@ test('test_benchmarking_run_with_view_past_run_btn_start_new_run_btn', { tag: ['
     await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
 });
 
-test('test_benchmarking_run_with_view_cookbook_btn', async ({browserName, page}) => {
+test('test_benchmarking_run_with_view_cookbook_btn', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     await page.goto('http://localhost:3000/');
     await page.getByRole('listitem').nth(1).click();
@@ -1133,7 +1133,7 @@ test('test_benchmarking_run_with_view_cookbook_btn', async ({browserName, page})
     await expect(footer).toBeHidden();
 });
 
-test('test_benchmarking_run_with_view_cookbook_btn_select_more_than_one', async ({browserName, page}) => {
+test('test_benchmarking_run_with_view_cookbook_btn_select_more_than_one', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     await page.goto('http://localhost:3000/');
     await page.getByRole('listitem').nth(1).click();
@@ -1148,7 +1148,7 @@ test('test_benchmarking_run_with_view_cookbook_btn_select_more_than_one', async 
     await expect(page.getByRole('heading', {name: 'Select the Endpoint(s) to be'})).toBeVisible();
 });
 
-test('test_benchmarking_run_with_view_recipes_btn', async ({browserName, page}) => {
+test('test_benchmarking_run_with_view_recipes_btn', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     await page.goto('http://localhost:3000/');
     await page.getByRole('listitem').nth(1).click();
@@ -1161,7 +1161,7 @@ test('test_benchmarking_run_with_view_recipes_btn', async ({browserName, page}) 
     await expect(page.locator('h3')).toContainText('squad-shifts-tnf');
 });
 
-test('test_benchmarking_one_endpoint_cookbook_azure_i2p', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_azure_i2p', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(2100000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -1223,7 +1223,7 @@ test('test_benchmarking_one_endpoint_cookbook_azure_i2p', async ({browserName, p
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_openai_i2p', async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_openai_i2p', { tag: ['@wip', '@passed'] }, async ({browserName, page}) => {
     test.setTimeout(2100000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
