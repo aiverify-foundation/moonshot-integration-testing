@@ -103,7 +103,7 @@ test('test_history_tab_view_past_runs_btn_start_new_run_btn', async ({browserNam
 });
 
 test('test_history_tab_view_past_runs_btn_view_past_run_btn', { 
-    tag: ['@wip']
+    tag: ['@wip', '@passedlocal']
 }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     //Run a benchmarking record
@@ -153,7 +153,7 @@ test('test_history_tab_view_past_session_btn_start_new_session_btn', async ({bro
 
 });
 test('test_history_tab_view_past_session_btn_view_past_session_btn', { 
-    tag: ['@wip']
+    tag: ['@wip', '@passedlocal']
 }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const RND_NO: string = String(Math.floor(Math.random() * 1000000000));
