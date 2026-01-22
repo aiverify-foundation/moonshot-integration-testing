@@ -1607,7 +1607,7 @@ test('test_benchmarking_one_endpoint_cookbook_jailbreak_prompts', async ({browse
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_h2ogpte', { tag: ['@wip'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_h2ogpte', { tag: ['@wip', '@passedlocal'] }, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(2100000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -1630,6 +1630,9 @@ test('test_benchmarking_one_endpoint_cookbook_h2ogpte', { tag: ['@wip'] }, async
 
     //Edit Dependency Endpoints
     await page.getByRole('button', {name: 'Edit h2ogpte-danube3'}).click();
+    await page.getByRole('textbox', {name: 'Model'}).click();
+    // Replace endpoint default model 'h2oai/h2o-danube3-4b-chat' with Mixtral as it is no longer available
+    await page.getByRole('textbox', {name: 'Model'}).fill('mistralai/Mixtral-8x7B-Instruct-v0.1');  
     await page.getByRole('textbox', {name: 'URI'}).fill('https://h2ogpte.genai.h2o.ai');
     await page.getByRole('textbox', {name: 'Token*'}).click();
     await page.getByRole('textbox', {name: 'Token*'}).fill(process.env.H2OGPT_TOKEN);
@@ -1650,7 +1653,7 @@ test('test_benchmarking_one_endpoint_cookbook_h2ogpte', { tag: ['@wip'] }, async
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:1')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:7')).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();

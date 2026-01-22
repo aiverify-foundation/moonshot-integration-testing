@@ -102,9 +102,7 @@ test('test_history_tab_view_past_runs_btn_start_new_run_btn', async ({browserNam
 
 });
 
-test('test_history_tab_view_past_runs_btn_view_past_run_btn', { 
-    tag: ['@wip', '@passedlocal']
-}, async ({browserName, page}) => {
+test('test_history_tab_view_past_runs_btn_view_past_run_btn', async ({browserName, page}) => {
     test.setTimeout(1200000);
     //Run a benchmarking record
     const ENDPOINT_NAME_RAND: number = Math.floor(Math.random() * 1000000000)
@@ -152,9 +150,7 @@ test('test_history_tab_view_past_session_btn_start_new_session_btn', async ({bro
     await expect(page.locator('h2')).toContainText('Select the Endpoint(s) to be tested');
 
 });
-test('test_history_tab_view_past_session_btn_view_past_session_btn', { 
-    tag: ['@wip', '@passedlocal']
-}, async ({browserName, page}) => {
+test('test_history_tab_view_past_session_btn_view_past_session_btn', async ({browserName, page}) => {
     test.setTimeout(1200000);
     const RND_NO: string = String(Math.floor(Math.random() * 1000000000));
     const ENDPOINT_NAME: string = "Azure OpenAI " + RND_NO;
