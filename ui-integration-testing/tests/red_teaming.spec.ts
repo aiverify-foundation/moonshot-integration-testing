@@ -382,7 +382,7 @@ test('test_red_teaming_with_attack_module_runner_name_exist', async ({browserNam
     await expect(page.locator('body')).toContainText('[ServiceException] UnexpectedError in create_new_session - An unexpected error occurred: [ServiceException] UnexpectedError in create_runner - An unexpected error occurred: [Runner] Unable to create runner because the runner file exists.');
 
 });
-test('test_red_teaming_run_two_endpoint', { tag: ['@wip','@passedlocal','@failedpipeline']}, async ({browserName, page}) => {
+test('test_red_teaming_run_two_endpoint', async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -704,7 +704,7 @@ test('test_red_teaming_with_attack_module_insert_punctuation_attack', async ({br
 
 });
 
-test('test_red_teaming_with_attack_module_job_role_generator', { tag: ['@wip','@passedlocal','@failedpipeline']}, async ({browserName, page}) => {
+test('test_red_teaming_with_attack_module_job_role_generator', async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -1702,7 +1702,7 @@ test('test_red_teaming_start_new_session_test_a_new_endpoint_btn', async ({brows
     await expect(h2Element).toHaveText('Response');
 });
 
-test('test_red_teaming_start_new_session_create_new_endpoint_btn', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
+test('test_red_teaming_start_new_session_create_new_endpoint_btn', async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     await page.goto('http://localhost:3000/redteaming');
@@ -2076,7 +2076,7 @@ test('test_red_teaming_view_bookmark', { tag: ['@wip','@passedlocal','@failedpip
     await context.close();
 });
 
-test('test_red_teaming_export_bookmark', { tag: ['@wip','@passedlocal','@failedpipeline'] }, async ({browserName, page,browser}) => {
+test('test_red_teaming_export_bookmark', async ({browserName, page,browser}) => {
 
     const context = await browser.newContext();  // Creates an isolated browser context
     const newPage = await context.newPage();    // Create a new page within the isolated context
