@@ -264,7 +264,9 @@ test('test_benchmarking_one_endpoint', async ({browserName, page}) => {
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_common-risk-easy', { tag: ['@wip'] }, async ({browserName, page}) => {
+test.skip('test_benchmarking_one_endpoint_cookbook_common-risk-easy', { tag: ['@wip', '@failedlocal'] }, async ({browserName, page}) => {
+    // Test skipped due to Azure's Content Filter returning 400 error for bbq receipt [WS-302].
+    
     test.setTimeout(1200000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -982,7 +984,7 @@ test('test_benchmarking_run_with_two_cookbook_standard', { tag: ['@wip'] }, asyn
     await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 });
-test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', async ({browserName, page}) => {
+test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', { tag: ['@wip'] }, async ({browserName, page}) => {
     test.setTimeout(5000000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -1413,7 +1415,7 @@ test('test_benchmarking_one_endpoint_cookbook_cybersec', async ({browserName, pa
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_google', { tag: ['@wip'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_google', async ({browserName, page}) => {
     test.setTimeout(1200000); //set test timeout to 1 hour
 
     // // Check if the browser is WebKit
@@ -1435,9 +1437,11 @@ test('test_benchmarking_one_endpoint_cookbook_google', { tag: ['@wip'] }, async 
     await page.getByRole('button', {name: 'Start New Run'}).click();
     //Edit Dependency Endpoints
     await page.locator('section').filter({hasText: /^google-gemini-flash-15Added/}).locator('button').click();
+    // Replace endpoint default model 'gemini-1.5-flash' with 'gemini-2.5-flash' as it is no longer available
+    await page.getByRole('textbox', {name: 'Model'}).click();
+    await page.getByRole('textbox', {name: 'Model'}).fill('gemini-2.5-flash');
     await page.getByPlaceholder('Access token for the remote').click();
     await page.getByPlaceholder('Access token for the remote').fill("" + process.env.GOOGLE_TOKEN + "");
-    console.log(process.env.GOOGLE_TOKEN.toString())
     await page.getByRole('button', {name: 'Save'}).click();
     //////////////////////////////////////////////////
     await page.getByLabel('Select google-gemini-flash-15').check();
@@ -1458,7 +1462,7 @@ test('test_benchmarking_one_endpoint_cookbook_google', { tag: ['@wip'] }, async 
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:1')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:7')).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
@@ -1467,7 +1471,9 @@ test('test_benchmarking_one_endpoint_cookbook_google', { tag: ['@wip'] }, async 
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_llm_judge_openai_gpt4_annotator_bias-occupation', { tag: ['@wip'] }, async ({browserName, page}) => {
+test.skip('test_benchmarking_one_endpoint_cookbook_llm_judge_openai_gpt4_annotator_bias-occupation', { tag: ['@wip', '@localfailed'] }, async ({browserName, page}) => {
+    // Test skipped due to Azure's Content Filter returning 400 error for bbq receipt [WS-302].
+    
     test.setTimeout(3000000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -1497,6 +1503,9 @@ test('test_benchmarking_one_endpoint_cookbook_llm_judge_openai_gpt4_annotator_bi
     await page.getByRole('button', {name: 'Start New Run'}).click();
     const LLM_OPENAI_ENDPOINT_NAME: string = "LLM Judge - OpenAI GPT4";
     await page.locator('li').filter({hasText: LLM_OPENAI_ENDPOINT_NAME + "Added"}).getByRole('button').click();
+    // Replace endpoint default model 'gpt-4' with 'gpt-4o' as it is no longer available
+    await page.getByRole('textbox', {name: 'Model'}).click();
+    await page.getByRole('textbox', {name: 'Model'}).fill('gpt-4o');
     // await page.getByPlaceholder('URI of the remote model').fill(process.env.URI);
     await page.getByPlaceholder('URI of the remote model').click();
     await page.getByPlaceholder('URI of the remote model').fill('' + process.env.URI + '');

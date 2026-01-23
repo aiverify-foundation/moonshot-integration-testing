@@ -213,7 +213,7 @@ test('test_red_teaming_invalid_endpoint_auto', async ({browserName, page}) => {
 
 });
 
-test('test_red_teaming_spinner_check', async ({browserName, page}) => {
+test('test_red_teaming_spinner_check', { tag: ['@flaky'] }, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
