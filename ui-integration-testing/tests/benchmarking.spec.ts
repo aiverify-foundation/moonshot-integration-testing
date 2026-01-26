@@ -291,7 +291,7 @@ test('test_benchmarking_one_endpoint', async ({browserName, page}) => {
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_common-risk-easy', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_common-risk-easy', async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
