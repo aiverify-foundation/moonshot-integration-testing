@@ -505,7 +505,7 @@ test('test_benchmarking_one_endpoint_cookbook_legal-summarisation', { tag: ['@wi
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:664')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:665')).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
