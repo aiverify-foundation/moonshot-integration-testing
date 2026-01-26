@@ -362,7 +362,7 @@ test('test_benchmarking_one_endpoint_cookbook_singapore-context', async ({browse
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_medical-llm-leaderboard', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_medical-llm-leaderboard', async ({browserName, page}) => {
     test.setTimeout(3000000);
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
     
@@ -477,7 +477,7 @@ test('test_benchmarking_one_endpoint_cookbook_tamil-language-cookbook', async ({
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_legal-summarisation', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_legal-summarisation', async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -987,7 +987,7 @@ test('test_benchmarking_create_endpoint_entry_point_2', async ({browserName, pag
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_run_with_two_cookbook_standard', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
+test('test_benchmarking_run_with_two_cookbook_standard', async ({browserName, page}) => {
     test.setTimeout(2100000);
 
     const ENDPOINT_NAME: string = get_together_mistral_endpoint_unique_name();
@@ -1022,7 +1022,7 @@ test('test_benchmarking_run_with_two_cookbook_standard', { tag: ['@wip','@passed
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
+test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', async ({browserName, page}) => {
     test.setTimeout(5000000);
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
     test.skip(browserName === 'firefox', 'This test is skipped on WebKit');
@@ -1091,7 +1091,7 @@ test('test_benchmarking_run_with_zero_cookbook_step', async ({browserName, page}
     await expect(page.getByLabel('Next View')).toBeDisabled();
 });
 
-test('test_benchmarking_run_with_view_past_run_btn', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
+test('test_benchmarking_run_with_view_past_run_btn', async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME_RAND: number = Math.floor(Math.random() * 1000000000)
     const ENDPOINT_NAME: string = "Azure OpenAI " + ENDPOINT_NAME_RAND;
@@ -1120,7 +1120,7 @@ test('test_benchmarking_run_with_view_past_run_btn', { tag: ['@wip','@passedloca
     await expect(page.getByText('1', {exact: true})).toBeVisible();
 });
 
-test('test_benchmarking_run_with_view_past_run_btn_start_new_run_btn', { tag: ['@wip','@localpassed'] }, async ({browserName, page}) => {
+test('test_benchmarking_run_with_view_past_run_btn_start_new_run_btn', async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME_RAND: number = Math.floor(Math.random() * 1000000000)
     const ENDPOINT_NAME: string = "Azure OpenAI " + ENDPOINT_NAME_RAND;
@@ -1457,7 +1457,7 @@ test('test_benchmarking_one_endpoint_cookbook_cybersec', async ({browserName, pa
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_google', { tag: ['@wip','@localpassed'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_google', async ({browserName, page}) => {
     test.setTimeout(1200000); //set test timeout to 1 hour
 
     // // Check if the browser is WebKit
@@ -1658,7 +1658,7 @@ test('test_benchmarking_one_endpoint_cookbook_jailbreak_prompts', async ({browse
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_h2ogpte', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_h2ogpte', async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(2100000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
