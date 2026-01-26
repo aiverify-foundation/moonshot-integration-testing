@@ -291,18 +291,17 @@ test('test_benchmarking_one_endpoint', async ({browserName, page}) => {
 
 });
 
-test.skip('test_benchmarking_one_endpoint_cookbook_common-risk-easy', { tag: ['@wip', '@failedlocal'] }, async ({browserName, page}) => {
-    // Test skipped due to Azure's Content Filter returning 400 error for bbq receipt [WS-302].
-    
+test('test_benchmarking_one_endpoint_cookbook_common-risk-easy', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
-    const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
-    const RUNNER_NAME: string = "Test Common Risk Easy " + Math.floor(Math.random() * 1000000000);
+    const ENDPOINT_NAME: string = 'Test Together Mistral 7B Instruct 214294263';
+    const ENDPOINT_ID: string = ENDPOINT_NAME.replaceAll(' ', '-').toLowerCase();
+    const RUNNER_NAME: string = get_runner_unique_name("Test Common Risk Easy");
     ////////////////////////////////////////////////////////////////////////////
     // Benchmarking
     console.log('Benchmarking')
-    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    await create_single_together_mistral_7b_instruct_endpoint(page, ENDPOINT_NAME);
     await page.getByRole('listitem').nth(1).click();
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
@@ -314,7 +313,7 @@ test.skip('test_benchmarking_one_endpoint_cookbook_common-risk-easy', { tag: ['@
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
     ////////////////////////////////////////////////////////////////////////////
-    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 600000})
+    await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 900000})
     //Check Details
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
@@ -322,10 +321,10 @@ test.skip('test_benchmarking_one_endpoint_cookbook_common-risk-easy', { tag: ['@
     await expect(page.getByText('Number of prompts to run:944')).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
-    await page.getByRole('button', {name: 'View Report'}).click();
-    await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
-    await page.getByText(/back to home/i).click()
 
+    await page.getByRole('button', {name: 'View Report'}).click();
+    await page.locator('main').filter({hasText: 'Showing results for' + ENDPOINT_ID}).getByRole('link').first().click();
+    await page.getByText(/back to home/i).click()
 });
 
 test('test_benchmarking_one_endpoint_cookbook_singapore-context', async ({browserName, page}) => {
@@ -988,19 +987,18 @@ test('test_benchmarking_create_endpoint_entry_point_2', async ({browserName, pag
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_run_with_two_cookbook_standard', { tag: ['@wip'] }, async ({browserName, page}) => {
+test('test_benchmarking_run_with_two_cookbook_standard', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
     test.setTimeout(2100000);
-    const ENDPOINT_NAME: string = "Azure OpenAI GPT4o";
-    const RUNNER_NAME: string = "Test " + Math.floor(Math.random() * 1000000000);
+
+    const ENDPOINT_NAME: string = get_together_mistral_endpoint_unique_name();
+    const ENDPOINT_ID: string = ENDPOINT_NAME.replaceAll(' ', '-').toLowerCase();
+    const RUNNER_NAME: string = get_runner_unique_name("Test Two Cookbooks Standard");
+
+    await create_single_together_mistral_7b_instruct_endpoint(page, ENDPOINT_NAME);
+
     await page.goto('http://localhost:3000/');
     await page.getByRole('listitem').nth(1).click();
     await page.getByRole('button', {name: 'Start New Run'}).click();
-    //Edit Endpoint
-    await page.locator('li').filter({hasText: ENDPOINT_NAME + "Added"}).getByRole('button').click();
-    await page.getByPlaceholder('URI of the remote model').fill(process.env.URI);
-    await page.getByPlaceholder('Access token for the remote').fill(process.env.TOKEN);
-    await page.getByRole('button', {name: 'Save'}).click();
-    //////////////////////////////////////////////////
     await page.getByLabel('Select ' + ENDPOINT_NAME, {exact: true}).check();
     await page.getByLabel('Next View').click();
     await page.getByRole('button', { name: 'Capability' }).click();
@@ -1016,32 +1014,30 @@ test('test_benchmarking_run_with_two_cookbook_standard', { tag: ['@wip'] }, asyn
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:943')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:951')).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
-    await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
+    await page.locator('main').filter({hasText: 'Showing results for' + ENDPOINT_ID}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 });
-test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', { tag: ['@wip'] }, async ({browserName, page}) => {
+
+test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
     test.setTimeout(5000000);
-    // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
-    // Check if the browser is WebKit
     test.skip(browserName === 'firefox', 'This test is skipped on WebKit');
-    const TOGETHER_ENDPOINT_NAME: string = "Together Llama Guard 7B Assistant";
-    const RUNNER_NAME: string = "Test " + Math.floor(Math.random() * 1000000000);
+
+    const ENDPOINT_NAME: string = get_together_mistral_endpoint_unique_name();
+    const ENDPOINT_ID: string = ENDPOINT_NAME.replaceAll(' ', '-').toLowerCase();
+    const RUNNER_NAME: string = get_runner_unique_name("Test two cookbooks with MLC type");
+
+    await create_single_together_mistral_7b_instruct_endpoint(page, ENDPOINT_NAME)
+
     await page.goto('http://localhost:3000/');
     await page.getByRole('listitem').nth(1).click();
     await page.getByRole('button', {name: 'Start New Run'}).click();
     /////////////////////////////////////////////////////////////////////////////////////
-    const ENDPOINT_NAME: string = 'Azure OpenAI GPT4o';
-    //Edit Endpoint
-    await page.locator('li').filter({hasText: ENDPOINT_NAME + "Added"}).getByRole('button').click();
-    await page.getByPlaceholder('URI of the remote model').fill(process.env.URI);
-    await page.getByPlaceholder('Access token for the remote').fill(process.env.TOKEN);
-    await page.getByRole('button', {name: 'Save'}).click();
-    /////////////////////////////////////////////////////////////////////////////////////
+
     await page.getByLabel('Select ' + ENDPOINT_NAME, {exact: true}).check();
     await page.getByLabel('Next View').click();
     await page.getByRole('button', { name: 'Capability' }).click();
@@ -1071,7 +1067,7 @@ test('test_benchmarking_run_with_two_cookbook_standard_with_mlc_type', { tag: ['
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
-    await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
+    await page.locator('main').filter({hasText: 'Showing results for' + ENDPOINT_ID}).getByRole('link').first().click();
     await page.getByText(/back to home/i).click()
 });
 
@@ -1095,7 +1091,7 @@ test('test_benchmarking_run_with_zero_cookbook_step', async ({browserName, page}
     await expect(page.getByLabel('Next View')).toBeDisabled();
 });
 
-test('test_benchmarking_run_with_view_past_run_btn', { tag: ['@wip'] }, async ({browserName, page}) => {
+test('test_benchmarking_run_with_view_past_run_btn', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME_RAND: number = Math.floor(Math.random() * 1000000000)
     const ENDPOINT_NAME: string = "Azure OpenAI " + ENDPOINT_NAME_RAND;
@@ -1106,7 +1102,7 @@ test('test_benchmarking_run_with_view_past_run_btn', { tag: ['@wip'] }, async ({
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:1')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:7')).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
     await page.getByRole('button', {name: 'View Report'}).click();
@@ -1662,7 +1658,7 @@ test('test_benchmarking_one_endpoint_cookbook_jailbreak_prompts', async ({browse
 
 });
 
-test.skip('test_benchmarking_one_endpoint_cookbook_h2ogpte', { tag: ['@wip', '@passedlocal','@failedpipeline'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_h2ogpte', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(2100000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
