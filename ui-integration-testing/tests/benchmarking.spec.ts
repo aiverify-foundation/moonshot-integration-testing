@@ -404,7 +404,7 @@ test('test_benchmarking_one_endpoint_cookbook_medical-llm-leaderboard', { tag: [
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_one_endpoint_cookbook_leaderboard-cookbook', { tag: ['@wip', '@passedlocal'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_leaderboard-cookbook', async ({browserName, page}) => {
     test.setTimeout(2100000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -558,7 +558,7 @@ test('test_benchmarking_one_endpoint_cookbook_mlc-ai-safety', async ({browserNam
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_common-risk-hard', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
+test('test_benchmarking_one_endpoint_cookbook_common-risk-hard', async ({browserName, page}) => {
     test.setTimeout(5000000);
     // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
@@ -569,7 +569,7 @@ test('test_benchmarking_one_endpoint_cookbook_common-risk-hard', { tag: ['@wip',
     // Benchmarking
     console.log('Benchmarking')
     await create_single_together_mistral_7b_instruct_endpoint(page, ENDPOINT_NAME);
-    
+
     await page.getByRole('listitem').nth(1).click();
     await page.getByRole('button', {name: 'Start New Run'}).click();
     await page.getByLabel('Select ' + ENDPOINT_NAME).check();
@@ -938,7 +938,7 @@ test('test_benchmarking_create_new_endpoint_step', async ({browserName, page}) =
     await page.getByText(/back to home/i).click()
 });
 
-test('test_benchmarking_create_endpoint_entry_point_2', { tag: ['@wip','@passedlocal'] }, async ({browserName, page}) => {
+test('test_benchmarking_create_endpoint_entry_point_2', async ({browserName, page}) => {
     test.setTimeout(1200000);
     const ENDPOINT_NAME: string = "Azure OpenAI " + Math.floor(Math.random() * 1000000000);
     const RUNNER_NAME: string = "Test " + Math.floor(Math.random() * 1000000000);
