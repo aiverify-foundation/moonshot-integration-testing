@@ -1513,7 +1513,7 @@ test('test_benchmarking_one_endpoint_cookbook_google', async ({browserName, page
 
 });
 
-test('test_benchmarking_one_endpoint_cookbook_llm_judge_openai_gpt4_annotator_bias-occupation', { tag: ['@wip', '@passedlocal'] }, async ({browserName, page}) => {    
+test('test_benchmarking_one_endpoint_cookbook_llm_judge_openai_gpt4_annotator_bias-occupation', async ({browserName, page}) => {    
     test.setTimeout(3000000);
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
 
