@@ -1942,21 +1942,17 @@ test('test_red_teaming_add_bookmark', { tag: ['@wip','@passedlocal','@failedpipe
     // killSQLiteConnections(dbFile)
 
     test.setTimeout(1200000); //set test timeout to 1 hour
-    const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
-    // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
-    // Check if the browser is FireFox
     test.skip(browserName === 'firefox', 'This test is skipped on WebKit');
-    const RND_4_ENDPOINT = Math.floor(Math.random() * 1000000000)
-    const RED_TEAMING_ENDPOINT_NAME: string = "azure-openai-" + RND_4_ENDPOINT;
-    // if (browserName == 'webkit')
-    //     await page.waitForTimeout(60000)
-    // else if (browserName == 'firefox')
-    //     await page.waitForTimeout(30000)
-    const ENDPOINT_NAME: string = "Azure OpenAI " + RND_4_ENDPOINT;
-    const RND_4_RUNNER = Math.floor(Math.random() * 1000000000)
-    const RUNNER_NAME: string = "Test " + RND_4_RUNNER;
-    await create_endpoint_steps(page, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+
+    const RUNNER_NAME: string = get_unique_name("Test Add Bookmark");
+    const RUNNER_ID: string = RUNNER_NAME.replaceAll(' ', '-').toLowerCase();
+    const BOOKMARK_ID: string = get_unique_name("Test Bookmark").replaceAll(' ', '-').toLowerCase();
+    const ENDPOINT_NAME: string = get_together_mistral_endpoint_unique_name();
+    const ENDPOINT_ID: string = ENDPOINT_NAME.replaceAll(' ', '-').toLowerCase();
+
+    await create_single_together_mistral_7b_instruct_endpoint(page, ENDPOINT_NAME);
+
     // Red Teaming
     console.log('Red Teaming')
     await page.getByRole('listitem').nth(2).click();
@@ -2008,15 +2004,15 @@ test('test_red_teaming_add_bookmark', { tag: ['@wip','@passedlocal','@failedpipe
     await expect(h2Element).toBeVisible()
     await expect(h2Element).toHaveText('Response');
 
-    await expect(page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
-    await page.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
+    await expect(page.locator('#win_' + RUNNER_ID + '-' + ENDPOINT_ID + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
+    await page.locator('#win_' + RUNNER_ID + '-' + ENDPOINT_ID + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
     await page.getByPlaceholder('Give this bookmark a unique').click();
-    await page.getByPlaceholder('Give this bookmark a unique').fill('bookmark_mark' + RND_4_ENDPOINT);
+    await page.getByPlaceholder('Give this bookmark a unique').fill(BOOKMARK_ID);
     await page.getByRole('button', {name: 'Save'}).click();
-    await expect(page.getByRole('main')).toContainText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was successfully saved.');
+    await expect(page.getByRole('main')).toContainText('Bookmark ' + BOOKMARK_ID + ' was successfully saved.');
 });
 
-test.only('test_red_teaming_view_bookmark', { tag: ['@wip','@passedlocal','@failedpipeline'] }, async ({page, browser}) => {
+test('test_red_teaming_view_bookmark', { tag: ['@wip','@passedlocal','@failedpipeline'] }, async ({page, browser}) => {
     test.setTimeout(1200000); //set test timeout to 1 hour
 
     // This ensures a clean state for each test by creating a new context
