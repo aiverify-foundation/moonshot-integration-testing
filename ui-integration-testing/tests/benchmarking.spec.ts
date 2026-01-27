@@ -1513,81 +1513,78 @@ test('test_benchmarking_one_endpoint_cookbook_google', async ({browserName, page
 
 });
 
-test.skip('test_benchmarking_one_endpoint_cookbook_llm_judge_openai_gpt4_annotator_bias-occupation', { tag: ['@wip', '@localfailed'] }, async ({browserName, page}) => {
-    // Test skipped due to Azure's Content Filter returning 400 error for bbq receipt [WS-302].
-    
+test('test_benchmarking_one_endpoint_cookbook_llm_judge_openai_gpt4_annotator_bias-occupation', { tag: ['@wip', '@localpassed'] }, async ({browserName, page}) => {    
     test.setTimeout(3000000);
-    // Check if the browser is WebKit
     test.skip(browserName === 'webkit', 'This test is skipped on WebKit');
-    const COOKBOOK_NAME: string = "test-bias-occupation-" + Math.floor(Math.random() * 1000000000);
-    const RUNNER_NAME: string = "Test Bias Occupation " + Math.floor(Math.random() * 1000000000);
-    ////////////////////////////////////////////////////////////////////////////
-    // Benchmarking
-    console.log('Benchmarking')
+
+    const COOKBOOK_NAME: string = get_runner_unique_name("Test Bias Occupation Cookbook");
+    const COOKBOOK_ID: string = COOKBOOK_NAME.replaceAll(' ', '-').toLowerCase();
+    const RUNNER_NAME: string = get_runner_unique_name("Test Bias Occupation");
+    const TARGET_ENDPOINT_NAME: string = get_together_mistral_endpoint_unique_name();
+    const TARGET_ENDPOINT_NAME_ID: string = TARGET_ENDPOINT_NAME.replaceAll(' ', '-').toLowerCase();
+    const LLM_OPENAI_MODEL_NAME: string = "gpt-4.1";
+
+    // Create i2p cookbook steps
     await page.goto('http://localhost:3000');
     await page.getByRole('listitem').nth(1).click();
-    // Create i2p cookbook steps
     await page.getByRole('button', {name: 'View Cookbooks'}).click();
-    await page.goto('http://localhost:3000/benchmarking/cookbooks');
     await page.getByRole('button', {name: 'Create New Cookbook'}).click();
     await page.getByPlaceholder('Give this cookbook a unique').click();
     await page.getByPlaceholder('Give this cookbook a unique').fill(COOKBOOK_NAME);
     await page.getByRole('button', {name: 'Select Recipes'}).click();
     await page.getByPlaceholder('Search by name').click();
     await page.getByPlaceholder('Search by name').fill('bias');
-    await page.getByLabel('Select Bias Benchmark for QA').check();
+    await page.getByLabel('Select Bias - Occupation').check();
     await page.getByRole('button', {name: 'OK'}).click();
     await page.getByRole('button', {name: 'Create Cookbook'}).click();
     await page.getByRole('button', {name: 'View Cookbooks'}).click();
 
-    //Edit LLM Judge - OpenAI GPT4 Evaluator endpoint
-    await page.locator('li').filter({hasText: 'benchmarking'}).click();
+    // Create Target Endpoint
+    await create_single_together_mistral_7b_instruct_endpoint(page, TARGET_ENDPOINT_NAME);
+
+    // Start Benchmark Test
+    console.log('Benchmarking')
+    await page.goto('http://localhost:3000/');
+    await page.getByRole('listitem').nth(1).click();
     await page.getByRole('button', {name: 'Start New Run'}).click();
-    const LLM_OPENAI_ENDPOINT_NAME: string = "LLM Judge - OpenAI GPT4";
-    await page.locator('li').filter({hasText: LLM_OPENAI_ENDPOINT_NAME + "Added"}).getByRole('button').click();
-    // Replace endpoint default model 'gpt-4' with 'gpt-4o' as it is no longer available
-    await page.getByRole('textbox', {name: 'Model'}).click();
-    await page.getByRole('textbox', {name: 'Model'}).fill('gpt-4o');
-    // await page.getByPlaceholder('URI of the remote model').fill(process.env.URI);
-    await page.getByPlaceholder('URI of the remote model').click();
-    await page.getByPlaceholder('URI of the remote model').fill('' + process.env.URI + '');
-    await page.getByPlaceholder('Access token for the remote').fill(process.env.TOKEN);
-    await page.getByRole('button', {name: 'Save'}).click();
-
-    //////////////////////////////////////////////////
-    //Edit Target Endpoint
-    const AZURE_OPENAI_ENDPOINT_NAME: string = "Azure OpenAI GPT4o";
-    await page.locator('li').filter({hasText: AZURE_OPENAI_ENDPOINT_NAME + "Added"}).getByRole('button').click();
-    // await page.getByPlaceholder('URI of the remote model').fill(process.env.URI);
-    await page.getByPlaceholder('URI of the remote model').click();
-    await page.getByPlaceholder('URI of the remote model').fill('' + process.env.URI + '');
-    await page.getByPlaceholder('Access token for the remote').fill(process.env.TOKEN);
-    await page.getByRole('button', {name: 'Save'}).click();
-    ///////////////////////////////////////////////////////////////////
-    await page.getByLabel('Select ' + AZURE_OPENAI_ENDPOINT_NAME, {exact: true}).check();
+    
+    // Select Target Endpoint Page
+    await page.getByLabel('Select ' + TARGET_ENDPOINT_NAME, {exact: true}).check();
     await page.getByLabel('Next View').click();
 
+    // Select Cookbook Page
     await page.getByRole('button', {name: 'Trust & Safety'}).click();
-    await page.getByLabel('Select ' + COOKBOOK_NAME).check();
-
+    await page.getByLabel('Select ' + COOKBOOK_ID).check();
     await page.getByLabel('Next View').click();
 
+    // Configure Requirements Page - Edit LLM Judge - OpenAI GPT4 Evaluator endpoint
+    await page.getByRole('button', {name: 'Configure'}).click();
+    await page.getByRole('textbox', {name: 'Model'}).click();
+    await page.getByRole('textbox', {name: 'Model'}).fill(LLM_OPENAI_MODEL_NAME);
+    await page.getByPlaceholder('Access token for the remote').fill(process.env.OPENAI_TOKEN);
+    await page.getByRole('button', {name: 'Save'}).click();
+    await page.getByLabel('Next View').click();
+
+    // Run Page - Set Runner Name
     await page.getByPlaceholder('Give this session a unique').click();
     await page.getByPlaceholder('Give this session a unique').fill(RUNNER_NAME);
     await page.getByRole('button', {name: 'Run'}).click();
-    ////////////////////////////////////////////////////////////////////////////
+
+    // Wait for run to complete for report to be visible
     await expect(page.getByRole('button', {name: 'View Report'})).toBeVisible({timeout: 2100000})
-    //Check Details
+    
+    // Details Overlay Panel
     await page.getByRole('button', {name: 'See Details'}).click();
     await expect(page.getByText("Name:" + RUNNER_NAME)).toBeVisible();
     await expect(page.getByText('Description:')).toBeVisible();
-    await expect(page.getByText('Number of prompts to run:574')).toBeVisible();
+    await expect(page.getByText('Number of prompts to run:72')).toBeVisible();
     await page.getByRole('main').getByRole('img').nth(1).click();
     // await download_validation_steps (page)
-    await page.getByRole('button', {name: 'View Report'}).click();
-    await page.locator('main').filter({hasText: 'Showing results forazure-'}).getByRole('link').first().click();
-    await page.getByText(/back to home/i).click()
 
+    // Report Page
+    await page.getByRole('button', {name: 'View Report'}).click();
+    await page.locator('main').filter({hasText: 'Showing results for' + TARGET_ENDPOINT_NAME_ID}).getByRole('link').first().click();
+    await page.getByText(/back to home/i).click()
 });
 
 test('test_benchmarking_one_endpoint_cookbook_jailbreak_prompts', async ({browserName, page}) => {
