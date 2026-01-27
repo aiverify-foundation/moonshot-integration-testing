@@ -40,6 +40,18 @@ function killSQLiteConnections(dbFile: string): void {
     }
 }
 
+function get_unique_name(name_prefix: string) {
+    return name_prefix + " " + get_unique_number();
+}
+
+function get_unique_number() {
+    return Math.floor(Math.random() * 1000000000);
+}
+
+function get_together_mistral_endpoint_unique_name() {
+    return get_unique_name("Test " + "Together Mistral 7B Instruct");
+}
+
 export async function create_endpoint_steps(page, name, uri, token, connectorType, maxCallPerSec, maxConcurr, model, otherParams, uriSkipCheck?: boolean) {
     await page.goto('http://localhost:3000/endpoints/new');
     await page.getByPlaceholder('Name of the model').click();
@@ -96,6 +108,21 @@ export async function create_endpoint_steps(page, name, uri, token, connectorTyp
     // Check for display of addtional parameters @ http://localhost:3000/endpoints page
     await expect(page.locator('pre')).toContainText(otherParams);
 
+}
+
+async function create_single_together_mistral_7b_instruct_endpoint(page, endpoint_name: string) {
+    await create_endpoint_steps(
+        page, 
+        endpoint_name, 
+        '', 
+        process.env.TOGETHER_TOKEN, 
+        'together-connector', 
+        '2', 
+        '', 
+        'mistralai/Mistral-7B-Instruct-v0.3', 
+        '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', 
+        true
+    )
 }
 
 test('test_red_teaming', async ({browserName, page}) => {
@@ -1989,18 +2016,21 @@ test('test_red_teaming_add_bookmark', { tag: ['@wip','@passedlocal','@failedpipe
     await expect(page.getByRole('main')).toContainText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was successfully saved.');
 });
 
-test('test_red_teaming_view_bookmark', { tag: ['@wip','@passedlocal','@failedpipeline'] }, async ({page, browser}) => {
+test.only('test_red_teaming_view_bookmark', { tag: ['@wip','@passedlocal','@failedpipeline'] }, async ({page, browser}) => {
+    test.setTimeout(1200000); //set test timeout to 1 hour
+
     // This ensures a clean state for each test by creating a new context
     const context = await browser.newContext();  // Creates an isolated browser context
     const newPage = await context.newPage();    // Create a new page within the isolated context
-    test.setTimeout(1200000); //set test timeout to 1 hour
-    const RND_4_ENDPOINT = Math.floor(Math.random() * 1000000000)
-    const RED_TEAMING_ENDPOINT_NAME: string = "azure-openai-" + RND_4_ENDPOINT;
 
-    const ENDPOINT_NAME: string = "Azure OpenAI " + RND_4_ENDPOINT;
-    const RND_4_RUNNER = Math.floor(Math.random() * 1000000000)
-    const RUNNER_NAME: string = "Test " + RND_4_RUNNER;
-    await create_endpoint_steps(newPage, ENDPOINT_NAME, process.env.URI, process.env.TOKEN, 'azure-openai-connector', '2', '', 'gpt-4o', '{\n "timeout": 300,\n "max_attempts": 3,\n "temperature": 0.5\n}', true)
+    const RUNNER_NAME: string = get_unique_name("Test View Bookmark");
+    const RUNNER_ID: string = RUNNER_NAME.replaceAll(' ', '-').toLowerCase();
+    const BOOKMARK_ID: string = get_unique_name("Test Bookmark").replaceAll(' ', '-').toLowerCase();
+    const ENDPOINT_NAME: string = get_together_mistral_endpoint_unique_name();
+    const ENDPOINT_ID: string = ENDPOINT_NAME.replaceAll(' ', '-').toLowerCase();
+    
+    await create_single_together_mistral_7b_instruct_endpoint(newPage, ENDPOINT_NAME);
+
     // Red Teaming
     console.log('Red Teaming')
     await newPage.getByRole('listitem').nth(2).click();
@@ -2051,15 +2081,16 @@ test('test_red_teaming_view_bookmark', { tag: ['@wip','@passedlocal','@failedpip
     await expect(h2Element).toBeVisible()
     await expect(h2Element).toHaveText('Response');
 
-    await expect(newPage.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
-    await newPage.locator('#win_test-' + RND_4_RUNNER + '-' + RED_TEAMING_ENDPOINT_NAME + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
+    await expect(newPage.locator('#win_' + RUNNER_ID + '-' + ENDPOINT_ID + ' > div > div.custom-scrollbar > div#chatContainer > li').nth(7)).toBeVisible();
+    await newPage.locator('#win_' + RUNNER_ID + '-' + ENDPOINT_ID + ' > div > div.custom-scrollbar > div#chatContainer > li:nth-of-type(2) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div[role="button"]').click();
     await newPage.getByPlaceholder('Give this bookmark a unique').click();
-    await newPage.getByPlaceholder('Give this bookmark a unique').fill('bookmark_mark' + RND_4_ENDPOINT);
+    await newPage.getByPlaceholder('Give this bookmark a unique').fill(BOOKMARK_ID);
     await newPage.getByRole('button', {name: 'Save'}).click();
-    await expect(newPage.getByRole('main')).toContainText('Bookmark ' + 'bookmark_mark' + RND_4_ENDPOINT + ' was successfully saved.');
+    await expect(newPage.getByRole('main')).toContainText('Bookmark ' + BOOKMARK_ID + ' was successfully saved.');
     await newPage.getByRole('button', {name: 'View Bookmarks'}).click();
-    await newPage.locator('li').filter({hasText: 'bookmark_mark' + RND_4_ENDPOINT}).click();
-    await expect(newPage.locator('section').getByRole('heading', {name: 'bookmark_mark' + RND_4_ENDPOINT})).toBeVisible();
+    await newPage.locator('li').filter({hasText: BOOKMARK_ID}).click();
+    await expect(newPage.locator('section').getByRole('heading', {name: BOOKMARK_ID})).toBeVisible();
+
     // Navigate to the desired page
     console.log(path.resolve(__dirname, '.env'));
     await newPage.goto('http://localhost:3000/endpoints/new');
