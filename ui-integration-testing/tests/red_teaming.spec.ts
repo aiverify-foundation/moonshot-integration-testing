@@ -1988,10 +1988,10 @@ test('test_red_teaming_add_bookmark', { tag: ['@wip','@passedlocal','@failedpipe
     let isVisible = await elementLocator.isVisible();
     expect(isVisible).toBeFalsy();
 
-    await expect(page.locator('div > li').nth(0)).toBeVisible();
-    await expect(page.locator('div > li').nth(2)).toBeVisible();
-    await expect(page.locator('div > li').nth(4)).toBeVisible();
-    await expect(page.locator('div > li').nth(7)).toBeVisible();
+    await expect(page.locator('div > li').nth(0)).toBeVisible({timeout: 300000});
+    await expect(page.locator('div > li').nth(2)).toBeVisible({timeout: 300000});
+    await expect(page.locator('div > li').nth(4)).toBeVisible({timeout: 300000});
+    await expect(page.locator('div > li').nth(7)).toBeVisible({timeout: 300000});
     // Locate the <h1> element with class "text-right" and text "You"
     let h1Element = page.locator('h1.text-right').nth(0);
 
@@ -2062,9 +2062,9 @@ test('test_red_teaming_view_bookmark', { tag: ['@wip','@passedlocal','@failedpip
     expect(isVisible).toBeFalsy();
 
 
-    await expect(newPage.locator('div > li').nth(2)).toBeVisible();
-    await expect(newPage.locator('div > li').nth(4)).toBeVisible();
-    await expect(newPage.locator('div > li').nth(7)).toBeVisible();
+    await expect(newPage.locator('div > li').nth(2)).toBeVisible({timeout: 300000});
+    await expect(newPage.locator('div > li').nth(4)).toBeVisible({timeout: 300000});
+    await expect(newPage.locator('div > li').nth(7)).toBeVisible({timeout: 300000});
     // Locate the <h1> element with class "text-right" and text "You"
     const h1Element = newPage.locator('h1.text-right').nth(0);
 
