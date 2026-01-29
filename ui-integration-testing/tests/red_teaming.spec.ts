@@ -1222,14 +1222,8 @@ test('test_red_teaming_with_attack_module_violent_durian', async ({browserName, 
 
 });
 
-test.skip('test_red_teaming_with_amazon_bedrock', { 
-    tag: ['@wip']
-}, async ({browserName, page}) => {
-    const apiKey = process.env.AWS_ACCESS_KEY_ID;
-
+test.skip('test_red_teaming_with_amazon_bedrock', async ({browserName, page}) => {
     const filePath = '/Users/jacksonboey/PycharmProjects/moonshot/moonshot-data/connectors-endpoints/openai-gpt4.json';
-    // Use the environment variables
-    console.log('AWS_ACCESS_KEY_ID:', apiKey);
 
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(1200000); //set test timeout to 1 hour

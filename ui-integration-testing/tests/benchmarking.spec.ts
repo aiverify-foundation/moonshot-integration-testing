@@ -1326,11 +1326,6 @@ test('test_benchmarking_one_endpoint_cookbook_openai_i2p', async ({browserName, 
 });
 
 test('test_benchmarking_one_endpoint_cookbook_amazon_bedrock', { tag: ['@wip'] }, async ({browserName, page}) => {
-    const apiKey = process.env.AWS_ACCESS_KEY_ID;
-
-    // Use the environment variables
-    console.log('AWS_ACCESS_KEY_ID:', apiKey);
-
     // test.setTimeout(3600000); //set test timeout to 1 hour
     test.setTimeout(2100000); //set test timeout to 1 hour
     const FIRE_RED_TEAMING_BTN: number = Math.floor(Math.random() * 1000000000)
@@ -1359,7 +1354,7 @@ test('test_benchmarking_one_endpoint_cookbook_amazon_bedrock', { tag: ['@wip'] }
         '    "temperature": 0.5,\n' +
         '    "model": "anthropic.claude-3-sonnet-20240229-v1:0",\n' +
         '    "session": {\n' +
-        '        "region_name": "us-east-1"\n' +
+        '        "region_name": "ap-southeast-1"\n' +
         '    }\n' +
         '}'
     await page.getByText('More Configs').click();
